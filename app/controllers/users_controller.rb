@@ -6,7 +6,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # TODO: セーブできたときの処理
+      # セーブできたら同時にログイン
+      session[:user_id] = @user.id
+      flash[:success] = "アカウント登録＋ログインに成功しました！"
+      redirect_to user_path(@user.id)
     else
       render :new
     end
@@ -22,8 +25,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update
-      # TODO: 更新できたときの処理
+    if @user.update(user_params)
+      flash[:success] = "アカウント情報を更新しました！"
+      redirect_to user_path(@user.id)
     else
       render :edit
     end
@@ -32,7 +36,8 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    # TODO: 削除した後の処理
+    flash[:success] = "アカウントを削除しました！"
+    redirect_to new_session_path
   end
 
   private
