@@ -1,0 +1,20 @@
+<h3>カテゴリー編集画面</h3>
+<%= form_with(model: @category, local: true) do |f| %>
+  <div class="form_inner">
+    <% if @category.errors.any? %>
+      <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
+        <h2><%= @category.errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% @category.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <%= f.submit %>
+<% end %>
