@@ -12,8 +12,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# has_secure_passwordを使用するために必要なgem
+gem 'bcrypt', '~> 3.1.11'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
