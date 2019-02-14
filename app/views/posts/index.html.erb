@@ -1,4 +1,4 @@
-<h3><%= @user.name %>さんのマイページ</h3>
+<h3>全ユーザーランキング一覧画面</h3>
 <div class="container-fluid">
   <div class="row">
 
@@ -12,7 +12,7 @@
         <tbody>
           <% @categories.each do |category| %>
             <tr class="active_category">
-              <td><%= link_to category.name, category_user_path(category, @user) %></td>
+              <td><%= link_to category.name, category_posts_path(category) %></td>
             </tr>
           <% end %>
           <script>
@@ -24,20 +24,21 @@
     </div>
 
     <div class="col-md-8">
-      <% @user_posts.each do |user_post| %>
+      <% @posts.each do |post| %>
         <div class="thumbnail">
-          <h3><%= user_post.ranking_point %>：<%= user_post.eatery_name %></h3>
-          <h4>メニュー名：<%= user_post.eatery_food %></h4>
+          <h3><%= post.ranking_point %>：<%= post.eatery_name %></h3>
+          <h4>メニュー名：<%= post.eatery_food %></h4>
           <!-- <img src="..." alt="..."> -->
           <div class="caption">
-            <p><%= user_post.remarks %></p>
+            <p><%= post.remarks %></p>
             <ul>
-              <li>所在地：<%= user_post.eatery_address %></li>
-              <li>ホームページ：<%= link_to user_post.eatery_website %></li>
+              <li>所在地：<%= post.eatery_address %></li>
+              <li>ホームページ：<%= link_to post.eatery_website %></li>
+              <li>投稿者名：<%= post.user.name %></li>
             </ul>
             <p>
-              <%= link_to "編集", edit_post_path(user_post), class: "btn btn-black" %>
-              <%= link_to "削除", post_path(user_post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+              <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
+              <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
             </p>
           </div>
         </div>
@@ -45,7 +46,6 @@
     </div>
 
     <div class="col-md-2">
-      <%= link_to "新規登録", new_post_path, class: "cp_btn" %>
     </div>
 
   </div>

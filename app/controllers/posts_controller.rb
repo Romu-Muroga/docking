@@ -2,7 +2,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.all
+    @categories = Category.all
+    @posts = if params[:category_id]
+               Post.where(category_id: params[:category_id]).order(updated_at: :desc)#TODO: scope
+             else
+               Post.all
+             end
   end
 
   def new
@@ -13,7 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       flash[:success] = "ランキングを登録しました！"
-      redirect_to#TODO: リダイレクト先
+      redirect_to user_path(@post.user_id)
     else
       render :new
     end
@@ -26,7 +31,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:success] = "ランキングを更新しました！"
-      redirect_to#TODO: リダイレクト先
+      redirect_to user_path(@post.user_id)
     else
       render :edit
     end
@@ -35,7 +40,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = "ランキングを削除しました！"
-    redirect_to#TODO: リダイレクト先
+    redirect_to user_path(@post.user_id)
   end
 
   private

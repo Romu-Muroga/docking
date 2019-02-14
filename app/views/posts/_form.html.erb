@@ -1,4 +1,4 @@
-<%= form_with(model: post, local: true) do |f| %>
+<%= form_with(model: post, local: true, class: "form_outer") do |f| %>
   <div class="form_inner">
     <% if post.errors.any? %>
       <div id="error_explanation"><!-- TODO: CSS当たってない？ -->

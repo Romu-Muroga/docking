@@ -1,20 +1,8 @@
-<h3>カテゴリー新規登録画面</h3>
-<%= form_with(model: @category, local: true) do |f| %>
-  <div class="form_inner">
-    <% if @category.errors.any? %>
-      <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
-        <h2><%= @category.errors.count %>件のエラーがあります。</h2>
-        <ul>
-          <% @category.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <h3>カテゴリー新規登録画面</h3>
+      <%= render partial: "form", locals: { category: @category } %>
     </div>
   </div>
-  <%= f.submit %>
-<% end %>
+</div>

@@ -1,11 +1,36 @@
-// カテゴリーテーブルの幅調整
+// テーブル共通背景色
 .table {
+  background-color: white;
+}
+// tdのデフォルトのpaddingリセット
+.table_resize tbody tr td {
+  padding: 0;
+}
+// カテゴリーテーブルの幅調整
+.table_resize {
   width: 180px;
 }
-// カテゴリーボタンの押下範囲を拡大
-.push_area {
+// テーブルの文字色変更
+.table_resize tbody tr td a {
+  color: black;
   display: block;
+  padding: 10px;
 }
+// マウスカーソルを重ねたとき
+.table-hover tbody tr:hover {
+  background-color: black;
+}
+.table-hover tbody tr td a:hover {
+  color: white;
+  text-decoration: none;
+}
+// 選択中のカテゴリーの色を設定
+.table_resize tbody tr td a.active {
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+
 // 新規登録ボタン
 a.cp_btn {
 	display: block;
@@ -21,4 +46,17 @@ a.cp_btn {
 a.cp_btn:hover {
 	background: #EC407A;
 	color: #fff;
+}
+// 編集ボタンの色
+.btn-black {
+  color: white;
+  background-color: black;
+  border-color: black;
+}
+// テキストを折り返してはみ出さないように改行
+.thumbnail {
+  word-wrap: break-word;
+}
+.caption {
+  word-wrap: break-word;
 }
