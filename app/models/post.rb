@@ -12,4 +12,8 @@ class Post < ApplicationRecord
   # enumを使えば、数字を意味のある文字として扱える。DBには割り当てられた整数が保存される。
   enum ranking_point: { １位: 3, ２位: 2, ３位: 1 }#ランキングポイント
 
+  # アソシエーション
+  belongs_to :user
+  belongs_to :category
+
 end

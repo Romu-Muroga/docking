@@ -16,7 +16,8 @@
     </div>
     <div class="form-group">
       <%= f.label :ranking_point %>
-      <%= f.select :ranking_point, Post.ranking_points, class: "form-control" %>
+      <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
+      <%= f.select :ranking_point, Post.ranking_points.keys, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :eatery_name %>

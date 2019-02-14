@@ -1,1 +1,38 @@
 <h3><%= @user.name %>さんのマイページ</h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>カテゴリー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= category.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-8">
+      <% @user_posts.each do |user_post| %>
+        <div class="thumbnail">
+          <h3>ランキング<%= user_post.ranking_point %><%= user_post.eatery_name %></h3>
+          <h4>メニュー名 <%= user_post.eatery_food %></h4>
+          <img src="..." alt="...">
+          <div class="caption">
+            <p><%= user_post.remarks %></p>
+            <ul>
+              <li>所在地：<%= user_post.eatery_address %></li>
+              <li>ホームページ：<%= link_to user_post.eatery_website %></li>
+            </ul>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

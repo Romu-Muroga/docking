@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show categoryitems edit update destroy]
 
   def new
     @user = User.new
@@ -17,7 +17,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @categories = Category.all
+    # if params[:user_id] && params[:id]
+    #   @user_posts = Post.where(user_id: @user).where(category_id: params[:id]).order(ranking_point: :desc)
+    # else
+        @user_posts = @user.posts
+    # end
+  end
 
   def edit; end
 
