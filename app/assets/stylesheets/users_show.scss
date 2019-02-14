@@ -2,3 +2,23 @@
 .table {
   width: 180px;
 }
+// カテゴリーボタンの押下範囲を拡大
+.push_area {
+  display: block;
+}
+// 新規登録ボタン
+a.cp_btn {
+	display: block;
+	width: 160px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #EC407A;
+	border: 2px solid #EC407A;
+	border-radius: 3px;
+	transition: .4s;
+}
+a.cp_btn:hover {
+	background: #EC407A;
+	color: #fff;
+}

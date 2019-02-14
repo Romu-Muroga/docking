@@ -19,11 +19,11 @@ class UsersController < ApplicationController
 
   def show
     @categories = Category.all
-    # if params[:user_id] && params[:id]
-    #   @user_posts = Post.where(user_id: @user).where(category_id: params[:id]).order(ranking_point: :desc)
-    # else
-        @user_posts = @user.posts
-    # end
+    @user_posts = if params[:category_id]
+                    Post.where(user_id: @user).where(category_id: params[:category_id]).order(ranking_point: :desc)#TODO: scope
+                  else
+                    @user.posts
+                  end
   end
 
   def edit; end
