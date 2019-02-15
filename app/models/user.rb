@@ -13,4 +13,5 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :posts
+  has_many :images, as: :imageable
 end

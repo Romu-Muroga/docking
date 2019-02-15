@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.images.build
   end
 
   def create
@@ -45,14 +46,17 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:ranking_point,
+    params.require(:post).permit(:category_id,
+                                 :ranking_point,
                                  :eatery_name,
                                  :eatery_food,
                                  :eatery_address,
                                  :latitude,
                                  :longitude,
                                  :eatery_website,
-                                 :remarks
+                                 :remarks,
+                                 :user_id,
+                                 images_attributes: [:id, :image, :_destroy]
                                 )
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_210012) do
+ActiveRecord::Schema.define(version: 2019_02_14_211830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2019_02_14_210012) do
     t.string "name", limit: 500, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.text "image", null: false
+    t.string "imageable_type", null: false
+    t.bigint "imageable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -35,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_210012) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
-    t.index ["ranking_point", "category_id"], name: "index_posts_on_ranking_point_and_category_id", unique: true
+    t.index ["ranking_point", "category_id", "user_id"], name: "index_posts_on_ranking_point_and_category_id_and_user_id", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

@@ -11,7 +11,9 @@
 
   <body>
     <header>
-      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+      <% if logged_in? %>
+        <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+      <% end %>
     </header>
     <div class="wrapper">
       <% flash.each do |message_type, message| %>
