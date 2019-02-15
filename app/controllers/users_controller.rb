@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show categoryitems edit update destroy]
+  before_action :set_user, only: %i[show edit update destroy]
 
   def new
     @user = User.new
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user_posts = if params[:category_id]
                     Post.where(user_id: @user).where(category_id: params[:category_id]).order(ranking_point: :desc)#TODO: scope
                   else
-                    @user.posts
+                    @user.posts.where(category_id: Category.first.id).order(ranking_point: :desc)#TODO: scope
                   end
   end
 

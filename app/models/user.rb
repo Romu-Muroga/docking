@@ -13,5 +13,5 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :posts
-  has_many :images, as: :imageable
+  has_one :picture, as: :imageable, dependent: :destroy#TODO: foreign_key: { on_delete: :cascade }
 end

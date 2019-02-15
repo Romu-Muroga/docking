@@ -16,7 +16,17 @@ class Post < ApplicationRecord
   # アソシエーション
   belongs_to :user
   belongs_to :category
-  has_many :images, as: :imageable, inverse_of: :imageable, dependent: :destroy#TODO: foreign_key: { on_delete: :cascade }
-  accepts_nested_attributes_for :images
+  has_one :picture, as: :imageable, dependent: :destroy#TODO: foreign_key: { on_delete: :cascade }
 
+  # attr_accessor :image # for caching images table value
+
+  # defo. [id, content].map { column: self.attr_accessor: column }
+  # has_many(arg1, [...arg2])をすると
+  # attr_accessor: arg1 # as
+  # arg1を読んだときのメソッド(ex. before_get_arg1)ができる
+  # def before_get_arg1
+  #   @post = self # == Post.find(:id)
+  #   @arg1 = Arg1.where(id: self.id)
+  #   return @arg1
+  # end
 end

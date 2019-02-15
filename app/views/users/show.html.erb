@@ -26,11 +26,12 @@
     <div class="col-md-8">
       <% @user_posts.each do |user_post| %>
         <div class="thumbnail">
+          <h3>カテゴリー名：<%= user_post.category.name %></h3>
           <h3><%= user_post.ranking_point %>：<%= user_post.eatery_name %></h3>
           <h4>メニュー名：<%= user_post.eatery_food %></h4>
-          <!-- <img src="..." alt="..."> -->
+          <%= image_tag(user_post.picture.image.url) %>
           <div class="caption">
-            <p><%= user_post.remarks %></p>
+            <h4><%= user_post.remarks %></h4>
             <ul>
               <li>所在地：<%= user_post.eatery_address %></li>
               <li>ホームページ：<%= link_to user_post.eatery_website %></li>
@@ -45,6 +46,8 @@
     </div>
 
     <div class="col-md-2">
+      <%= link_to "アカウント情報変更", edit_user_path(current_user) %><br>
+      <%= link_to "退会処理" %>
       <%= link_to "新規登録", new_post_path, class: "cp_btn" %>
     </div>
 
