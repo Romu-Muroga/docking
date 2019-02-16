@@ -3,13 +3,27 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[show edit update destroy]
 
-  def index
-    @categories = Category.all
+  def index#TODO: scope
+    category_list
     @posts = if params[:category_id]
-               Post.where(category_id: params[:category_id]).order(updated_at: :desc)#TODO: scope
+               Post.where(category_id: params[:category_id]).order(updated_at: :desc)
              else
-               Post.all.order(updated_at: :desc)#TODO: scope
+               Post.all.order(updated_at: :desc)
              end
+  end
+
+  def search#TODO: scope
+    category_list
+    @posts = if params[:post][:eatery_address].present? && params[:post][:category_id].present? && params[:post][:ranking_point].present?
+               Post.where("eatery_address LIKE ?", "%#{ params[:post][:eatery_address] }%").where(category_id: params[:post][:category_id]).where(ranking_point: params[:post][:ranking_point])
+             elsif params[:post][:eatery_address].present?
+               Post.where("eatery_address LIKE ?", "%#{ params[:post][:eatery_address] }%")
+             elsif params[:post][:category_id].present?
+               Post.where(category_id: params[:post][:category_id])
+             elsif params[:post][:ranking_point].present?
+               Post.where(ranking_point: params[:post][:ranking_point])
+             end
+    render :index
   end
 
   def new
@@ -19,7 +33,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.build_picture(image: image_params[:image])
+    @post.build_picture(image: picture_params[:image])
     if @post.save
       flash[:success] = "ランキングを登録しました！"
       redirect_to user_path(@post.user_id)
@@ -36,7 +50,7 @@ class PostsController < ApplicationController
     # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
       @post.update!(post_params)
-      @post.picture.update!(image: image_params[:image])
+      @post.picture.update!(image: picture_params[:image])
     end
     flash[:success] = "ランキングを更新しました！"
     redirect_to user_path(@post.user_id)
@@ -67,7 +81,7 @@ class PostsController < ApplicationController
     )
   end
   # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
-  def image_params
+  def picture_params
     params.require(:post).permit(:image)
   end
 
@@ -87,5 +101,9 @@ class PostsController < ApplicationController
       flash[:danger] = "ユーザーが違います！"
       redirect_to new_session_path
     end
+  end
+
+  def category_list
+    @categories = Category.all
   end
 end
