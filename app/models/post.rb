@@ -18,6 +18,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_one :picture, as: :imageable, dependent: :destroy#TODO: foreign_key: { on_delete: :cascade }
+  has_many :likes
 
   # attr_accessor :image # for caching images table value
 
