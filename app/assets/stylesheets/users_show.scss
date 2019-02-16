@@ -61,3 +61,11 @@ a.cp_btn:hover {
 .caption {
   word-wrap: break-word;
 }
+// ユーザーのアイコン画像の輪郭を変更
+.image_processing {
+  border-radius: 5%;
+}
+// 右側のユーザーメニューの位置調整
+.user_menu {
+  margin-top: 38px;
+}
