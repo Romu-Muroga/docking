@@ -34,7 +34,8 @@
             <h4><%= user_post.remarks %></h4>
             <ul>
               <li>所在地：<%= user_post.eatery_address %></li>
-              <li>ホームページ：<%= link_to user_post.eatery_website %></li>
+              <!-- TODO: 存在しないアドレスだとエラーになる -->
+              <li>ホームページ：<%= link_to "#{user_post.eatery_name}", user_post.eatery_website %></li>
             </ul>
             <p>
               <%= link_to "編集", edit_post_path(user_post), class: "btn btn-black" %>
