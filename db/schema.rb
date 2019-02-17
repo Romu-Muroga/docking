@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(version: 2019_02_16_110442) do
     t.integer "ranking_point", null: false
     t.string "eatery_name", limit: 200, null: false
     t.string "eatery_food", limit: 200, null: false
-    t.string "eatery_address", limit: 500, default: "未登録", null: false
+    t.string "eatery_address", limit: 500, null: false
     t.decimal "latitude", precision: 11, scale: 8
     t.decimal "longitude", precision: 11, scale: 8
-    t.string "eatery_website", limit: 500, default: "未登録", null: false
+    t.string "eatery_website", limit: 500, null: false
     t.text "remarks", null: false
     t.bigint "category_id"
     t.bigint "user_id"

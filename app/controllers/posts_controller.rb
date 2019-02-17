@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[show edit update destroy]
 
-  def index#TODO: scope
+  def index# TODO: scope
     category_list
     @posts = if params[:category_id]
                Post.where(category_id: params[:category_id]).order(updated_at: :desc)
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
              end
   end
 
-  def search#TODO: scope
+  def search# TODO: scope
     category_list
     @posts = if params[:post][:eatery_address].present? && params[:post][:category_id].present? && params[:post][:ranking_point].present?
                Post.where("eatery_address LIKE ?", "%#{ params[:post][:eatery_address] }%").where(category_id: params[:post][:category_id]).where(ranking_point: params[:post][:ranking_point])
@@ -28,13 +28,13 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.build_picture#has_oneでアソシエーションが定義されている場合に使える構文らしい
+    @post.build_picture# has_oneでアソシエーションが定義されている場合に使える構文らしい
   end
 
   def create
     @post = Post.new(post_params)
     @post.build_picture(image: picture_params[:image])
-    if @post.save
+    if @post.save!# TODO: !確認
       flash[:success] = "ランキングを登録しました！"
       redirect_to user_path(@post.user_id)
     else
@@ -55,6 +55,7 @@ class PostsController < ApplicationController
     flash[:success] = "ランキングを更新しました！"
     redirect_to user_path(@post.user_id)
   rescue
+    # TODO: エラーメッセージが必要
     render :edit
   end
 
@@ -75,7 +76,7 @@ class PostsController < ApplicationController
       :latitude,
       :longitude,
       :eatery_website,
-      :remarks,
+      :remarks
     ).merge(
       user_id: current_user.id
     )

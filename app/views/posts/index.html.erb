@@ -35,12 +35,18 @@
           <h3>カテゴリー名：<%= post.category.name %></h3>
           <h3><%= post.ranking_point %>：<%= post.eatery_name %></h3>
           <h4>メニュー名：<%= post.eatery_food %></h4>
-          <%= image_tag(post.picture.image.url) %>
+          <%= image_tag(post.picture.image.url, class: "img-responsive") %>
           <div class="caption">
             <h4><%= post.remarks %></h4>
             <ul>
+              <!-- TODO: リファクタリング -->
               <li>所在地：<%= post.eatery_address %></li>
-              <li>ホームページ：<%= link_to post.eatery_website %></li>
+              <!-- TODO: 存在しないアドレスだとエラーになる -->
+              <% if post.eatery_website == "未登録" %>
+                <li>ホームページ：未登録</li>
+              <% else %>
+                <li>ホームページ：<%= link_to "#{post.eatery_name}", post.eatery_website %></li>
+              <% end %>
               <li>投稿者：<%= post.user.name %></li>
             </ul>
             <p>

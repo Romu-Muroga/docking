@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   # validates: longitude# TODO: 要確認
   validates :eatery_website, length: { maximum: 500 }
   validates :remarks, presence: true
-  # validates :image, presence: true# TODO: 要確認
+  # validates :image, presence: true# TODO: 写真が選択されていなかったときのバリデーションは？
 
   # enumを使えば、数字を意味のある文字として扱える。DBには割り当てられた整数が保存される。
   enum ranking_point: { １位: 3, ２位: 2, ３位: 1 }#ランキングポイント
@@ -17,10 +17,22 @@ class Post < ApplicationRecord
   # アソシエーション
   belongs_to :user
   belongs_to :category
-  has_one :picture, as: :imageable, dependent: :destroy#TODO: foreign_key: { on_delete: :cascade }
+  has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   has_many :likes
 
+  # コールバック
+  before_save :set_default
+  before_update :set_default
+
+  private
+  def set_default# TODO: DBのdefault値の役割は？
+    # eatery_addressとeatery_website値に未登録をセット
+    self.eatery_address = "未登録" if eatery_address.blank?
+    self.eatery_website = "未登録" if eatery_website.blank?
+  end
+
   # attr_accessor :image # for caching images table value
+  # attr_reader :image
 
   # defo. [id, content].map { column: self.attr_accessor: column }
   # has_many(arg1, [...arg2])をすると
