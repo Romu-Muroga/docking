@@ -19,6 +19,21 @@ class Post < ApplicationRecord
   belongs_to :category
   has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   has_many :likes
+  has_many :iine_users, through: :likes, source: :user#「ポストにいいねをしたユーザーの一覧」という関連
+
+  # いいね機能
+  # Postをいいねする
+  def iine(user)
+    likes.create(user_id: user.id)
+  end
+  # Postのいいねを解除する
+  def uniine(user)
+    likes.find_by(user_id: user.id).destroy
+  end
+  # 現在のユーザーがいいねしてたらtrueを返す
+  def iine?(user)
+    iine_users.include?(user)
+  end
 
   # コールバック
   before_save :set_default

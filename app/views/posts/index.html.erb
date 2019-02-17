@@ -48,6 +48,10 @@
                 <li>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></li>
               <% end %>
               <li>投稿者：<%= link_to post.user.name, user_path(post.user) %></li>
+              <li id="post-<%= post.id %>" data-post-id="<%= post.id %>">
+                <%= render "likes/like", post: post %><!-- TODO: いいねボタン -->
+              </li>
+
             </ul>
             <p>
               <% if post.user_id == current_user.id %>
