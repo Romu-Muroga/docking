@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      post: "投稿"
+      category: "カテゴリー"
+      user: "ユーザー"
+      picture: "写真"
+    attributes:
+      post:
+        category_id: "カテゴリー"
+        ranking_point: "ランキング順位"
+        eatery_name: "店名"
+        eatery_food: "メニュー名"
+        eatery_address: "所在地"
+        eatery_website: "店のホームページ"
+        remarks: "備考欄"
+      category:
+        name: "カテゴリー名"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+      picture:
+        image: "画像"

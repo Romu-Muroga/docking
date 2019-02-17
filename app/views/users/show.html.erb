@@ -39,12 +39,14 @@
               <% if user_post.eatery_website == "未登録" %>
                 <li>ホームページ：未登録</li>
               <% else %>
-                <li>ホームページ：<%= link_to "#{user_post.eatery_name}", user_post.eatery_website %></li>
+                <li>ホームページ：<%= link_to user_post.eatery_name, user_post.eatery_website %></li>
               <% end %>
             </ul>
             <p>
-              <%= link_to "編集", edit_post_path(user_post), class: "btn btn-black" %>
-              <%= link_to "削除", post_path(user_post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+              <% if user_post.user_id == current_user.id %>
+                <%= link_to "編集", edit_post_path(user_post), class: "btn btn-black" %>
+                <%= link_to "削除", post_path(user_post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+              <% end %>
             </p>
           </div>
         </div>
@@ -58,9 +60,11 @@
         <% else %>
           <%= image_tag("/images/default.png", class: "img-responsive image_processing")%>
         <% end %>
-        <%= link_to "アカウント情報変更", edit_user_path(current_user) %><br>
-        <%= link_to "退会処理" %>
-        <%= link_to "新規登録", new_post_path, class: "cp_btn" %>
+        <% if @user.id == current_user.id %>
+          <%= link_to "アカウント情報変更", edit_user_path(current_user) %><br>
+          <%= link_to "退会処理" %>
+          <%= link_to "新規登録", new_post_path, class: "cp_btn" %>
+        <% end %>
       </div>
     </div>
 

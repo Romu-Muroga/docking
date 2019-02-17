@@ -12,18 +12,27 @@ class PostsController < ApplicationController
              end
   end
 
-  def search# TODO: scope
+  def search# TODO: scope + order(updated_at: :desc)
     category_list
-    @posts = if params[:post][:eatery_address].present? && params[:post][:category_id].present? && params[:post][:ranking_point].present?
-               Post.where("eatery_address LIKE ?", "%#{ params[:post][:eatery_address] }%").where(category_id: params[:post][:category_id]).where(ranking_point: params[:post][:ranking_point])
-             elsif params[:post][:eatery_address].present?
-               Post.where("eatery_address LIKE ?", "%#{ params[:post][:eatery_address] }%")
-             elsif params[:post][:category_id].present?
-               Post.where(category_id: params[:post][:category_id])
-             elsif params[:post][:ranking_point].present?
-               Post.where(ranking_point: params[:post][:ranking_point])
-             end
-    render :index
+    eatery_address = params[:post][:eatery_address]
+    category_id = params[:post][:category_id]
+    ranking_point = params[:post][:ranking_point]
+    if eatery_address.present? && category_id.present? && ranking_point.present?
+      @posts = Post.where("eatery_address LIKE ?", "%#{ eatery_address }%").where(category_id: category_id).where(ranking_point: ranking_point)
+      render :index
+    elsif eatery_address.present?
+      @posts = Post.where("eatery_address LIKE ?", "%#{ eatery_address }%")
+      render :index
+    elsif category_id.present?
+      @posts = Post.where(category_id: category_id)
+      render :index
+    elsif ranking_point.present?
+      @posts = Post.where(ranking_point: ranking_point)
+      render :index
+    elsif eatery_address.blank? && category_id.blank? && ranking_point.blank?
+      flash[:warning] = "検索ワードを入力してください！"
+      redirect_to posts_path
+    end
   end
 
   def new
@@ -34,7 +43,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.build_picture(image: picture_params[:image])
-    if @post.save!# TODO: !確認
+    if @post.save# TODO: !確認
       flash[:success] = "ランキングを登録しました！"
       redirect_to user_path(@post.user_id)
     else

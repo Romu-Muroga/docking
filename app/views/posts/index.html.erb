@@ -45,13 +45,15 @@
               <% if post.eatery_website == "未登録" %>
                 <li>ホームページ：未登録</li>
               <% else %>
-                <li>ホームページ：<%= link_to "#{post.eatery_name}", post.eatery_website %></li>
+                <li>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></li>
               <% end %>
-              <li>投稿者：<%= post.user.name %></li>
+              <li>投稿者：<%= link_to post.user.name, user_path(post.user) %></li>
             </ul>
             <p>
-              <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
-              <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+              <% if post.user_id == current_user.id %>
+                <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
+                <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+              <% end %>
             </p>
           </div>
         </div>
