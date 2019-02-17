@@ -35,6 +35,28 @@ class Post < ApplicationRecord
     iine_users.include?(user)
   end
 
+  # 総合ランキング
+  def self.overall_ranking
+    posts = Post.group(:eatery_name).having('count(*) >= 2').pluck(:eatery_name)
+    # => ["はまぐりラーメン", "ラーメン次郎"]
+    eatery_points = {}
+    posts.each { |post| eatery_points[post] = {point: 0} }
+    # => {"はまぐりラーメン"=>{:point=>0}, "ラーメン次郎"=>{:point=>0}}
+    dup_records = Post.where(eatery_name: posts)
+    # => ["はまぐりラーメン", "ラーメン次郎"]と一致したレコードが全て取得できる
+    eatery_points.each do |key, value|
+      dup_records.each do |one|
+        value[:point] = value[:point] + one.ranking_point_before_type_cast if one.eatery_name == key
+      end
+    end
+    # => {"はまぐりラーメン"=>{:point=>0}, "ラーメン次郎"=>{:point=>0}}
+    # ポイントが加算されていくはずが...console上だと
+    # one.ranking_point => "１位" or "２位" or "３位"
+    # になってしまいIntegerにStringは + できませんと怒られる...
+    Hash[ eatery_points.sort_by{ |k, v| -v[:point] } ]
+    # => {"ラーメン次郎"=>{:num=>9}, "はまぐりラーメン"=>{:num=>6}}
+  end
+
   # コールバック
   before_save :set_default
   before_update :set_default

@@ -9,6 +9,8 @@ class PostsController < ApplicationController
                Post.where(category_id: params[:category_id]).order(updated_at: :desc)
              elsif params[:iine_sort]
                Post.all.order(likes_count: :desc).limit(10)# １０位まで
+             elsif params[:overall_sort]
+               Post.overall_ranking
              else
                Post.all.order(updated_at: :desc)
              end
@@ -65,8 +67,9 @@ class PostsController < ApplicationController
     end
     flash[:success] = "ランキングを更新しました！"
     redirect_to user_path(@post.user_id)
-  rescue
+  rescue => e
     # TODO: エラーメッセージが必要
+    flash[:danger] = e
     render :edit
   end
 
