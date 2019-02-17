@@ -24,10 +24,10 @@
     </div>
 
     <div class="col-md-8">
-      <table border="2" width="930">
+      <table border="2" width="930" class="ranking_table">
         <tr>
-          <td>総合ランキング</td>
-          <td>いいねランキング</td>
+          <td><%= link_to "総合ランキング", "#" %></td>
+          <td><%= link_to "いいねランキング", posts_path(iine_sort: "true") %></td>
         </tr>
       </table>
       <% @posts.each do |post| %>

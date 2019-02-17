@@ -7,6 +7,8 @@ class PostsController < ApplicationController
     category_list
     @posts = if params[:category_id]
                Post.where(category_id: params[:category_id]).order(updated_at: :desc)
+             elsif params[:iine_sort]
+               Post.all.order(likes_count: :desc).limit(10)# １０位まで
              else
                Post.all.order(updated_at: :desc)
              end

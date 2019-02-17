@@ -1,9 +1,27 @@
 // 下にある投稿記事とのスペース
-table {
+table.ranking_table {
   margin-bottom: 18px;
   text-align: center;
 }
 // 検索欄の位置調整
 .SearchForm_outer {
-  margin-top: 38px;
+  margin-top: 58px;
+}
+// tdのデフォルトのpaddingリセット
+.ranking_table tr td {
+  padding: 0;
+}
+// テーブルの文字色変更
+.ranking_table tr td a {
+  color: black;
+  display: block;
+  padding: 10px 0 10px 0;
+}
+// マウスカーソルを重ねたとき
+.ranking_table td:hover {
+  background-color: black;
+}
+.ranking_table td a:hover {
+  color: white;
+  text-decoration: none;
 }

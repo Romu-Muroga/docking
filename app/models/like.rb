@@ -5,4 +5,5 @@ class Like < ApplicationRecord
   # アソシエーション
   belongs_to :post
   belongs_to :user
+  counter_culture :post
 end
