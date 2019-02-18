@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   validates :eatery_name, presence: true, length: { in: 1..200 }
   validates :eatery_food, presence: true, length: { in: 1..200 }
   validates :eatery_address, length: { maximum: 500 }
-  validates :category_id, uniqueness: { scope: [:ranking_point, :user_id] }
+  validates :ranking_point, uniqueness: { scope: [:category_id, :user_id] }
   # validates: latitude# TODO: 要確認
   # validates: longitude# TODO: 要確認
   validates :eatery_website, length: { maximum: 500 }
@@ -20,6 +20,17 @@ class Post < ApplicationRecord
   has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   has_many :likes
   has_many :iine_users, through: :likes, source: :user#「ポストにいいねをしたユーザーの一覧」という関連
+
+  # scope
+  scope :latest, -> { order(updated_at: :desc) }# 更新順に並び替え
+  scope :category_sort, -> (category_id) { where(category_id: category_id).latest }
+  scope :iine_ranking, -> { order(likes_count: :desc).limit(10) }# １０位まで
+  scope :all_search, -> (address, category, rank) { where("eatery_address LIKE ?", "%#{ address }%").where(category_id: category).where(ranking_point: rank).latest }
+  scope :address_search, -> (address) { where("eatery_address LIKE ?", "%#{ address }%").latest }
+  scope :category_search, -> (category) { where(category_id: category).latest }
+  scope :rank_search, -> (rank) { where(ranking_point: rank).latest }
+  scope :user_category_sort, -> (user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
+  scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
 
   # いいね機能
   # Postをいいねする
@@ -37,7 +48,7 @@ class Post < ApplicationRecord
 
   # 総合ランキング
   def self.overall_ranking
-    posts = Post.group(:eatery_name).having('count(*) >= 2').pluck(:eatery_name)
+    posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name)
     # => ["はまぐりラーメン", "ラーメン次郎"]
     eatery_points = {}
     posts.each { |post| eatery_points[post] = {point: 0} }
@@ -46,7 +57,7 @@ class Post < ApplicationRecord
     # => ["はまぐりラーメン", "ラーメン次郎"]と一致したレコードが全て取得できる
     eatery_points.each do |key, value|
       dup_records.each do |one|
-        value[:point] = value[:point] + one.ranking_point_before_type_cast if one.eatery_name == key
+        value[:point] = value[:point] + one.ranking_point_before_type_cast + one.likes_count if one.eatery_name == key
       end
     end
     # => {"はまぐりラーメン"=>{:point=>0}, "ラーメン次郎"=>{:point=>0}}

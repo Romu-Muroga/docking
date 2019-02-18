@@ -6,34 +6,34 @@ class PostsController < ApplicationController
   def index# TODO: scope
     category_list
     @posts = if params[:category_id]
-               Post.where(category_id: params[:category_id]).order(updated_at: :desc)
+               Post.category_sort(params[:category_id])
              elsif params[:iine_sort]
-               Post.all.order(likes_count: :desc).limit(10)# １０位まで
+               Post.iine_ranking
              elsif params[:overall_sort]
                Post.overall_ranking
              else
-               Post.all.order(updated_at: :desc)
+               Post.latest
              end
   end
 
   def search# TODO: scope + order(updated_at: :desc)
     category_list
-    eatery_address = params[:post][:eatery_address]
-    category_id = params[:post][:category_id]
-    ranking_point = params[:post][:ranking_point]
-    if eatery_address.present? && category_id.present? && ranking_point.present?
-      @posts = Post.where("eatery_address LIKE ?", "%#{ eatery_address }%").where(category_id: category_id).where(ranking_point: ranking_point)
+    address = params[:post][:eatery_address]
+    category = params[:post][:category_id]
+    rank = params[:post][:ranking_point]
+    if address.present? && category.present? && rank.present?
+      @posts = Post.all_search(address, category, rank)
       render :index
-    elsif eatery_address.present?
-      @posts = Post.where("eatery_address LIKE ?", "%#{ eatery_address }%")
+    elsif address.present?
+      @posts = Post.address_search(address)
       render :index
-    elsif category_id.present?
-      @posts = Post.where(category_id: category_id)
+    elsif category.present?
+      @posts = Post.category_search(category)
       render :index
-    elsif ranking_point.present?
-      @posts = Post.where(ranking_point: ranking_point)
+    elsif rank.present?
+      @posts = Post.rank_search(rank)
       render :index
-    elsif eatery_address.blank? && category_id.blank? && ranking_point.blank?
+    elsif address.blank? && category.blank? && rank.blank?
       flash[:warning] = "検索ワードを入力してください！"
       redirect_to posts_path
     end
