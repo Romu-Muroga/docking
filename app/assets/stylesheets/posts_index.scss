@@ -2,10 +2,11 @@
 table.ranking_table {
   margin-bottom: 18px;
   text-align: center;
+  border-radius: 1%;
 }
 // 検索欄の位置調整
 .SearchForm_outer {
-  margin-top: 58px;
+  margin-top: 220px;
 }
 // tdのデフォルトのpaddingリセット
 .ranking_table tr td {
@@ -40,7 +41,7 @@ table.ranking_table {
   left: -2px;
   width: 15px;
   height: 25px;
-  background: red;
+  background: black;
   border-radius: 50px 50px 0 0;
   transform: rotate(-45deg);
   transform-origin: 0 100%;
@@ -50,7 +51,6 @@ table.ranking_table {
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }
-
 
 // いいねしていない場合のハート
 #heart_lightgray {
@@ -77,12 +77,60 @@ table.ranking_table {
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }
-// いいねボタンの台座のサイズ調整
+// いいねボタンの台座のサイズ調整（positionは１番上に書く？）
 .btn-xs {
+  position: relative;
+  left: 600px;
   padding: 7px 8px 10px 22px;
-  margin-top: 6px;
+  border: none
 }
 // いいねボタンの前に付く黒点を削除
 .iine_list {
   list-style: none;
+}
+// カテゴリーラベル
+.category_label {
+  position: relative;
+  top: 5px;
+  left: 6px;
+  width: auto;
+  display: inline;
+  border: solid 1px lightgray;
+  background-color: lightgray;
+  text-align: center;
+  border-radius: 0.3em;
+  padding: 2px
+}
+// 備考欄の高さ
+.remarks {
+  margin-top: 5px;
+  min-height: 70px;
+  background-color: #f5f5f5;
+}
+// 編集・削除ボタンの上の区切り線
+.edit_delete_button {
+  border-top: solid 1px lightgray;
+  padding-top: 11px;
+  margin: 0
+}
+// スライドショー
+#slideshow {
+   position: relative;
+   width:  690px; /* 画像の横幅に合わせて記述 */
+   height: 150px; /* 画像の高さに合わせて記述 */
+   margin-bottom: 10px;
+}
+#slideshow img {
+   position: absolute;
+   top: 0;
+   left:0;
+   z-index: 8;
+   opacity: 0.0;
+}
+#slideshow img.active {
+   z-index: 10;
+   opacity: 1.0;
+}
+#slideshow img.last-active {
+   z-index: 9;
 }

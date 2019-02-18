@@ -1,8 +1,7 @@
-<h3>全ユーザーランキング一覧画面</h3>
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-md-2">
+    <div class="col-md-offset-1 col-md-2">
       <table class="table table-hover table_resize">
         <thead>
           <tr>
@@ -23,11 +22,35 @@
       </table>
     </div>
 
-    <%# if @posts.class == Hash %>
-    <%# end %>
+    <div class="col-md-6">
+      <p id="slideshow">
+        <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
+        <%#= image_tag("/images/photo2.jpg", class: "img-responsive")%>
+        <%#= image_tag("/images/photo3.jpg", class: "img-responsive")%>
+      </p>
+      <!-- <script type="text/javascript">
+        function slideSwitch() {
+           var $active = $('#slideshow img.active');
 
-    <div class="col-md-8">
-      <table border="2" width="930" class="ranking_table">
+           if ( $active.length == 0 ) $active = $('#slideshow img:last');
+
+           var $next =  $active.next().length ? $active.next()
+              : $('#slideshow img:first');
+
+           $active.addClass('last-active');
+
+           $next.css({opacity: 0.0})
+              .addClass('active')
+              .animate({opacity: 1.0}, 1000, function() {
+                   $active.removeClass('active last-active');
+              });
+        }
+
+        $(function() {
+           setInterval( "slideSwitch()", 5000 );
+        });
+      </script> -->
+      <table border="2" width="690" class="ranking_table">
         <tr>
           <td><%= link_to "総合ランキング", posts_path(overall_sort: "true") %></td>
           <td><%= link_to "いいねランキング", posts_path(iine_sort: "true") %></td>
@@ -35,38 +58,38 @@
       </table>
       <% if @posts.class == Hash %>
         <% @posts.each_with_index do |(key, value), i| %>
-          <h3>ランキング<%= i + 1 %>位 店名：<%= key %> <%= value[:point] %>ポイント</h3>
+          <h3><%= i + 1 %>位 店名：<%= key %> <%= value[:point] %>ポイント</h3>
         <% end %>
       <% else %>
         <% @posts.each do |post| %>
           <div class="thumbnail">
-            <h3>カテゴリー名：<%= post.category.name %></h3>
-            <h3><%= post.ranking_point %>：<%= post.eatery_name %></h3>
-            <h4>メニュー名：<%= post.eatery_food %></h4>
-            <h4>いいねの数：<%= post.likes_count %>個！！</h4>
+            <p class="category_label"><%= post.category.name %></p>
+            <h3 style="font-weight: bold;"><%= post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= post.eatery_name %></h3>
+            <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= post.eatery_food %></h4>
             <%= image_tag(post.picture.image.url, class: "img-responsive") %>
             <div class="caption">
-              <h4><%= post.remarks %></h4>
-              <ul>
-                <!-- TODO: リファクタリング -->
-                <li>所在地：<%= post.eatery_address %></li>
-                <!-- TODO: 存在しないアドレスだとエラーになる -->
-                <% if post.eatery_website == "未登録" %>
-                  <li>ホームページ：未登録</li>
-                <% else %>
-                  <li>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></li>
-                <% end %>
-                <li>投稿者：<%= link_to post.user.name, user_path(post.user) %></li>
-                <li id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
-                  <%= render "likes/like", post: post %><!-- TODO: いいねボタン -->
-                </li>
-              </ul>
-              <p>
-                <% if post.user_id == current_user.id %>
+              <div class="remarks">
+                <%= simple_format(post.remarks) %>
+              </div>
+              <!-- TODO: リファクタリング -->
+              <p>いいね！&nbsp;&nbsp;<%= post.likes_count %>回</p>
+              <p>所在地：<%= post.eatery_address %></p>
+              <!-- TODO: 存在しないアドレスだとエラーになる -->
+              <% if post.eatery_website == "未登録" %>
+                <p>ホームページ：未登録<p>
+              <% else %>
+                <p>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></p>
+              <% end %>
+              <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
+              <li id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
+                <%= render "likes/like", post: post %><!-- TODO: いいねボタン -->
+              </li>
+              <% if post.user_id == current_user.id %>
+                <p class="edit_delete_button">
                   <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
                   <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
-                <% end %>
-              </p>
+                </p>
+              <% end %>
             </div>
           </div>
         <% end %>
