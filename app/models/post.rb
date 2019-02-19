@@ -9,7 +9,17 @@ class Post < ApplicationRecord
   # validates: longitude# TODO: 要確認
   validates :eatery_website, length: { maximum: 500 }
   validates :remarks, presence: true
-  # validates :image, presence: true# TODO: 写真が選択されていなかったときのバリデーションは？
+
+  # TODO: 写真が選択されていなかったときのバリデーションは？
+  # validates :image, presence: true
+  # before_save :post_picture?
+  #
+  # def post_picture?
+  #   if self.blank?
+  #     errors.add(:image, "を選択してください！")
+  #     throw(:abort)
+  #   end
+  # end
 
   # enumを使えば、数字を意味のある文字として扱える。DBには割り当てられた整数が保存される。
   enum ranking_point: { １位: 3, ２位: 2, ３位: 1 }#ランキングポイント
@@ -25,10 +35,11 @@ class Post < ApplicationRecord
   scope :latest, -> { order(updated_at: :desc) }# 更新順に並び替え
   scope :category_sort, -> (category_id) { where(category_id: category_id).latest }
   scope :iine_ranking, -> { order(likes_count: :desc).limit(10) }# １０位まで
-  scope :all_search, -> (address, category, rank) { where("eatery_address LIKE ?", "%#{ address }%").where(category_id: category).where(ranking_point: rank).latest }
+  scope :all_search, -> (address, category, rank, name) { where("eatery_address LIKE ?", "%#{ address }%").where(category_id: category).where(ranking_point: rank).where("eatery_name LIKE ?", "%#{ name }%").latest }
   scope :address_search, -> (address) { where("eatery_address LIKE ?", "%#{ address }%").latest }
   scope :category_search, -> (category) { where(category_id: category).latest }
   scope :rank_search, -> (rank) { where(ranking_point: rank).latest }
+  scope :name_search, -> (name) { where("eatery_name LIKE ?", "%#{ name }%").latest }
   scope :user_category_sort, -> (user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
 

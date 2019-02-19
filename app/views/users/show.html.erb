@@ -28,10 +28,14 @@
           <p class="category_label"><%= user_post.category.name %></p>
           <h3 style="font-weight: bold;"><%= user_post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= user_post.eatery_name %></h3>
           <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= user_post.eatery_food %></h4>
-          <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
+          <% if user_post.picture.present? %>
+            <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
+          <% else %>
+            <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
+          <% end %>
           <div class="caption">
             <div class="remarks">
-              <%= simple_format(user_post.remarks) %>
+              <%= simple_format(user_post.remarks.truncate(200)) %>
             </div>
             <!-- TODO: リファクタリング -->
             <p>所在地：<%= user_post.eatery_address %></p>

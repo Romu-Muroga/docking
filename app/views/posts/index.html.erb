@@ -24,11 +24,11 @@
 
     <div class="col-md-6">
       <p id="slideshow">
-        <%#= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
-        <%#= image_tag("/images/photo2.jpg", class: "img-responsive")%>
-        <%#= image_tag("/images/photo3.jpg", class: "img-responsive")%>
+        <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
+        <%= image_tag("/images/photo2.jpg", class: "img-responsive")%>
+        <%= image_tag("/images/photo3.jpg", class: "img-responsive")%>
       </p>
-      <!-- <script type="text/javascript">
+      <script type="text/javascript">
         function slideSwitch() {
            var $active = $('#slideshow img.active');
 
@@ -49,7 +49,7 @@
         $(function() {
            setInterval( "slideSwitch()", 5000 );
         });
-      </script> -->
+      </script>
       <table border="2" width="690" class="ranking_table">
         <tr>
           <td><%= link_to "総合ランキング", posts_path(overall_sort: "true") %></td>
@@ -66,10 +66,14 @@
             <p class="category_label"><%= post.category.name %></p>
             <h3 style="font-weight: bold;"><%= post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= post.eatery_name %></h3>
             <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= post.eatery_food %></h4>
-            <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+            <% if post.picture.present? %>
+              <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+            <% else %>
+              <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
+            <% end %>
             <div class="caption">
               <div class="remarks">
-                <%= simple_format(post.remarks) %>
+                <%= simple_format(post.remarks.truncate(200)) %>
               </div>
               <!-- TODO: リファクタリング -->
               <p>いいね！&nbsp;&nbsp;<%= post.likes_count %>回</p>
@@ -102,6 +106,10 @@
           <div class="form-group">
             <%= f.label :eatery_address %>
             <%= f.text_field :eatery_address, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :eatery_name %>
+            <%= f.text_field :eatery_name, class: "form-control" %>
           </div>
           <div class="form-group">
             <%= f.label :category_id %>

@@ -142,10 +142,10 @@ RSpec.describe Post, type: :model do
     expect(posts[0]).to eq post1
   end
 
-  it "所在地とカテゴリーと順位の全てに値が入っていた場合の検索ができるかテスト" do
+  it "所在地とカテゴリーと順位と店名の全てに値が入っていた場合の検索ができるかテスト" do
     post1 = Post.create!(
       ranking_point: 3,
-      eatery_name: "-------",
+      eatery_name: "和食レストラン",
       eatery_food: "-------",
       eatery_address: "東京都渋谷区",
       eatery_website: "-------",
@@ -165,7 +165,7 @@ RSpec.describe Post, type: :model do
       category: @category2,
       user: @user1
     )
-    posts = Post.all_search("東京都渋谷区", @category1, 3)
+    posts = Post.all_search("東京都渋谷区", @category1, 3, "和食レストラン")
     expect(posts).to include post1
   end
 

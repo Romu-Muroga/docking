@@ -1,32 +1,71 @@
 require "rails_helper"
 
-RSpec.feature "ユーザー管理機能", type: :feature do
+RSpec.feature "ユーザー機能", type: :feature do
 
   background do
     @user1 = FactoryBot.create(:user)
-    # @user2 = FactoryBot.create(:second_user)
-    @category1 = FactoryBot.create(:category)
-    # @category2 = FactoryBot.create(:second_category)
-    @post1 = FactoryBot.create(:post, category: @category1, user: @user1)
-    # @post2 = FactoryBot.create(:second_post, category: @category2, user: @user2)
-    # binding.pry
-    @picture1 = FactoryBot.create(:picture, imageable_id: @post1.id, imageable_type: @post1.class)
-    # @picture2 = FactoryBot.create(:user_picture)
+    category1 = FactoryBot.create(:category)
+    post1 = FactoryBot.create(:post, category: category1, user: @user1)
+    FactoryBot.create(:picture, imageable_id: post1.id, imageable_type: post1.class)
   end
 
   scenario "ログインできるかテスト" do
-
     visit root_path
 
-    fill_in "session[email]", with: "test_user_01@dic.com"
-    fill_in "session[password]", with: "password"
+    fill_in "Email", with: "test_user_01@dic.com"
+    fill_in "Password", with: "password"
 
     within ".form_outer" do
-      click_on('ログイン')
+      click_on "ログイン"
     end
     # click_on "ログイン",　match: :first
     # find("#test").click
     # save_and_open_page
     expect(page).to have_content "ログインに成功しました！"
+  end
+
+  scenario "アカウント登録ができるかテスト" do
+    visit new_user_path
+
+    fill_in "名前", with: "new_user"
+    fill_in "メールアドレス", with: "new_user@dic.com"
+    fill_in "パスワード", with: "password"
+    fill_in "確認用パスワード", with: "password"
+    attach_file "Image", "#{Rails.root}/spec/fixtures/default.png"
+
+    click_on "登録する"
+    expect(page).to have_content "アカウント登録＋ログインに成功しました！"
+  end
+
+  feature "ログインした状況", type: :feature do
+
+    background do
+      visit root_path
+      fill_in "Email", with: "test_user_01@dic.com"
+      fill_in "Password", with: "password"
+      within ".form_outer" do
+        click_on "ログイン"
+      end
+    end
+
+    scenario "アカウント情報を編集できるかテスト" do
+      visit edit_user_path(@user1.id)
+
+      fill_in "名前", with: "名前の編集しました！"
+      fill_in "メールアドレス", with: "test_user_01@dic.com"
+      fill_in "パスワード", with: "password"
+      fill_in "確認用パスワード", with: "password"
+      attach_file "Image", "#{Rails.root}/spec/fixtures/default.png"
+
+      click_on "更新する"
+      expect(page).to have_content "アカウント情報を更新しました！"
+    end
+
+    scenario "ログアウトできるかテスト" do
+      visit posts_path
+      click_on "ログアウト"
+
+      expect(page).to have_content "ログアウトしました！"
+    end
   end
 end
