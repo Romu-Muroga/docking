@@ -12,10 +12,17 @@
   <body>
     <header>
       <% if logged_in? %>
-        <%= link_to "ログアウト", session_path(current_user), method: :delete, style: "font-weight: bold;" %><!-- TODO: 仮表示 -->
-        <%= link_to "マイページ", user_path(current_user), style: "font-weight: bold;" %><!-- TODO: 仮表示 -->
-        <%= link_to "全ユーザーランキング一覧画面", posts_path, style: "font-weight: bold;" %>&nbsp;<!-- TODO: 仮表示 -->
-        <span><%= current_user.name %>さんが現在ログイン中</span><!-- TODO: 仮表示 -->
+        <div class="nav">
+          <%= link_to "全ユーザーランキング一覧画面", posts_path %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "マイページ", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+        </div>
+        <p class="active_user"><%= current_user.name %>さんが現在ログイン中</p>
+      <% else %>
+        <div class="nav">
+          <%= link_to "ログイン", new_session_path %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "アカウント登録", new_user_path %>
+        </div>
       <% end %>
     </header>
     <div class="wrapper">
