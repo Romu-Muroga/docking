@@ -1,5 +1,12 @@
 FactoryBot.define do
-  
+  # factory :user_picture, class: Picture do
+  #   association :imageable, factory: :user
+  # end
+  #
+  # factory :user_picture, class: Picture do
+  #   association :imageable, factory: :second_user
+  # end
+
   factory :user do
     name { "test_user_01" }
     email { "test_user_01@dic.com" }

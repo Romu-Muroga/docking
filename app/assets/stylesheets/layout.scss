@@ -9,16 +9,18 @@ body {
 }
 
 header {
-  width: 100%;
-  height: 30px;
-  background-color: white;
   position: fixed;
   top: 0;
   z-index: 100;
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  opacity: 0.8;
 }
 
 header a {
   color: black;
+  font-weight: bold;
 }
 // ヘッダーのナビを右に寄せる
 header div {
