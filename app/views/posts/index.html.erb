@@ -24,11 +24,14 @@
 
     <div class="col-md-6">
       <p id="slideshow">
-        <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
-        <%= image_tag("/images/photo2.jpg", class: "img-responsive")%>
-        <%= image_tag("/images/photo3.jpg", class: "img-responsive")%>
+        <%#= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
+        <%#= image_tag("/images/photo2.jpg", class: "img-responsive")%>
+        <%#= image_tag("/images/photo3.jpg", class: "img-responsive")%>
+        <%#= image_tag("/images/photo4.jpg", class: "img-responsive")%>
+        <%#= image_tag("/images/photo5.png", class: "img-responsive")%>
+        <%#= image_tag("/images/photo6.jpg", class: "img-responsive")%>
       </p>
-      <script type="text/javascript">
+      <!-- <script type="text/javascript">
         function slideSwitch() {
            var $active = $('#slideshow img.active');
 
@@ -49,7 +52,7 @@
         $(function() {
            setInterval( "slideSwitch()", 5000 );
         });
-      </script>
+      </script> -->
       <table border="2" width="690" class="ranking_table">
         <tr>
           <td><%= link_to "総合ランキング", posts_path(overall_sort: "true") %></td>
@@ -57,8 +60,17 @@
         </tr>
       </table>
       <% if @posts.class == Hash %>
+        <h5>
+          総合ランキングは、<br>
+          <br>
+          １位＝３pt<br>
+          ２位＝２pt<br>
+          ３位＝１pt<br>
+          <br>
+          の合計といいねのカウント数の総計により算出されています。
+        </h5>
         <% @posts.each_with_index do |(key, value), i| %>
-          <h3><%= i + 1 %>位 店名：<%= key %> <%= value[:point] %>ポイント</h3>
+          <h3 style="font-family: serif"><%= i + 1 %>位 店名：<%= key[0] %> <%= value[:point] %>ポイント</h3>
         <% end %>
       <% else %>
         <% @posts.each do |post| %>
@@ -73,7 +85,7 @@
             <% end %>
             <div class="caption">
               <div class="remarks">
-                <%= simple_format(post.remarks.truncate(200)) %>
+                <%= simple_format(post.remarks.truncate(100, omission: '...')) %>
               </div>
               <!-- TODO: リファクタリング -->
               <p>いいね！&nbsp;&nbsp;<%= post.likes_count %>回</p>
@@ -85,6 +97,7 @@
                 <p>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></p>
               <% end %>
               <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
+              <p><%= link_to "詳細を見る", post_path(post), class: "btn btn-custum" %></p>
               <li id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
                 <%= render "likes/like", post: post %><!-- TODO: いいねボタン -->
               </li>

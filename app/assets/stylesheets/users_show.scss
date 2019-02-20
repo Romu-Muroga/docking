@@ -72,3 +72,34 @@ a.cp_btn:hover {
 .image_processing {
   border-radius: 5%;
 }
+// 新規登録ボタンの上部スペース
+a.cp_btn {
+  margin-top: 22px;
+}
+// 詳細ボタン
+a.btn-custum {
+  color: #EC407A;
+  border-color: #EC407A;
+}
+a.btn-custum:hover {
+  color: white;
+  background-color: #EC407A;
+}
+// いいね！したポスト一覧
+.iine_box {
+  margin-top: 19px;
+  background-color: white;
+  border: solid 1px;
+  border-color: lightgray;
+  border-radius: 2%;
+  min-height: 177px;
+  padding: 10px;
+  word-wrap: break-word;
+}
+.iine_box img {
+  border-radius: 50%;
+}
+.iine_box span {
+  margin: 4px 0;
+  display: inline-block;
+}

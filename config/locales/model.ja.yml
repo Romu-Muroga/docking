@@ -8,7 +8,7 @@ ja:
     attributes:
       post:
         category_id: "カテゴリー"
-        ranking_point: "ランキング順位"
+        ranking_point: "順位"
         eatery_name: "店名"
         eatery_food: "メニュー名"
         eatery_address: "所在地"

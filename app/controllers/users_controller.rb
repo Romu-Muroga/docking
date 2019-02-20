@@ -36,7 +36,9 @@ class UsersController < ApplicationController
     # @postと@post.pictureのどちらかが更新に失敗したとき、どちらも更新しない設定
     ActiveRecord::Base.transaction do
       @user.update!(user_params)
-      if @user.picture.present? && !(picture_params[:image])
+      if @user.picture.blank? && picture_params[:image].blank?
+        false
+      elsif @user.picture.present? && !(picture_params[:image])
         @user.picture.destroy
       elsif @user.picture.present?
         @user.picture.update!(image: picture_params[:image])

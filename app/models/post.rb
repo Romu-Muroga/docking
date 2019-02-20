@@ -59,24 +59,26 @@ class Post < ApplicationRecord
 
   # 総合ランキング
   def self.overall_ranking
-    posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name)
-    # => ["はまぐりラーメン", "ラーメン次郎"]
+    posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
+    # => [["aaa", 3], ["天狗", 1]]
     eatery_points = {}
     posts.each { |post| eatery_points[post] = {point: 0} }
-    # => {"はまぐりラーメン"=>{:point=>0}, "ラーメン次郎"=>{:point=>0}}
-    dup_records = Post.where(eatery_name: posts)
-    # => ["はまぐりラーメン", "ラーメン次郎"]と一致したレコードが全て取得できる
+    # => {["aaa", 3]=>{:point=>0}, ["天狗", 1]=>{:point=>0}}
+    posts = posts.flatten
+    # => ["aaa", 3, "天狗", 1]
+    dup_records = Post.where(eatery_name: posts).where(category_id: posts)
+    # => ["aaa", 3, "天狗", 1]と一致したレコードが全て取得できる
     eatery_points.each do |key, value|
       dup_records.each do |one|
-        value[:point] = value[:point] + one.ranking_point_before_type_cast + one.likes_count if one.eatery_name == key
+        value[:point] = value[:point] + one.ranking_point_before_type_cast + one.likes_count if one.eatery_name == key[0]
       end
     end
-    # => {"はまぐりラーメン"=>{:point=>0}, "ラーメン次郎"=>{:point=>0}}
+    # => {["aaa", 3]=>{:point=>6}, ["天狗", 1]=>{:point=>10}}
     # ポイントが加算されていくはずが...console上だと
     # one.ranking_point => "１位" or "２位" or "３位"
     # になってしまいIntegerにStringは + できませんと怒られる...
     Hash[ eatery_points.sort_by{ |k, v| -v[:point] } ]
-    # => {"ラーメン次郎"=>{:num=>9}, "はまぐりラーメン"=>{:num=>6}}
+    # => {["aaa", 3]=>{:point=>10}, ["天狗", 1]=>{:point=>6}}
   end
 
   # コールバック
