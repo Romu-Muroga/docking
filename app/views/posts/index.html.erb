@@ -97,7 +97,7 @@
                 <p>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></p>
               <% end %>
               <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
-              <p><%= link_to "詳細を見る", post_path(post), class: "btn btn-custum" %></p>
+              <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
               <li id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
                 <%= render "likes/like", post: post %><!-- TODO: いいねボタン -->
               </li>

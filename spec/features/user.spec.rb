@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "ユーザー機能", type: :feature do
-
+  # save_and_open_page
   background do
     @user1 = FactoryBot.create(:user)
     category1 = FactoryBot.create(:category)
@@ -12,15 +12,15 @@ RSpec.feature "ユーザー機能", type: :feature do
   scenario "ログインできるかテスト" do
     visit root_path
 
-    fill_in "Email", with: "test_user_01@dic.com"
-    fill_in "Password", with: "password"
+    fill_in "メールアドレス", with: "test_user_01@dic.com"
+    fill_in "パスワード", with: "password"
 
     within ".form_outer" do
       click_on "ログイン"
     end
     # click_on "ログイン",　match: :first
     # find("#test").click
-    # save_and_open_page
+
     expect(page).to have_content "ログインに成功しました！"
   end
 
@@ -41,8 +41,8 @@ RSpec.feature "ユーザー機能", type: :feature do
 
     background do
       visit root_path
-      fill_in "Email", with: "test_user_01@dic.com"
-      fill_in "Password", with: "password"
+      fill_in "メールアドレス", with: "test_user_01@dic.com"
+      fill_in "パスワード", with: "password"
       within ".form_outer" do
         click_on "ログイン"
       end

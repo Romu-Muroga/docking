@@ -58,27 +58,49 @@ class Post < ApplicationRecord
   end
 
   # 総合ランキング
+  # def self.overall_ranking
+  #   posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
+  #   # => [["aaa", 3], ["天狗", 1]]
+  #   eatery_points = {}
+  #   posts.each { |post| eatery_points[post] = {point: 0} }
+  #   # => {["aaa", 3]=>{:point=>0}, ["天狗", 1]=>{:point=>0}}
+  #   posts = posts.flatten
+  #   # => ["aaa", 3, "天狗", 1]
+  #   dup_records = Post.where(eatery_name: posts).where(category_id: posts)
+  #   # => ["aaa", 3, "天狗", 1]と一致したレコードが全て取得できる
+  #   eatery_points.each do |key, value|
+  #     dup_records.each do |one|
+  #       value[:point] = value[:point] + one.ranking_point_before_type_cast + one.likes_count if one.eatery_name == key[0]
+  #     end
+  #   end
+  #   # => {["aaa", 3]=>{:point=>6}, ["天狗", 1]=>{:point=>10}}
+  #   # ポイントが加算されていくはずが...console上だと
+  #   # one.ranking_point => "１位" or "２位" or "３位"
+  #   # になってしまいIntegerにStringは + できませんと怒られる...
+  #   Hash[ eatery_points.sort_by{ |k, v| -v[:point] } ]
+  #   # => {["aaa", 3]=>{:point=>10}, ["天狗", 1]=>{:point=>6}}
+  # end
+
+  # 総合ランキング（リファクタリング後）
   def self.overall_ranking
-    posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
-    # => [["aaa", 3], ["天狗", 1]]
-    eatery_points = {}
-    posts.each { |post| eatery_points[post] = {point: 0} }
-    # => {["aaa", 3]=>{:point=>0}, ["天狗", 1]=>{:point=>0}}
-    posts = posts.flatten
-    # => ["aaa", 3, "天狗", 1]
-    dup_records = Post.where(eatery_name: posts).where(category_id: posts)
-    # => ["aaa", 3, "天狗", 1]と一致したレコードが全て取得できる
-    eatery_points.each do |key, value|
-      dup_records.each do |one|
-        value[:point] = value[:point] + one.ranking_point_before_type_cast + one.likes_count if one.eatery_name == key[0]
+    eatery_points, dup_posts = outputs_duplicate_shop_name_and_category# selfが省略されている
+
+    eatery_points.each do |k, v|
+      dup_posts.each do |post|
+        likes_and_ranking_points = post.ranking_point_before_type_cast + post.likes_count
+        v[:point] += likes_and_ranking_points if post.eatery_name == k[0]
       end
     end
-    # => {["aaa", 3]=>{:point=>6}, ["天狗", 1]=>{:point=>10}}
-    # ポイントが加算されていくはずが...console上だと
-    # one.ranking_point => "１位" or "２位" or "３位"
-    # になってしまいIntegerにStringは + できませんと怒られる...
-    Hash[ eatery_points.sort_by{ |k, v| -v[:point] } ]
-    # => {["aaa", 3]=>{:point=>10}, ["天狗", 1]=>{:point=>6}}
+    Hash[ eatery_points.sort_by{ |_, v| -v[:point] } ]
+  end
+
+  def self.outputs_duplicate_shop_name_and_category# selfが必要
+    eatery_points = {}
+    posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
+    posts = posts.each { |post| eatery_points[post] = {point: 0} }.flatten
+    dup_records = Post.where(eatery_name: posts).or(Post.where(category_id: posts))
+
+    return eatery_points, dup_records
   end
 
   # コールバック

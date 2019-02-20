@@ -46,7 +46,7 @@ RSpec.describe Post, type: :model do
       category: @category1,
       user: @user1
     )
-    @post2 = Post.new(
+    post2 = Post.new(
       ranking_point: 3,
       eatery_name: "post1と同カテゴリー、同順位で登録しようとしている",
       eatery_food: "-------",
@@ -57,7 +57,7 @@ RSpec.describe Post, type: :model do
       category: @category1,
       user: @user1
     )
-    expect(@post2.save).to eq false
+    expect(post2.save).to eq false
   end
 
   it "更新順に並び替えができるかテスト" do
@@ -108,10 +108,10 @@ RSpec.describe Post, type: :model do
       eatery_website: "-------",
       remarks: "-------",
       likes_count: 0,
-      category: @category2,
-      user: @user1
+      category_id: @category2.id,
+      user_id: @user1.id
     )
-    posts = Post.category_sort(@category1)
+    posts = Post.category_sort(@category1.id)
     expect(posts).to include post1
   end
 
@@ -162,7 +162,7 @@ RSpec.describe Post, type: :model do
       eatery_website: "-------",
       remarks: "-------",
       likes_count: 0,
-      category: @category2,
+      category_id: @category2.id,
       user: @user1
     )
     posts = Post.all_search("東京都渋谷区", @category1, 3, "和食レストラン")
@@ -189,7 +189,7 @@ RSpec.describe Post, type: :model do
       eatery_website: "-------",
       remarks: "-------",
       likes_count: 0,
-      category: @category2,
+      category_id: @category2.id,
       user: @user1
     )
     posts = Post.address_search("東京都渋谷区")
@@ -216,7 +216,7 @@ RSpec.describe Post, type: :model do
       eatery_website: "-------",
       remarks: "-------",
       likes_count: 0,
-      category: @category2,
+      category_id: @category2.id,
       user: @user1
     )
     posts = Post.category_search(@category2)
@@ -243,7 +243,7 @@ RSpec.describe Post, type: :model do
       eatery_website: "-------",
       remarks: "-------",
       likes_count: 0,
-      category: @category2,
+      category_id: @category2.id,
       user: @user1
     )
     posts = Post.rank_search(2)
@@ -270,7 +270,7 @@ RSpec.describe Post, type: :model do
       eatery_website: "-------",
       remarks: "-------",
       likes_count: 0,
-      category: @category2,
+      category_id: @category2.id,
       user: @user1
     )
     posts = Post.user_category_sort(@user1, @category1)
@@ -297,7 +297,7 @@ RSpec.describe Post, type: :model do
       eatery_website: "-------",
       remarks: "-------",
       likes_count: 0,
-      category: @category2,
+      category_id: @category2.id,
       user: @user1
     )
     posts = Post.default_sort

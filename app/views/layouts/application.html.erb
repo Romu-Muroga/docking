@@ -13,7 +13,7 @@
     <header>
       <% if logged_in? %>
         <div class="nav">
-          <%= link_to "全ユーザーランキング一覧画面", posts_path %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "ランキング一覧画面へ", posts_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to "マイページ", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
           <%= link_to "ログアウト", session_path(current_user), method: :delete %>
         </div>

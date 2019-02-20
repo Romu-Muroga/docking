@@ -6,11 +6,11 @@
       <%= form_with(scope: :session, url: sessions_path, local: true, class: "form_outer") do |f| %>
         <div class="form_inner">
           <div class="form-group">
-            <%= f.label :email %>
+            <%= f.label :email, "メールアドレス" %>
             <%= f.email_field :email, class: "form-control" %>
           </div>
           <div class="form-group">
-            <%= f.label :password %>
+            <%= f.label :password, "パスワード" %>
             <%= f.password_field :password, class: "form-control" %>
           </div>
         </div>

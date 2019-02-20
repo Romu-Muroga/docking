@@ -79,7 +79,7 @@ class PostsController < ApplicationController
       end
     end
     flash[:success] = "ランキングを更新しました！"
-    redirect_to user_path(@post.user_id)
+    redirect_to post_path(@post)
   rescue
     # TODO: エラーメッセージが必要
     render :edit

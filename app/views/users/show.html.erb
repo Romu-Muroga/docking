@@ -45,7 +45,7 @@
             <% else %>
               <p>ホームページ：<%= link_to user_post.eatery_name, user_post.eatery_website %></p>
             <% end %>
-            <p><%= link_to "詳細を見る", post_path(user_post), class: "btn btn-custum" %></p>
+            <p><%= link_to "詳細をみる", post_path(user_post), class: "btn btn-custum" %></p>
             <% if user_post.user_id != current_user.id %>
               <li id="post-<%= user_post.id %>" data-post-id="<%= user_post.id %>" class="iine_list">
                 <%= render "likes/like", post: user_post %><!-- TODO: いいねボタン -->
