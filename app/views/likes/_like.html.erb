@@ -1,0 +1,20 @@
+<% if !(post.user_id == current_user.id) %><!-- いいねボタンは自分のポスト以外の場合に表示 -->
+  <span class="like">
+    <% if post.iine?(current_user) %><!-- 既にいいねしている場合は、いいねボタンを塗りつぶされたハートとし、押下時にdestroyを呼ぶ -->
+      <!-- remote: trueとjs.erbファイルを用いた非同期通信 -->
+      <%= form_for(post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
+        <%= button_tag(class: "btn btn-default btn-xs") do %>
+          <%= content_tag :span, "#{post.likes_count}", id: "heart", style: "padding-left: 20px;" %>
+        <% end %>
+      <% end %>
+    <% else %><!-- いいねしていない場合は、いいねボタンを塗りつぶされていないハートとし、押下時にcreateを呼ぶ -->
+      <!-- post.likes.buildでpost_idが入った状態でLikeモデルのインスタンスを作成している -->
+      <%= form_for(post.likes.build, remote: true) do |f| %>
+        <div><%= hidden_field_tag :post_id, post.id %></div>
+        <%= button_tag(class: "btn btn-default btn-xs") do %>
+          <%= content_tag :span, "#{post.likes_count}", id: "heart_lightgray", style: "padding-left: inherit;" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </span>
+<% end %>

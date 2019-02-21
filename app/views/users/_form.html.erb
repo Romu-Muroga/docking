@@ -1,0 +1,36 @@
+<%= form_with(model: user, local: true, class: "form_outer") do |f| %>
+  <div class="form_inner">
+    <% if user.errors.any? %>
+      <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
+        <h2><%= user.errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
+    <!-- Pictureモデルのimage属性をセット -->
+    <div class="form-group">
+      <%= f.label :image, "アイコン画像を選択してください" %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+  </div>
+  <%= f.submit %>
+<% end %>

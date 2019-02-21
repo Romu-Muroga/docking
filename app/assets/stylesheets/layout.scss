@@ -1,0 +1,81 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #FAFAFA;
+  // background: linear-gradient(-135deg, #E4A972, #9941D8);
+}
+
+h3 {
+  margin-bottom: 26px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 40px;
+  background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
+  // background-image: linear-gradient(-90deg, #4BE628, #FFC39E);
+  // background-color: white;
+  opacity: 0.8;
+}
+// ヘッダーのリンク
+header a {
+  color: white;
+  // color: black;
+  font-weight: bold;
+}
+header a:hover {
+  color: black;
+}
+// ヘッダーのナビを右に寄せる
+header div {
+  width: 400px;
+}
+.nav {
+  position: relative;
+  top: 9px;
+  margin-left: auto;
+}
+// ログインしているユーザ名表示の位置調整
+header p.active_user {
+  position: absolute;
+  top: 4px;
+  left: 9px;
+  margin: 0 0 10px;
+  width: 250px;
+}
+// 画面切り替え時フェードイン
+.wrapper {
+  margin-top: 90px;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+@keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+// アラートの幅調整
+div.alert {
+  text-align: center;
+  width: 666px;
+  margin: 0 auto;
+  opacity: 0.8;
+  margin-bottom: 33px;
+}
+// ログイン画面
+.sign_up {
+  margin-top: 14px;
+}

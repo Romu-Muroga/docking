@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "tops#index"
+  resources :users do
+    get :destroy_confirm, on: :member
+  end
+  resources :sessions, only: %i[new create destroy]
+  resources :categories do
+    resources :users, only: %i[show]
+    resources :posts, only: %i[index]
+  end
+  resources :posts do
+    get :search, on: :collection
+  end
+  resources :likes, only: %i[create destroy]
 end

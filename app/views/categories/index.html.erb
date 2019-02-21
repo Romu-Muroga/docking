@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <h3>カテゴリー一覧画面<%= link_to "カテゴリー新規登録", new_category_path %></h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>カテゴリー名</th>
+            <th></th><!-- 空マス -->
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= category.name %></td>
+              <td>
+                <%= link_to "編集", edit_category_path(category) %>&nbsp;
+                <%= link_to "削除", category_path(category), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

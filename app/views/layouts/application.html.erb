@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if logged_in? %>
+        <div class="nav">
+          <%= link_to "ランキング一覧画面へ", posts_path %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "マイページ", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+        </div>
+        <p class="active_user"><%= current_user.name %>さんが現在ログイン中</p>
+      <% else %>
+        <div class="nav">
+          <%= link_to "ログイン", new_session_path %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "アカウント登録", new_user_path %>
+        </div>
+      <% end %>
+    </header>
+    <div class="wrapper">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,49 @@
+<%= form_with(model: post, local: true, class: "form_outer") do |f| %>
+  <div class="form_inner">
+    <% if post.errors.any? %>
+      <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
+        <h2><%= post.errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :category_id %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :ranking_point %>
+      <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
+      <%= f.select :ranking_point, Post.ranking_points.keys, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :eatery_name %>
+      <%= f.text_field :eatery_name, placeholder: "正確な店名で登録をお願いします。", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :eatery_food %>
+      <%= f.text_field :eatery_food, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :eatery_address %>
+      <%= f.text_field :eatery_address, placeholder: "未登録も可能です。", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :eatery_website %>
+      <%= f.text_field :eatery_website, placeholder: "未登録も可能です。", class: "form-control" %>
+    </div>
+    <!-- Pictureモデルのimage属性をセット -->
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :remarks %>
+      <%= f.text_area :remarks, class: "form-control" %>
+    </div>
+  </div>
+  <%= f.submit %>
+<% end %>
