@@ -38,11 +38,10 @@ https://cacoo.com/diagrams/qzbpgYsOZwdL6hjK/2DB02
 #### ランキング新規登録画面及び編集画面
 https://cacoo.com/diagrams/qzbpgYsOZwdL6hjK/02A72
 ## 使用予定Gem
-devise  
-jp_prefecture  
-rails4-autocomplete  
-carrierwave  
-mini_magick  
-dotenv-rails  
-faker  
-letter_opener_web
+- rails4-autocomplete  
+- counter_culture
+- carrierwave  
+- mini_magick  
+- dotenv-rails  
+- faker  
+- letter_opener_web
