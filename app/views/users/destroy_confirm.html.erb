@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4" style="margin-top: 170px">
+      <h3>退会処理画面</h3>
+      <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
+      <%= form_with(model: User.new, url: user_path(@user.id), method: :delete, local: true, class: "form_outer") do |f| %>
+        <div class="form_inner">
+          <p>
+            退会するとお客様に関連する情報が全て削除され、ログインできなくなります。<br>
+            また登録されていたデータは復元できません。よろしいですか？<br>
+          </p>
+          <div class="form-group">
+            <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
+            <!-- 文字列の"true","false"をboolean型に変換する必要がある -->
+            <%= f.check_box "destroy_check", {}, 1, 2 %>
+            <%= f.label "destroy_check", "チェック入れて退会ボタンを押してください" %>
+          </div>
+        </div>
+        <%= f.submit "退会する" %>
+      <% end %>
+    </div>
+  </div>
+</div>

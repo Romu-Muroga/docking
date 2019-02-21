@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "tops#index"
-  resources :users
+  resources :users do
+    get :destroy_confirm, on: :member
+  end
   resources :sessions, only: %i[new create destroy]
   resources :categories do
     resources :users, only: %i[show]

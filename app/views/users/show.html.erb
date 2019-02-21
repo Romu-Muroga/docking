@@ -2,6 +2,9 @@
   <div class="row">
 
     <div class="col-md-offset-1 col-md-2">
+      <%= link_to posts_path, class: "users_show_logo" do %>
+        <%= image_tag("/images/logo.png", class: "img-responsive") %>
+      <% end %>
       <table class="table table-hover table_resize" id="user_only">
         <thead>
           <tr>
@@ -72,7 +75,7 @@
         <% end %>
         <% if @user.id == current_user.id %>
           <%= link_to "アカウント情報変更", edit_user_path(current_user) %><br>
-          <%= link_to "退会処理", "#" %>
+          <%= link_to "退会処理", destroy_confirm_user_path(current_user) %>
           <%= link_to "新規登録", new_post_path, class: "cp_btn" %>
           <div class="iine_box">
             <% @user.iine_posts.each do |iine_post| %>
@@ -82,7 +85,7 @@
                 <span><%= image_tag("/images/default.png", size: "30x30") %></span>
               <% end %>
               <span style="font-size: 12px"><%= iine_post.user.name %></span>
-              <span><%= link_to "#{iine_post.eatery_name}", post_path(iine_post.id) %></span><br>
+              <span><%= link_to "#{iine_post.eatery_name}", post_path(iine_post.id) %></span><br><!-- TODO: idいる？ -->
             <% end %>
           </div>
         <% end %>

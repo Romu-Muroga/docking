@@ -20,6 +20,9 @@ RSpec.feature "投稿機能", type: :feature do
 
   def login(email)
     visit root_path
+    within "header .nav" do
+      click_on "ログイン"
+    end
     fill_in "メールアドレス", with: email
     fill_in "パスワード", with: 'password'
     within ".form_outer" do
@@ -176,7 +179,7 @@ RSpec.feature "投稿機能", type: :feature do
     within "header" do
       click_on "マイページ"
     end
-    
+
     expect(page).to have_content "test_user_01"
   end
 end
