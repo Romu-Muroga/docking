@@ -92,9 +92,10 @@ a.btn-custum:hover {
   border: solid 1px;
   border-color: lightgray;
   border-radius: 2%;
-  min-height: 177px;
+  min-height: 180px;
   padding: 10px;
   word-wrap: break-word;
+  overflow: scroll;
 }
 .iine_box img {
   border-radius: 50%;
@@ -102,4 +103,21 @@ a.btn-custum:hover {
 .iine_box span {
   margin: 4px 0;
   display: inline-block;
+}
+// ロゴマーク
+.users_show_logo {
+  position: relative;
+  right: 8px;
+  bottom: 20px;
+}
+.posts_index_logo {
+  position: relative;
+  right: 8px;
+  top: 196px;
+}
+
+.no_content {
+  width: 170px;
+  margin: 0 auto;
+  margin-top: 182px;
 }

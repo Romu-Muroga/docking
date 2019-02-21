@@ -134,3 +134,23 @@ table.ranking_table {
 #slideshow img.last-active {
    z-index: 9;
 }
+// ページトップへ戻るボタン
+.pagetop {
+  position: fixed;
+  bottom: 16px;
+  right: 67px;
+}
+.pagetop a {
+  display: block;
+  text-decoration: none;
+  color: #EC407A;
+}
+.pagetop:hover {
+  opacity: 0.85 ;
+}
+// 総合ランキングの算出方法
+.ranking_info {
+  font-size: 14px;
+  border: solid 1px lightgray;
+  padding: 17px;
+}

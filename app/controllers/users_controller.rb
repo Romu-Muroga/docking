@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :login_check, except: %i[new create]
-  before_action :set_user, only: %i[show edit update destroy id_check]
-  before_action :id_check, only: %i[edit update destroy]
+  before_action :set_user, only: %i[show edit update destroy destroy_confirm id_check]
+  before_action :id_check, only: %i[edit update destroy destroy_confirm]
 
   def new
     @user = User.new
@@ -48,15 +48,25 @@ class UsersController < ApplicationController
       end
     end
     flash[:success] = "アカウント情報を更新しました！"
-    redirect_to user_path(@user.id)
+    redirect_to user_path(@user.id)# TODO: idいる？
   rescue
     render :edit
   end
 
+  def destroy_confirm; end
+
   def destroy
-    @user.destroy
-    flash[:success] = "アカウントを削除しました！"
-    redirect_to new_session_path
+    # render nothing: :true
+    checkbox_value = params[:user][:destroy_check].to_i
+    if checkbox_value == 1
+      @user.destroy
+      flash[:success] = "アカウントを削除しました！ご利用ありがとうございました！"
+      redirect_to root_path
+    else
+      flash[:warning] = "チェックボックスにチェックを入れてください！"
+      redirect_to destroy_confirm_user_path(@user)# 退会処理画面へリダイレクト
+    end
+    # binding.pry
   end
 
   private
@@ -65,7 +75,8 @@ class UsersController < ApplicationController
       :name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :destroy_check
     )
   end
   # params[:user][:image]は、picturesテーブルに保存するためuser_paramsと分離させる。
@@ -90,4 +101,12 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+  # メソッド化しようとしたけど、返り値が全てtrueになってしまうため中止
+  # def true_or_false
+  #   if params[:user][:destroy_check] = "1"
+  #     return true
+  #   elsif params[:user][:destroy_check] = "2"
+  #     return false
+  #   end
+  # end
 end

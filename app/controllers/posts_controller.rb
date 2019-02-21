@@ -126,7 +126,7 @@ class PostsController < ApplicationController
   def id_check
     unless @post.user_id == current_user.id
       flash[:danger] = "ユーザーが違います！"
-      redirect_to new_session_path
+      redirect_to user_path(current_user.id)
     end
   end
 

@@ -11,6 +11,9 @@ RSpec.feature "ユーザー機能", type: :feature do
 
   scenario "ログインできるかテスト" do
     visit root_path
+    within "header .nav" do
+      click_on "ログイン"
+    end
 
     fill_in "メールアドレス", with: "test_user_01@dic.com"
     fill_in "パスワード", with: "password"
@@ -31,7 +34,7 @@ RSpec.feature "ユーザー機能", type: :feature do
     fill_in "メールアドレス", with: "new_user@dic.com"
     fill_in "パスワード", with: "password"
     fill_in "確認用パスワード", with: "password"
-    attach_file "Image", "#{Rails.root}/spec/fixtures/default.png"
+    attach_file "アイコン画像を選択してください", "#{Rails.root}/spec/fixtures/default.png"
 
     click_on "登録する"
     expect(page).to have_content "アカウント登録＋ログインに成功しました！"
@@ -41,6 +44,9 @@ RSpec.feature "ユーザー機能", type: :feature do
 
     background do
       visit root_path
+      within "header .nav" do
+        click_on "ログイン"
+      end
       fill_in "メールアドレス", with: "test_user_01@dic.com"
       fill_in "パスワード", with: "password"
       within ".form_outer" do
@@ -50,12 +56,12 @@ RSpec.feature "ユーザー機能", type: :feature do
 
     scenario "アカウント情報を編集できるかテスト" do
       visit edit_user_path(@user1.id)
-
+      
       fill_in "名前", with: "名前の編集しました！"
       fill_in "メールアドレス", with: "test_user_01@dic.com"
       fill_in "パスワード", with: "password"
       fill_in "確認用パスワード", with: "password"
-      attach_file "Image", "#{Rails.root}/spec/fixtures/default.png"
+      attach_file "アイコン画像を選択してください", "#{Rails.root}/spec/fixtures/default.png"
 
       click_on "更新する"
       expect(page).to have_content "アカウント情報を更新しました！"
