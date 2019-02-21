@@ -3,38 +3,51 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[show edit update destroy]
 
-  def index#TODO: scope
+  def index# TODO: scope
     category_list
     @posts = if params[:category_id]
-               Post.where(category_id: params[:category_id]).order(updated_at: :desc)
+               Post.category_sort(params[:category_id])
+             elsif params[:iine_sort]
+               Post.iine_ranking
+             elsif params[:overall_sort]
+               Post.overall_ranking
              else
-               Post.all.order(updated_at: :desc)
+               Post.latest
              end
   end
 
-  def search#TODO: scope
+  def search# TODO: scope + order(updated_at: :desc)
     category_list
-    @posts = if params[:post][:eatery_address].present? && params[:post][:category_id].present? && params[:post][:ranking_point].present?
-               Post.where("eatery_address LIKE ?", "%#{ params[:post][:eatery_address] }%").where(category_id: params[:post][:category_id]).where(ranking_point: params[:post][:ranking_point])
-             elsif params[:post][:eatery_address].present?
-               Post.where("eatery_address LIKE ?", "%#{ params[:post][:eatery_address] }%")
-             elsif params[:post][:category_id].present?
-               Post.where(category_id: params[:post][:category_id])
-             elsif params[:post][:ranking_point].present?
-               Post.where(ranking_point: params[:post][:ranking_point])
-             end
-    render :index
+    address = params[:post][:eatery_address]
+    category = params[:post][:category_id]
+    rank = params[:post][:ranking_point]
+    if address.present? && category.present? && rank.present?
+      @posts = Post.all_search(address, category, rank)
+      render :index
+    elsif address.present?
+      @posts = Post.address_search(address)
+      render :index
+    elsif category.present?
+      @posts = Post.category_search(category)
+      render :index
+    elsif rank.present?
+      @posts = Post.rank_search(rank)
+      render :index
+    elsif address.blank? && category.blank? && rank.blank?
+      flash[:warning] = "検索ワードを入力してください！"
+      redirect_to posts_path
+    end
   end
 
   def new
     @post = Post.new
-    @post.build_picture#has_oneでアソシエーションが定義されている場合に使える構文らしい
+    @post.build_picture# has_oneでアソシエーションが定義されている場合に使える構文らしい
   end
 
   def create
     @post = Post.new(post_params)
     @post.build_picture(image: picture_params[:image])
-    if @post.save
+    if @post.save# TODO: !確認
       flash[:success] = "ランキングを登録しました！"
       redirect_to user_path(@post.user_id)
     else
@@ -54,7 +67,9 @@ class PostsController < ApplicationController
     end
     flash[:success] = "ランキングを更新しました！"
     redirect_to user_path(@post.user_id)
-  rescue
+  rescue => e
+    # TODO: エラーメッセージが必要
+    flash[:danger] = e
     render :edit
   end
 
@@ -75,7 +90,7 @@ class PostsController < ApplicationController
       :latitude,
       :longitude,
       :eatery_website,
-      :remarks,
+      :remarks
     ).merge(
       user_id: current_user.id
     )

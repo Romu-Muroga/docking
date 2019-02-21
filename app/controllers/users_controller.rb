@@ -24,9 +24,9 @@ class UsersController < ApplicationController
   def show#TODO: scope
     @categories = Category.all
     @user_posts = if params[:category_id]
-                    Post.where(user_id: @user).where(category_id: params[:category_id]).order(ranking_point: :desc)
+                    Post.user_category_sort(@user, params[:category_id])
                   else
-                    @user.posts.where(category_id: Category.first.id).order(ranking_point: :desc)
+                    @user.posts.default_sort
                   end
   end
 

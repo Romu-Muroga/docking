@@ -20,6 +20,8 @@ gem 'faker'
 gem 'carrierwave'
 # アップロードした画像ファイルのサイズを変更するために使用するためのgem
 gem 'mini_magick'
+# いいね数をカウントするためのgem
+gem 'counter_culture', '~> 1.8'
 
 group :development, :test do
   # デバック

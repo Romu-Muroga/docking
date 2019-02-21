@@ -1,9 +1,88 @@
 // 下にある投稿記事とのスペース
-table {
+table.ranking_table {
   margin-bottom: 18px;
   text-align: center;
 }
 // 検索欄の位置調整
 .SearchForm_outer {
-  margin-top: 38px;
+  margin-top: 58px;
+}
+// tdのデフォルトのpaddingリセット
+.ranking_table tr td {
+  padding: 0;
+}
+// テーブルの文字色変更
+.ranking_table tr td a {
+  color: black;
+  display: block;
+  padding: 10px 0 10px 0;
+}
+// マウスカーソルを重ねたとき
+.ranking_table td:hover {
+  background-color: black;
+}
+.ranking_table td a:hover {
+  color: white;
+  text-decoration: none;
+}
+// いいねのハート
+#heart {
+  position: relative;
+  width: 100px;
+  height: 90px;
+}
+#heart:before,
+#heart:after {
+  position: absolute;
+  content: "";
+  left: 15px;
+  top: -4px;
+  left: -2px;
+  width: 15px;
+  height: 25px;
+  background: red;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+#heart:after {
+  left: -16px;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+
+// いいねしていない場合のハート
+#heart_lightgray {
+  position: relative;
+  width: 100px;
+  height: 90px;
+}
+#heart_lightgray:before,
+#heart_lightgray:after {
+  position: absolute;
+  content: "";
+  left: 15px;
+  top: -4px;
+  left: -2px;
+  width: 15px;
+  height: 25px;
+  background: lightgray;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+#heart_lightgray:after {
+  left: -16px;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+// いいねボタンの台座のサイズ調整
+.btn-xs {
+  padding: 7px 8px 10px 22px;
+  margin-top: 6px;
+}
+// いいねボタンの前に付く黒点を削除
+.iine_list {
+  list-style: none;
 }
