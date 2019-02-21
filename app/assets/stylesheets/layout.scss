@@ -4,22 +4,62 @@ html {
 
 body {
   width: 100%;
+  background-color: #FAFAFA;
   // background: linear-gradient(-135deg, #E4A972, #9941D8);
 }
 
 header {
-  width: 100%;
-  height: 30px;
-  background-color: white;
   position: fixed;
   top: 0;
   z-index: 100;
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  opacity: 0.8;
 }
 
 header a {
   color: black;
+  font-weight: bold;
 }
+// ヘッダーのナビを右に寄せる
+header div {
+  width: 400px;
+}
+.nav {
+  margin-left: auto;
+  padding-top: 6px;
+}
+// ログインしているユーザ名表示の位置調整
+header p.active_user {
+  position: absolute;
+  top: 4px;
+  left: 9px;
+  margin: 0 0 10px;
+  width: 250px;
 
+}
+// 画面切り替え時フェードイン
 .wrapper {
   margin-top: 80px;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+@keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+// アラートの幅調整
+div.alert {
+  text-align: center;
+  width: 666px;
+  margin: 0 auto;
+  opacity: 0.8;
+  margin-bottom: 33px;
 }

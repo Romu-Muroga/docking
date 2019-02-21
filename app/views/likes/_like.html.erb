@@ -4,7 +4,7 @@
       <!-- remote: trueとjs.erbファイルを用いた非同期通信 -->
       <%= form_for(post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
         <%= button_tag(class: "btn btn-default btn-xs") do %>
-          <%= content_tag :span, "#{post.likes_count}", id: "heart", style: "padding-left: inherit;" %>
+          <%= content_tag :span, "#{post.likes_count}", id: "heart", style: "padding-left: 20px;" %>
         <% end %>
       <% end %>
     <% else %><!-- いいねしていない場合は、いいねボタンを塗りつぶされていないハートとし、押下時にcreateを呼ぶ -->

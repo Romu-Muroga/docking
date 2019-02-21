@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :login_check
   before_action :set_post, only: %i[show edit update destroy id_check]
-  before_action :id_check, only: %i[show edit update destroy]
+  before_action :id_check, only: %i[edit update destroy]
 
   def index# TODO: scope
     category_list
@@ -21,8 +21,9 @@ class PostsController < ApplicationController
     address = params[:post][:eatery_address]
     category = params[:post][:category_id]
     rank = params[:post][:ranking_point]
-    if address.present? && category.present? && rank.present?
-      @posts = Post.all_search(address, category, rank)
+    name = params[:post][:eatery_name]
+    if address.present? && category.present? && rank.present? && name.present?
+      @posts = Post.all_search(address, category, rank, name)
       render :index
     elsif address.present?
       @posts = Post.address_search(address)
@@ -33,7 +34,10 @@ class PostsController < ApplicationController
     elsif rank.present?
       @posts = Post.rank_search(rank)
       render :index
-    elsif address.blank? && category.blank? && rank.blank?
+    elsif name.present?
+      @posts = Post.name_search(name)
+      render :index
+    elsif address.blank? && category.blank? && rank.blank? && name.blank?
       flash[:warning] = "検索ワードを入力してください！"
       redirect_to posts_path
     end
@@ -63,13 +67,21 @@ class PostsController < ApplicationController
     # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
       @post.update!(post_params)
-      @post.picture.update!(image: picture_params[:image])
+      if @post.picture.blank? && picture_params[:image].blank?
+        false
+      elsif @post.picture.present? && picture_params[:image].blank?
+        @post.picture.destroy
+      elsif @post.picture.present?
+        @post.picture.update!(image: picture_params[:image])
+      elsif @post.picture.blank?
+        @post.build_picture(image: picture_params[:image])
+        @post.picture.save!
+      end
     end
     flash[:success] = "ランキングを更新しました！"
-    redirect_to user_path(@post.user_id)
-  rescue => e
+    redirect_to post_path(@post)
+  rescue
     # TODO: エラーメッセージが必要
-    flash[:danger] = e
     render :edit
   end
 

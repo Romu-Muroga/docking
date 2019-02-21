@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div class="thumbnail thumbnail_resize">
+        <p class="category_label"><%= @post.category.name %></p>
+        <h3 style="font-weight: bold;"><%= @post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= @post.eatery_name %></h3>
+        <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= @post.eatery_food %></h4>
+        <% if @post.picture.present? %>
+          <%= image_tag(@post.picture.image.url, class: "img-responsive") %>
+        <% else %>
+          <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
+        <% end %>
+        <div class="caption">
+          <div class="remarks">
+            <%= simple_format(@post.remarks) %>
+          </div>
+          <!-- TODO: リファクタリング -->
+          <p>いいね！&nbsp;&nbsp;<%= @post.likes_count %>回</p>
+          <p>所在地：<%= @post.eatery_address %></p>
+          <!-- TODO: 存在しないアドレスだとエラーになる -->
+          <% if @post.eatery_website == "未登録" %>
+            <p>ホームページ：未登録<p>
+          <% else %>
+            <p>ホームページ：<%= link_to @post.eatery_name, @post.eatery_website %></p>
+          <% end %>
+          <p>投稿者：<%= link_to @post.user.name, user_path(@post.user) %></p>
+          <li id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_list">
+            <%= render "likes/like", post: @post %><!-- TODO: いいねボタン -->
+          </li>
+          <% if @post.user_id == current_user.id %>
+            <p class="edit_delete_button">
+              <%= link_to "編集", edit_post_path(@post), class: "btn btn-black" %>
+              <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
