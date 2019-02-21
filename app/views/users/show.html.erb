@@ -26,42 +26,46 @@
     </div>
 
     <div class="col-md-6">
-      <% @user_posts.each do |user_post| %>
-        <div class="thumbnail">
-          <p class="category_label"><%= user_post.category.name %></p>
-          <h3 style="font-weight: bold;"><%= user_post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= user_post.eatery_name %></h3>
-          <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= user_post.eatery_food %></h4>
-          <% if user_post.picture.present? %>
-            <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
-          <% else %>
-            <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
-          <% end %>
-          <div class="caption">
-            <div class="remarks">
-              <%= simple_format(user_post.remarks.truncate(150, omission: '...')) %>
-            </div>
-            <!-- TODO: リファクタリング -->
-            <p>所在地：<%= user_post.eatery_address %></p>
-            <!-- TODO: 存在しないアドレスだとエラーになる -->
-            <% if user_post.eatery_website == "未登録" %>
-              <p>ホームページ：未登録</p>
+      <% if @user_posts.present? %>
+        <% @user_posts.each do |user_post| %>
+          <div class="thumbnail">
+            <p class="category_label"><%= user_post.category.name %></p>
+            <h3 style="font-weight: bold;"><%= user_post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= user_post.eatery_name %></h3>
+            <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= user_post.eatery_food %></h4>
+            <% if user_post.picture.present? %>
+              <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
             <% else %>
-              <p>ホームページ：<%= link_to user_post.eatery_name, user_post.eatery_website %></p>
+              <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
             <% end %>
-            <p><%= link_to "詳細をみる", post_path(user_post), class: "btn btn-custum" %></p>
-            <% if user_post.user_id != current_user.id %>
-              <li id="post-<%= user_post.id %>" data-post-id="<%= user_post.id %>" class="iine_list">
-                <%= render "likes/like", post: user_post %><!-- TODO: いいねボタン -->
-              </li>
-            <% end %>
-            <% if user_post.user_id == current_user.id %>
-              <p class="edit_delete_button">
-                <%= link_to "編集", edit_post_path(user_post), class: "btn btn-black" %>
-                <%= link_to "削除", post_path(user_post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
-              </p>
-            <% end %>
+            <div class="caption">
+              <div class="remarks">
+                <%= simple_format(user_post.remarks.truncate(150, omission: '...')) %>
+              </div>
+              <!-- TODO: リファクタリング -->
+              <p>所在地：<%= user_post.eatery_address %></p>
+              <!-- TODO: 存在しないアドレスだとエラーになる -->
+              <% if user_post.eatery_website == "未登録" %>
+                <p>ホームページ：未登録</p>
+              <% else %>
+                <p>ホームページ：<%= link_to user_post.eatery_name, user_post.eatery_website %></p>
+              <% end %>
+              <p><%= link_to "詳細をみる", post_path(user_post), class: "btn btn-custum" %></p>
+              <% if user_post.user_id != current_user.id %>
+                <li id="post-<%= user_post.id %>" data-post-id="<%= user_post.id %>" class="iine_list">
+                  <%= render "likes/like", post: user_post %><!-- TODO: いいねボタン -->
+                </li>
+              <% end %>
+              <% if user_post.user_id == current_user.id %>
+                <p class="edit_delete_button">
+                  <%= link_to "編集", edit_post_path(user_post), class: "btn btn-black" %>
+                  <%= link_to "削除", post_path(user_post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+                </p>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <h4 class="no_content">投稿がありません</h4>
       <% end %>
     </div>
 

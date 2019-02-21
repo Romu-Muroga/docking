@@ -44,6 +44,9 @@ RSpec.feature "ユーザー機能", type: :feature do
 
     background do
       visit root_path
+      within "header .nav" do
+        click_on "ログイン"
+      end
       fill_in "メールアドレス", with: "test_user_01@dic.com"
       fill_in "パスワード", with: "password"
       within ".form_outer" do
@@ -53,7 +56,7 @@ RSpec.feature "ユーザー機能", type: :feature do
 
     scenario "アカウント情報を編集できるかテスト" do
       visit edit_user_path(@user1.id)
-      save_and_open_page
+      
       fill_in "名前", with: "名前の編集しました！"
       fill_in "メールアドレス", with: "test_user_01@dic.com"
       fill_in "パスワード", with: "password"
