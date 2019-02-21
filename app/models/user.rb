@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { in: 1..500 }
   validates :email, presence: true, length: { in: 1..500 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: true
   validates :password, presence: true, length: { in: 6..100 }
+  # validates :image, presence: true# TODO: 要確認
 
   # パスワード
   has_secure_password
@@ -13,4 +14,5 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :posts
+  has_one :picture, as: :imageable, dependent: :destroy#TODO: foreign_key: { on_delete: :cascade }
 end

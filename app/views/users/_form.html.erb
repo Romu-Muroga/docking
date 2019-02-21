@@ -26,6 +26,11 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, class: "form-control" %>
     </div>
+    <!-- Pictureモデルのimage属性をセット -->
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
   </div>
   <%= f.submit %>
 <% end %>

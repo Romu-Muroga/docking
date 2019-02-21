@@ -16,9 +16,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bcrypt', '~> 3.1.11'
 # テストデータを生成するときに使うgem
 gem 'faker'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+# 画像をアップロードするためのgem
+gem 'carrierwave'
+# アップロードした画像ファイルのサイズを変更するために使用するためのgem
+gem 'mini_magick'
 
 group :development, :test do
   # デバック

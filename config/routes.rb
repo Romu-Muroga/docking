@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[show]
     resources :posts, only: [:index]
   end
-  resources :posts
+  resources :posts do
+    get :search, on: :collection
+  end
 end

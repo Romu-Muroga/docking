@@ -35,6 +35,11 @@
       <%= f.label :eatery_website %>
       <%= f.text_field :eatery_website, class: "form-control" %>
     </div>
+    <!-- Pictureモデルのimage属性をセット -->
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
     <div class="form-group">
       <%= f.label :remarks %>
       <%= f.text_area :remarks, class: "form-control" %>

@@ -11,7 +11,12 @@
 
   <body>
     <header>
-      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+      <% if logged_in? %>
+        <%= link_to "ログアウト", session_path(current_user), method: :delete, style: "font-weight: bold;" %><!-- TODO: 仮表示 -->
+        <%= link_to "マイページ", user_path(current_user), style: "font-weight: bold;" %><!-- TODO: 仮表示 -->
+        <%= link_to "全ユーザーランキング一覧画面", posts_path, style: "font-weight: bold;" %>&nbsp;<!-- TODO: 仮表示 -->
+        <span><%= current_user.name %>さんが現在ログイン中</span><!-- TODO: 仮表示 -->
+      <% end %>
     </header>
     <div class="wrapper">
       <% flash.each do |message_type, message| %>
