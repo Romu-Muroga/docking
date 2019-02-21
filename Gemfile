@@ -14,6 +14,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 # has_secure_passwordを使用するために必要なgem
 gem 'bcrypt', '~> 3.1.11'
+# テストデータを生成するときに使うgem
+gem 'faker'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

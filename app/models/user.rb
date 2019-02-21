@@ -10,4 +10,7 @@ class User < ApplicationRecord
   # セキュアにハッシュ化したパスワードを、データベース内のpassword_digestというカラムに保存する
   # 2つのペアの仮想的な属性 (passwordとpassword_confirmation) が使えるようになる。また、存在性と値が一致するかどうかのバリデーションも追加される
   # authenticateメソッドが使えるようになる (引数の文字列がパスワードと一致するとUserオブジェクトを、間違っているとfalseを返すメソッド)
+
+  # アソシエーション
+  has_many :posts
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_073543) do
+ActiveRecord::Schema.define(version: 2019_02_12_231713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,23 @@ ActiveRecord::Schema.define(version: 2019_02_12_073543) do
     t.string "name", limit: 500, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "ranking_point", null: false
+    t.string "eatery_name", limit: 200, null: false
+    t.string "eatery_food", limit: 200, null: false
+    t.string "eatery_address", limit: 500, default: "未登録", null: false
+    t.decimal "latitude", precision: 11, scale: 8
+    t.decimal "longitude", precision: 11, scale: 8
+    t.string "eatery_website", limit: 500, default: "未登録", null: false
+    t.text "remarks", null: false
+    t.bigint "category_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -30,4 +47,6 @@ ActiveRecord::Schema.define(version: 2019_02_12_073543) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "posts", "categories", on_delete: :cascade
+  add_foreign_key "posts", "users", on_delete: :cascade
 end
