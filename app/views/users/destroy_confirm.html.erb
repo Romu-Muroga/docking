@@ -5,10 +5,11 @@
       <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
       <%= form_with(model: User.new, url: user_path(@user.id), method: :delete, local: true, class: "form_outer") do |f| %>
         <div class="form_inner">
-          <p>
-            退会するとお客様に関連する情報が全て削除され、ログインできなくなります。<br>
-            また登録されていたデータは復元できません。よろしいですか？<br>
-          </p>
+          <h5 style="line-height: 20px; font-size: 15px;">
+            退会するとお客様に関連する情報が全て削除され、<br>
+            ログインできなくなります。<br>
+            また登録されていたデータは復元できません。よろしいですか？
+          </h5>
           <div class="form-group">
             <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
             <!-- 文字列の"true","false"をboolean型に変換する必要がある -->

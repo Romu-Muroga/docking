@@ -27,14 +27,14 @@
 
     <div class="col-md-6">
       <p id="slideshow">
-        <%#= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
-        <%#= image_tag("/images/photo2.jpg", class: "img-responsive") %>
-        <%#= image_tag("/images/photo3.jpg", class: "img-responsive") %>
-        <%#= image_tag("/images/photo4.jpg", class: "img-responsive") %>
-        <%#= image_tag("/images/photo5.png", class: "img-responsive") %>
-        <%#= image_tag("/images/photo6.jpg", class: "img-responsive") %>
+        <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
+        <%= image_tag("/images/photo2.jpg", class: "img-responsive") %>
+        <%= image_tag("/images/photo3.jpg", class: "img-responsive") %>
+        <%= image_tag("/images/photo4.jpg", class: "img-responsive") %>
+        <%= image_tag("/images/photo5.png", class: "img-responsive") %>
+        <%= image_tag("/images/photo6.jpg", class: "img-responsive") %>
       </p>
-      <!-- <script type="text/javascript">
+      <script type="text/javascript">
         function slideSwitch() {
            var $active = $('#slideshow img.active');
 
@@ -53,9 +53,9 @@
         }
 
         $(function() {
-           setInterval( "slideSwitch()", 5000 );
+           setInterval( "slideSwitch()", 6000 );
         });
-      </script> -->
+      </script>
       <table border="2" width="690" class="ranking_table">
         <tr>
           <td><%= link_to "総合ランキング", posts_path(overall_sort: "true") %></td>
@@ -73,9 +73,9 @@
           の合計といいねのカウント数の総計により算出されています。
         </h5>
         <% @posts.each_with_index do |(key, value), i| %>
-          <h3 style="font-family: serif"><%= i + 1 %>位 店名：<%= key[0] %> <%= value[:point] %>ポイント</h3>
+          <h3 style="font-family: serif;"><%= i + 1 %>位 店名：<%= key[0] %> <%= value[:point] %>ポイント</h3>
         <% end %>
-      <% else %>
+      <% elsif @posts.present? %>
         <% @posts.each do |post| %>
           <div class="thumbnail">
             <p class="category_label"><%= post.category.name %></p>
@@ -113,6 +113,8 @@
             </div>
           </div>
         <% end %>
+      <% else %>
+        <h4 class="no_content">投稿がありません</h4>
       <% end %>
     </div>
 
@@ -140,6 +142,6 @@
         </div>
       <% end %>
     </div>
-    <p class="pagetop"><%= link_to "ページトップへ戻る⬆︎", "#header" %></p>
+    <p class="pagetop"><%= link_to "ページトップへ戻る⬆︎", "#" %></p>
   </div>
 </div>
