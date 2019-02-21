@@ -1,0 +1,32 @@
+<div class="container-fluid" id="home_sec01">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="top_image">
+        <%= image_tag("/images/top1.jpg", class: "img-responsive") %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="sign_up_list">
+        <h2 class="catch_copy">
+          お気に入りの飲食店を
+          <br>
+          ランキング形式で記録する
+        </h2>
+        <p class="sub_catch_copy">本当は人に教えたくないんです...</p>
+        <%= link_to "新規登録", new_user_path, class: "btn btn-default" %>
+      </div>
+    </div>
+    <div class="col-md-offset-1 col-md-10" id=home_sec02>
+      <div class="text_area">
+        <h2 class="title">Docking</h2>
+        <p class="sub_title">お気に入りの飲食店をランキング形式で記録し共有するスペース</p>
+        <p class="content">
+          このアプリは、自分だけが気に入っている飲食店を、ランキング形式で記録しておくことができるアプリです。<br>
+          多様性が求められる現在、ランキングの集計方法も従来の多数決では信頼を保てなくなってきました。<br>
+          ランキングも「パブリックからパーソナルへ」人は人、自分は自分です。「私はこのレストランが好き」を記録して保存したい。<br>
+          そのようなニーズにお答えします。<br>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

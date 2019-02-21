@@ -25,11 +25,11 @@
     <div class="col-md-6">
       <p id="slideshow">
         <%#= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
-        <%#= image_tag("/images/photo2.jpg", class: "img-responsive")%>
-        <%#= image_tag("/images/photo3.jpg", class: "img-responsive")%>
-        <%#= image_tag("/images/photo4.jpg", class: "img-responsive")%>
-        <%#= image_tag("/images/photo5.png", class: "img-responsive")%>
-        <%#= image_tag("/images/photo6.jpg", class: "img-responsive")%>
+        <%#= image_tag("/images/photo2.jpg", class: "img-responsive") %>
+        <%#= image_tag("/images/photo3.jpg", class: "img-responsive") %>
+        <%#= image_tag("/images/photo4.jpg", class: "img-responsive") %>
+        <%#= image_tag("/images/photo5.png", class: "img-responsive") %>
+        <%#= image_tag("/images/photo6.jpg", class: "img-responsive") %>
       </p>
       <!-- <script type="text/javascript">
         function slideSwitch() {
@@ -85,7 +85,7 @@
             <% end %>
             <div class="caption">
               <div class="remarks">
-                <%= simple_format(post.remarks.truncate(100, omission: '...')) %>
+                <%= simple_format(post.remarks.truncate(150, omission: '...')) %>
               </div>
               <!-- TODO: リファクタリング -->
               <p>いいね！&nbsp;&nbsp;<%= post.likes_count %>回</p>
@@ -137,6 +137,6 @@
         </div>
       <% end %>
     </div>
-
+    <p class="pagetop"><%= link_to "ページトップへ戻る⬆︎", "#header" %></p>
   </div>
 </div>

@@ -1,9 +1,11 @@
 html {
   width: 100%;
+  height: 100%;
 }
 
 body {
   width: 100%;
+  height: 100%;
   background-color: #FAFAFA;
   // background: linear-gradient(-135deg, #E4A972, #9941D8);
 }
@@ -27,8 +29,9 @@ header div {
   width: 400px;
 }
 .nav {
+  position: relative;
+  top: 9px;
   margin-left: auto;
-  padding-top: 6px;
 }
 // ログインしているユーザ名表示の位置調整
 header p.active_user {
@@ -41,7 +44,7 @@ header p.active_user {
 }
 // 画面切り替え時フェードイン
 .wrapper {
-  margin-top: 80px;
+  margin-top: 90px;
   width: 100%;
   height: 100%;
   animation: fadeIn 2s ease 0s 1 normal;
@@ -62,4 +65,8 @@ div.alert {
   margin: 0 auto;
   opacity: 0.8;
   margin-bottom: 33px;
+}
+// ログイン画面
+.sign_up {
+  margin-top: 14px;
 }

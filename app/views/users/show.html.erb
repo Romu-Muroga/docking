@@ -35,7 +35,7 @@
           <% end %>
           <div class="caption">
             <div class="remarks">
-              <%= simple_format(user_post.remarks.truncate(100, omission: '...')) %>
+              <%= simple_format(user_post.remarks.truncate(150, omission: '...')) %>
             </div>
             <!-- TODO: リファクタリング -->
             <p>所在地：<%= user_post.eatery_address %></p>
@@ -76,7 +76,7 @@
           <%= link_to "新規登録", new_post_path, class: "cp_btn" %>
           <div class="iine_box">
             <% @user.iine_posts.each do |iine_post| %>
-              <% if @user.picture.present? %>
+              <% if iine_post.user_id == current_user.id %>
                 <span><%= image_tag(iine_post.user.picture.image.url, size: "30x30") %></span>
               <% else %>
                 <span><%= image_tag("/images/default.png", size: "30x30") %></span>

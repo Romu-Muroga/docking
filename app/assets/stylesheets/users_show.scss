@@ -92,9 +92,10 @@ a.btn-custum:hover {
   border: solid 1px;
   border-color: lightgray;
   border-radius: 2%;
-  min-height: 177px;
+  min-height: 180px;
   padding: 10px;
   word-wrap: break-word;
+  overflow: scroll;
 }
 .iine_box img {
   border-radius: 50%;

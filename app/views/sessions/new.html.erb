@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
-      <h1>ログイン画面</h1>
+      <h3>ログイン画面</h3>
       <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
       <%= form_with(scope: :session, url: sessions_path, local: true, class: "form_outer") do |f| %>
         <div class="form_inner">
@@ -16,7 +16,7 @@
         </div>
         <%= f.submit "ログイン" %>
       <% end %>
-      <p>アカウントをお持ちでない方はこちら</p>
+      <p class="sign_up">アカウントをお持ちでない方はこちら</p>
       <%= link_to "アカウント登録", new_user_path %>
     </div>
   </div>
