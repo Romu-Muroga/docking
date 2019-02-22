@@ -1,0 +1,23 @@
+ja:
+  flash:
+    create: "%{content}を登録しました"
+    update: "%{content}を更新しました"
+    destroy: "%{content}を削除しました"
+    You_are_now_logged: "ログインしました"
+    Login_failed: "メールアドレスまたはパスワードが正しくありません"
+    logged_out: "ログアウトしました"
+    Please_login: "ログインしてください"
+    Unlike_users: "ユーザーが異なります！"
+    Search_word_is_empty: "検索ワードが空白です"
+    account_registration_and_login_completed: "%{user}さんのアカウント登録とログインが完了しました"
+    account_information_update: "アカウント情報を更新しました"
+    Delete_account_Thank_you_for_using: "%{user}さんのアカウントを削除しました。ご利用いただき、ありがとうございました！"
+    Please_check: "チェックボックスにチェックを入れてください"
+  views:
+    users:
+      new_page: "アカウント登録ページ"
+      edit_page: "アカウント情報編集ページ"
+      destroy_page: "退会処理ページ"
+    posts:
+      new_page: "ランキング登録ページ"
+      edit_page: "ランキング編集ページ"

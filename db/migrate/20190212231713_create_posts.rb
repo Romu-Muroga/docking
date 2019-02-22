@@ -9,8 +9,8 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.decimal :longitude, precision: 11, scale: 8
       t.string :eatery_website, null: false, limit: 500
       t.text :remarks, null: false
-      t.references :category, index: true, foreign_key: { on_delete: :cascade }
-      t.references :user, index: true, foreign_key: { on_delete: :cascade }
+      t.references :category, index: true, foreign_key: { on_delete: :cascade }, null: false
+      t.references :user, index: true, foreign_key: { on_delete: :cascade }, null: false
       t.timestamps
     end
   end

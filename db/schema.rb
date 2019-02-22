@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2019_02_17_073123) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id", "user_id"], name: "index_likes_on_post_id_and_user_id", unique: true
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_02_17_073123) do
     t.decimal "longitude", precision: 11, scale: 8
     t.string "eatery_website", limit: 500, null: false
     t.text "remarks", null: false
-    t.bigint "category_id"
-    t.bigint "user_id"
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "likes_count", default: 0, null: false

@@ -38,7 +38,7 @@ class PostsController < ApplicationController
       @posts = Post.name_search(name)
       render :index
     elsif address.blank? && category.blank? && rank.blank? && name.blank?
-      flash[:warning] = "検索ワードを入力してください！"
+      flash[:warning] = t("flash.Search_word_is_empty")
       redirect_to posts_path
     end
   end
@@ -51,8 +51,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.build_picture(image: picture_params[:image])
-    if @post.save# TODO: !確認
-      flash[:success] = "ランキングを登録しました！"
+    if @post.save
+      flash[:success] = t("flash.create", content: @post.eatery_name)
       redirect_to user_path(@post.user_id)
     else
       render :new
@@ -78,7 +78,7 @@ class PostsController < ApplicationController
         @post.picture.save!
       end
     end
-    flash[:success] = "ランキングを更新しました！"
+    flash[:success] = t("flash.update", content: @post.model_name.human)
     redirect_to post_path(@post)
   rescue
     # TODO: エラーメッセージが必要
@@ -87,7 +87,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = "ランキングを削除しました！"
+    flash[:success] = t("flash.destroy", content: @post.model_name.human)
     redirect_to user_path(@post.user_id)
   end
 
@@ -118,14 +118,14 @@ class PostsController < ApplicationController
 
   def login_check
     unless logged_in?
-      flash[:danger] = "ログインして下さい！"
+      flash[:danger] = t("flash.Please_login")
       redirect_to new_session_path
     end
   end
 
   def id_check
     unless @post.user_id == current_user.id
-      flash[:danger] = "ユーザーが違います！"
+      flash[:danger] = t("flash.Unlike_users")
       redirect_to user_path(current_user.id)
     end
   end
