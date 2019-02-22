@@ -30,6 +30,7 @@ class Post < ApplicationRecord
   has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   has_many :likes
   has_many :iine_users, through: :likes, source: :user#「ポストにいいねをしたユーザーの一覧」という関連
+  has_many :comments
 
   # scope
   scope :latest, -> { order(updated_at: :desc) }# 更新順に並び替え
