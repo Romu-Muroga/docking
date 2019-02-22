@@ -46,7 +46,7 @@ RSpec.feature "投稿機能", type: :feature do
     select "２位", from: "post_ranking_point"
     fill_in "店名", with: "和食レストラン２"
     fill_in "メニュー名", with: "チキンかあさん煮定食"
-    attach_file "Image", "#{Rails.root}/spec/fixtures/default.png"
+    attach_file "画像", "#{Rails.root}/spec/fixtures/default.png"
     fill_in "備考欄", with: "美味しかった！"
 
     click_on "登録する"
@@ -69,7 +69,7 @@ RSpec.feature "投稿機能", type: :feature do
     select "１位", from: "post_ranking_point"
     fill_in "店名", with: "店名を編集しました！"
     fill_in "メニュー名", with: "サバの味噌煮定食"
-    attach_file "Image", "#{Rails.root}/spec/fixtures/default.png"
+    attach_file "画像", "#{Rails.root}/spec/fixtures/default.png"
     fill_in "備考欄", with: "美味しかった！"
 
     click_on "更新する"
@@ -88,7 +88,7 @@ RSpec.feature "投稿機能", type: :feature do
     visit user_path(user1)
     all("div.thumbnail")[0].click_on "削除"
 
-    expect(page).to have_content "ランキングを削除しました！"
+    expect(page).to have_content "投稿を削除しました"
   end
 
   scenario "ランキング一覧画面へ遷移できるかテスト" do

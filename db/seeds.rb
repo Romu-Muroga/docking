@@ -27,7 +27,7 @@ Category.create!(name: "その他")
 #              eatery_name: "魚べえ",
 #              eatery_food: "生しらす定食",
 #              eatery_address: "東京都渋谷区宇田川町28-6",
-#              eatery_website: "aaa@dic.com",
+#              eatery_website: "https://diveintocode.jp/",
 #              remarks: "美味しかった！",
 #              category_id: 1,
 #              user_id: 1
@@ -36,7 +36,7 @@ Category.create!(name: "その他")
 #              eatery_name: "kitchen suzuki",
 #              eatery_food: "豚汁",
 #              eatery_address: "東京都渋谷区道玄坂2-25",
-#              eatery_website: "bbb@dic.com",
+#              eatery_website: "https://diveintocode.jp/",
 #              remarks: "美味しかった！",
 #              category_id: 1,
 #              user_id: 1
@@ -45,7 +45,7 @@ Category.create!(name: "その他")
 #              eatery_name: "四季折々",
 #              eatery_food: "竹の子ご飯",
 #              eatery_address: "東京都渋谷区神宮前1-13-18",
-#              eatery_website: "ccc@dic.com",
+#              eatery_website: "https://diveintocode.jp/",
 #              remarks: "美味しかった！",
 #              category_id: 1,
 #              user_id: 1
@@ -54,7 +54,7 @@ Category.create!(name: "その他")
 #              eatery_name: "杉田や",
 #              eatery_food: "チャーシュー麺",
 #              eatery_address: "東京都渋谷区宇田川町28-6",
-#              eatery_website: "aaa@dic.com",
+#              eatery_website: "https://diveintocode.jp/",
 #              remarks: "美味しかった！",
 #              category_id: 2,
 #              user_id: 1
@@ -63,7 +63,7 @@ Category.create!(name: "その他")
 #              eatery_name: "ラーメン三郎",
 #              eatery_food: "大盛りラーメン",
 #              eatery_address: "東京都渋谷区道玄坂2-25",
-#              eatery_website: "bbb@dic.com",
+#              eatery_website: "https://diveintocode.jp/",
 #              remarks: "美味しかった！",
 #              category_id: 2,
 #              user_id: 1
@@ -72,7 +72,7 @@ Category.create!(name: "その他")
 #              eatery_name: "中華一番",
 #              eatery_food: "あさりラーメン",
 #              eatery_address: "東京都渋谷区神宮前1-13-18",
-#              eatery_website: "ccc@dic.com",
+#              eatery_website: "https://diveintocode.jp/",
 #              remarks: "美味しかった！",
 #              category_id: 2,
 #              user_id: 1

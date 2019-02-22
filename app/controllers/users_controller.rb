@@ -14,14 +14,14 @@ class UsersController < ApplicationController
     if @user.save
       # セーブできたら同時にログイン
       session[:user_id] = @user.id
-      flash[:success] = "アカウント登録＋ログインに成功しました！"
+      flash[:success] = t("flash.account_registration_and_login_completed", user: @user.name)
       redirect_to user_path(@user.id)
     else
       render :new
     end
   end
 
-  def show#TODO: scope
+  def show
     @categories = Category.all
     @user_posts = if params[:category_id]
                     Post.user_category_sort(@user, params[:category_id])
@@ -47,8 +47,8 @@ class UsersController < ApplicationController
         @user.picture.save!
       end
     end
-    flash[:success] = "アカウント情報を更新しました！"
-    redirect_to user_path(@user.id)# TODO: idいる？
+    flash[:success] = t("flash.account_information_update")
+    redirect_to user_path(@user)# TODO: idいる？
   rescue
     render :edit
   end
@@ -60,10 +60,10 @@ class UsersController < ApplicationController
     checkbox_value = params[:user][:destroy_check].to_i
     if checkbox_value == 1
       @user.destroy
-      flash[:success] = "アカウントを削除しました！ご利用ありがとうございました！"
+      flash[:success] = t("flash.Delete_account_Thank_you_for_using", user: @user.name)
       redirect_to root_path
     else
-      flash[:warning] = "チェックボックスにチェックを入れてください！"
+      flash[:warning] = t("flash.Please_check")
       redirect_to destroy_confirm_user_path(@user)# 退会処理画面へリダイレクト
     end
     # binding.pry
@@ -90,14 +90,14 @@ class UsersController < ApplicationController
 
   def login_check
     unless logged_in?
-      flash[:danger] = "ログインして下さい！"
+      flash[:danger] = t("flash.Please_login")
       redirect_to new_session_path
     end
   end
 
   def id_check
     unless @user.id == current_user.id
-      flash[:danger] = "ユーザーが違います！"
+      flash[:danger] = t("flash.Unlike_users")
       redirect_to user_path(current_user)
     end
   end
