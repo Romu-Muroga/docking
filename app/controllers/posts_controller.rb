@@ -25,6 +25,24 @@ class PostsController < ApplicationController
     if address.present? && category.present? && rank.present? && name.present?
       @posts = Post.all_search(address, category, rank, name)
       render :index
+    elsif address.present? && category.present?
+      @posts = Post.address_search(address).category_search(category)
+      render :index
+    elsif address.present? && rank.present?
+      @posts = Post.address_search(address).rank_search(rank)
+      render :index
+    elsif address.present? && name.present?
+      @posts = Post.address_search(address).name_search(name)
+      render :index
+    elsif category.present? && rank.present?
+      @posts = Post.category_search(category).rank_search(rank)
+      render :index
+    elsif category.present? && name.present?
+      @posts = Post.category_search(category).name_search(name)
+      render :index
+    elsif rank.present? && name.present?
+      @posts = Post.rank_search(rank).name_search(name)
+      render :index
     elsif address.present?
       @posts = Post.address_search(address)
       render :index
