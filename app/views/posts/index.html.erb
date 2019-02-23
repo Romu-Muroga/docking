@@ -1,31 +1,35 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-md-offset-1 col-md-2">
-      <%= link_to posts_path, class: "posts_index_logo" do %>
-        <%= image_tag("/images/logo.png", class: "img-responsive") %>
-      <% end %>
-      <table class="table table-hover table_resize">
-        <thead>
-          <tr>
-            <th>カテゴリー</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @categories.each do |category| %>
-            <tr class="active_category">
-              <td><%= link_to category.name, category_posts_path(category) %></td>
+    <div class="col-md-offset-1 col-md-2 sidebar">
+      <div class="category_list_in_posts_index">
+
+        <%= link_to posts_path, class: "logo" do %>
+          <%= image_tag("/images/logo.png", class: "img-responsive") %>
+        <% end %>
+        <table class="table table-hover table_resize">
+          <thead>
+            <tr>
+              <th>カテゴリー</th>
             </tr>
-          <% end %>
-          <script>
-             var url = window.location.pathname;
-                $('.active_category td a[href="'+url+'"]').addClass('active');
-          </script>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr class="active_category">
+                <td><%= link_to category.name, category_posts_path(category) %></td>
+              </tr>
+            <% end %>
+            <script>
+               var url = window.location.pathname;
+                  $('.active_category td a[href="'+url+'"]').addClass('active');
+            </script>
+          </tbody>
+        </table>
+
+      </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 centerbar">
       <p id="slideshow">
         <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
         <%= image_tag("/images/photo2.jpg", class: "img-responsive") %>
@@ -64,13 +68,14 @@
       </table>
       <% if @posts.class == Hash %>
         <h5 class="ranking_info">
-          総合ランキングは、<br>
+          総合ランキングは、お客さまがマイページで登録した独自のランキングをポイントによって集計し、<br>
           <br>
           １位＝３pt<br>
           ２位＝２pt<br>
           ３位＝１pt<br>
           <br>
-          の合計といいねのカウント数の総計により算出されています。
+          その合計に、いいねのカウント数を加算して算出されています。<br>
+          主観的な評価 + 客観的な評価 = 総合ランキングです。
         </h5>
         <% @posts.each_with_index do |(key, value), i| %>
           <h3 style="font-family: serif;"><%= i + 1 %>位 店名：<%= key[0] %> <%= value[:point] %>ポイント</h3>
@@ -101,9 +106,9 @@
               <% end %>
               <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
               <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
-              <li id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
-                <%= render "likes/like", post: post %><!-- TODO: いいねボタン -->
-              </li>
+              <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
+                <%= render "likes/like", post: post %><!-- いいねボタン -->
+              </div>
               <% if post.user_id == current_user.id %>
                 <p class="edit_delete_button">
                   <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
@@ -118,9 +123,9 @@
       <% end %>
     </div>
 
-    <div class="col-md-2">
-      <%= form_with(model: Post.new, url: search_posts_path, method: :get, local: true, class: "SearchForm_outer") do |f| %>
-        <div class="SearchForm_inner">
+    <div class="col-md-2 sidebar">
+      <%= form_with(model: Post.new, url: search_posts_path, method: :get, local: true, class: "search_form_outer") do |f| %>
+        <div class="search_form_inner">
           <div class="form-group">
             <%= f.label :eatery_address %>
             <%= f.text_field :eatery_address, class: "form-control" %>

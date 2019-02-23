@@ -1,32 +1,39 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
-      <div class="thumbnail thumbnail_resize">
-        <p class="category_label"><%= @post.category.name %></p>
-        <h3 style="font-weight: bold;"><%= @post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= @post.eatery_name %></h3>
-        <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= @post.eatery_food %></h4>
+    <div class="col-md-offset-1 col-md-8">
+      <div class="thumbnail">
+        <div class="thumbnail_header">
+          <span class="category_label_in_posts_show"><%= @post.category.name %></span>
+          <span><%= @post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= @post.eatery_name %></span>&nbsp;&nbsp;&nbsp;
+          <span>メニュー名&nbsp;&nbsp;&nbsp;<%= @post.eatery_food %></span>
+        </div>
         <% if @post.picture.present? %>
           <%= image_tag(@post.picture.image.url, class: "img-responsive") %>
         <% else %>
           <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
         <% end %>
         <div class="caption">
+          <% if @post.user.picture.present? %>
+            <span><%= image_tag(@post.user.picture.image.url, size: "48x48") %></span>
+          <% else %>
+            <span><%= image_tag("/images/default.png", size: "48x48") %></span>
+          <% end %>
+          <span>&nbsp;&nbsp;<%= link_to @post.user.name, user_path(@post.user) %></span>
           <div class="remarks">
             <%= simple_format(@post.remarks) %>
           </div>
-          <!-- TODO: リファクタリング -->
-          <p>いいね！&nbsp;&nbsp;<%= @post.likes_count %>回</p>
-          <p>所在地：<%= @post.eatery_address %></p>
-          <!-- TODO: 存在しないアドレスだとエラーになる -->
+          <span>いいね！&nbsp;&nbsp;<%= @post.likes_count %>回</span>&nbsp;&nbsp;&nbsp;
+          <span>所在地：<%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
+          <!-- TODO: 存在しないアドレスだと404エラーになる -->
           <% if @post.eatery_website == "未登録" %>
-            <p>ホームページ：未登録<p>
+            <span>ホームページ：未登録<span>&nbsp;&nbsp;&nbsp;
           <% else %>
-            <p>ホームページ：<%= link_to @post.eatery_name, @post.eatery_website %></p>
+            <span>ホームページ：<%= link_to @post.eatery_name, @post.eatery_website %></span>&nbsp;&nbsp;&nbsp;
           <% end %>
-          <p>投稿者：<%= link_to @post.user.name, user_path(@post.user) %></p>
-          <li id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_list">
-            <%= render "likes/like", post: @post %><!-- TODO: いいねボタン -->
-          </li>
+
+          <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_list">
+            <%= render "likes/like", post: @post %><!-- いいねボタン -->
+          </div>
           <% if @post.user_id == current_user.id %>
             <p class="edit_delete_button">
               <%= link_to "編集", edit_post_path(@post), class: "btn btn-black" %>
@@ -35,6 +42,17 @@
           <% end %>
         </div>
       </div>
+    </div>
+    <div class="col-md-2">
+      <h4>コメント</h4>
+      <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
+        <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+        <%= render partial: 'comments/index', locals: { comments: @comments } %>
+      </div>
+      <%# if logged_in? %>
+        <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+        <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+      <%# end %>
     </div>
   </div>
 </div>

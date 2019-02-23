@@ -9,10 +9,6 @@
 // カテゴリーテーブルの幅調整
 .table_resize {
   width: 180px;
-  margin-top: 220px;
-}
-#user_only {
-  margin-top: 2px;
 }
 // テーブルの文字色変更
 .table_resize tbody tr td a {
@@ -104,20 +100,17 @@ a.btn-custum:hover {
   margin: 4px 0;
   display: inline-block;
 }
-// ロゴマーク
-.users_show_logo {
-  position: relative;
-  right: 8px;
-  bottom: 20px;
-}
-.posts_index_logo {
-  position: relative;
-  right: 8px;
-  top: 196px;
-}
-
+// 投稿がないときに表示される、テキスト「投稿がありません」の位置
 .no_content {
   width: 170px;
   margin: 0 auto;
   margin-top: 182px;
+}
+// カテゴリーリストの高さ調整
+.category_list_in_users_show {
+  margin-top: 50px;
+}
+// ユーザー情報の高さ調整
+.user_info {
+  margin-top: 50px;
 }

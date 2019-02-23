@@ -1,31 +1,35 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-md-offset-1 col-md-2">
-      <%= link_to posts_path, class: "users_show_logo" do %>
-        <%= image_tag("/images/logo.png", class: "img-responsive") %>
-      <% end %>
-      <table class="table table-hover table_resize" id="user_only">
-        <thead>
-          <tr>
-            <th>カテゴリー</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @categories.each do |category| %>
-            <tr class="active_category">
-              <td><%= link_to category.name, category_user_path(category, @user) %></td>
+    <div class="col-md-offset-1 col-md-2 sidebar">
+      <div class="category_list_in_users_show">
+
+        <%= link_to posts_path, class: "logo" do %>
+          <%= image_tag("/images/logo.png", class: "img-responsive") %>
+        <% end %>
+        <table class="table table-hover table_resize">
+          <thead>
+            <tr>
+              <th>カテゴリー</th>
             </tr>
-          <% end %>
-          <script>
-             var url = window.location.pathname;
-                $('.active_category td a[href="'+url+'"]').addClass('active');
-          </script>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr class="active_category">
+                <td><%= link_to category.name, category_user_path(category, @user) %></td>
+              </tr>
+            <% end %>
+            <script>
+               var url = window.location.pathname;
+                  $('.active_category td a[href="'+url+'"]').addClass('active');
+            </script>
+          </tbody>
+        </table>
+
+      </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 centerbar">
       <% if @user_posts.present? %>
         <% @user_posts.each do |user_post| %>
           <div class="thumbnail">
@@ -52,7 +56,7 @@
               <p><%= link_to "詳細をみる", post_path(user_post), class: "btn btn-custum" %></p>
               <% if user_post.user_id != current_user.id %>
                 <li id="post-<%= user_post.id %>" data-post-id="<%= user_post.id %>" class="iine_list">
-                  <%= render "likes/like", post: user_post %><!-- TODO: いいねボタン -->
+                  <%= render "likes/like", post: user_post %><!-- いいねボタン -->
                 </li>
               <% end %>
               <% if user_post.user_id == current_user.id %>
@@ -69,8 +73,8 @@
       <% end %>
     </div>
 
-    <div class="col-md-2">
-      <div class="user_menu">
+    <div class="col-md-2 sidebar">
+      <div class="user_info">
         <p><%= @user.name %></p>
         <% if @user.picture.present? %>
           <%= image_tag(@user.picture.image.url, class: "img-responsive image_processing") %>
@@ -83,7 +87,7 @@
           <%= link_to "新規登録", new_post_path, class: "cp_btn" %>
           <div class="iine_box">
             <% @user.iine_posts.each do |iine_post| %>
-              <% if iine_post.user_id == current_user.id %>
+              <% if iine_post.user.picture.present? %>
                 <span><%= image_tag(iine_post.user.picture.image.url, size: "30x30") %></span>
               <% else %>
                 <span><%= image_tag("/images/default.png", size: "30x30") %></span>

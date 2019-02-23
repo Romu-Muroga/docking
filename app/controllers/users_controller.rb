@@ -32,23 +32,24 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def update#TODO: リファクタリング
+  def update
     # @postと@post.pictureのどちらかが更新に失敗したとき、どちらも更新しない設定
     ActiveRecord::Base.transaction do
       @user.update!(user_params)
-      if @user.picture.blank? && picture_params[:image].blank?
+      form_submit_image = picture_params[:image]
+      if @user.picture.blank? && form_submit_image.blank?
         false
-      elsif @user.picture.present? && !(picture_params[:image])
+      elsif @user.picture.present? && form_submit_image.blank?
         @user.picture.destroy
       elsif @user.picture.present?
-        @user.picture.update!(image: picture_params[:image])
+        @user.picture.update!(image: form_submit_image)
       else
-        @user.build_picture(image: picture_params[:image])
+        @user.build_picture(image: form_submit_image)
         @user.picture.save!
       end
     end
     flash[:success] = t("flash.account_information_update")
-    redirect_to user_path(@user)# TODO: idいる？
+    redirect_to user_path(@user)
   rescue
     render :edit
   end

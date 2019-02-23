@@ -1,0 +1,4 @@
+// 投稿のビューの中で id = "comments_area"とした箇所を書き換える処理
+// @comment.post.comments は、コメント一覧表示するのに必要なコメント全件
+$("#comments_area").html("<%= j(render 'index', { comments: @comment.post.comments }) %>")
+$("textarea").val('')// コメント入力後のコメント入力欄を空にする

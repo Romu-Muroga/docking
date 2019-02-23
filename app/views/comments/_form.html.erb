@@ -1,0 +1,9 @@
+<!-- [post, comment]は、投稿のビューで渡しているインスタンスのローカル変数 -->
+<%= form_with(model: [post, comment] ) do |f| %>
+  <div>
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit "コメントをする" %>
+  </div>
+<% end %>
