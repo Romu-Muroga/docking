@@ -8,9 +8,11 @@
             Dockingの使命は、一人一人の“お気に入り”が集まる場所を提供することです（ver.飲食店）
           </p>
           <p class="sub_catch_copy">Ranking x Ranking = Docking</p>
-          <div class="sign_up_button">
-            <%= link_to "新規登録", new_user_path, class: "btn btn-default" %>
-          </div>
+          <% unless logged_in?  %>
+            <div class="sign_up_button">
+              <%= link_to "新規登録", new_user_path, class: "btn btn-default" %>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="col-xs-12 col-md-12" id=home_sec02>

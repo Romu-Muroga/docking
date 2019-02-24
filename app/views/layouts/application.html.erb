@@ -13,8 +13,8 @@
     <header>
       <% if logged_in? %>
         <div class="nav">
-          <%= link_to "ランキング一覧画面へ", posts_path %>&nbsp;&nbsp;&nbsp;
-          <%= link_to "マイページ", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "みんなのお気に入り", posts_path %>&nbsp;&nbsp;&nbsp;
+          <%= link_to "私のお気に入り", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
           <%= link_to "ログアウト", session_path(current_user), method: :delete %>
         </div>
         <p class="active_user"><%= current_user.name %>さんが現在ログイン中</p>

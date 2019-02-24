@@ -277,7 +277,7 @@ RSpec.describe Post, type: :model do
     expect(posts).to include post1
   end
 
-  it "ユーザーがマイページを訪れたときのデフォルトのソートができるかテスト" do
+  it "ユーザーが私のお気に入りページを訪れたときのデフォルトのソートができるかテスト" do
     post1 = Post.create!(
       ranking_point: 3,
       eatery_name: "-------",
