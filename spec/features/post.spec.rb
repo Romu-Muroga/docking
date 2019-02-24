@@ -91,10 +91,10 @@ RSpec.feature "投稿機能", type: :feature do
     expect(page).to have_content "投稿を削除しました"
   end
 
-  scenario "ランキング一覧画面へ遷移できるかテスト" do
+  scenario "みんなのお気に入り画面へ遷移できるかテスト" do
     visit user_path(user1)
     within "header" do
-      click_on "ランキング一覧画面へ"
+      click_on "みんなのお気に入り"
     end
 
     expect(page).to have_content "いいねランキング"
@@ -174,10 +174,10 @@ RSpec.feature "投稿機能", type: :feature do
     expect(page).to have_content "和食レストラン"
   end
 
-  scenario "マイページへ遷移できるかテスト" do
+  scenario "私のお気に入りへ遷移できるかテスト" do
     visit user_path(user1)
     within "header" do
-      click_on "マイページ"
+      click_on "私のお気に入り"
     end
 
     expect(page).to have_content "test_user_01"
