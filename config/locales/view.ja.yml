@@ -19,5 +19,5 @@ ja:
       edit_page: "アカウント情報編集ページ"
       destroy_page: "退会処理ページ"
     posts:
-      new_page: "ランキング登録ページ"
-      edit_page: "ランキング編集ページ"
+      new_page: "お気に入り登録ページ"
+      edit_page: "お気に入り編集ページ"

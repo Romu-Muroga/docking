@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   validates :ranking_point, uniqueness: { scope: [:category_id, :user_id] }
   # validates: latitude# TODO: 要確認
   # validates: longitude# TODO: 要確認
-  validates :eatery_website, length: { maximum: 500 }
+  validates :eatery_website, length: { maximum: 500 }#, format: { with: /\A#{URI::regexp(%w(http https))}\z/ }
   validates :remarks, presence: true
 
   # TODO: 写真が選択されていなかったときのバリデーションは？
@@ -30,6 +30,7 @@ class Post < ApplicationRecord
   has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   has_many :likes
   has_many :iine_users, through: :likes, source: :user#「ポストにいいねをしたユーザーの一覧」という関連
+  has_many :comments
 
   # scope
   scope :latest, -> { order(updated_at: :desc) }# 更新順に並び替え

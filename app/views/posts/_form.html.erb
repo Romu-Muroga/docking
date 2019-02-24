@@ -10,6 +10,7 @@
         </ul>
       </div>
     <% end %>
+    <p>※各カテゴリー１位〜３位まで、ご登録いただけます。</p>
     <div class="form-group">
       <%= f.label :category_id %>
       <%= f.collection_select :category_id, Category.all, :id, :name, class: "form-control" %>
@@ -20,7 +21,7 @@
       <%= f.select :ranking_point, Post.ranking_points.keys, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :eatery_name, "店名（出来るだけ正確な店名でのご登録をお願いいたします）" %>
+      <%= f.label :eatery_name, "店名（できるかぎり正確な店名で、ご登録をお願いします）" %>
       <%= f.text_field :eatery_name, placeholder: "例：（店名：中華一番）○ 中華一番 x 中華いちばん", class: "form-control" %>
     </div>
     <div class="form-group">
@@ -41,7 +42,7 @@
       <%= f.file_field :image, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :remarks %>
+      <%= f.label :remarks, "一言、好きな理由を添えて投稿をお願いします" %>
       <%= f.text_area :remarks, class: "form-control" %>
     </div>
   </div>
