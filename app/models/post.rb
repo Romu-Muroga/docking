@@ -33,9 +33,9 @@ class Post < ApplicationRecord
   has_many :comments
 
   # scope
-  scope :latest, -> { order(updated_at: :desc) }# 更新順に並び替え
+  scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
   scope :category_sort, -> (category_id) { where(category_id: category_id).latest }
-  scope :iine_ranking, -> { order(likes_count: :desc).limit(10) }# １０位まで
+  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
   scope :all_search, -> (address, category, rank, name) { where("eatery_address LIKE ?", "%#{ address }%").where(category_id: category).where(ranking_point: rank).where("eatery_name LIKE ?", "%#{ name }%").latest }
   scope :address_search, -> (address) { where("eatery_address LIKE ?", "%#{ address }%").latest }
   scope :category_search, -> (category) { where(category_id: category).latest }
@@ -99,9 +99,9 @@ class Post < ApplicationRecord
     eatery_points = {}
     posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
     posts = posts.each { |post| eatery_points[post] = {point: 0} }.flatten
-    dup_records = Post.where(eatery_name: posts).or(Post.where(category_id: posts))
+    dup_posts = Post.where(eatery_name: posts).or(Post.where(category_id: posts))
 
-    return eatery_points, dup_records
+    return eatery_points, dup_posts
   end
 
   # コールバック

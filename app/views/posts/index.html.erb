@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
 
-      <div class="col-md-offset-1 col-md-2 sidebar">
+      <div class="col-xs-offset-1 col-xs-2 col-md-offset-1 col-md-2 sidebar">
         <div class="category_list_in_posts_index">
 
           <%= link_to posts_path, class: "logo" do %>
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 centerbar">
+      <div class="col-xs-6 col-md-6 centerbar">
         <p id="slideshow">
           <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
           <%= image_tag("/images/photo2.jpg", class: "img-responsive") %>
@@ -69,14 +69,14 @@
         </table>
         <% if @posts.class == Hash %>
           <h5 class="ranking_info">
-            総合ランキングは、お客さまがマイページで登録した独自のランキングをポイントによって集計し、<br>
+            総合ランキングは、お客さま１人１人がマイページで登録したお気に入りのランキングをポイントによって集計し、<br>
             <br>
             １位＝３pt<br>
             ２位＝２pt<br>
             ３位＝１pt<br>
             <br>
-            その合計に、いいねのカウント数を加算して算出されています。<br>
-            主観的な評価 + 客観的な評価 = 総合ランキングです。
+            その合計に、いいね！のカウント数を加算して算出されています。<br>
+            主観的な評価（ランキングのポイント） + 客観的な評価（いいね！のカウント数） = 総合ランキング<br>です。
           </h5>
           <% @posts.each_with_index do |(key, value), i| %>
             <h3 style="font-family: serif;"><%= i + 1 %>位 店名：<%= key[0] %> <%= value[:point] %>ポイント</h3>
@@ -93,6 +93,7 @@
                 <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
               <% end %>
               <div class="caption">
+                <p>お気に入りの理由は？</p>
                 <div class="remarks">
                   <%= simple_format(post.remarks.truncate(150, omission: '...')) %>
                 </div>
@@ -107,7 +108,7 @@
                 <% end %>
                 <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
                 <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
-                <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
+                <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">
                   <%= render "likes/like", post: post %><!-- いいねボタン -->
                 </div>
                 <% if post.user_id == current_user.id %>
@@ -124,7 +125,7 @@
         <% end %>
       </div>
 
-      <div class="col-md-2 sidebar">
+      <div class="col-xs-2 col-md-2 sidebar">
         <%= form_with(model: Post.new, url: search_posts_path, method: :get, local: true, class: "search_form_outer") do |f| %>
           <div class="search_form_inner">
             <div class="form-group">

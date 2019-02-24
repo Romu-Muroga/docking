@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-offset-4 col-md-4" style="margin-top: 170px">
+      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4" style="margin-top: 170px">
         <h3><%= t("views.users.destroy_page") %></h3>
         <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
         <%= form_with(model: User.new, url: user_path(@user.id), method: :delete, local: true, class: "form_outer") do |f| %>
