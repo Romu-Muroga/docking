@@ -100,6 +100,9 @@ a.btn-custum:hover {
   margin: 4px 0;
   display: inline-block;
 }
+.iine_box p.no_liked_posts_message {
+  text-align: center;
+}
 // 投稿がないときに表示される、テキスト「投稿がありません」の位置
 .no_content {
   width: 170px;
