@@ -47,7 +47,7 @@ RSpec.feature "投稿機能", type: :feature do
     fill_in "店名", with: "和食レストラン２"
     fill_in "メニュー名", with: "チキンかあさん煮定食"
     attach_file "画像", "#{Rails.root}/spec/fixtures/default.png"
-    fill_in "備考欄", with: "美味しかった！"
+    fill_in "一言、好きな理由を添えて投稿をお願いします", with: "美味しかった！"
 
     click_on "登録する"
 
@@ -70,7 +70,7 @@ RSpec.feature "投稿機能", type: :feature do
     fill_in "店名", with: "店名を編集しました！"
     fill_in "メニュー名", with: "サバの味噌煮定食"
     attach_file "画像", "#{Rails.root}/spec/fixtures/default.png"
-    fill_in "備考欄", with: "美味しかった！"
+    fill_in "一言、好きな理由を添えて投稿をお願いします", with: "美味しかった！"
 
     click_on "更新する"
 
@@ -165,7 +165,7 @@ RSpec.feature "投稿機能", type: :feature do
     expect(page).to have_content "7ポイント"
   end
 
-  scenario "総合ランキングでソートできるかテスト" do
+  scenario "カテゴリーでソートできるかテスト" do
     visit posts_path
     within "tr.active_category[1]" do
       click_link "和食"

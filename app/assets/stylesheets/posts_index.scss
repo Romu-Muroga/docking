@@ -74,14 +74,13 @@ table.ranking_table {
 }
 // いいねボタンの台座のサイズ調整（positionは１番上に書く？）
 .btn-xs {
-  position: relative;
-  left: 600px;
   padding: 7px 8px 10px 22px;
   border: none
 }
 // いいねボタンの前に付く黒点を削除
-.iine_list {
+.iine_button {
   list-style: none;
+  margin-left: 600px;
 }
 // カテゴリーラベル
 .category_label {
@@ -139,10 +138,10 @@ table.ranking_table {
 .pagetop a {
   display: block;
   text-decoration: none;
-  color: #EC407A;
+  color: black;
 }
-.pagetop:hover {
-  opacity: 0.85 ;
+.pagetop a:hover {
+  color: #EC407A;
 }
 // 総合ランキングの算出方法
 .ranking_info {
