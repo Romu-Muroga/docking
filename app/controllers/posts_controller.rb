@@ -52,13 +52,20 @@ class PostsController < ApplicationController
     @comments = @post.comments# コメント一覧表示で使用するためのコメントデータを用意
   end
 
-  def edit; end
+  def edit
+    # binding.pry
+    @post.picture.image.cache! unless @post.picture.blank?
+  end
 
   def update
     # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
       @post.update!(post_params)
-      form_submit_image = picture_params[:image]
+      if picture_params[:image]
+        form_submit_image = picture_params[:image]
+      else
+        form_submit_image = picture_params[:image_cache]
+      end
       if @post.picture.blank? && form_submit_image.blank?
         false
       elsif @post.picture.present? && form_submit_image.blank?
@@ -101,7 +108,7 @@ class PostsController < ApplicationController
   end
   # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
   def picture_params
-    params.require(:post).permit(:image)
+    params.require(:post).permit(:image, :image_cache)# TODO
   end
 
   def set_post

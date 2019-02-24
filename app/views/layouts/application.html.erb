@@ -13,10 +13,15 @@
     <header>
       <% if logged_in? %>
         <div class="nav">
+          <%= link_to "新規投稿", new_post_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to "みんなのお気に入り", posts_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to "私のお気に入り", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
           <%= link_to "ログアウト", session_path(current_user), method: :delete %>
         </div>
+        <script>
+           var url = window.location.pathname;
+              $('.nav a[href="'+url+'"]').addClass('active');
+        </script>
         <p class="active_user"><%= current_user.name %>さんが現在ログイン中</p>
       <% else %>
         <div class="nav">

@@ -13,7 +13,7 @@ ja:
         eatery_food: "メニュー名"
         eatery_address: "所在地"
         eatery_website: "店のホームページ"
-        remarks: "備考欄"
+        remarks: "好きな理由"
       category:
         name: "カテゴリー名"
       user:

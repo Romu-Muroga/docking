@@ -40,6 +40,9 @@
     <div class="form-group">
       <%= f.label :image, "画像（任意）" %>
       <%= f.file_field :image, class: "form-control" %>
+      <%# if post.picture.present? %>
+        <%#= f.hidden_field :image_cache %>
+      <%# end %>
     </div>
     <div class="form-group">
       <%= f.label :remarks, "一言、好きな理由を添えて投稿をお願いします" %>
