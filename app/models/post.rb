@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   validates :ranking_point, uniqueness: { scope: [:category_id, :user_id] }
   # validates: latitude# TODO: 要確認
   # validates: longitude# TODO: 要確認
-  validates :eatery_website, length: { maximum: 500 }
+  validates :eatery_website, length: { maximum: 500 }#, format: { with: /\A#{URI::regexp(%w(http https))}\z/ }
   validates :remarks, presence: true
 
   # TODO: 写真が選択されていなかったときのバリデーションは？

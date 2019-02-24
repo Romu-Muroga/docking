@@ -1,9 +1,16 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %><!-- コメントのidがnilではなかったら -->
-    <p><%= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></p>
-    <p>コメント：<%= comment.content %></p>
+    <% if comment.user.picture.present? %>
+      <span><%= image_tag(comment.user.picture.image.url, size: "30x30") %></span>
+    <% else %>
+      <span><%= image_tag("/images/default.png", size: "30x30") %></span>
+    <% end %>
+    <span>&nbsp;&nbsp;<%= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></span>
+    <p style="margin-left: 43px;"><%= comment.content %></p>
     <% if comment.user == current_user %><!--そのコメントをしたユーザーと現在のユーザーが一致していたら -->
-      <p><%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %></p>
+      <p class="comment_delete_btn">
+        <%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "btn btn-default" %>
+      </p>
     <% end %>
   <% end %>
 <% end %>
