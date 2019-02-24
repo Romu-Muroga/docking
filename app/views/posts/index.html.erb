@@ -1,147 +1,154 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="wrapper">
+  <div class="container-fluid">
+    <div class="row">
 
-    <div class="col-md-offset-1 col-md-2">
-      <%= link_to posts_path, class: "posts_index_logo" do %>
-        <%= image_tag("/images/logo.png", class: "img-responsive") %>
-      <% end %>
-      <table class="table table-hover table_resize">
-        <thead>
-          <tr>
-            <th>カテゴリー</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @categories.each do |category| %>
-            <tr class="active_category">
-              <td><%= link_to category.name, category_posts_path(category) %></td>
-            </tr>
+      <div class="col-md-offset-1 col-md-2 sidebar">
+        <div class="category_list_in_posts_index">
+
+          <%= link_to posts_path, class: "logo" do %>
+            <%= image_tag("/images/logo.png", class: "img-responsive") %>
           <% end %>
-          <script>
-             var url = window.location.pathname;
-                $('.active_category td a[href="'+url+'"]').addClass('active');
-          </script>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="col-md-6">
-      <p id="slideshow">
-        <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
-        <%= image_tag("/images/photo2.jpg", class: "img-responsive") %>
-        <%= image_tag("/images/photo3.jpg", class: "img-responsive") %>
-        <%= image_tag("/images/photo4.jpg", class: "img-responsive") %>
-        <%= image_tag("/images/photo5.png", class: "img-responsive") %>
-        <%= image_tag("/images/photo6.jpg", class: "img-responsive") %>
-      </p>
-      <script type="text/javascript">
-        function slideSwitch() {
-           var $active = $('#slideshow img.active');
-
-           if ( $active.length == 0 ) $active = $('#slideshow img:last');
-
-           var $next =  $active.next().length ? $active.next()
-              : $('#slideshow img:first');
-
-           $active.addClass('last-active');
-
-           $next.css({opacity: 0.0})
-              .addClass('active')
-              .animate({opacity: 1.0}, 1000, function() {
-                   $active.removeClass('active last-active');
-              });
-        }
-
-        $(function() {
-           setInterval( "slideSwitch()", 6000 );
-        });
-      </script>
-      <table border="2" width="690" class="ranking_table">
-        <tr>
-          <td><%= link_to "総合ランキング", posts_path(overall_sort: "true") %></td>
-          <td><%= link_to "いいねランキング", posts_path(iine_sort: "true") %></td>
-        </tr>
-      </table>
-      <% if @posts.class == Hash %>
-        <h5 class="ranking_info">
-          総合ランキングは、<br>
-          <br>
-          １位＝３pt<br>
-          ２位＝２pt<br>
-          ３位＝１pt<br>
-          <br>
-          の合計といいねのカウント数の総計により算出されています。
-        </h5>
-        <% @posts.each_with_index do |(key, value), i| %>
-          <h3 style="font-family: serif;"><%= i + 1 %>位 店名：<%= key[0] %> <%= value[:point] %>ポイント</h3>
-        <% end %>
-      <% elsif @posts.present? %>
-        <% @posts.each do |post| %>
-          <div class="thumbnail">
-            <p class="category_label"><%= post.category.name %></p>
-            <h3 style="font-weight: bold;"><%= post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= post.eatery_name %></h3>
-            <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= post.eatery_food %></h4>
-            <% if post.picture.present? %>
-              <%= image_tag(post.picture.image.url, class: "img-responsive") %>
-            <% else %>
-              <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
-            <% end %>
-            <div class="caption">
-              <div class="remarks">
-                <%= simple_format(post.remarks.truncate(150, omission: '...')) %>
-              </div>
-              <!-- TODO: リファクタリング -->
-              <p>いいね！&nbsp;&nbsp;<%= post.likes_count %>回</p>
-              <p>所在地：<%= post.eatery_address %></p>
-              <!-- TODO: 存在しないアドレスだとエラーになる -->
-              <% if post.eatery_website == "未登録" %>
-                <p>ホームページ：未登録<p>
-              <% else %>
-                <p>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></p>
+          <table class="table table-hover table_resize">
+            <thead>
+              <tr>
+                <th>カテゴリー</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @categories.each do |category| %>
+                <tr class="active_category">
+                  <td><%= link_to category.name, category_posts_path(category) %></td>
+                </tr>
               <% end %>
-              <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
-              <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
-              <li id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
-                <%= render "likes/like", post: post %><!-- TODO: いいねボタン -->
-              </li>
-              <% if post.user_id == current_user.id %>
-                <p class="edit_delete_button">
-                  <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
-                  <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
-                </p>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <h4 class="no_content">投稿がありません</h4>
-      <% end %>
-    </div>
+              <script>
+                 var url = window.location.pathname;
+                    $('.active_category td a[href="'+url+'"]').addClass('active');
+              </script>
+            </tbody>
+          </table>
 
-    <div class="col-md-2">
-      <%= form_with(model: Post.new, url: search_posts_path, method: :get, local: true, class: "SearchForm_outer") do |f| %>
-        <div class="SearchForm_inner">
-          <div class="form-group">
-            <%= f.label :eatery_address %>
-            <%= f.text_field :eatery_address, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :eatery_name %>
-            <%= f.text_field :eatery_name, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :category_id %>
-            <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true, selected: "", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :ranking_point %>
-            <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
-            <%= f.select :ranking_point, Post.ranking_points.keys, include_blank: true, selected: "", class: "form-control" %>
-          </div>
-          <%= f.submit "検索" %>
         </div>
-      <% end %>
+      </div>
+
+      <div class="col-md-6 centerbar">
+        <p id="slideshow">
+          <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
+          <%= image_tag("/images/photo2.jpg", class: "img-responsive") %>
+          <%= image_tag("/images/photo3.jpg", class: "img-responsive") %>
+          <%= image_tag("/images/photo4.jpg", class: "img-responsive") %>
+          <%= image_tag("/images/photo5.png", class: "img-responsive") %>
+          <%= image_tag("/images/photo6.jpg", class: "img-responsive") %>
+        </p>
+        <script type="text/javascript">
+          function slideSwitch() {
+             var $active = $('#slideshow img.active');
+
+             if ( $active.length == 0 ) $active = $('#slideshow img:last');
+
+             var $next =  $active.next().length ? $active.next()
+                : $('#slideshow img:first');
+
+             $active.addClass('last-active');
+
+             $next.css({opacity: 0.0})
+                .addClass('active')
+                .animate({opacity: 1.0}, 1000, function() {
+                     $active.removeClass('active last-active');
+                });
+          }
+
+          $(function() {
+             setInterval( "slideSwitch()", 6000 );
+          });
+        </script>
+        <table border="2" width="690" class="ranking_table">
+          <tr>
+            <td><%= link_to "総合ランキング", posts_path(overall_sort: "true") %></td>
+            <td><%= link_to "いいねランキング", posts_path(iine_sort: "true") %></td>
+          </tr>
+        </table>
+        <% if @posts.class == Hash %>
+          <h5 class="ranking_info">
+            総合ランキングは、お客さまがマイページで登録した独自のランキングをポイントによって集計し、<br>
+            <br>
+            １位＝３pt<br>
+            ２位＝２pt<br>
+            ３位＝１pt<br>
+            <br>
+            その合計に、いいねのカウント数を加算して算出されています。<br>
+            主観的な評価 + 客観的な評価 = 総合ランキングです。
+          </h5>
+          <% @posts.each_with_index do |(key, value), i| %>
+            <h3 style="font-family: serif;"><%= i + 1 %>位 店名：<%= key[0] %> <%= value[:point] %>ポイント</h3>
+          <% end %>
+        <% elsif @posts.present? %>
+          <% @posts.each do |post| %>
+            <div class="thumbnail">
+              <p class="category_label"><%= post.category.name %></p>
+              <h3 style="font-weight: bold;"><%= post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= post.eatery_name %></h3>
+              <h4>メニュー名&nbsp;&nbsp;&nbsp;<%= post.eatery_food %></h4>
+              <% if post.picture.present? %>
+                <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+              <% else %>
+                <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
+              <% end %>
+              <div class="caption">
+                <div class="remarks">
+                  <%= simple_format(post.remarks.truncate(150, omission: '...')) %>
+                </div>
+                <!-- TODO: リファクタリング -->
+                <p>いいね！&nbsp;&nbsp;<%= post.likes_count %>回</p>
+                <p>所在地：<%= post.eatery_address %></p>
+                <!-- TODO: 存在しないアドレスだとエラーになる -->
+                <% if post.eatery_website == "未登録" %>
+                  <p>ホームページ：未登録<p>
+                <% else %>
+                  <p>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></p>
+                <% end %>
+                <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
+                <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
+                <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_list">
+                  <%= render "likes/like", post: post %><!-- いいねボタン -->
+                </div>
+                <% if post.user_id == current_user.id %>
+                  <p class="edit_delete_button">
+                    <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
+                    <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h4 class="no_content">投稿がありません</h4>
+        <% end %>
+      </div>
+
+      <div class="col-md-2 sidebar">
+        <%= form_with(model: Post.new, url: search_posts_path, method: :get, local: true, class: "search_form_outer") do |f| %>
+          <div class="search_form_inner">
+            <div class="form-group">
+              <%= f.label :eatery_address %>
+              <%= f.text_field :eatery_address, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :eatery_name %>
+              <%= f.text_field :eatery_name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :category_id %>
+              <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true, selected: "", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :ranking_point %>
+              <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
+              <%= f.select :ranking_point, Post.ranking_points.keys, include_blank: true, selected: "", class: "form-control" %>
+            </div>
+            <%= f.submit "検索" %>
+          </div>
+        <% end %>
+      </div>
+      <p class="pagetop"><%= link_to "ページトップへ戻る⬆︎", "#" %></p>
     </div>
-    <p class="pagetop"><%= link_to "ページトップへ戻る⬆︎", "#" %></p>
   </div>
 </div>

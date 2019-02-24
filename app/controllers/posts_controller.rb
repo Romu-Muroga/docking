@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[edit update destroy]
 
-  def index# TODO: scope
+  def index
     category_list
     @posts = if params[:category_id]
                Post.category_sort(params[:category_id])
@@ -16,44 +16,14 @@ class PostsController < ApplicationController
              end
   end
 
-  def search# TODO: scope + order(updated_at: :desc)
+  def search
     category_list
     address = params[:post][:eatery_address]
     category = params[:post][:category_id]
     rank = params[:post][:ranking_point]
     name = params[:post][:eatery_name]
-    if address.present? && category.present? && rank.present? && name.present?
-      @posts = Post.all_search(address, category, rank, name)
-      render :index
-    elsif address.present? && category.present?
-      @posts = Post.address_search(address).category_search(category)
-      render :index
-    elsif address.present? && rank.present?
-      @posts = Post.address_search(address).rank_search(rank)
-      render :index
-    elsif address.present? && name.present?
-      @posts = Post.address_search(address).name_search(name)
-      render :index
-    elsif category.present? && rank.present?
-      @posts = Post.category_search(category).rank_search(rank)
-      render :index
-    elsif category.present? && name.present?
-      @posts = Post.category_search(category).name_search(name)
-      render :index
-    elsif rank.present? && name.present?
-      @posts = Post.rank_search(rank).name_search(name)
-      render :index
-    elsif address.present?
-      @posts = Post.address_search(address)
-      render :index
-    elsif category.present?
-      @posts = Post.category_search(category)
-      render :index
-    elsif rank.present?
-      @posts = Post.rank_search(rank)
-      render :index
-    elsif name.present?
-      @posts = Post.name_search(name)
+    if address.present? || category.present? || rank.present? || name.present?
+      @posts = post_search(address, category, rank, name)
       render :index
     elsif address.blank? && category.blank? && rank.blank? && name.blank?
       flash[:warning] = t("flash.Search_word_is_empty")
@@ -77,7 +47,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @comment = Comment.new# 入力フォームで使用するインスタンスを作成
+    @comments = @post.comments# コメント一覧表示で使用するためのコメントデータを用意
+  end
 
   def edit; end
 
@@ -85,14 +58,15 @@ class PostsController < ApplicationController
     # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
       @post.update!(post_params)
-      if @post.picture.blank? && picture_params[:image].blank?
+      form_submit_image = picture_params[:image]
+      if @post.picture.blank? && form_submit_image.blank?
         false
-      elsif @post.picture.present? && picture_params[:image].blank?
+      elsif @post.picture.present? && form_submit_image.blank?
         @post.picture.destroy
       elsif @post.picture.present?
-        @post.picture.update!(image: picture_params[:image])
+        @post.picture.update!(image: form_submit_image)
       elsif @post.picture.blank?
-        @post.build_picture(image: picture_params[:image])
+        @post.build_picture(image: form_submit_image)
         @post.picture.save!
       end
     end
@@ -150,5 +124,31 @@ class PostsController < ApplicationController
 
   def category_list
     @categories = Category.all
+  end
+
+  def post_search(address, category, rank, name)
+    if address.present? && category.present? && rank.present? && name.present?
+      Post.all_search(address, category, rank, name)
+    elsif address.present? && category.present?
+      Post.address_search(address).category_search(category)
+    elsif address.present? && rank.present?
+      Post.address_search(address).rank_search(rank)
+    elsif address.present? && name.present?
+      Post.address_search(address).name_search(name)
+    elsif category.present? && rank.present?
+      Post.category_search(category).rank_search(rank)
+    elsif category.present? && name.present?
+      Post.category_search(category).name_search(name)
+    elsif rank.present? && name.present?
+      Post.rank_search(rank).name_search(name)
+    elsif address.present?
+      Post.address_search(address)
+    elsif category.present?
+      Post.category_search(category)
+    elsif rank.present?
+      Post.rank_search(rank)
+    elsif name.present?
+      Post.name_search(name)
+    end
   end
 end

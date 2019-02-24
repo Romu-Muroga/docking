@@ -1,8 +1,10 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-offset-4 col-md-4">
-      <h3><%= t("views.users.edit_page") %></h3>
-      <%= render partial: "form", locals: { user: @user } %>
+<div class="wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h3><%= t("views.users.edit_page") %></h3>
+        <%= render partial: "form", locals: { user: @user } %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,23 +1,25 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-offset-4 col-md-4">
-      <h3>ログイン画面</h3>
-      <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
-      <%= form_with(scope: :session, url: sessions_path, local: true, class: "form_outer") do |f| %>
-        <div class="form_inner">
-          <div class="form-group">
-            <%= f.label :email, "メールアドレス" %>
-            <%= f.email_field :email, class: "form-control" %>
+<div class="wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h3>ログイン画面</h3>
+        <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
+        <%= form_with(scope: :session, url: sessions_path, local: true, class: "form_outer") do |f| %>
+          <div class="form_inner">
+            <div class="form-group">
+              <%= f.label :email, "メールアドレス" %>
+              <%= f.email_field :email, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password, "パスワード" %>
+              <%= f.password_field :password, class: "form-control" %>
+            </div>
           </div>
-          <div class="form-group">
-            <%= f.label :password, "パスワード" %>
-            <%= f.password_field :password, class: "form-control" %>
-          </div>
-        </div>
-        <%= f.submit "ログイン" %>
-      <% end %>
-      <p class="sign_up">アカウントをお持ちでない方はこちら</p>
-      <%= link_to "アカウント登録", new_user_path %>
+          <%= f.submit "ログイン" %>
+        <% end %>
+        <p class="sign_up">アカウントをお持ちでない方はこちら</p>
+        <%= link_to "アカウント登録", new_user_path %>
+      </div>
     </div>
   </div>
 </div>

@@ -25,10 +25,10 @@
         </div>
       <% end %>
     </header>
-    <div class="wrapper">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <div class="main_section">
       <%= yield %>
     </div>
   </body>
