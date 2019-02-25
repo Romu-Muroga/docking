@@ -1,0 +1,19 @@
+// すでに存在する順位は選べないようにする警告文のエリア
+.unavailable_post {
+  border: solid 1px lightgray;
+  padding: 10px;
+}
+// ポストのフォームの大きさを修正
+.post_form_outer {
+  width: 658px;
+  margin: 0 auto;
+}
+// エラーメッセージ
+#error_explanation {
+  background-color: yellow;
+  color: black;
+  opacity: 0.75;
+  padding: 17px;
+  border-radius: 10px;
+  margin-bottom: 13px;
+}
