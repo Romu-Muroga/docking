@@ -37,13 +37,25 @@
       <%= f.text_field :eatery_website, placeholder: "例：https://xxxxxxx.com", class: "form-control" %>
     </div>
     <!-- Pictureモデルのimage属性をセット -->
-    <div class="form-group">
+    <div class="form-group"><!-- TODO: image_cache -->
       <%= f.label :image, "画像（任意）" %>
       <%= f.file_field :image, class: "form-control" %>
-      <%# if post.picture.present? %>
-        <%#= f.hidden_field :image_cache %>
+      <%= f.hidden_field :image_cache %>
+      <!-- accepts_nested_attributes_forを使うとき(fields_forのforは省略可) -->
+      <%#= f.fields :picture do |picture_form| %>
+        <%#= picture_form.label :image, "画像（任意）" %>
+        <%#= picture_form.file_field :image, class: "form-control" %>
+        <%#= picture_form.hidden_field :image_cache %>
       <%# end %>
     </div>
+    <% if !(action_name == "new" || action_name == "create") && (action_name == "edit" || action_name == "update") && post.picture.present? %>
+      <div class="form-group">
+        <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
+        <!-- 文字列の"true","false"をboolean型に変換する必要がある -->
+        <%= f.check_box "picture_delete_check", {}, 1, 2 %>
+        <%= f.label "picture_delete_check", "登録済みの画像を削除する場合はチェック入れてください" %>
+      </div>
+    <% end %>
     <div class="form-group">
       <%= f.label :remarks, "一言、好きな理由を添えて投稿をお願いします" %>
       <%= f.text_area :remarks, class: "form-control" %>

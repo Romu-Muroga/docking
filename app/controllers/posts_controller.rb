@@ -52,24 +52,29 @@ class PostsController < ApplicationController
     @comments = @post.comments# コメント一覧表示で使用するためのコメントデータを用意
   end
 
-  def edit
-    # binding.pry
-    @post.picture.image.cache! unless @post.picture.blank?
+  def edit# TODO: image_cache
+    # @post.picture.image.cache! unless @post.picture.blank?
   end
 
-  def update
+  def update# TODO: image_cache
     # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
       @post.update!(post_params)
-      if picture_params[:image]
-        form_submit_image = picture_params[:image]
-      else
-        form_submit_image = picture_params[:image_cache]
-      end
+      checkbox_value = params[:post][:picture_delete_check].to_i
+      form_submit_image = picture_params[:image]
+
+      # if picture_params[:image]
+      #   form_submit_image = picture_params[:image]
+      # else
+      #   form_submit_image = picture_params[:image_cache]
+      # end
+
       if @post.picture.blank? && form_submit_image.blank?
         false
-      elsif @post.picture.present? && form_submit_image.blank?
+      elsif @post.picture.present? && form_submit_image.blank? && checkbox_value == 1
         @post.picture.destroy
+      elsif @post.picture.present? && form_submit_image.blank?
+        false
       elsif @post.picture.present?
         @post.picture.update!(image: form_submit_image)
       elsif @post.picture.blank?
@@ -101,14 +106,18 @@ class PostsController < ApplicationController
       :latitude,
       :longitude,
       :eatery_website,
-      :remarks
+      :remarks,
     ).merge(
       user_id: current_user.id
     )
   end
   # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
   def picture_params
-    params.require(:post).permit(:image, :image_cache)# TODO
+    params.require(:post).permit(
+      :image,
+      :image_cache,# TODO: image_cache
+      :picture_delete_check# TODO: 投稿画像を削除するときに送られてくるparameter
+    )
   end
 
   def set_post

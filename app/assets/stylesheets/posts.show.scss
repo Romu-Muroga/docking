@@ -1,3 +1,7 @@
+// サムネイルの高さの限度
+.thumbnail {
+  // height: 680px;
+}
 // サムネイルヘッダー
 .thumbnail_header {
   height: 40px;
@@ -20,6 +24,11 @@
 // posts#show投稿者のアイコン画像
 .caption img {
   border-radius: 50%;
+}
+// コメントエリアを固定
+.comments_area_outer {
+  position: sticky;
+  top: 81px;
 }
 // posts#showコメントした人のアイコン画像
 #comments_area img {
