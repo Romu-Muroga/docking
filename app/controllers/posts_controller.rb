@@ -52,23 +52,14 @@ class PostsController < ApplicationController
     @comments = @post.comments# コメント一覧表示で使用するためのコメントデータを用意
   end
 
-  def edit# TODO: image_cache
-    # @post.picture.image.cache! unless @post.picture.blank?
-  end
+  def edit; end
 
-  def update# TODO: image_cache
+  def update
     # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
       @post.update!(post_params)
       checkbox_value = params[:post][:picture_delete_check].to_i
       form_submit_image = picture_params[:image]
-
-      # if picture_params[:image]
-      #   form_submit_image = picture_params[:image]
-      # else
-      #   form_submit_image = picture_params[:image_cache]
-      # end
-
       if @post.picture.blank? && form_submit_image.blank?
         false
       elsif @post.picture.present? && form_submit_image.blank? && checkbox_value == 1
@@ -85,7 +76,7 @@ class PostsController < ApplicationController
     flash[:success] = t("flash.update", content: @post.model_name.human)
     redirect_to post_path(@post)
   rescue
-    # TODO: エラーメッセージが必要
+    # TODO: エラーメッセージが必要？
     render :edit
   end
 
@@ -113,11 +104,7 @@ class PostsController < ApplicationController
   end
   # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
   def picture_params
-    params.require(:post).permit(
-      :image,
-      :image_cache,# TODO: image_cache
-      :picture_delete_check# TODO: 投稿画像を削除するときに送られてくるparameter
-    )
+    params.require(:post).permit(:image, :image_cache, :picture_delete_check)
   end
 
   def set_post

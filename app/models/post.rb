@@ -10,17 +10,6 @@ class Post < ApplicationRecord
   validates :eatery_website, length: { maximum: 500 }#, format: { with: /\A#{URI::regexp(%w(http https))}\z/ }
   validates :remarks, presence: true
 
-  # TODO: 写真が選択されていなかったときのバリデーションは？
-  # validates :image, presence: true
-  # before_save :post_picture?
-  #
-  # def post_picture?
-  #   if self.blank?
-  #     errors.add(:image, "を選択してください！")
-  #     throw(:abort)
-  #   end
-  # end
-
   # enumを使えば、数字を意味のある文字として扱える。DBには割り当てられた整数が保存される。
   enum ranking_point: { １位: 3, ２位: 2, ３位: 1 }#ランキングポイント
 
@@ -85,7 +74,6 @@ class Post < ApplicationRecord
   # 総合ランキング（リファクタリング後）
   def self.overall_ranking
     eatery_points, dup_posts = outputs_duplicate_shop_name_and_category# selfが省略されている
-
     eatery_points.each do |k, v|
       dup_posts.each do |post|
         likes_and_ranking_points = post.ranking_point_before_type_cast + post.likes_count
@@ -100,7 +88,6 @@ class Post < ApplicationRecord
     posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
     posts = posts.each { |post| eatery_points[post] = {point: 0} }.flatten
     dup_posts = Post.where(eatery_name: posts).or(Post.where(category_id: posts))
-
     return eatery_points, dup_posts
   end
 
@@ -116,7 +103,6 @@ class Post < ApplicationRecord
   end
 
   # attr_accessor :image # for caching images table value
-  # attr_reader :image
 
   # defo. [id, content].map { column: self.attr_accessor: column }
   # has_many(arg1, [...arg2])をすると

@@ -63,15 +63,16 @@ class UsersController < ApplicationController
   def destroy
     # render nothing: :true
     checkbox_value = params[:user][:destroy_check].to_i
-    if checkbox_value == 1
-      @user.destroy
+    # user >> (o)posts >> (x)picture
+    # ポリモーフィックでhas_oneの関連を持つpictureは、dependent: :destroyで、
+    # user.pictureは消せるけど、孫にあたるpost.pictureまでは消せない
+    if checkbox_value == 1 && (@user.posts.destroy_all && @user.destroy)
       flash[:success] = t("flash.Delete_account_Thank_you_for_using", user: @user.name)
       redirect_to root_path
     else
       flash[:warning] = t("flash.Please_check")
-      redirect_to destroy_confirm_user_path(@user)# 退会処理画面へリダイレクト
+      redirect_to destroy_confirm_user_path(@user)
     end
-    # binding.pry
   end
 
   private
@@ -86,11 +87,7 @@ class UsersController < ApplicationController
   end
   # params[:user][:image]は、picturesテーブルに保存するためuser_paramsと分離させる。
   def picture_params
-    params.require(:user).permit(
-      :image,
-      :image_cache,
-      :picture_delete_check# TODO: アイコン画像を削除するときに送られてくるparameter
-    )
+    params.require(:user).permit(:image, :image_cache, :picture_delete_check)
   end
 
   def set_user

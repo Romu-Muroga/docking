@@ -33,7 +33,6 @@
             <% else %>
               <span>ホームページ：<%= link_to @post.eatery_name, @post.eatery_website %></span>&nbsp;&nbsp;&nbsp;
             <% end %>
-
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
               <%= render "likes/like", post: @post %><!-- いいねボタン -->
             </div>

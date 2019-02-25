@@ -1,7 +1,6 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-
       <div class="col-xs-offset-1 col-xs-2 col-md-offset-1 col-md-2 sidebar">
         <div class="category_list_in_users_show">
           <%= link_to posts_path, class: "logo" do %>
@@ -27,7 +26,6 @@
           </table>
         </div>
       </div>
-
       <div class="col-xs-6 col-md-6 centerbar">
         <% if @user_posts.present? %>
           <% @user_posts.each do |user_post| %>
@@ -73,7 +71,6 @@
           <h4 class="no_content">投稿がありません</h4>
         <% end %>
       </div>
-
       <div class="col-xs-2 col-md-2 sidebar">
         <div class="user_info">
           <p><%= @user.name %></p>

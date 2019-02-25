@@ -32,7 +32,7 @@
       <%= f.file_field :image, class: "form-control" %>
       <%= f.hidden_field :image_cache %>
     </div>
-    <% if !(action_name == "new" || action_name == "create") && (action_name == "edit" || action_name == "update") && user.picture.present? %>
+    <% if user_with_pictures_edit_page?(user) %>
       <div class="form-group">
         <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
         <!-- 文字列の"true","false"をboolean型に変換する必要がある -->
