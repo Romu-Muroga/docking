@@ -48,7 +48,7 @@
                 <!-- TODO: リファクタリング -->
                 <p>いいね！&nbsp;&nbsp;<%= user_post.likes_count %>回</p>
                 <p>所在地：<%= user_post.eatery_address %></p>
-                <!-- TODO: 存在しないアドレスだとエラーになる -->
+                <!-- TODO: 存在しないアドレスだと404エラーになる -->
                 <% if user_post.eatery_website == "未登録" %>
                   <p>ホームページ：未登録</p>
                 <% else %>

@@ -40,6 +40,7 @@
     <div class="form-group"><!-- TODO: image_cache -->
       <%= f.label :image, "画像（任意）" %>
       <%= f.file_field :image, class: "form-control" %>
+      <%= f.hidden_field :image_cache %>
       <%# if post.picture.present? %>
         <%#= f.hidden_field :image_cache %>
       <%# end %>
@@ -49,7 +50,7 @@
         <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
         <!-- 文字列の"true","false"をboolean型に変換する必要がある -->
         <%= f.check_box "picture_delete_check", {}, 1, 2 %>
-        <%= f.label "picture_delete_check", "画像を削除する場合はチェック入れてください" %>
+        <%= f.label "picture_delete_check", "登録済みの画像を削除する場合はチェック入れてください" %>
       </div>
     <% end %>
     <div class="form-group">

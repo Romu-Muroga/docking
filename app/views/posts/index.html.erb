@@ -97,16 +97,16 @@
                 <div class="remarks">
                   <%= simple_format(post.remarks.truncate(150, omission: '...')) %>
                 </div>
-                <!-- TODO: リファクタリング -->
                 <p>いいね！&nbsp;&nbsp;<%= post.likes_count %>回</p>
                 <p>所在地：<%= post.eatery_address %></p>
-                <!-- TODO: 存在しないアドレスだとエラーになる -->
+                <!-- TODO: 存在しないアドレス404エラーになる -->
                 <% if post.eatery_website == "未登録" %>
                   <p>ホームページ：未登録<p>
                 <% else %>
                   <p>ホームページ：<%= link_to post.eatery_name, post.eatery_website %></p>
                 <% end %>
-                <p>投稿者：<%= link_to post.user.name, user_path(post.user) %></p>
+                <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
+                <p>投稿者：<%= post.user.name %><%#= link_to post.user.name, user_path(post.user) %></p>
                 <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
                 <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">
                   <%= render "likes/like", post: post %><!-- いいねボタン -->

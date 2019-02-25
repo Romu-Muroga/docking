@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :login_check, except: %i[new create]
   before_action :set_user, only: %i[show edit update destroy destroy_confirm id_check]
-  before_action :id_check, only: %i[edit update destroy destroy_confirm]
+  # TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする
+  before_action :id_check, only: %i[show edit update destroy destroy_confirm]
 
   def new
     @user = User.new
@@ -85,7 +86,11 @@ class UsersController < ApplicationController
   end
   # params[:user][:image]は、picturesテーブルに保存するためuser_paramsと分離させる。
   def picture_params
-    params.require(:user).permit(:image, :picture_delete_check)# TODO: アイコン画像を削除するときに送られてくるparameter
+    params.require(:user).permit(
+      :image,
+      :image_cache,
+      :picture_delete_check# TODO: アイコン画像を削除するときに送られてくるparameter
+    )
   end
 
   def set_user

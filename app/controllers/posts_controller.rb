@@ -62,7 +62,7 @@ class PostsController < ApplicationController
       @post.update!(post_params)
       checkbox_value = params[:post][:picture_delete_check].to_i
       form_submit_image = picture_params[:image]
-      
+
       # if picture_params[:image]
       #   form_submit_image = picture_params[:image]
       # else

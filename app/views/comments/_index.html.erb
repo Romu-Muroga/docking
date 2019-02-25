@@ -5,7 +5,8 @@
     <% else %>
       <span><%= image_tag("/images/default.png", size: "30x30") %></span>
     <% end %>
-    <span>&nbsp;&nbsp;<%= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></span>
+    <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
+    <span>&nbsp;&nbsp;<%= comment.user.name %><%#= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></span>
     <p style="margin-left: 43px;"><%= comment.content %></p>
     <% if comment.user == current_user %><!--そのコメントをしたユーザーと現在のユーザーが一致していたら -->
       <p class="comment_delete_btn">
