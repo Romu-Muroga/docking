@@ -41,8 +41,11 @@
       <%= f.label :image, "画像（任意）" %>
       <%= f.file_field :image, class: "form-control" %>
       <%= f.hidden_field :image_cache %>
-      <%# if post.picture.present? %>
-        <%#= f.hidden_field :image_cache %>
+      <!-- accepts_nested_attributes_forを使うとき(fields_forのforは省略可) -->
+      <%#= f.fields :picture do |picture_form| %>
+        <%#= picture_form.label :image, "画像（任意）" %>
+        <%#= picture_form.file_field :image, class: "form-control" %>
+        <%#= picture_form.hidden_field :image_cache %>
       <%# end %>
     </div>
     <% if !(action_name == "new" || action_name == "create") && (action_name == "edit" || action_name == "update") && post.picture.present? %>
