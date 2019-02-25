@@ -36,11 +36,14 @@ class UsersController < ApplicationController
     # @postと@post.pictureのどちらかが更新に失敗したとき、どちらも更新しない設定
     ActiveRecord::Base.transaction do
       @user.update!(user_params)
+      checkbox_value = params[:user][:picture_delete_check].to_i
       form_submit_image = picture_params[:image]
       if @user.picture.blank? && form_submit_image.blank?
         false
-      elsif @user.picture.present? && form_submit_image.blank?
+      elsif @user.picture.present? && form_submit_image.blank? && checkbox_value == 1
         @user.picture.destroy
+      elsif @user.picture.present? && form_submit_image.blank?
+        false
       elsif @user.picture.present?
         @user.picture.update!(image: form_submit_image)
       else
@@ -82,7 +85,7 @@ class UsersController < ApplicationController
   end
   # params[:user][:image]は、picturesテーブルに保存するためuser_paramsと分離させる。
   def picture_params
-    params.require(:user).permit(:image)
+    params.require(:user).permit(:image, :picture_delete_check)# TODO: アイコン画像を削除するときに送られてくるparameter
   end
 
   def set_user
