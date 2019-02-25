@@ -148,8 +148,28 @@
             <%= f.submit "検索" %>
           </div>
         <% end %>
+        <%= link_to "新規投稿", new_post_path, class: "cp_btn" %>
       </div>
-      <p class="pagetop"><%= link_to "ページトップへ戻る⬆︎", "#" %></p>
     </div>
   </div>
+  <div id="page_top"><a href="#"></a></div>
+  <script type="text/javascript">
+    $(function() {
+        var pagetop = $('#page_top');
+        pagetop.hide();
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 200) {  //100pxスクロールしたら表示
+                pagetop.fadeIn();
+            } else {
+                pagetop.fadeOut();
+            }
+        });
+        pagetop.click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 500); //0.5秒かけてトップへ移動
+            return false;
+        });
+    });
+  </script>
 </div>

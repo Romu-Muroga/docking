@@ -167,3 +167,36 @@ table.ranking_table {
   display: inline-block;
   margin-bottom: 20px;
 }
+// ページトップへ戻るボタン
+#page_top{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  background: #3f98ef;
+  opacity: 0.6;
+  border-radius: 50%;
+ }
+#page_top a{
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+}
+#page_top a::before{
+  font-family: FontAwesome;
+  content: '\f062';
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  bottom: 9px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
