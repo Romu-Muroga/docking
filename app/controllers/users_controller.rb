@@ -11,11 +11,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.build_picture(image: picture_params[:image]) if picture_params[:image]#アイコン画像は未登録可
+    @user.build_picture(image: picture_params[:image]) if picture_params[:image]# アイコン画像は未登録可
     if @user.save
       # セーブできたら同時にログイン
       session[:user_id] = @user.id
-      flash[:success] = t("flash.account_registration_and_login_completed", user: @user.name)
+      flash[:success] = t('flash.account_registration_and_login_completed', user: @user.name)
       redirect_to user_path(@user.id)
     else
       render :new
@@ -52,9 +52,9 @@ class UsersController < ApplicationController
         @user.picture.save!
       end
     end
-    flash[:success] = t("flash.account_information_update")
+    flash[:success] = t('flash.account_information_update')
     redirect_to user_path(@user)
-  rescue
+  rescue ActiveRecord::RecordInvalid
     render :edit
   end
 
@@ -67,15 +67,16 @@ class UsersController < ApplicationController
     # ポリモーフィックでhas_oneの関連を持つpictureは、dependent: :destroyで、
     # user.pictureは消せるけど、孫にあたるpost.pictureまでは消せない
     if checkbox_value == 1 && (@user.posts.destroy_all && @user.destroy)
-      flash[:success] = t("flash.Delete_account_Thank_you_for_using", user: @user.name)
+      flash[:success] = t('flash.Delete_account_Thank_you_for_using', user: @user.name)
       redirect_to root_path
     else
-      flash[:warning] = t("flash.Please_check")
+      flash[:warning] = t('flash.Please_check')
       redirect_to destroy_confirm_user_path(@user)
     end
   end
 
   private
+
   def user_params
     params.require(:user).permit(
       :name,
@@ -85,6 +86,7 @@ class UsersController < ApplicationController
       :destroy_check
     )
   end
+
   # params[:user][:image]は、picturesテーブルに保存するためuser_paramsと分離させる。
   def picture_params
     params.require(:user).permit(:image, :image_cache, :picture_delete_check)
@@ -95,17 +97,17 @@ class UsersController < ApplicationController
   end
 
   def login_check
-    unless logged_in?
-      flash[:danger] = t("flash.Please_login")
-      redirect_to new_session_path
-    end
+    return if logged_in?
+
+    flash[:danger] = t('flash.Please_login')
+    redirect_to new_session_path
   end
 
   def id_check
-    unless @user.id == current_user.id
-      flash[:danger] = t("flash.Unlike_users")
-      redirect_to user_path(current_user)
-    end
+    return if @user.id == current_user.id
+
+    flash[:danger] = t('flash.Unlike_users')
+    redirect_to user_path(current_user)
   end
   # メソッド化しようとしたけど、返り値が全てtrueになってしまうため中止
   # def true_or_false

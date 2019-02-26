@@ -26,7 +26,7 @@ class PostsController < ApplicationController
       @posts = post_search(address, category, rank, name)
       render :index
     elsif address.blank? && category.blank? && rank.blank? && name.blank?
-      flash[:warning] = t("flash.Search_word_is_empty")
+      flash[:warning] = t('flash.Search_word_is_empty')
       redirect_to posts_path
     end
   end
@@ -38,9 +38,9 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.build_picture(image: picture_params[:image])
+    @post.build_picture(image: picture_params[:image]) if picture_params[:image]# 投稿画像は未登録可
     if @post.save
-      flash[:success] = t("flash.create", content: @post.eatery_name)
+      flash[:success] = t('flash.create', content: @post.eatery_name)
       redirect_to user_path(@post.user_id)
     else
       render :new
@@ -73,20 +73,21 @@ class PostsController < ApplicationController
         @post.picture.save!
       end
     end
-    flash[:success] = t("flash.update", content: @post.model_name.human)
+    flash[:success] = t('flash.update', content: @post.model_name.human)
     redirect_to post_path(@post)
-  rescue
+  rescue ActiveRecord::RecordInvalid
     # TODO: エラーメッセージが必要？
     render :edit
   end
 
   def destroy
     @post.destroy
-    flash[:success] = t("flash.destroy", content: @post.model_name.human)
+    flash[:success] = t('flash.destroy', content: @post.model_name.human)
     redirect_to user_path(@post.user_id)
   end
 
   private
+
   def post_params
     params.require(:post).permit(
       :category_id,
@@ -97,11 +98,12 @@ class PostsController < ApplicationController
       :latitude,
       :longitude,
       :eatery_website,
-      :remarks,
+      :remarks
     ).merge(
       user_id: current_user.id
     )
   end
+  
   # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
   def picture_params
     params.require(:post).permit(:image, :image_cache, :picture_delete_check)
@@ -112,17 +114,17 @@ class PostsController < ApplicationController
   end
 
   def login_check
-    unless logged_in?
-      flash[:danger] = t("flash.Please_login")
-      redirect_to new_session_path
-    end
+    return if logged_in?
+
+    flash[:danger] = t('flash.Please_login')
+    redirect_to new_session_path
   end
 
   def id_check
-    unless @post.user_id == current_user.id
-      flash[:danger] = t("flash.Unlike_users")
-      redirect_to user_path(current_user.id)
-    end
+    return if @post.user_id == current_user.id
+
+    flash[:danger] = t('flash.Unlike_users')
+    redirect_to user_path(current_user.id)
   end
 
   def category_list

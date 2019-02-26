@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   validates :remarks, presence: true
 
   # enumを使えば、数字を意味のある文字として扱える。DBには割り当てられた整数が保存される。
-  enum ranking_point: { １位: 3, ２位: 2, ３位: 1 }#ランキングポイント
+  enum ranking_point: { １位: 3, ２位: 2, ３位: 1 }# ランキングポイント
 
   # アソシエーション
   belongs_to :user
@@ -23,14 +23,20 @@ class Post < ApplicationRecord
 
   # scope
   scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
-  scope :category_sort, -> (category_id) { where(category_id: category_id).latest }
+  scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
   scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
-  scope :all_search, -> (address, category, rank, name) { where("eatery_address LIKE ?", "%#{ address }%").where(category_id: category).where(ranking_point: rank).where("eatery_name LIKE ?", "%#{ name }%").latest }
-  scope :address_search, -> (address) { where("eatery_address LIKE ?", "%#{ address }%").latest }
-  scope :category_search, -> (category) { where(category_id: category).latest }
-  scope :rank_search, -> (rank) { where(ranking_point: rank).latest }
-  scope :name_search, -> (name) { where("eatery_name LIKE ?", "%#{ name }%").latest }
-  scope :user_category_sort, -> (user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
+  scope :all_search, ->(address, category, rank, name) {
+    where('eatery_address LIKE ?', "%#{address}%")
+    .where(category_id: category)
+    .where(ranking_point: rank)
+    .where('eatery_name LIKE ?', "%#{name}%")
+    .latest
+  }
+  scope :address_search, ->(address) { where('eatery_address LIKE ?', "%#{address}%").latest }
+  scope :category_search, ->(category) { where(category_id: category).latest }
+  scope :rank_search, ->(rank) { where(ranking_point: rank).latest }
+  scope :name_search, ->(name) { where('eatery_name LIKE ?', "%#{name}%").latest }
+  scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
 
   # いいね機能
@@ -38,10 +44,12 @@ class Post < ApplicationRecord
   def iine(user)
     likes.create(user_id: user.id)
   end
+
   # Postのいいねを解除する
   def uniine(user)
     likes.find_by(user_id: user.id).destroy
   end
+
   # 現在のユーザーがいいねしてたらtrueを返す
   def iine?(user)
     iine_users.include?(user)
@@ -80,13 +88,13 @@ class Post < ApplicationRecord
         v[:point] += likes_and_ranking_points if post.eatery_name == k[0]
       end
     end
-    Hash[ eatery_points.sort_by{ |_, v| -v[:point] } ]
+    Hash[eatery_points.sort_by { |_, v| -v[:point] }]
   end
 
   def self.outputs_duplicate_shop_name_and_category# selfが必要
     eatery_points = {}
     posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
-    posts = posts.each { |post| eatery_points[post] = {point: 0} }.flatten
+    posts = posts.each { |post| eatery_points[post] = { point: 0 } }.flatten
     dup_posts = Post.where(eatery_name: posts).or(Post.where(category_id: posts))
     return eatery_points, dup_posts
   end
@@ -96,10 +104,11 @@ class Post < ApplicationRecord
   before_update :set_default
 
   private
+
   def set_default# TODO: DBのdefault値の役割は？
     # eatery_addressとeatery_website値に未登録をセット
-    self.eatery_address = "未登録" if eatery_address.blank?
-    self.eatery_website = "未登録" if eatery_website.blank?
+    self.eatery_address = '未登録' if eatery_address.blank?
+    self.eatery_website = '未登録' if eatery_website.blank?
   end
 
   # attr_accessor :image # for caching images table value
