@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = "カテゴリーを登録しました！"
+      flash[:success] = 'カテゴリーを登録しました！'
       redirect_to categories_path
     else
       render :new
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:success] = "カテゴリーを更新しました！"
+      flash[:success] = 'カテゴリーを更新しました！'
       redirect_to categories_path
     else
       render :edit
@@ -33,11 +33,12 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    flash[:success] = "カテゴリーを削除しました！"
+    flash[:success] = 'カテゴリーを削除しました！'
     redirect_to categories_path
   end
 
   private
+  
   def caregory_params
     params.require(:category).permit(:name)
   end
@@ -49,7 +50,7 @@ class CategoriesController < ApplicationController
   # 管理者権限を持つユーザーでなかったらルートパスへ移動
   # def current_user_admin?
   #   unless logged_in? && current_user.admin?
-  #     flash[:danger] = "権限がありません！"
+  #     flash[:danger] = '権限がありません！'
   #     redirect_to root_path
   #   end
   # end

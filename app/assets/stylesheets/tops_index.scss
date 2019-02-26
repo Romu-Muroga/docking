@@ -85,55 +85,49 @@
 #home_sec03 {
   position: relative;
   top: 60px;
-  width: 981px;
-  margin: 0 auto;
+  width: 720px;
+  margin-left: 315px;
 }
 // 左側の項目
 .left_sec {
+  position: relative;
+  top: 10px;
   width: 177px;
   margin: 0 auto;
-  position: relative;
-  left: 2px;
-  top: 10px;
   height: 250px;
 }
 // 中央の項目
 .center_sec {
   position: relative;
-  bottom: 30px;
-  height: 280px;
-  background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
-  border-radius: 50%;
-  z-index: 10;
-  opacity: 0.9
-}
-.center_sec h2 {
-  position: relative;
-  top: 117px;
-  left: 90px;
+  top: 140px;
+  left: 104px;
+  font-size: 40px;
   color: white;
 }
 // 右側の項目
 .right_sec {
+  position: relative;
+  top: 10px;
   width: 177px;
   margin: 0 auto;
-  position: relative;
-  right: 2px;
-  top: 10px;
   height: 250px;
 }
-// 左と右側の項目を円で囲んでいる部分
+// 円で囲んでいる部分
 .circle_sec01 {
   border: solid lightgray;
   border-radius: 50%;
   background-color: lightgray;
-  position: relative;
-  left: 58px;
+  width: 260px;
 }
 .circle_sec02 {
-  border: solid lightgray;
-  border-radius: 50%;
-  background-color: lightgray;
   position: relative;
-  right: 58px;
+  top: -45px;
+  left: 47px;
+  height: 350px;
+  width: 350px;
+  background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
+  border-radius: 50%;
+  z-index: 10;
+  opacity: 0.9;
+  margin: 0 auto;
 }

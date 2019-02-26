@@ -20,14 +20,16 @@
       <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
       <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
       <%= f.select :ranking_point, Post.ranking_points.keys, class: "form-control" %>
-      <div class="unavailable_post">
-        <% current_user.posts.each do |post| %>
-          <p>
-            <%= Category.find(post.category_id).name %>の
-            <%= post.ranking_point %>は既に使用されています。
-          </p>
-        <% end %>
-      </div>
+      <% if current_user.posts.present? %>
+        <div class="unavailable_post">
+          <% current_user.posts.each do |post| %>
+            <p>
+              <%= Category.find(post.category_id).name %>の
+              <%= post.ranking_point %>は既に使用されています。
+            </p>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= f.label :eatery_name, "店名（できるかぎり正確な店名で、ご登録をお願いします）" %>
@@ -57,7 +59,7 @@
         <%#= picture_form.hidden_field :image_cache %>
       <%# end %>
     </div>
-    <% if !(action_name == "new" || action_name == "create") && (action_name == "edit" || action_name == "update") && post.picture.present? %>
+    <% if post_with_pictures_edit_page?(post) %>
       <div class="form-group">
         <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
         <!-- 文字列の"true","false"をboolean型に変換する必要がある -->

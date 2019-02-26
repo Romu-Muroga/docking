@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "tops#index"
+  root to: 'tops#index'
   resources :users do
     get :destroy_confirm, on: :member
   end
