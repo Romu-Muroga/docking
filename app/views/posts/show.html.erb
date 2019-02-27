@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-1 col-xs-8 col-md-offset-1 col-md-8">
+      <div class="col-xs-offset-1 col-xs-7 col-md-offset-1 col-md-7">
         <div class="thumbnail">
           <div class="thumbnail_header">
             <span class="category_label_in_posts_show"><%= @post.category.name %></span>
@@ -25,7 +25,7 @@
             <div class="remarks">
               <%= simple_format(@post.remarks) %>
             </div>
-            <span>いいね！&nbsp;&nbsp;<%= @post.likes_count %>回</span>&nbsp;&nbsp;&nbsp;
+
             <span>所在地：<%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
             <!-- TODO: 存在しないアドレスだと404エラーになる -->
             <% if @post.eatery_website == "未登録" %>
@@ -44,8 +44,11 @@
             <% end %>
           </div>
         </div>
+        <div class="iine_count">
+          いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
+        </div>
       </div>
-      <div class="col-xs-2 col-md-2 comments_area_outer">
+      <div class="col-xs-3 col-md-3 comments_area_outer">
         <p class="title">コメント</p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
           <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->

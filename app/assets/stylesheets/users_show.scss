@@ -8,7 +8,7 @@
 }
 // カテゴリーテーブルの幅調整
 .table_resize {
-  width: 180px;
+  width: 227px;
 }
 // テーブルの文字色変更
 .table_resize tbody tr td a {
@@ -111,9 +111,12 @@ a.btn-custum:hover {
 }
 // カテゴリーリストの高さ調整
 .category_list_in_users_show {
-  margin-top: 50px;
+  position: fixed;
+  height: 95%;
+  overflow: scroll;
+  padding-left: 94px;
 }
 // ユーザー情報の高さ調整
 .user_info {
-  margin-top: 50px;
+  margin-top: 70px;
 }

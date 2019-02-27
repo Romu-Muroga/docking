@@ -80,7 +80,7 @@ table.ranking_table {
 // いいねボタンの前に付く黒点を削除
 .iine_button {
   list-style: none;
-  margin-left: 600px;
+  margin-left: 92%;
 }
 // カテゴリーラベル
 .category_label {
@@ -89,11 +89,10 @@ table.ranking_table {
   left: 6px;
   width: auto;
   display: inline;
-  border: solid 1px lightgray;
-  background-color: lightgray;
+  background-color: papayawhip;
   text-align: center;
   border-radius: 0.3em;
-  padding: 2px
+  padding: 5px
 }
 // 備考欄の高さ
 .remarks {
@@ -106,7 +105,7 @@ table.ranking_table {
 .edit_delete_button {
   border-top: solid 1px lightgray;
   padding-top: 11px;
-  margin: 0
+  margin: 14px;
 }
 // スライドショー
 #slideshow {
@@ -156,11 +155,17 @@ table.ranking_table {
 }
 // カテゴリーリストの高さ調整
 .category_list_in_posts_index {
-  margin-top: 220px
+  position: fixed;
+  height: 95%;
+  overflow: scroll;
+  padding-left: 94px;
 }
-// 検索欄の高さ調整
+// 新規登録ボタンと検索欄の高さ調整
+.new_post_and_search_menu {
+  margin-top: 158px;
+}
 .search_form_outer {
-  margin-top: 220px;
+  margin-top: 20px;
 }
 // ロゴとカテゴリーリストの隙間
 .logo {
@@ -199,4 +204,9 @@ table.ranking_table {
   left: 0;
   margin: auto;
   text-align: center;
+}
+// 総合ランキングといいねランキングが選択されたとき
+table tr td a.current {
+  color: white;
+  background-color: black;
 }
