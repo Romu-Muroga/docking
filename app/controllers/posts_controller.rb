@@ -103,14 +103,15 @@ class PostsController < ApplicationController
       user_id: current_user.id
     )
   end
-  
+
   # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
   def picture_params
     params.require(:post).permit(:image, :image_cache, :picture_delete_check)
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id])# この記述は情報漏洩の危険があるためセキュリティー上の問題がある！！
+    # @post = current_user.posts.find(params[:id])
   end
 
   def login_check
