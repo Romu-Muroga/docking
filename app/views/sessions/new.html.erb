@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" id="login_form">
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
@@ -15,10 +15,10 @@
               <%= f.password_field :password, class: "form-control" %>
             </div>
           </div>
-          <%= f.submit "ログイン" %>
+          <%= f.submit "ログイン", style: "color: black;" %>
         <% end %>
         <p class="sign_up">アカウントをお持ちでない方はこちら</p>
-        <%= link_to "アカウント登録", new_user_path %>
+        <%= link_to "アカウント登録", new_user_path, style: "color: red;" %>
       </div>
     </div>
   </div>

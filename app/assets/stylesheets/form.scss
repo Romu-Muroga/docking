@@ -17,3 +17,25 @@
   border-radius: 10px;
   margin-bottom: 13px;
 }
+// ログインフォームの背景画像
+div#login_form {
+  background: url("/images/top_page.jpg");
+  // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  color: white;
+  margin: 0;
+  padding-top: 200px;
+  background-attachment: fixed;
+}
+div#login_form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+}

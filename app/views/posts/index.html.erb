@@ -93,8 +93,8 @@
                 <p>
                   <span>投稿者：<%= post.user.name %><%#= link_to post.user.name, user_path(post.user) %></span>&nbsp;&nbsp
                   <span style="color: silver">
-                    <time datetime="<%= post.created_at %>">
-                    <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>
+                    <time datetime="<%= post.updated_at %>">
+                      <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>
                     </time>
                   </span>
                 </p>
