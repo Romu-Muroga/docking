@@ -20,7 +20,6 @@ table.ranking_table {
 }
 .ranking_table td a:hover {
   color: white;
-  text-decoration: none;
 }
 // いいねのハート
 #heart {
@@ -159,6 +158,7 @@ table.ranking_table {
   height: 95%;
   overflow: scroll;
   padding-left: 94px;
+  padding-bottom: 50px;
 }
 // 新規登録ボタンと検索欄の高さ調整
 .new_post_and_search_menu {

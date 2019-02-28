@@ -11,7 +11,7 @@
           <% if @post.picture.present? %>
             <%= image_tag(@post.picture.image.url, class: "img-responsive") %>
           <% else %>
-            <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
+            <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
           <% end %>
           <div class="caption">
             <% if @post.user.picture.present? %>

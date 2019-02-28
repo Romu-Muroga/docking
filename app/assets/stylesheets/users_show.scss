@@ -22,7 +22,6 @@
 }
 .table-hover tbody tr td a:hover {
   color: white;
-  text-decoration: none;
 }
 // 選択中のカテゴリーの色を設定
 .table_resize tbody tr td a.active {
@@ -36,7 +35,6 @@ a.cp_btn {
 	width: 160px;
 	padding: 0.8em;
 	text-align: center;
-	text-decoration: none;
 	color: #EC407A;
 	border: 2px solid #EC407A;
 	border-radius: 3px;
@@ -64,10 +62,6 @@ a.cp_btn:hover {
 .caption {
   word-wrap: break-word;
 }
-// ユーザーのアイコン画像の輪郭を変更
-.image_processing {
-  border-radius: 5%;
-}
 // 新規登録ボタンの上部スペース
 a.cp_btn {
   margin-top: 22px;
@@ -83,7 +77,7 @@ a.btn-custum:hover {
 }
 // いいね！したポスト一覧
 .iine_box {
-  margin-top: 19px;
+  margin-top: 10px;
   background-color: white;
   border: solid 1px;
   border-color: lightgray;
@@ -115,8 +109,15 @@ a.btn-custum:hover {
   height: 95%;
   overflow: scroll;
   padding-left: 94px;
+  padding-bottom: 50px;
 }
 // ユーザー情報の高さ調整
 .user_info {
-  margin-top: 70px;
+  margin-top: 40px;
+}
+// いいね！済みリンク
+div.user_info a.iine_posts_link {
+  color: black;
+  display: inline-block;
+  margin: 30px 0 30px 21px;
 }

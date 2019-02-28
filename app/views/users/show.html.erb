@@ -75,14 +75,18 @@
         <div class="user_info">
           <p><%= @user.name %></p>
           <% if @user.picture.present? %>
-            <%= image_tag(@user.picture.image.url, class: "img-responsive image_processing") %>
+            <%= image_tag(@user.picture.image.url, class: "img-responsive") %>
           <% else %>
-            <%= image_tag("/images/default.png", class: "img-responsive image_processing")%>
+            <%= image_tag("/images/default.png", class: "img-responsive")%>
           <% end %>
           <% if @user.id == current_user.id %>
             <%= link_to "アカウント情報変更", edit_user_path(current_user) %><br>
             <%= link_to "退会処理", destroy_confirm_user_path(current_user) %>
             <%= link_to "新規投稿", new_post_path, class: "cp_btn" %>
+            <%= link_to iine_post_list_user_path(@user), class: "iine_posts_link" do %>
+              <%= content_tag :span, "いいね！済みのリスト", id: "heart", style: "padding-left: 20px;" %>
+            <% end %>
+            <p>フォロワーリストに変更予定</p>
             <div class="iine_box">
               <% if @user.iine_posts.present? %>
                 <% @user.iine_posts.each do |iine_post| %>
@@ -92,7 +96,7 @@
                     <span><%= image_tag("/images/default.png", size: "30x30") %></span>
                   <% end %>
                   <span style="font-size: 12px"><%= iine_post.user.name %></span>
-                  <span><%= link_to "#{iine_post.eatery_name}", post_path(iine_post.id) %></span><br><!-- TODO: idいる？ -->
+                  <span><%= link_to "#{iine_post.eatery_name}", post_path(iine_post) %></span><br>
                 <% end %>
               <% else %>
                 <p class="no_liked_posts_message">いいね！した<br>投稿がありません。</p>

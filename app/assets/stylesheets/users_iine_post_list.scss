@@ -1,0 +1,58 @@
+div.iine_post_area {
+  margin-top: 80px;
+}
+div.iine_post {
+  margin: 0 15px 27px 15px;
+  // background-color: #000;//マウスオーバー時の背景色
+  padding: 0;
+  width: 29.333333%;
+  position: relative;
+}
+div.iine_post img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+// div.iine_post img:hover {
+//   opacity: 0.3;
+// }
+// マウスホバー時、文字列を表示するエフェクト
+div.iine_post .caption {
+	font-size:		130%;
+	text-align: 		center;
+	padding-top:		110px;
+	color:			#fff;
+}
+div.iine_post .mask {
+	width:			100%;
+	height:			100%;
+	position:		absolute;	/* 絶対位置指定 */
+	top:			0;
+	left:			0;
+	opacity:		0;	/* マスクを表示しない */
+	background-color:	rgba(0,0,0,0.4);	/* マスクは半透明 */
+	-webkit-transition:	all 0.2s ease;
+	transition:		all 0.2s ease;
+}
+div.iine_post:hover .mask {
+	opacity:		1;	/* マスクを表示する */
+}
+
+div.user_area {
+  display: flex;
+  margin-left: 30%;
+  margin-top: 37px;
+}
+// ユーザーのアイコン画像
+div.user_area img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+// ユーザー名
+div.user_area div.user_name {
+  width: auto;
+  height: 100%;
+  padding: 63px;
+  font-size: 14px;
+}

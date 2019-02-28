@@ -90,7 +90,14 @@
                 </div>
                 <p>所在地：<%= post.eatery_address %></p>
                 <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
-                <p>投稿者：<%= post.user.name %><%#= link_to post.user.name, user_path(post.user) %></p>
+                <p>
+                  <span>投稿者：<%= post.user.name %><%#= link_to post.user.name, user_path(post.user) %></span>&nbsp;&nbsp
+                  <span style="color: silver">
+                    <time datetime="<%= post.created_at %>">
+                    <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>
+                    </time>
+                  </span>
+                </p>
                 <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
                 <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">
                   <%= render "likes/like", post: post %><!-- いいねボタン -->
