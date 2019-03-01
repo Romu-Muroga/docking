@@ -1,12 +1,12 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-3 col-md-3">
-        <div class="category_list_in_posts_index">
+      <div class="col-xs-offset-1 col-xs-2 col-md-offset-1 col-md-2 leftsidebar">
+        <div class="category_list">
           <%= link_to posts_path, class: "logo" do %>
             <%= image_tag("/images/logo.png", class: "img-responsive") %>
           <% end %>
-          <table class="table table-hover table_resize">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th>カテゴリー</th>
@@ -26,7 +26,7 @@
           </table>
         </div>
       </div>
-      <div class="col-xs-6 col-md-6 centerbar">
+      <div class="col-xs-offset-3 col-xs-6 col-md-offset-3 col-md-6 centerbar">
         <p id="slideshow">
           <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
           <%= image_tag("/images/photo2.jpg", class: "img-responsive") %>
@@ -49,7 +49,7 @@
                 });
           };
           $(function() {
-             setInterval( "slideSwitch()", 6000 );
+             setInterval( "slideSwitch()", 3000 );
           });
         </script>
         <table border="2" width="690" class="ranking_table">
@@ -98,13 +98,13 @@
                     </time>
                   </span>
                 </p>
-                <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-custum" %></p>
+                <p><%= link_to "詳細をみる", post_path(post), class: "btn btn-show" %></p>
                 <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">
                   <%= render "likes/like", post: post %><!-- いいねボタン -->
                 </div>
                 <% if post.user_id == current_user.id %>
                   <p class="edit_delete_button">
-                    <%= link_to "編集", edit_post_path(post), class: "btn btn-black" %>
+                    <%= link_to "編集", edit_post_path(post), class: "btn btn-default" %>
                     <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
                   </p>
                 <% end %>
@@ -115,7 +115,7 @@
           <h4 class="no_content">投稿がありません</h4>
         <% end %>
       </div>
-      <div class="col-xs-2 col-md-2 sidebar">
+      <div class="col-xs-2 col-md-2 rightsidebar">
         <div class="new_post_and_search_menu">
           <%= link_to "新規投稿", new_post_path, class: "cp_btn" %>
           <%= form_with(model: Post.new, url: search_posts_path, method: :get, local: true, class: "search_form_outer") do |f| %>
@@ -150,7 +150,7 @@
         var pagetop = $('#page_top');
         pagetop.hide();
         $(window).scroll(function () {
-            if ($(this).scrollTop() > 200) {  //100pxスクロールしたら表示
+            if ($(this).scrollTop() > 200) {  //200pxスクロールしたら表示
                 pagetop.fadeIn();
             } else {
                 pagetop.fadeOut();

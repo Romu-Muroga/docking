@@ -13,27 +13,30 @@
 
   <body>
     <header>
-      <% if logged_in? %>
-        <div class="nav">
+      <div class="navibar">
+        <% if logged_in? %>
           <%= link_to "ランキング一覧", posts_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to "私のお気に入り", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
-          <%= link_to "ログアウト", session_path(current_user), method: :delete %>
-        </div>
-        <script>
-           var url = window.location.pathname;
-              $('.nav a[href="'+url+'"]').addClass('active');
-        </script>
-        <p class="active_user"><%= current_user.name %>さんが現在ログイン中</p>
-      <% else %>
-        <div class="nav">
+          <%= link_to "ログアウト", session_path(current_user), method: :delete %>&nbsp;&nbsp;&nbsp;
+          <span><%= current_user.name.truncate(12, omission: '...') %>さんが現在ログイン中</span>
+          <script>
+            var url = window.location.pathname;
+            $('.navibar a[href="'+url+'"]').addClass('active');
+          </script>
+        <% else %>
           <%= link_to "ログイン", new_session_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to "アカウント登録", new_user_path %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </header>
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
+    <script type="text/javascript">
+      $(function(){
+        setTimeout("$('.alert').fadeOut('slow')", 3000)
+      });
+    </script>
     <div class="main_section">
       <%= yield %>
     </div>

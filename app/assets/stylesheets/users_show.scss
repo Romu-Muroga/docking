@@ -2,20 +2,19 @@
 .table {
   background-color: white;
 }
+
 // tdのデフォルトのpaddingリセット
-.table_resize tbody tr td {
+.category_list tbody tr td {
   padding: 0;
 }
-// カテゴリーテーブルの幅調整
-.table_resize {
-  width: 227px;
-}
+
 // テーブルの文字色変更
-.table_resize tbody tr td a {
+.category_list tbody tr td a {
   color: black;
   display: block;
   padding: 10px;
 }
+
 // マウスカーソルを重ねたとき
 .table-hover tbody tr:hover {
   background-color: black;
@@ -23,12 +22,14 @@
 .table-hover tbody tr td a:hover {
   color: white;
 }
+
 // 選択中のカテゴリーの色を設定
-.table_resize tbody tr td a.active {
+.category_list tbody tr td a.active {
   color: white;
   background-color: black;
   padding: 10px;
 }
+
 // 新規登録ボタン
 a.cp_btn {
 	display: block;
@@ -38,43 +39,31 @@ a.cp_btn {
 	color: #EC407A;
 	border: 2px solid #EC407A;
 	border-radius: 3px;
-	transition: .4s;
+	transition: .4s;//ふわっと
 }
 a.cp_btn:hover {
 	background: #EC407A;
 	color: #fff;
 }
-// 編集ボタンの色
-.btn-black {
-  color: white;
-  background-color: black;
-  border-color: black;
-}
-.btn-black:hover {
-  color: black;
-  background-color: white;
-}
-// テキストを折り返してはみ出さないように改行
-.thumbnail {
-  word-wrap: break-word;
-  // background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
-}
-.caption {
-  word-wrap: break-word;
-}
+
 // 新規登録ボタンの上部スペース
 a.cp_btn {
   margin-top: 22px;
 }
-// 詳細ボタン
-a.btn-custum {
-  color: #EC407A;
-  border-color: #EC407A;
+
+// 詳細をみるボタン
+a.btn-show {
+  // color: #EC407A;
+  // border-color: #EC407A;
+  color: silver;
+  border-color: silver;
 }
-a.btn-custum:hover {
-  color: white;
-  background-color: #EC407A;
+a.btn-show:hover {
+  color: black;
+  // background-color: #EC407A;
+  border-color: black;
 }
+
 // いいね！したポスト一覧
 .iine_box {
   margin-top: 10px;
@@ -97,24 +86,19 @@ a.btn-custum:hover {
 .iine_box p.no_liked_posts_message {
   text-align: center;
 }
+
 // 投稿がないときに表示される、テキスト「投稿がありません」の位置
 .no_content {
   width: 170px;
   margin: 0 auto;
   margin-top: 182px;
 }
-// カテゴリーリストの高さ調整
-.category_list_in_users_show {
-  position: fixed;
-  height: 95%;
-  overflow: scroll;
-  padding-left: 94px;
-  padding-bottom: 50px;
-}
-// ユーザー情報の高さ調整
+
+// ユーザー情報
 .user_info {
   margin-top: 40px;
 }
+
 // いいね！済みリンク
 div.user_info a.iine_posts_link {
   color: black;

@@ -2,8 +2,9 @@
 #home_sec01 {
   padding: 0;
 }
+
 // 背景画像
-.sign_up_list {
+.sign_up_area {
   background: url("/images/top_page.jpg");
   // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
   background-size: cover;
@@ -12,7 +13,7 @@
   width: 100%;
   background-attachment: fixed;
 }
-.sign_up_list::before {
+.sign_up_area::before {
   content: '';
   position: absolute;
   top: 0;
@@ -21,8 +22,9 @@
   left: 0;
   background-color: rgba(0,0,0,0.5);
 }
+
 // キャッチコピー＆サブキャッチコピー＆サインインボタン＆ロゴ
-.sign_up_list p.catch_copy {
+.sign_up_area p.catch_copy {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,7 +37,7 @@
   width: 556px;
   margin-top: 13px;
 }
-.sign_up_list p {
+.sign_up_area p {
   position: absolute;
   top: 60%;
   left: 50%;
@@ -45,7 +47,7 @@
   letter-spacing: 5px;
   color: #fff;
 }
-.sign_up_list a {
+.sign_up_area a {
   position: absolute;
   top: 70%;
   left: 50%;
@@ -56,12 +58,13 @@
   color: black;
   z-index: 10;
 }
-.sign_up_list img {
+.sign_up_area img {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 // Docikingの理念が書かれたスペース
 #home_sec02 {
   padding: 0;
@@ -81,6 +84,7 @@
 .content {
   line-height: 40px;
 }
+
 // Dockingのイメージ画像の部分
 #home_sec03 {
   position: relative;
@@ -88,6 +92,7 @@
   width: 720px;
   margin-left: 315px;
 }
+
 // 左側の項目
 .left_sec {
   position: relative;
@@ -96,6 +101,7 @@
   margin: 0 auto;
   height: 250px;
 }
+
 // 中央の項目
 .center_sec {
   position: relative;
@@ -104,6 +110,7 @@
   font-size: 40px;
   color: white;
 }
+
 // 右側の項目
 .right_sec {
   position: relative;
@@ -112,6 +119,7 @@
   margin: 0 auto;
   height: 250px;
 }
+
 // 円で囲んでいる部分
 .circle_sec01 {
   border: solid lightgray;

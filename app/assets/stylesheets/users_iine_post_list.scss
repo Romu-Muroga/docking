@@ -1,6 +1,7 @@
 div.iine_post_area {
   margin-top: 80px;
 }
+
 div.iine_post {
   margin: 0 15px 27px 15px;
   // background-color: #000;//マウスオーバー時の背景色
@@ -8,6 +9,7 @@ div.iine_post {
   width: 29.333333%;
   position: relative;
 }
+
 div.iine_post img {
   width: 100%;
   height: 250px;
@@ -16,6 +18,7 @@ div.iine_post img {
 // div.iine_post img:hover {
 //   opacity: 0.3;
 // }
+
 // マウスホバー時、文字列を表示するエフェクト
 div.iine_post .caption {
 	font-size:		130%;
@@ -43,12 +46,14 @@ div.user_area {
   margin-left: 30%;
   margin-top: 37px;
 }
+
 // ユーザーのアイコン画像
 div.user_area img {
   height: 150px;
   width: 150px;
   border-radius: 50%;
 }
+
 // ユーザー名
 div.user_area div.user_name {
   width: auto;

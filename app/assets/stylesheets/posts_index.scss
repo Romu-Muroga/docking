@@ -1,19 +1,22 @@
-// 下にある投稿記事とのスペース
+// ランキングテーブル
 table.ranking_table {
   margin-bottom: 18px;
   text-align: center;
   border-radius: 1%;
 }
+
 // tdのデフォルトのpaddingリセット
 .ranking_table tr td {
   padding: 0;
 }
+
 // テーブルの文字色変更
 .ranking_table tr td a {
   color: black;
   display: block;
   padding: 10px 0 10px 0;
 }
+
 // マウスカーソルを重ねたとき
 .ranking_table td:hover {
   background-color: black;
@@ -21,7 +24,8 @@ table.ranking_table {
 .ranking_table td a:hover {
   color: white;
 }
-// いいねのハート
+
+// いいね！のハート
 #heart {
   position: relative;
   width: 100px;
@@ -46,7 +50,8 @@ table.ranking_table {
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }
-// いいねしていない場合のハート
+
+// いいね！していない場合のハート
 #heart_lightgray {
   position: relative;
   width: 100px;
@@ -71,16 +76,14 @@ table.ranking_table {
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }
-// いいねボタンの台座のサイズ調整（positionは１番上に書く？）
-.btn-xs {
+
+// いいね！ボタン
+.like button.btn-xs {
+  margin-left: 92%;
   padding: 7px 8px 10px 22px;
   border: none
 }
-// いいねボタンの前に付く黒点を削除
-.iine_button {
-  list-style: none;
-  margin-left: 92%;
-}
+
 // カテゴリーラベル
 .category_label {
   position: relative;
@@ -93,6 +96,7 @@ table.ranking_table {
   border-radius: 0.3em;
   padding: 5px
 }
+
 // 備考欄の高さ
 .remarks {
   margin-top: 5px;
@@ -100,12 +104,7 @@ table.ranking_table {
   min-height: 70px;
   background-color: #f5f5f5;
 }
-// 編集・削除ボタンの上の区切り線
-.edit_delete_button {
-  border-top: solid 1px lightgray;
-  padding-top: 11px;
-  margin: 14px;
-}
+
 // スライドショー
 #slideshow {
    position: relative;
@@ -127,51 +126,52 @@ table.ranking_table {
 #slideshow img.last-active {
    z-index: 9;
 }
-// ページトップへ戻るボタン
-.pagetop {
-  position: fixed;
-  bottom: 16px;
-  right: 67px;
-}
-.pagetop a {
-  display: block;
-  text-decoration: none;
-  color: black;
-}
-.pagetop a:hover {
-  color: #EC407A;
-}
+
 // 総合ランキングの算出方法
 .ranking_info {
   font-size: 14px;
   border: solid 1px lightgray;
   padding: 17px;
 }
-// サイドバーの位置を画面をスクロールしても固定
-.sidebar {
-  position: sticky;
-  top: 10px;
-}
-// カテゴリーリストの高さ調整
-.category_list_in_posts_index {
+
+// カテゴリーリスト
+// .category_list {
+//
+// }
+
+// 左側のサイドバー
+.leftsidebar {
   position: fixed;
-  height: 95%;
-  overflow: scroll;
-  padding-left: 94px;
-  padding-bottom: 50px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 45px;
 }
+
+// 右側のサイドバー
+.rightsidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 45px;
+}
+
 // 新規登録ボタンと検索欄の高さ調整
 .new_post_and_search_menu {
-  margin-top: 158px;
+  padding-top: 136px;
 }
 .search_form_outer {
   margin-top: 20px;
 }
+
 // ロゴとカテゴリーリストの隙間
 .logo {
   display: inline-block;
   margin-bottom: 20px;
 }
+
 // ページトップへ戻るボタン
 #page_top{
   width: 50px;
@@ -205,6 +205,7 @@ table.ranking_table {
   margin: auto;
   text-align: center;
 }
+
 // 総合ランキングといいねランキングが選択されたとき
 table tr td a.current {
   color: white;

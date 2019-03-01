@@ -25,7 +25,6 @@
             <div class="remarks">
               <%= simple_format(@post.remarks) %>
             </div>
-
             <span>所在地：<%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
             <!-- TODO: 存在しないアドレスだと404エラーになる -->
             <% if @post.eatery_website == "未登録" %>
@@ -38,7 +37,7 @@
             </div>
             <% if @post.user_id == current_user.id %>
               <p class="edit_delete_button">
-                <%= link_to "編集", edit_post_path(@post), class: "btn btn-black" %>
+                <%= link_to "編集", edit_post_path(@post), class: "btn btn-default" %>
                 <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
               </p>
             <% end %>
@@ -48,7 +47,7 @@
           いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
         </div>
       </div>
-      <div class="col-xs-3 col-md-3 comments_area_outer">
+      <div class="col-xs-3 col-md-3 rightsidebar">
         <p class="title">コメント</p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
           <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->

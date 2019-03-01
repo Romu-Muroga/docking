@@ -1,13 +1,10 @@
-// サムネイルの高さの限度
-.thumbnail {
-  // height: 680px;
-}
 // サムネイルヘッダー
 .thumbnail_header {
   height: 40px;
   padding: 6px;
 }
-// カテゴリーラベル
+
+// ポスト詳細ページのカテゴリーラベル
 .category_label_in_posts_show {
   position: relative;
   top: 0px;
@@ -20,60 +17,38 @@
   padding: 5px;
   margin-right: 22px;
 }
-// posts#show投稿者のアイコン画像
+
+// 投稿者のアイコン画像
 .caption img {
   border-radius: 50%;
 }
-// コメントエリアを固定
-.comments_area_outer {
-  position: sticky;
-  top: 81px;
-  padding-bottom: 23px;
-}
-// posts#showコメントした人のアイコン画像
-#comments_area img {
-  border-radius: 50%;
-}
-// コメントエリアのテキストがブロック内で折り返されるように設定
-#comments_area {
-  height: 530px;
-  word-wrap: break-word;
-  overflow: scroll;
-}
-// コメント削除ボタン
-.comment_delete_btn {
-  margin-left: 187px;
-}
-.comment_delete_btn a.btn {
-  font-size: 12px;
-}
-// posts#showのいいねボタン
-.like form button.btn_in_posts_show {
-  position: relative;
-  left: 820px;
-  padding: 7px 8px 10px 22px;
-  border: none
-}
-// コメントエリアのタイトルとボディとの間の隙間
-.comments_area_outer p.title {
-  padding-bottom: 5px;
-  border-bottom: solid 1px lightgray;
-}
-// コメント投稿ボタン
-div.actions {
-  margin-left: 192px;
-}
+
 // いいね！をカウント数を表示するブロック
 div.iine_count {
-  width: 158px;
-  height: 43px;
   color: red;
   text-shadow: 0 0 10px red, 0 0 15px red;
-  margin-left: auto;
-  margin-right: 9px;
+  margin-bottom: 50px;
   padding: 10px;
   border-radius: 2px;
   font-size: 16px;
   background: #6f0101;
   text-align: center;
+}
+
+// コメントエリアのテキストがブロック内で折り返されるように設定
+#comments_area {
+  height: 60vh;
+  word-wrap: break-word;
+  overflow: scroll;
+}
+
+// コメントエリアのタイトルとボディとの間の隙間
+.rightsidebar p.title {
+  padding-bottom: 5px;
+  border-bottom: solid 1px lightgray;
+}
+
+// コメントした人のアイコン画像
+#comments_area img {
+  border-radius: 50%;
 }
