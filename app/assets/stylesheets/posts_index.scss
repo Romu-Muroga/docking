@@ -106,25 +106,63 @@ table.ranking_table {
 }
 
 // スライドショー
-#slideshow {
-   position: relative;
-   width:  690px; /* 画像の横幅に合わせて記述 */
-   height: 150px; /* 画像の高さに合わせて記述 */
-   margin-bottom: 10px;
+// #slideshow {
+//   position: relative;
+//   width:  690px; /* 画像の横幅に合わせて記述 */
+//   height: 150px; /* 画像の高さに合わせて記述 */
+//   margin-bottom: 10px;
+// }
+// #slideshow img {
+//   position: absolute;
+//   top: 0;
+//   left:0;
+//   z-index: 8;
+//   opacity: 0.0;
+// }
+// #slideshow img.active {
+//   z-index: 10;
+//   opacity: 1.0;
+// }
+// #slideshow img.last-active {
+//   z-index: 9;
+// }
+
+// スライドショー２
+ul#slide_wrapp {
+  padding-left: 0;
 }
-#slideshow img {
-   position: absolute;
-   top: 0;
-   left:0;
-   z-index: 8;
-   opacity: 0.0;
+
+#slide_wrapp li {
+  list-style: none;
 }
-#slideshow img.active {
-   z-index: 10;
-   opacity: 1.0;
-}
-#slideshow img.last-active {
-   z-index: 9;
+
+#slide_wrapp{
+  position: relative;
+  overflow: hidden;
+
+  .slide_item{
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 2s linear, transform 7.5s linear;  //秒数に注意
+    position: relative;
+    z-index: 1;
+
+    &:not(:first-child){
+      position: absolute;
+      top: 0;
+      left : 0;
+    }
+
+    &.show_{
+      opacity: 1;
+    }
+    &.zoom_{
+      transform: scale(1.1);
+    }
+    img{
+      display: block; //下に余白ができないように
+    }
+  }
 }
 
 // 総合ランキングの算出方法

@@ -27,30 +27,38 @@
         </div>
       </div>
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-3 col-md-6 centerbar">
-        <p id="slideshow">
-          <%= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
-          <%= image_tag("/images/photo2.jpg", class: "img-responsive") %>
-          <%= image_tag("/images/photo3.jpg", class: "img-responsive") %>
-          <%= image_tag("/images/photo4.jpg", class: "img-responsive") %>
-          <%= image_tag("/images/photo5.png", class: "img-responsive") %>
-          <%= image_tag("/images/photo6.jpg", class: "img-responsive") %>
-        </p>
+        <!-- <p id="slideshow"> -->
+          <%#= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
+          <%#= image_tag("/images/photo2.jpg", class: "img-responsive") %>
+          <%#= image_tag("/images/photo3.jpg", class: "img-responsive") %>
+          <%#= image_tag("/images/photo4.jpg", class: "img-responsive") %>
+          <%#= image_tag("/images/photo5.png", class: "img-responsive") %>
+          <%#= image_tag("/images/photo6.jpg", class: "img-responsive") %>
+        <!-- </p> -->
+        <ul id="slide_wrapp">
+          <li class="slide_item"><%= image_tag("/images/photo1.jpg") %></li>
+          <li class="slide_item"><%= image_tag("/images/photo2.jpg") %></li>
+          <li class="slide_item"><%= image_tag("/images/photo3.jpg") %></li>
+          <li class="slide_item"><%= image_tag("/images/photo4.jpg") %></li>
+          <li class="slide_item"><%= image_tag("/images/photo5.png") %></li>
+          <li class="slide_item"><%= image_tag("/images/photo6.jpg") %></li>
+        </ul>
         <script type="text/javascript">
-          function slideSwitch() {
-             var $active = $('#slideshow img.active');
-             if ( $active.length == 0 ) $active = $('#slideshow img:last');
-             var $next =  $active.next().length ? $active.next()
-                : $('#slideshow img:first');
-             $active.addClass('last-active');
-             $next.css({opacity: 0.0})
-                .addClass('active')
-                .animate({opacity: 1.0}, 1000, function() {
-                     $active.removeClass('active last-active');
-                });
-          };
-          $(function() {
-             setInterval( "slideSwitch()", 3000 );
-          });
+          // function slideSwitch() {
+          //    var $active = $('#slideshow img.active');
+          //    if ( $active.length == 0 ) $active = $('#slideshow img:last');
+          //    var $next =  $active.next().length ? $active.next()
+          //       : $('#slideshow img:first');
+          //    $active.addClass('last-active');
+          //    $next.css({opacity: 0.0})
+          //       .addClass('active')
+          //       .animate({opacity: 1.0}, 1000, function() {
+          //            $active.removeClass('active last-active');
+          //       });
+          // };
+          // $(function() {
+          //    setInterval( "slideSwitch()", 3000 );
+          // });
         </script>
         <table border="2" width="690" class="ranking_table">
           <tr>
