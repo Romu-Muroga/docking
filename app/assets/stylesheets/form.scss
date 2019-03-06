@@ -3,11 +3,12 @@
   border: solid 1px lightgray;
   padding: 10px;
 }
+
 // ポストのフォームの大きさを修正
 .post_form_outer {
-  width: 658px;
-  margin: 0 auto;
+  padding-bottom: 100px;
 }
+
 // エラーメッセージ
 #error_explanation {
   background-color: yellow;
@@ -17,8 +18,9 @@
   border-radius: 10px;
   margin-bottom: 13px;
 }
-// ログインフォームの背景画像
-div#login_form {
+
+// アカウントとログインフォームの背景画像
+#user_form_area {
   background: url("/images/top_page.jpg");
   // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
   background-size: cover;
@@ -27,10 +29,23 @@ div#login_form {
   width: 100%;
   color: white;
   margin: 0;
-  padding-top: 200px;
+  padding-top: 150px;
   background-attachment: fixed;
+  form {
+    opacity: 0.8;
+  }
+  input {
+    color: black;
+  }
+  p {
+    margin-top: 10px;
+  }
+  p a {
+    color: red;
+    font-weight: bold;
+  }
 }
-div#login_form::before {
+#user_form_area::before {
   content: '';
   position: absolute;
   top: 0;

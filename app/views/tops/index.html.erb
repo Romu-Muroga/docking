@@ -9,7 +9,8 @@
           </p>
           <p class="sub_catch_copy">Ranking x Ranking = Docking</p>
           <% unless logged_in?  %>
-            <div class="sign_up_button">
+            <div class="start_button">
+              <%= link_to "ログイン", new_session_path, class: "btn btn-default" %>
               <%= link_to "新規登録", new_user_path, class: "btn btn-default" %>
             </div>
           <% end %>

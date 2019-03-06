@@ -136,30 +136,30 @@ ul#slide_wrapp {
   list-style: none;
 }
 
-#slide_wrapp{
+#slide_wrapp {
   position: relative;
   overflow: hidden;
 
-  .slide_item{
+  .slide_item {
     opacity: 0;
     transform: scale(1);
     transition: opacity 2s linear, transform 7.5s linear;  //秒数に注意
     position: relative;
     z-index: 1;
 
-    &:not(:first-child){
+    &:not(:first-child) {
       position: absolute;
       top: 0;
       left : 0;
     }
 
-    &.show_{
+    &.show_ {
       opacity: 1;
     }
-    &.zoom_{
+    &.zoom_ {
       transform: scale(1.1);
     }
-    img{
+    img {
       display: block; //下に余白ができないように
     }
   }
@@ -211,7 +211,7 @@ ul#slide_wrapp {
 }
 
 // ページトップへ戻るボタン
-#page_top{
+#page_top {
   width: 50px;
   height: 50px;
   position: fixed;
@@ -221,14 +221,14 @@ ul#slide_wrapp {
   opacity: 0.6;
   border-radius: 50%;
  }
-#page_top a{
+#page_top a {
   position: relative;
   display: block;
   width: 50px;
   height: 50px;
   text-decoration: none;
 }
-#page_top a::before{
+#page_top a::before {
   font-family: FontAwesome;
   content: '\f062';
   font-size: 25px;

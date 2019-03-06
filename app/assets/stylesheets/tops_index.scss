@@ -24,9 +24,15 @@
 }
 
 // キャッチコピー＆サブキャッチコピー＆サインインボタン＆ロゴ
+.sign_up_area img {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .sign_up_area p.catch_copy {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: sans-serif;
@@ -34,22 +40,22 @@
   font-weight: bold;
   letter-spacing: 5px;
   color: white;
-  width: 556px;
+  width: 39%;
   margin-top: 13px;
 }
-.sign_up_area p {
+.sign_up_area p.sub_catch_copy {
   position: absolute;
-  top: 60%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: sans-serif;
   font-size: 16px;
   letter-spacing: 5px;
-  color: #fff;
+  color: white;
 }
-.sign_up_area a {
+.start_button {
   position: absolute;
-  top: 70%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: sans-serif;
@@ -57,12 +63,6 @@
   letter-spacing: 5px;
   color: black;
   z-index: 10;
-}
-.sign_up_area img {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 // Docikingの理念が書かれたスペース

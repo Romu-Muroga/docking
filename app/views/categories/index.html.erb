@@ -15,8 +15,8 @@
               <tr>
                 <td><%= category.name %></td>
                 <td>
-                  <%= link_to "編集", edit_category_path(category) %>&nbsp;
-                  <%= link_to "削除", category_path(category), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+                  <%= link_to 'EDIT', edit_category_path(category) %>&nbsp;
+                  <%= link_to 'DELETE', category_path(category), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
                 </td>
               </tr>
             <% end %>
