@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="container-fluid" id="bottom_space">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-1 col-xs-7 col-md-offset-1 col-md-7">
         <div class="thumbnail">
@@ -37,8 +37,8 @@
             </div>
             <% if @post.user_id == current_user.id %>
               <p class="edit_delete_button">
-                <%= link_to 'EDIT', edit_post_path(@post), class: "btn btn-default" %>
-                <%= link_to 'DELETE', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+                <%= link_to 'EDIT', edit_post_path(@post), class: "btn btn-warning" %>
+                <%= link_to 'DELETE', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
               </p>
             <% end %>
           </div>

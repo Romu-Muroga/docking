@@ -22,7 +22,7 @@
       <%= f.select :ranking_point, Post.ranking_points.keys, class: "form-control" %>
       <% if current_user.posts.present? %>
         <div class="unavailable_post">
-          <% current_user.posts.each do |post| %>
+          <% current_user.posts.order(ranking_point: :desc).each do |post| %>
             <p>
               <%= Category.find(post.category_id).name %>の
               <%= post.ranking_point %>は既に使用されています。

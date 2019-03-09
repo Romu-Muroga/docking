@@ -10,7 +10,6 @@
           <% end %>
           <div class="user_name"><%= @user.name %>さんがいいね！した投稿</div>
         </div>
-
         <div class="iine_post_area">
           <% @iine_posts.each do |iine_post| %>
             <div class="col-xs-4 col-md-4 iine_post">
@@ -18,14 +17,14 @@
                 <%= link_to post_path(iine_post) do %>
                   <%= image_tag(iine_post.picture.image.url) %>
                   <div class="mask">
-                		<div class="caption">More info !</div>
+                		<div class="caption">Learn more!</div>
                 	</div>
                 <% end %>
               <% else %>
                 <%= link_to post_path(iine_post) do %>
                   <%= image_tag("/images/default2.jpg") %>
                   <div class="mask">
-                    <div class="caption">More info !</div>
+                    <div class="caption">Learn more!</div>
                   </div>
                 <% end %>
               <% end %>

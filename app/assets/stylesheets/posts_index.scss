@@ -1,31 +1,150 @@
-// ランキングテーブル
-table.ranking_table {
-  margin-bottom: 18px;
-  text-align: center;
-  border-radius: 1%;
-}
-
-// tdのデフォルトのpaddingリセット
-.ranking_table tr td {
-  padding: 0;
-}
-
-// テーブルの文字色変更
-.ranking_table tr td a {
-  color: black;
+.leftsidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
   display: block;
-  padding: 10px 0 10px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 45px;
+  .logo {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
 }
 
-// マウスカーソルを重ねたとき
-.ranking_table td:hover {
-  background-color: black;
-}
-.ranking_table td a:hover {
-  color: white;
+.centerbar {
+  // スライドショー１
+  // #slideshow {
+  //   position: relative;
+  //   width:  690px; /* 画像の横幅に合わせて記述 */
+  //   height: 150px; /* 画像の高さに合わせて記述 */
+  //   margin-bottom: 10px;
+  // }
+  // #slideshow img {
+  //   position: absolute;
+  //   top: 0;
+  //   left:0;
+  //   z-index: 8;
+  //   opacity: 0.0;
+  // }
+  // #slideshow img.active {
+  //   z-index: 10;
+  //   opacity: 1.0;
+  // }
+  // #slideshow img.last-active {
+  //   z-index: 9;
+  // }
+
+  // スライドショー２
+  #slide_wrapp {
+    position: relative;
+    overflow: hidden;
+    padding-left: 0;
+    li {
+      list-style: none;
+    }
+    .slide_item {
+      opacity: 0;
+      transform: scale(1);
+      transition: opacity 2s linear, transform 7.5s linear;  //秒数に注意
+      position: relative;
+      z-index: 1;
+      &:not(:first-child) {
+        position: absolute;
+        top: 0;
+        left : 0;
+      }
+      &.show_ {
+        opacity: 1;
+      }
+      &.zoom_ {
+        transform: scale(1.1);
+      }
+      img {
+        display: block; //下に余白ができないように
+      }
+    }
+  }
+  // ランキング
+  table.ranking_table {
+    margin-bottom: 18px;
+    text-align: center;
+    border-radius: 1%;
+    td {
+      padding: 0;
+      width: 50%;
+      &:hover {
+        background-color: black;
+      }
+    }
+    a {
+      color: black;
+      display: block;
+      padding: 10px 0 10px 0;
+      &:hover {
+        color: white;
+      }
+      // 選択中のランキング
+      &.current {
+        color: white;
+        background-color: black;
+      }
+    }
+  }
+  // 総合ランキングの算出方法
+  .ranking_info {
+    font-size: 14px;
+    border: solid 1px lightgray;
+    padding: 17px;
+  }
+  h3.overall_ranking {
+    font-family: serif;
+  }
+  // カテゴリーラベル
+  .category_label {
+    position: relative;
+    top: 5px;
+    left: 6px;
+    width: auto;
+    display: inline;
+    background-color: papayawhip;
+    text-align: center;
+    border-radius: 0.3em;
+    padding: 5px
+  }
+  // 順位と店名
+  h3 {
+    font-weight: bold;
+  }
+  // 備考欄
+  .remarks {
+    margin-top: 5px;
+    padding: 3px 7px;
+    min-height: 70px;
+    background-color: #f5f5f5;
+  }
+  // 投稿がありません
+  .no_post_message {
+    width: 170px;
+    margin: 0 auto;
+    margin-top: 182px;
+  }
 }
 
-// いいね！のハート
+.rightsidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 45px;
+  .new_post_and_search_menu {
+    padding-top: 136px;
+  }
+  .search_form_outer {
+    margin-top: 20px;
+  }
+}
+
+// いいね！済みのハート
 #heart {
   position: relative;
   width: 100px;
@@ -51,7 +170,7 @@ table.ranking_table {
   transform-origin: 100% 100%;
 }
 
-// いいね！していない場合のハート
+// 未いいね！のハート
 #heart_lightgray {
   position: relative;
   width: 100px;
@@ -81,133 +200,7 @@ table.ranking_table {
 .like button.btn-xs {
   margin-left: 92%;
   padding: 7px 8px 10px 22px;
-  border: none
-}
-
-// カテゴリーラベル
-.category_label {
-  position: relative;
-  top: 5px;
-  left: 6px;
-  width: auto;
-  display: inline;
-  background-color: papayawhip;
-  text-align: center;
-  border-radius: 0.3em;
-  padding: 5px
-}
-
-// 備考欄の高さ
-.remarks {
-  margin-top: 5px;
-  padding: 3px 7px;
-  min-height: 70px;
-  background-color: #f5f5f5;
-}
-
-// スライドショー
-// #slideshow {
-//   position: relative;
-//   width:  690px; /* 画像の横幅に合わせて記述 */
-//   height: 150px; /* 画像の高さに合わせて記述 */
-//   margin-bottom: 10px;
-// }
-// #slideshow img {
-//   position: absolute;
-//   top: 0;
-//   left:0;
-//   z-index: 8;
-//   opacity: 0.0;
-// }
-// #slideshow img.active {
-//   z-index: 10;
-//   opacity: 1.0;
-// }
-// #slideshow img.last-active {
-//   z-index: 9;
-// }
-
-// スライドショー２
-ul#slide_wrapp {
-  padding-left: 0;
-}
-
-#slide_wrapp li {
-  list-style: none;
-}
-
-#slide_wrapp {
-  position: relative;
-  overflow: hidden;
-
-  .slide_item {
-    opacity: 0;
-    transform: scale(1);
-    transition: opacity 2s linear, transform 7.5s linear;  //秒数に注意
-    position: relative;
-    z-index: 1;
-
-    &:not(:first-child) {
-      position: absolute;
-      top: 0;
-      left : 0;
-    }
-
-    &.show_ {
-      opacity: 1;
-    }
-    &.zoom_ {
-      transform: scale(1.1);
-    }
-    img {
-      display: block; //下に余白ができないように
-    }
-  }
-}
-
-// 総合ランキングの算出方法
-.ranking_info {
-  font-size: 14px;
-  border: solid 1px lightgray;
-  padding: 17px;
-}
-
-// カテゴリーリスト
-// .category_list {
-//
-// }
-
-// 左側のサイドバー
-.leftsidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-top: 45px;
-}
-
-// 右側のサイドバー
-.rightsidebar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 45px;
-}
-
-// 新規登録ボタンと検索欄の高さ調整
-.new_post_and_search_menu {
-  padding-top: 136px;
-}
-.search_form_outer {
-  margin-top: 20px;
-}
-
-// ロゴとカテゴリーリストの隙間
-.logo {
-  display: inline-block;
-  margin-bottom: 20px;
+  border: none;
 }
 
 // ページトップへ戻るボタン
@@ -220,32 +213,26 @@ ul#slide_wrapp {
   background: #3f98ef;
   opacity: 0.6;
   border-radius: 50%;
- }
-#page_top a {
-  position: relative;
-  display: block;
-  width: 50px;
-  height: 50px;
-  text-decoration: none;
-}
-#page_top a::before {
-  font-family: FontAwesome;
-  content: '\f062';
-  font-size: 25px;
-  color: #fff;
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  top: 0;
-  bottom: 9px;
-  right: 0;
-  left: 0;
-  margin: auto;
-  text-align: center;
-}
-
-// 総合ランキングといいねランキングが選択されたとき
-table tr td a.current {
-  color: white;
-  background-color: black;
+  a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+  }
+  &:before {
+    font-family: FontAwesome;
+    content: '\f062';
+    font-size: 25px;
+    color: #fff;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    bottom: 9px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+  }
 }

@@ -1,88 +1,86 @@
-// col-md-12にデフォルトで付くpaddingをリセット
+// スタートアップエリア
 #home_sec01 {
   padding: 0;
+  .start_up_area {
+    background: url("/images/top_page.jpg");
+    // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
+    background-size: cover;
+    position: relative;
+    height: 800px;
+    width: 100%;
+    background-attachment: fixed;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.5);
+    }
+    img {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .catch_copy {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      color: white;
+      width: 39%;
+      margin-top: 13px;
+    }
+    .sub_catch_copy {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: sans-serif;
+      font-size: 16px;
+      letter-spacing: 5px;
+      color: white;
+    }
+    .start_button {
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: black;
+      z-index: 10;
+      a.btn {
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
-// 背景画像
-.sign_up_area {
-  background: url("/images/top_page.jpg");
-  // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
-  background-size: cover;
-  position: relative;
-  height: 800px;
-  width: 100%;
-  background-attachment: fixed;
-}
-.sign_up_area::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0,0,0,0.5);
-}
-
-// キャッチコピー＆サブキャッチコピー＆サインインボタン＆ロゴ
-.sign_up_area img {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.sign_up_area p.catch_copy {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 5px;
-  color: white;
-  width: 39%;
-  margin-top: 13px;
-}
-.sign_up_area p.sub_catch_copy {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: sans-serif;
-  font-size: 16px;
-  letter-spacing: 5px;
-  color: white;
-}
-.start_button {
-  position: absolute;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: sans-serif;
-  font-size: 16px;
-  letter-spacing: 5px;
-  color: black;
-  z-index: 10;
-}
-
-// Docikingの理念が書かれたスペース
+// Docikingの理念が書かれたエリア
 #home_sec02 {
   padding: 0;
-}
-.text_area {
-  position: relative;
-  top: 27px;
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
-  font-family: serif;
-}
-.text_area p.sub_title {
-  font-size: 18px;
-  font-weight: bold;
-}
-.content {
-  line-height: 40px;
+  .text_area {
+    position: relative;
+    top: 27px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-family: serif;
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .content {
+      line-height: 40px;
+    }
+  }
 }
 
 // Dockingのイメージ画像の部分
@@ -91,51 +89,46 @@
   top: 60px;
   width: 720px;
   margin-left: 315px;
-}
-
-// 左側の項目
-.left_sec {
-  position: relative;
-  top: 10px;
-  width: 177px;
-  margin: 0 auto;
-  height: 250px;
-}
-
-// 中央の項目
-.center_sec {
-  position: relative;
-  top: 140px;
-  left: 104px;
-  font-size: 40px;
-  color: white;
-}
-
-// 右側の項目
-.right_sec {
-  position: relative;
-  top: 10px;
-  width: 177px;
-  margin: 0 auto;
-  height: 250px;
-}
-
-// 円で囲んでいる部分
-.circle_sec01 {
-  border: solid lightgray;
-  border-radius: 50%;
-  background-color: lightgray;
-  width: 260px;
-}
-.circle_sec02 {
-  position: relative;
-  top: -45px;
-  left: 47px;
-  height: 350px;
-  width: 350px;
-  background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
-  border-radius: 50%;
-  z-index: 10;
-  opacity: 0.9;
-  margin: 0 auto;
+  .circle_sec01 {
+    border: solid lightgray;
+    border-radius: 50%;
+    background-color: lightgray;
+    width: 260px;
+  }
+  .circle_sec02 {
+    position: relative;
+    top: -45px;
+    left: 47px;
+    height: 350px;
+    width: 350px;
+    background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
+    border-radius: 50%;
+    z-index: 10;
+    opacity: 0.9;
+    margin: 0 auto;
+  }
+  // 左側の項目
+  .left_sec {
+    position: relative;
+    top: 10px;
+    width: 177px;
+    margin: 0 auto;
+    height: 250px;
+  }
+  // 中央の項目
+  .center_sec {
+    position: relative;
+    top: 140px;
+    left: 104px;
+    font-size: 40px;
+    color: white;
+  }
+  // 右側の項目
+  .right_sec {
+    position: relative;
+    top: 10px;
+    width: 177px;
+    margin: 0 auto;
+    height: 250px;
+  }
 }

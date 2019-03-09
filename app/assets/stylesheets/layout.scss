@@ -7,34 +7,19 @@ html {
 body {
   width: 100%;
   height: 100%;
-  background-color: #FAFAFA;
-}
-
-h3 {
-  margin-bottom: 26px;
+  background-color: #F7F2E8;
 }
 
 a:hover {
   text-decoration: none;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  height: 45px;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-// 編集・削除ボタン
 .edit_delete_button {
   border-top: solid 1px lightgray;
   padding-top: 11px;
-  margin: 14px;
-}
-.btn-default {
-  margin-right: 6px;
+  .btn-warning {
+    margin-right: 6px;
+  }
 }
 
 .wrapper {
@@ -48,44 +33,37 @@ header {
   word-wrap: break-word;
 }
 
-// ヘッダーのリンク
-header a {
-  color: black;
-  font-weight: bold;
-}
-header a:hover {
-  color: black;
+// ヘッダー
+header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.5);
+  .navibar {
+    position: relative;
+    top: 1.5vh;
+    width: 43vw;
+    margin-left: auto;
+  }
+  a {
+    color: black;
+    font-weight: bold;
+    &:hover {
+      color: black;
+    }
+    &.active {
+      color: #EC407A;
+      font-size: 18px;
+    }
+  }
 }
 
-// ヘッダーのナビを右に寄せる
-.navibar {
-  position: relative;
-  top: 1.5vh;
-  width: 43vw;
-  margin-left: auto;
-}
-
-// ヘッダーのリンクをハイライトさせる
-.navibar a.active {
-  color: #EC407A;
-  font-size: 18px;
-}
-
-// 画面切り替え時フェードイン
 .main_section {
   width: 100%;
   height: 100%;
-  // animation: fadeIn 5s ease 0s 1 normal;
-  // -webkit-animation: fadeIn 5s ease 0s 1 normal;
 }
-// @keyframes fadeIn {
-//     0% {opacity: 0}
-//     100% {opacity: 1}
-// }
-// @-webkit-keyframes fadeIn {
-//     0% {opacity: 0}
-//     100% {opacity: 1}
-// }
 
 // アラート
 div.alert {

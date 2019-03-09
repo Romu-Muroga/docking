@@ -2,7 +2,7 @@
   <div class="form_inner">
     <% if user.errors.any? %>
       <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
-        <h2><%= user.errors.count %>件のエラーがあります。</h2>
+        <h3><%= user.errors.count %>件のエラーがあります。</h3>
         <ul>
           <% user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
       <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control" %>
+      <%= f.password_field :password, placeholder: "6文字以上必要です。", class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :password_confirmation %>
@@ -41,5 +41,5 @@
       </div>
     <% end %>
   </div>
-  <%= f.submit class: "btn btn-default" %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
