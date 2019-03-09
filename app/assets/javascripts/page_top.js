@@ -3,7 +3,7 @@ $(document).on("turbolinks:load", () => {
   var pagetop = $('#page_top');
   pagetop.hide();
   $(window).scroll(function () {
-      if ($(this).scrollTop() > 200) {  //200pxスクロールしたら表示
+      if ($(this).scrollTop() > 900) {  //900pxスクロールしたら表示
           pagetop.fadeIn();
       } else {
           pagetop.fadeOut();

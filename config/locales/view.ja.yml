@@ -15,9 +15,11 @@ ja:
     Please_check: "チェックボックスにチェックを入れてください"
   views:
     users:
-      new_page: "アカウント登録ページ"
-      edit_page: "アカウント情報編集ページ"
-      destroy_page: "退会処理ページ"
+      new_page: "Sign up"
+      edit_page: "Edit account info"
+      destroy_page: "退会処理"
+    sessions:
+      login_page: "Login"  
     posts:
-      new_page: "お気に入り登録ページ"
-      edit_page: "お気に入り編集ページ"
+      new_page: "お気に入り登録"
+      edit_page: "お気に入り編集"

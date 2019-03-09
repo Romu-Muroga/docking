@@ -9,7 +9,7 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>カテゴリー</th>
+                <th>Category</th>
               </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
             <div class="thumbnail">
               <p class="category_label"><%= user_post.category.name %></p>
               <h3><%= user_post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= user_post.eatery_name %></h3>
-              <h4>Menu name: &nbsp;<%= user_post.eatery_food %></h4>
+              <h4>Menu: &nbsp;<%= user_post.eatery_food %></h4>
               <% if user_post.picture.present? %>
                 <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
               <% else %>
@@ -68,9 +68,13 @@
             <%= image_tag("/images/default.png", class: "img-responsive")%>
           <% end %>
           <% if @user.id == current_user.id %>
-            <%= link_to "Change account information", edit_user_path(current_user), class: "user_account_menu_link" %><br>
-            <%= link_to "Withdraw", destroy_confirm_user_path(current_user), class: "user_account_menu_link" %>
-            <%= link_to "New posts", new_post_path, class: "cp_btn" %>
+            <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
+              <i class="fas fa-user-edit fa-2x"></i> Edit account info
+            <% end %><br>
+            <%= link_to destroy_confirm_user_path(current_user), class: "user_account_menu_link" do %>
+              <i class="fas fa-sad-tear fa-2x"></i> Close the account
+            <% end %>
+            <%= link_to "New post", new_post_path, class: "cp_btn" %>
             <%= link_to iine_post_list_user_path(@user), class: "iine_posts_link" do %>
               <%= content_tag :span, "いいね！済みのリスト", id: "heart" %>
             <% end %>

@@ -59,10 +59,13 @@ a.btn-show {
   p {
     font-size: 17px;
   }
+  i.fas {
+    margin: 8px 0 5px 0;
+    color: gray;
+  }
   &_link {
     color: black;
     display: inline-block;
-    margin: 3px 0;
     &:hover {
       color: black;
     }
@@ -71,7 +74,7 @@ a.btn-show {
   a.iine_posts_link {
     color: black;
     display: inline-block;
-    margin: 30px 0 30px 21px;
+    margin: 30px 0 30px 17px;
     span {
       padding-left: 20px;
     }

@@ -128,7 +128,7 @@
   .no_post_message {
     width: 170px;
     margin: 0 auto;
-    margin-top: 182px;
+    margin-top: 33vh;
   }
 }
 
@@ -141,6 +141,13 @@
   }
   .search_form_outer {
     margin-top: 20px;
+  }
+  input {
+    width: 100%;
+    &.btn {
+      color: white;
+      background-color: black;
+    }
   }
 }
 
@@ -210,8 +217,8 @@
   position: fixed;
   right: 15px;
   bottom: 15px;
-  background: #3f98ef;
   opacity: 0.6;
+  background: #337AB6;
   border-radius: 50%;
   a {
     position: relative;
