@@ -1,13 +1,13 @@
-// すでに存在する順位は選べないようにする警告文のエリア
-.unavailable_post {
-  border: solid 1px lightgray;
-  padding: 10px;
-}
-// ポストのフォームの大きさを修正
+// 投稿フォーム
 .post_form_outer {
-  width: 658px;
-  margin: 0 auto;
+  padding-bottom: 100px;
+  // すでに存在する順位は選べないようにする警告文のエリア
+  .unavailable_post {
+    border: solid 1px lightgray;
+    padding: 10px;
+  }
 }
+
 // エラーメッセージ
 #error_explanation {
   background-color: yellow;
@@ -16,4 +16,46 @@
   padding: 17px;
   border-radius: 10px;
   margin-bottom: 13px;
+}
+
+// アカウントとログインフォームの背景画像
+#user_form_area {
+  background: url("/images/top_page.jpg");
+  // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  color: white;
+  margin: 0;
+  padding-top: 150px;
+  background-attachment: fixed;
+  .login_form, .account_form {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  form {
+    opacity: 0.8;
+  }
+  input.btn {
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+  }
+  p {
+    margin-top: 20px;
+  }
+  p a {
+    color: red;
+    font-weight: bold;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+  }
 }

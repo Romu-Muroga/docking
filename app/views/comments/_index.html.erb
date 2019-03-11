@@ -10,7 +10,7 @@
     <p><%= simple_format(comment.content) %></p>
     <% if comment.user == current_user %><!--そのコメントをしたユーザーと現在のユーザーが一致していたら -->
       <p class="comment_delete_btn">
-        <%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "btn btn-default" %>
+        <%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %>
       </p>
     <% end %>
   <% end %>

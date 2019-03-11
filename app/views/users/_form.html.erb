@@ -2,7 +2,7 @@
   <div class="form_inner">
     <% if user.errors.any? %>
       <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
-        <h2><%= user.errors.count %>件のエラーがあります。</h2>
+        <h3><%= user.errors.count %>件のエラーがあります。</h3>
         <ul>
           <% user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
       <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control" %>
+      <%= f.password_field :password, placeholder: "6文字以上必要です。", class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :password_confirmation %>
@@ -37,9 +37,9 @@
         <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
         <!-- 文字列の"true","false"をboolean型に変換する必要がある -->
         <%= f.check_box "picture_delete_check", {}, 1, 2 %>
-        <%= f.label "picture_delete_check", "登録済みのアイコン画像を削除する場合はチェック入れてください" %>
+        <%= f.label "picture_delete_check", "登録済みのアイコン画像を削除する場合は、チェック入れてください" %>
       </div>
     <% end %>
   </div>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>

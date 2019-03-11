@@ -22,7 +22,7 @@
       <%= f.select :ranking_point, Post.ranking_points.keys, class: "form-control" %>
       <% if current_user.posts.present? %>
         <div class="unavailable_post">
-          <% current_user.posts.each do |post| %>
+          <% current_user.posts.order(ranking_point: :desc).each do |post| %>
             <p>
               <%= Category.find(post.category_id).name %>の
               <%= post.ranking_point %>は既に使用されています。
@@ -32,7 +32,7 @@
       <% end %>
     </div>
     <div class="form-group">
-      <%= f.label :eatery_name, "店名（できるかぎり正確な店名で、ご登録をお願いします）" %>
+      <%= f.label :eatery_name, "Eatery name（できるかぎり正確な店名で、ご登録をお願いします）" %>
       <%= f.text_field :eatery_name, placeholder: "例：（店名：中華一番）○ 中華一番 x 中華いちばん", class: "form-control" %>
     </div>
     <div class="form-group">
@@ -40,11 +40,11 @@
       <%= f.text_field :eatery_food, placeholder: "例：醤油ラーメン", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :eatery_address, "所在地（任意）" %>
+      <%= f.label :eatery_address, "Address（任意）" %>
       <%= f.text_field :eatery_address, placeholder: "例：東京都渋谷区", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :eatery_website, "店のホームページ（任意）" %>
+      <%= f.label :eatery_website, "Website（任意）" %>
       <%= f.text_field :eatery_website, placeholder: "例：https://xxxxxxx.com", class: "form-control" %>
     </div>
     <!-- Pictureモデルのimage属性をセット -->
@@ -72,5 +72,5 @@
       <%= f.text_area :remarks, class: "form-control" %>
     </div>
   </div>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-default" %>
 <% end %>

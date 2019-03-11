@@ -11,7 +11,7 @@
           <% if @post.picture.present? %>
             <%= image_tag(@post.picture.image.url, class: "img-responsive") %>
           <% else %>
-            <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
+            <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
           <% end %>
           <div class="caption">
             <% if @post.user.picture.present? %>
@@ -25,21 +25,20 @@
             <div class="remarks">
               <%= simple_format(@post.remarks) %>
             </div>
-
-            <span>所在地：<%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
+            <span>Address: <%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
             <!-- TODO: 存在しないアドレスだと404エラーになる -->
             <% if @post.eatery_website == "未登録" %>
-              <span>ホームページ：未登録<span>&nbsp;&nbsp;&nbsp;
+              <span>Website: 未登録<span>&nbsp;&nbsp;&nbsp;
             <% else %>
-              <span>ホームページ：<%= link_to @post.eatery_name, @post.eatery_website %></span>&nbsp;&nbsp;&nbsp;
+              <span>Website: <%= link_to @post.eatery_name, @post.eatery_website %></span>&nbsp;&nbsp;&nbsp;
             <% end %>
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
               <%= render "likes/like", post: @post %><!-- いいねボタン -->
             </div>
             <% if @post.user_id == current_user.id %>
               <p class="edit_delete_button">
-                <%= link_to "編集", edit_post_path(@post), class: "btn btn-black" %>
-                <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-default" %>
+                <%= link_to 'EDIT', edit_post_path(@post), class: "btn btn-warning" %>
+                <%= link_to 'DELETE', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
               </p>
             <% end %>
           </div>
@@ -48,7 +47,7 @@
           いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
         </div>
       </div>
-      <div class="col-xs-3 col-md-3 comments_area_outer">
+      <div class="col-xs-3 col-md-3 rightsidebar">
         <p class="title">コメント</p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
           <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->

@@ -1,8 +1,8 @@
-<div class="wrapper">
+<div class="wrapper" id="user_form_area">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
-        <h3>ログイン画面</h3>
+      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4 login_form">
+        <h3><%= t("views.sessions.login_page") %></h3>
         <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
         <%= form_with(scope: :session, url: sessions_path, local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
@@ -15,10 +15,9 @@
               <%= f.password_field :password, class: "form-control" %>
             </div>
           </div>
-          <%= f.submit "ログイン" %>
+          <%= f.submit "ログイン", class: "btn btn-primary" %>
         <% end %>
-        <p class="sign_up">アカウントをお持ちでない方はこちら</p>
-        <%= link_to "アカウント登録", new_user_path %>
+        <p>アカウントをお持ちでない方は<%= link_to "こちら", new_user_path %></p>
       </div>
     </div>
   </div>

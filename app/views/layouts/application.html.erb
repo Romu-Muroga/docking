@@ -9,28 +9,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
 
   <body>
-    <header>
-      <% if logged_in? %>
-        <div class="nav">
+    <% if logged_in? %>
+      <header>
+        <div class="navibar">
           <%= link_to "ランキング一覧", posts_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to "私のお気に入り", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
-          <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+          <%= link_to "ログアウト", session_path(current_user), method: :delete %>&nbsp;&nbsp;&nbsp;
+          <span><%= current_user.name.truncate(12, omission: '...') %>さんが現在ログイン中</span>
         </div>
-        <script>
-           var url = window.location.pathname;
-              $('.nav a[href="'+url+'"]').addClass('active');
-        </script>
-        <p class="active_user"><%= current_user.name %>さんが現在ログイン中</p>
-      <% else %>
-        <div class="nav">
-          <%= link_to "ログイン", new_session_path %>&nbsp;&nbsp;&nbsp;
-          <%= link_to "アカウント登録", new_user_path %>
-        </div>
-      <% end %>
-    </header>
+      </header>
+    <% end %>
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>

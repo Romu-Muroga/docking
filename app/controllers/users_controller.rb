@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :login_check, except: %i[new create]
-  before_action :set_user, only: %i[show edit update destroy destroy_confirm id_check]
+  before_action :set_user, only: %i[show iine_post_list edit update destroy destroy_confirm id_check]
   # TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする
-  before_action :id_check, only: %i[show edit update destroy destroy_confirm]
+  before_action :id_check, only: %i[show iine_post_list edit update destroy destroy_confirm]
 
   def new
     @user = User.new
@@ -29,6 +29,10 @@ class UsersController < ApplicationController
                   else
                     @user.posts.default_sort
                   end
+  end
+
+  def iine_post_list
+    @iine_posts = @user.iine_posts
   end
 
   def edit; end

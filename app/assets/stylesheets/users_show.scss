@@ -1,122 +1,105 @@
-// テーブル共通背景色
-.table {
-  background-color: white;
+// カテゴリーリスト
+.category_list  {
+  tbody tr td {
+    padding: 0;
+  }
+  tbody a {
+    color: black;
+    display: block;
+    padding: 10px;
+    // 選択中のカテゴリー
+    &.current {
+      color: white;
+      background-color: black;
+      padding: 10px;
+    }
+  }
+  // マウスカーソルを重ねたとき
+  .table-hover {
+    tbody td:hover {
+      background-color: black;
+      a:hover {
+        color: white;
+      }
+    }
+  }
 }
-// tdのデフォルトのpaddingリセット
-.table_resize tbody tr td {
-  padding: 0;
-}
-// カテゴリーテーブルの幅調整
-.table_resize {
-  width: 227px;
-}
-// テーブルの文字色変更
-.table_resize tbody tr td a {
-  color: black;
-  display: block;
-  padding: 10px;
-}
-// マウスカーソルを重ねたとき
-.table-hover tbody tr:hover {
-  background-color: black;
-}
-.table-hover tbody tr td a:hover {
-  color: white;
-  text-decoration: none;
-}
-// 選択中のカテゴリーの色を設定
-.table_resize tbody tr td a.active {
-  color: white;
-  background-color: black;
-  padding: 10px;
-}
+
 // 新規登録ボタン
 a.cp_btn {
 	display: block;
 	width: 160px;
+  margin-top: 22px;
 	padding: 0.8em;
 	text-align: center;
-	text-decoration: none;
 	color: #EC407A;
 	border: 2px solid #EC407A;
 	border-radius: 3px;
-	transition: .4s;
+	transition: .4s;//ふわっと
+  &:hover {
+    background: #EC407A;
+  	color: #fff;
+  }
 }
-a.cp_btn:hover {
-	background: #EC407A;
-	color: #fff;
+
+// 詳細をみるボタン
+a.btn-show {
+  color: silver;
+  border-color: silver;
+  margin-top: 10px;
+  &:hover {
+    color: black;
+    border-color: black;
+  }
 }
-// 編集ボタンの色
-.btn-black {
-  color: white;
-  background-color: black;
-  border-color: black;
+
+// アカウントメニュー
+.user_account_menu {
+  margin-top: 40px;
+  p {
+    font-size: 17px;
+  }
+  i.fas {
+    margin: 8px 0 5px 0;
+    color: gray;
+  }
+  &_link {
+    color: black;
+    display: inline-block;
+    &:hover {
+      color: black;
+    }
+  }
+  // いいね！済みのリスト
+  a.iine_posts_link {
+    color: black;
+    display: inline-block;
+    margin: 30px 0 30px 17px;
+    span {
+      padding-left: 20px;
+    }
+  }
 }
-.btn-black:hover {
-  color: black;
-  background-color: white;
-}
-// テキストを折り返してはみ出さないように改行
-.thumbnail {
-  word-wrap: break-word;
-  // background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
-}
-.caption {
-  word-wrap: break-word;
-}
-// ユーザーのアイコン画像の輪郭を変更
-.image_processing {
-  border-radius: 5%;
-}
-// 新規登録ボタンの上部スペース
-a.cp_btn {
-  margin-top: 22px;
-}
-// 詳細ボタン
-a.btn-custum {
-  color: #EC407A;
-  border-color: #EC407A;
-}
-a.btn-custum:hover {
-  color: white;
-  background-color: #EC407A;
-}
+
 // いいね！したポスト一覧
-.iine_box {
-  margin-top: 19px;
-  background-color: white;
-  border: solid 1px;
-  border-color: lightgray;
-  border-radius: 2%;
-  height: 300px;
-  padding: 10px;
-  word-wrap: break-word;
-  overflow: scroll;
-}
-.iine_box img {
-  border-radius: 50%;
-}
-.iine_box span {
-  margin: 4px 0;
-  display: inline-block;
-}
-.iine_box p.no_liked_posts_message {
-  text-align: center;
-}
-// 投稿がないときに表示される、テキスト「投稿がありません」の位置
-.no_content {
-  width: 170px;
-  margin: 0 auto;
-  margin-top: 182px;
-}
-// カテゴリーリストの高さ調整
-.category_list_in_users_show {
-  position: fixed;
-  height: 95%;
-  overflow: scroll;
-  padding-left: 94px;
-}
-// ユーザー情報の高さ調整
-.user_info {
-  margin-top: 70px;
-}
+// .iine_box {
+//   margin-top: 10px;
+//   background-color: white;
+//   border: solid 1px;
+//   border-color: lightgray;
+//   border-radius: 2%;
+//   height: 200px;
+//   padding: 10px;
+//   word-wrap: break-word;
+//   overflow: scroll;
+//   img {
+//     border-radius: 50%;
+//   }
+//   span {
+//     margin: 4px 0;
+//     display: inline-block;
+//   }
+//   p.no_iine_posts_message {
+//     text-align: center;
+//   }
+// }

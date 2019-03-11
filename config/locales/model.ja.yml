@@ -7,12 +7,12 @@ ja:
       picture: "写真"
     attributes:
       post:
-        category_id: "カテゴリー"
-        ranking_point: "順位"
-        eatery_name: "店名"
-        eatery_food: "メニュー名"
-        eatery_address: "所在地"
-        eatery_website: "店のホームページ"
+        category_id: "Category"
+        ranking_point: "Rank"
+        eatery_name: "Eatery name"
+        eatery_food: "Menu"
+        eatery_address: "Address"
+        eatery_website: "Website"
         remarks: "好きな理由"
       category:
         name: "カテゴリー名"

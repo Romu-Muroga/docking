@@ -1,28 +1,157 @@
-// 下にある投稿記事とのスペース
-table.ranking_table {
-  margin-bottom: 18px;
-  text-align: center;
-  border-radius: 1%;
-}
-// tdのデフォルトのpaddingリセット
-.ranking_table tr td {
-  padding: 0;
-}
-// テーブルの文字色変更
-.ranking_table tr td a {
-  color: black;
+.leftsidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
   display: block;
-  padding: 10px 0 10px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 45px;
+  .logo {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
 }
-// マウスカーソルを重ねたとき
-.ranking_table td:hover {
-  background-color: black;
+
+.centerbar {
+  // スライドショー１
+  // #slideshow {
+  //   position: relative;
+  //   width:  690px; /* 画像の横幅に合わせて記述 */
+  //   height: 150px; /* 画像の高さに合わせて記述 */
+  //   margin-bottom: 10px;
+  // }
+  // #slideshow img {
+  //   position: absolute;
+  //   top: 0;
+  //   left:0;
+  //   z-index: 8;
+  //   opacity: 0.0;
+  // }
+  // #slideshow img.active {
+  //   z-index: 10;
+  //   opacity: 1.0;
+  // }
+  // #slideshow img.last-active {
+  //   z-index: 9;
+  // }
+
+  // スライドショー２
+  #slide_wrapp {
+    position: relative;
+    overflow: hidden;
+    padding-left: 0;
+    li {
+      list-style: none;
+    }
+    .slide_item {
+      opacity: 0;
+      transform: scale(1);
+      transition: opacity 2s linear, transform 7.5s linear;  //秒数に注意
+      position: relative;
+      z-index: 1;
+      &:not(:first-child) {
+        position: absolute;
+        top: 0;
+        left : 0;
+      }
+      &.show_ {
+        opacity: 1;
+      }
+      &.zoom_ {
+        transform: scale(1.1);
+      }
+      img {
+        display: block; //下に余白ができないように
+      }
+    }
+  }
+  // ランキング
+  table.ranking_table {
+    margin-bottom: 18px;
+    text-align: center;
+    border-radius: 1%;
+    td {
+      padding: 0;
+      width: 50%;
+      &:hover {
+        background-color: black;
+      }
+    }
+    a {
+      color: black;
+      display: block;
+      padding: 10px 0 10px 0;
+      &:hover {
+        color: white;
+      }
+      // 選択中のランキング
+      &.current {
+        color: white;
+        background-color: black;
+      }
+    }
+  }
+  // 総合ランキングの算出方法
+  .ranking_info {
+    font-size: 14px;
+    border: solid 1px lightgray;
+    padding: 17px;
+  }
+  h3.overall_ranking {
+    font-family: serif;
+  }
+  // カテゴリーラベル
+  .category_label {
+    position: relative;
+    top: 5px;
+    left: 6px;
+    width: auto;
+    display: inline;
+    background-color: papayawhip;
+    text-align: center;
+    border-radius: 0.3em;
+    padding: 5px
+  }
+  // 順位と店名
+  h3 {
+    font-weight: bold;
+  }
+  // 備考欄
+  .remarks {
+    margin-top: 5px;
+    padding: 3px 7px;
+    min-height: 70px;
+    background-color: #f5f5f5;
+  }
+  // 投稿がありません
+  .no_post_message {
+    width: 170px;
+    margin: 0 auto;
+    margin-top: 33vh;
+  }
 }
-.ranking_table td a:hover {
-  color: white;
-  text-decoration: none;
+
+.rightsidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 45px;
+  .new_post_and_search_menu {
+    padding-top: 136px;
+  }
+  .search_form_outer {
+    margin-top: 20px;
+  }
+  input {
+    width: 100%;
+    &.btn {
+      color: white;
+      background-color: black;
+    }
+  }
 }
-// いいねのハート
+
+// いいね！済みのハート
 #heart {
   position: relative;
   width: 100px;
@@ -47,7 +176,8 @@ table.ranking_table {
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }
-// いいねしていない場合のハート
+
+// 未いいね！のハート
 #heart_lightgray {
   position: relative;
   width: 100px;
@@ -72,141 +202,44 @@ table.ranking_table {
   transform: rotate(45deg);
   transform-origin: 100% 100%;
 }
-// いいねボタンの台座のサイズ調整（positionは１番上に書く？）
-.btn-xs {
-  padding: 7px 8px 10px 22px;
-  border: none
-}
-// いいねボタンの前に付く黒点を削除
-.iine_button {
-  list-style: none;
+
+// いいね！ボタン
+.like button.btn-xs {
   margin-left: 92%;
+  padding: 7px 8px 10px 22px;
+  border: none;
 }
-// カテゴリーラベル
-.category_label {
-  position: relative;
-  top: 5px;
-  left: 6px;
-  width: auto;
-  display: inline;
-  background-color: papayawhip;
-  text-align: center;
-  border-radius: 0.3em;
-  padding: 5px
-}
-// 備考欄の高さ
-.remarks {
-  margin-top: 5px;
-  padding: 3px 7px;
-  min-height: 70px;
-  background-color: #f5f5f5;
-}
-// 編集・削除ボタンの上の区切り線
-.edit_delete_button {
-  border-top: solid 1px lightgray;
-  padding-top: 11px;
-  margin: 14px;
-}
-// スライドショー
-#slideshow {
-   position: relative;
-   width:  690px; /* 画像の横幅に合わせて記述 */
-   height: 150px; /* 画像の高さに合わせて記述 */
-   margin-bottom: 10px;
-}
-#slideshow img {
-   position: absolute;
-   top: 0;
-   left:0;
-   z-index: 8;
-   opacity: 0.0;
-}
-#slideshow img.active {
-   z-index: 10;
-   opacity: 1.0;
-}
-#slideshow img.last-active {
-   z-index: 9;
-}
+
 // ページトップへ戻るボタン
-.pagetop {
-  position: fixed;
-  bottom: 16px;
-  right: 67px;
-}
-.pagetop a {
-  display: block;
-  text-decoration: none;
-  color: black;
-}
-.pagetop a:hover {
-  color: #EC407A;
-}
-// 総合ランキングの算出方法
-.ranking_info {
-  font-size: 14px;
-  border: solid 1px lightgray;
-  padding: 17px;
-}
-// サイドバーの位置を画面をスクロールしても固定
-.sidebar {
-  position: sticky;
-  top: 10px;
-}
-// カテゴリーリストの高さ調整
-.category_list_in_posts_index {
-  position: fixed;
-  height: 95%;
-  overflow: scroll;
-  padding-left: 94px;
-}
-// 新規登録ボタンと検索欄の高さ調整
-.new_post_and_search_menu {
-  margin-top: 158px;
-}
-.search_form_outer {
-  margin-top: 20px;
-}
-// ロゴとカテゴリーリストの隙間
-.logo {
-  display: inline-block;
-  margin-bottom: 20px;
-}
-// ページトップへ戻るボタン
-#page_top{
+#page_top {
   width: 50px;
   height: 50px;
   position: fixed;
   right: 15px;
   bottom: 15px;
-  background: #3f98ef;
   opacity: 0.6;
+  background: #337AB6;
   border-radius: 50%;
- }
-#page_top a{
-  position: relative;
-  display: block;
-  width: 50px;
-  height: 50px;
-  text-decoration: none;
-}
-#page_top a::before{
-  font-family: FontAwesome;
-  content: '\f062';
-  font-size: 25px;
-  color: #fff;
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  top: 0;
-  bottom: 9px;
-  right: 0;
-  left: 0;
-  margin: auto;
-  text-align: center;
-}
-// 総合ランキングといいねランキングが選択されたとき
-table tr td a.current {
-  color: white;
-  background-color: black;
+  a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+  }
+  &:before {
+    font-family: FontAwesome;
+    content: '\f062';
+    font-size: 25px;
+    color: #fff;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    bottom: 9px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+  }
 }
