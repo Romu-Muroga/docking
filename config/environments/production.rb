@@ -23,7 +23,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)# 初期値（:uglifier）
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -72,7 +72,7 @@ Rails.application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   # bundle install(rails new)すると”HEADS UP! i18n 1.1 changed fallbacks to exclude default locale."と言われる
-  config.i18n.fallbacks = [I18n.default_locale]#初期値：true
+  config.i18n.fallbacks = [I18n.default_locale]#初期値（true）
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
