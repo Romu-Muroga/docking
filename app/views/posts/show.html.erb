@@ -3,35 +3,48 @@
     <div class="row">
       <div class="col-xs-offset-1 col-xs-7 col-md-offset-1 col-md-7">
         <div class="thumbnail">
-          <div class="thumbnail_header">
-            <span class="category_label_in_posts_show"><%= @post.category.name %></span>
-            <span><%= @post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= @post.eatery_name %></span>&nbsp;&nbsp
-            <span>“ <%= @post.eatery_food %> ”</span>
-          </div>
           <% if @post.picture.present? %>
             <%= image_tag(@post.picture.image.url, class: "img-responsive") %>
           <% else %>
             <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
           <% end %>
+          <div class="thumbnail_header">
+            <span class="category_label_in_posts_show"><%= @post.category.name %></span>
+            <span class="item">Eatery name: </span><span><%= @post.eatery_name %></span>&nbsp;&nbsp
+            <span class="item">Menu: </span><span><%= @post.eatery_food %></span>
+          </div>
           <div class="caption">
-            <% if @post.user.picture.present? %>
-              <span><%= image_tag(@post.user.picture.image.url, size: "48x48") %></span>
-            <% else %>
-              <span><%= image_tag("/images/default.png", size: "48x48") %></span>
-            <% end %>
-            <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
-            <span>&nbsp;&nbsp;<%= @post.user.name %><%#= link_to @post.user.name, user_path(@post.user) %></span>
-            <p style="padding-top: 10px;">お気に入りの理由は？</p>
+            <div class="caption_user">
+              <% if @post.user.picture.present? %>
+                <%= image_tag(@post.user.picture.image.url, size: "48x48") %>
+              <% else %>
+                <%= image_tag("/images/default.png", size: "48x48") %>
+              <% end %>
+              <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
+              <div class="caption_user_post_time">
+                <%= @post.user.name.truncate(12, omission: '...') %>さんが<%= @post.category.name %>の<%= @post.ranking_point %>に投稿しました<br>
+                <time datetime="<%= @post.updated_at %>">
+                  <%= time_ago_in_words(@post.updated_at, include_seconds: true)+"前" %>
+                </time>
+                <%#= link_to @post.user.name, user_path(@post.user) %>
+              </div>
+              <div class="iine_count">
+                いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
+              </div>
+            </div>
+            <p class="remarks_title">お気に入りの理由は？</p>
             <div class="remarks">
               <%= simple_format(@post.remarks) %>
             </div>
-            <span>Address: <%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
-            <!-- TODO: 存在しないアドレスだと404エラーになる -->
-            <% if @post.eatery_website == "未登録" %>
-              <span>Website: 未登録<span>&nbsp;&nbsp;&nbsp;
-            <% else %>
-              <span>Website: <%= link_to @post.eatery_name, @post.eatery_website %></span>&nbsp;&nbsp;&nbsp;
-            <% end %>
+            <div class="eatery_info">
+              <span>Address: <%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
+              <!-- TODO: 存在しないアドレスだと404エラーになる -->
+              <% if @post.eatery_website == "未登録" %>
+                <span>Website: 未登録<span>&nbsp;&nbsp;&nbsp;
+              <% else %>
+                <span>Website: <%= link_to @post.eatery_name, @post.eatery_website %></span>&nbsp;&nbsp;&nbsp;
+              <% end %>
+            </div>
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
               <%= render "likes/like", post: @post %><!-- いいねボタン -->
             </div>
@@ -42,9 +55,6 @@
               </p>
             <% end %>
           </div>
-        </div>
-        <div class="iine_count">
-          いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
         </div>
       </div>
       <div class="col-xs-3 col-md-3 rightsidebar">

@@ -104,7 +104,7 @@
   // カテゴリーラベル
   .category_label {
     position: relative;
-    top: 5px;
+    top: 9px;
     left: 6px;
     width: auto;
     display: inline;
@@ -113,9 +113,14 @@
     border-radius: 0.3em;
     padding: 5px
   }
-  // 順位と店名
+  // 店名
   h3 {
     font-weight: bold;
+    margin-left: 16px;
+  }
+  // メニュー
+  h4 {
+    margin-left: 16px;
   }
   // 備考欄
   .remarks {

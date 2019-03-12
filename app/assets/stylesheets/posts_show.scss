@@ -1,38 +1,73 @@
 // サムネイルヘッダー
 .thumbnail_header {
-  height: 40px;
-  padding: 6px;
+  height: 100%;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-bottom: solid 1px lightgray;
+  span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  span.item {
+    font-weight: normal;
+  }
+  // ポスト詳細ページのカテゴリーラベル
+  span.category_label_in_posts_show {
+    position: relative;
+    top: 0px;
+    left: 6px;
+    width: auto;
+    display: inline;
+    background-color: papayawhip;
+    text-align: center;
+    border-radius: 0.3em;
+    padding: 5px;
+    margin-right: 22px;
+    font-weight: normal;
+  }
 }
 
-// ポスト詳細ページのカテゴリーラベル
-.category_label_in_posts_show {
-  position: relative;
-  top: 0px;
-  left: 6px;
-  width: auto;
-  display: inline;
-  background-color: papayawhip;
-  text-align: center;
-  border-radius: 0.3em;
-  padding: 5px;
-  margin-right: 22px;
-}
-
-// 投稿者のアイコン画像
-.caption img {
-  border-radius: 50%;
-}
-
-// いいね！をカウント数を表示するブロック
-div.iine_count {
-  color: red;
-  text-shadow: 0 0 10px red, 0 0 15px red;
-  margin-bottom: 50px;
-  padding: 10px;
-  border-radius: 2px;
-  font-size: 16px;
-  background: #6f0101;
-  text-align: center;
+// 投稿の説明
+.caption {
+  &_user {
+    display: flex;
+    img {
+      border-radius: 50%;
+    }
+    &_post_time {
+      padding: 4px 4px 4px 15px;
+      time {
+        color: silver;
+      }
+    }
+    // いいね！をカウント数を表示するブロック
+    .iine_count {
+      // color: red;
+      color: white;
+      // text-shadow: 0 0 10px red, 0 0 15px red;
+      padding: 13px;
+      font-size: 16px;
+      // background: #6f0101;
+      background-color: #ED3833;
+      text-align: center;
+      margin-left: auto;
+      margin-right: 4px;
+    }
+  }
+  .remarks_title {
+    padding-top: 10px;
+  }
+  // 備考欄
+  .remarks {
+    margin-top: 5px;
+    padding: 3px 7px;
+    min-height: 70px;
+    background-color: #f5f5f5;
+  }
+  // 店の情報
+  .eatery_info {
+    padding: 10px;
+  }
 }
 
 // コメントエリアのテキストがブロック内で折り返されるように設定
@@ -40,23 +75,13 @@ div.iine_count {
   height: 60vh;
   word-wrap: break-word;
   overflow: scroll;
+  img {
+    border-radius: 50%;
+  }
 }
 
 // コメントエリアのタイトルとボディとの間の隙間
 .rightsidebar p.title {
   padding-bottom: 5px;
   border-bottom: solid 1px lightgray;
-}
-
-// コメントした人のアイコン画像
-#comments_area img {
-  border-radius: 50%;
-}
-
-// 備考欄
-.remarks {
-  margin-top: 5px;
-  padding: 3px 7px;
-  min-height: 70px;
-  background-color: #f5f5f5;
 }
