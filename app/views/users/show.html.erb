@@ -61,7 +61,7 @@
       </div>
       <div class="col-xs-2 col-md-2 rightsidebar">
         <div class="user_account_menu">
-          <p><%= @user.name.truncate(20, omission: '...') %></p>
+          <p><%= @user.name.truncate(12, omission: '...') %></p>
           <% if @user.picture.present? %>
             <%= image_tag(@user.picture.image.url, class: "img-responsive") %>
           <% else %>

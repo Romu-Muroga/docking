@@ -19,7 +19,7 @@ ja:
       edit_page: "Edit account info"
       destroy_page: "退会処理"
     sessions:
-      login_page: "Login"  
+      login_page: "Login"
     posts:
-      new_page: "お気に入り登録"
-      edit_page: "お気に入り編集"
+      new_page: "New post"
+      edit_page: "Edit post"

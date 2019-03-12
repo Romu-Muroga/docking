@@ -1,7 +1,7 @@
 <!-- [post, comment]は、投稿のビューで渡しているインスタンスのローカル変数 -->
 <%= form_with(model: [post, comment]) do |f| %>
   <div class="form-group">
-    <%= f.text_area :content, class: "form-control" %>
+    <%= f.text_area :content, placeholder: "#{current_user.name}としてコメントを公開する", class: "form-control" %>
   </div>
   <div class="actions">
     <%= f.submit "コメントをする", class: "btn btn-default" %>

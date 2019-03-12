@@ -100,7 +100,7 @@
                       <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>
                     </time>
                   </span>
-                  <span><%= post.user.name %>さんが<%= post.category.name %>の<%= post.ranking_point %>に投稿しました。<%#= link_to post.user.name, user_path(post.user) %></span>
+                  <span><%= post.user.name.truncate(12, omission: '...') %>さんが<%= post.category.name %>の<%= post.ranking_point %>に投稿しました。<%#= link_to post.user.name, user_path(post.user) %></span>
                 </p>
                 <p>Address: <%= post.eatery_address %></p>
                 <p><%= link_to "Learn more!", post_path(post), class: "btn btn-show" %></p>
