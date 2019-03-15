@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  # 管理者画面実装予定
   # before_action :current_user_admin?
   before_action :set_category, only: %i[edit update destroy]
 
@@ -38,7 +39,7 @@ class CategoriesController < ApplicationController
   end
 
   private
-  
+
   def caregory_params
     params.require(:category).permit(:name)
   end
@@ -47,6 +48,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+  # 管理者画面実装予定
   # 管理者権限を持つユーザーでなかったらルートパスへ移動
   # def current_user_admin?
   #   unless logged_in? && current_user.admin?
