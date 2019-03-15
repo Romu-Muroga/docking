@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   validates :eatery_name, presence: true, length: { in: 1..200 }
   validates :eatery_food, presence: true, length: { in: 1..200 }
   validates :eatery_address, length: { maximum: 500 }
-  validates :ranking_point, uniqueness: { scope: [:category_id, :user_id] }
+  validates :ranking_point, uniqueness: { scope: %i[category_id user_id] }
   # validates: latitude# TODO: 要確認
   # validates: longitude# TODO: 要確認
   validates :eatery_website, length: { maximum: 500 }#, format: { with: /\A#{URI::regexp(%w(http https))}\z/ }

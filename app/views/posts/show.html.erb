@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-1 col-xs-7 col-md-offset-1 col-md-7">
+      <div class="col-xs-12 col-md-offset-1 col-md-7">
         <div class="thumbnail">
           <% if @post.picture.present? %>
             <%= image_tag(@post.picture.image.url, class: "img-responsive") %>
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-3 col-md-3 rightsidebar">
+      <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-3 rightsidebar">
         <p class="title">コメント</p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
           <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->

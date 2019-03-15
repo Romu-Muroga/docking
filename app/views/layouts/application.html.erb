@@ -14,13 +14,13 @@
 
   <body>
     <% if logged_in? %>
-      <header>
-        <div class="navibar">
+      <header class="site-header">
+        <nav class="navibar">
           <%= link_to "ランキング一覧", posts_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to "私のお気に入り", user_path(current_user) %>&nbsp;&nbsp;&nbsp;
           <%= link_to "ログアウト", session_path(current_user), method: :delete %>&nbsp;&nbsp;&nbsp;
           <span><%= current_user.name.truncate(12, omission: '...') %>さんが現在ログイン中</span>
-        </div>
+        </nav>
       </header>
     <% end %>
     <% flash.each do |message_type, message| %>
