@@ -2,7 +2,7 @@
   <div class="post_form_inner">
     <% if post.errors.any? %>
       <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
-        <h2><%= post.errors.count %>件のエラーがあります。</h2>
+        <h4><%= post.errors.count %>件のエラーがあります。</h4>
         <ul>
           <% post.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>

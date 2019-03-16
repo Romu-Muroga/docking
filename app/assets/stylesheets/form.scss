@@ -27,6 +27,20 @@
   margin-bottom: 13px;
 }
 
+// フォームに付与するエラーメッセージ
+.has-error {
+  .form-control {
+    border-color: red;
+  }
+  .help-block {
+    color: red;
+  }
+  select {
+    border-color: red;
+  }
+}
+
+
 // アカウントとログインフォームの背景画像
 #user_form_area {
   background: url("/images/top_page.jpg");
@@ -51,6 +65,12 @@
     width: 100%;
     margin-top: 10px;
   }
+  a.btn {
+    color: black;
+    width: 100%;
+    margin-top: 20px;
+    opacity: 0.8;
+  }
   p {
     margin-top: 20px;
   }
@@ -66,5 +86,8 @@
     bottom: 0;
     left: 0;
     background-color: rgba(0,0,0,0.5);
+  }
+  &.account_area {
+    height: 150%;
   }
 }
