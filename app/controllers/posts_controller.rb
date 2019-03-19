@@ -3,6 +3,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[edit update destroy]
 
+  autocomplete :post, :eatery_name, full: true, limit: 1
+  autocomplete :post, :eatery_food, full: true, limit: 1
+  autocomplete :post, :eatery_address, full: true, limit: 1
+
   def index
     category_list
     @posts = if params[:category_id]
@@ -41,7 +45,7 @@ class PostsController < ApplicationController
     @post.build_picture(image: picture_params[:image]) if picture_params[:image]# 投稿画像は未登録可
     if @post.save
       flash[:success] = t('flash.create', content: @post.eatery_name)
-      redirect_to user_path(@post.user_id)
+      redirect_to post_path(@post)
     else
       render :new
     end

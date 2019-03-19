@@ -1,7 +1,7 @@
 <%= form_with(model: user, local: true, class: "user_form_outer") do |f| %>
   <div class="user_form_inner">
     <% if user.errors.any? %>
-      <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
+      <div id="error_explanation">
         <h4><%= user.errors.count %>件のエラーがあります。</h4>
         <ul>
           <% user.errors.full_messages.each do |msg| %>
@@ -28,7 +28,7 @@
     </div>
     <!-- Pictureモデルのimage属性をセット -->
     <div class="form-group">
-      <%= f.label :image, "アイコン画像を選択してください（任意）" %><!-- TODO: feature spec -->
+      <%= f.label :image, "アイコン画像を選択してください（任意）" %>
       <%= f.file_field :image, class: "form-control" %>
       <%= f.hidden_field :image_cache %>
     </div>
