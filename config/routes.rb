@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
   resources :posts do
     get :search, on: :collection
+    get :autocomplete_post_eatery_name, on: :collection
+    get :autocomplete_post_eatery_food, on: :collection
+    get :autocomplete_post_eatery_address, on: :collection
     resources :comments, only: %i[create destroy]
   end
   resources :likes, only: %i[create destroy]
