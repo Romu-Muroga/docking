@@ -3,9 +3,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[edit update destroy]
 
-  autocomplete :post, :eatery_name, full: true, limit: 1
-  autocomplete :post, :eatery_food, full: true, limit: 1
-  autocomplete :post, :eatery_address, full: true, limit: 1
+  autocomplete :post, :eatery_name, full: true, scopes: [:uniq_eatery_name], full_model: true
+  autocomplete :post, :eatery_food, full: true, scopes: [:uniq_eatery_food], full_model: true
+  autocomplete :post, :eatery_address, full: true, scopes: [:uniq_eatery_address], full_model: true
 
   def index
     category_list
