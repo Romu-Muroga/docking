@@ -98,7 +98,7 @@ class Slider {
 }
 
 // ターボリンクのロードが終わってから発動する
-$(document).on("turbolinks:load", () => {
+$(document).on('turbolinks:load', () => {
   const animation = new Animation()
   // const post = new Slider(animation.sliderStart, animation.clearSlideAnimation)
   const post = new Slider(animation.sliderStart)
