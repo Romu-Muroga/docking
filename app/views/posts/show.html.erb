@@ -60,8 +60,6 @@
 
         <!-- Google map -->
         <div id="map"></div>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>&callback=initMap"
-        async defer></script>
 
       </div>
       <div class="col-md-3 right_section">
@@ -76,3 +74,9 @@
     </div>
   </div>
 </div>
+<!-- scriptタグは表示したいページにだけ書けばいい -->
+<script
+  async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>&callback=initMap"
+ >
+</script>
