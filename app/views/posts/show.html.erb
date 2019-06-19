@@ -1,3 +1,24 @@
+<!-- <script>
+  function initMap() {
+    if (!window.location.pathname.match(/\/posts\/\d+/)) return false
+    var latlng = new google.maps.LatLng(-25.344, 131.036);
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: latlng
+    });
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map
+    });
+  }
+
+  var map;
+  window.onload = function () {
+    initMap();
+  }
+</script> -->
+
+
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
@@ -59,9 +80,7 @@
 
         <!-- Google map -->
         <div id="map"></div>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>&callback=initMap"
-        async defer></script>
-        
+
       </div>
       <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-3 rightsidebar">
         <p class="title">コメント</p>
@@ -77,3 +96,9 @@
     </div>
   </div>
 </div>
+<!-- scriptタグは表示したいページにだけ書けばいい -->
+<script
+  async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>&callback=initMap"
+ >
+</script>

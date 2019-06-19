@@ -10,8 +10,9 @@ class Animation {
 
   // sliderStart() {
   sliderStart(true_or_false) {
-    try {
       // this.slide_clear = false
+      if (!(true_or_false)) return;
+
       const slide = document.getElementById('slide_wrapp');      //スライダー親
       const slideItem = slide.querySelectorAll('.slide_item');   //スライド要素
       const totalNum = slideItem.length - 1;                     //スライドの枚数を取得
@@ -26,10 +27,6 @@ class Animation {
 
       // 処理を繰り返す
       setInterval(() => {
-          // if (this.slide_clear) return;
-          // console.log("ループしている")
-          if (!(true_or_false)) return;
-          console.log(true_or_false)
 
           if (actNum < totalNum) {
 
@@ -63,9 +60,6 @@ class Animation {
 
           };
       }, IntarvalTime);
-    } catch(e) {
-      return
-    }
   }
 }
 
@@ -88,19 +82,25 @@ class Slider {
     if (url.match(this.index_pattern) || url.match(this.category_pattern)) {
       // this.index_callback();
       this.index_callback(true);
-      console.log("matchしている！！")
     } else {
       // this.other_callback();
       this.index_callback(false);
-      console.log("matchしていない...")
     }
   }
 }
 
-// ターボリンクのロードが終わってから発動する
+//初回読み込み、リロード、ページ切り替えで動く。
 $(document).on('turbolinks:load', () => {
   const animation = new Animation()
+  console.log(animation)
   // const post = new Slider(animation.sliderStart, animation.clearSlideAnimation)
+  console.log(animation.sliderStart)
   const post = new Slider(animation.sliderStart)
   post.run()
+  window.onload = () => {
+    const animation = new Animation()
+    // const post = new Slider(animation.sliderStart, animation.clearSlideAnimation)
+    const post = new Slider(animation.sliderStart)
+    post.run()
+  }
 });

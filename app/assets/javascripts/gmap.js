@@ -1,18 +1,22 @@
-// ターボリンクのロードが終わってから発動する
+//初回読み込み、リロード、ページ切り替えで動く。
 $(document).on('turbolinks:load', () => {
   var map;
+  console.log("come")
   function initMap() {
-    // The location of Uluru
-    var uluru = {lat: -25.344, lng: 131.036};
-    // The map, centered at Uluru
+    console.log("not come")
+    if (!window.location.pathname.match(/\/posts\/\d+/)) return false
+    var latlng = new google.maps.LatLng(-25.344, 131.036);
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4, center: uluru
+      zoom: 4,
+      center: latlng
     });
-    // The marker, positioned at Uluru
-    var marker = new google.maps.Marker({position: uluru, map: map});
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map
+    });
   }
-  // InvalidValueError: initMap is not a functionの対応
+  // HTMLの読み込みが完了してから実行
   window.onload = function () {
     initMap();
   }
-});//で囲うとgoogle mapが表示されない
+});
