@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_054211) do
+ActiveRecord::Schema.define(version: 2019_07_16_125713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 2019_02_22_054211) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashname", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
+  end
+
   create_table "likes", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
@@ -48,6 +55,13 @@ ActiveRecord::Schema.define(version: 2019_02_22_054211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "post_hashtags", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "hashtag_id", null: false
+    t.index ["hashtag_id"], name: "index_post_hashtags_on_hashtag_id"
+    t.index ["post_id"], name: "index_post_hashtags_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -82,6 +96,8 @@ ActiveRecord::Schema.define(version: 2019_02_22_054211) do
   add_foreign_key "comments", "users", on_delete: :cascade
   add_foreign_key "likes", "posts", on_delete: :cascade
   add_foreign_key "likes", "users", on_delete: :cascade
+  add_foreign_key "post_hashtags", "hashtags", on_delete: :cascade
+  add_foreign_key "post_hashtags", "posts", on_delete: :cascade
   add_foreign_key "posts", "categories", on_delete: :cascade
   add_foreign_key "posts", "users", on_delete: :cascade
 end
