@@ -20,7 +20,7 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :iine_users, through: :likes, source: :user#「ポストにいいねをしたユーザーの一覧」という関連
   has_many :comments
-  has_and_belongs_to_many :hastags
+  has_and_belongs_to_many :hashtags
 
   # scope
   scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
@@ -99,7 +99,7 @@ class Post < ApplicationRecord
     hashtags = self.remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)# scan:引数に指定した文字列と一致する文字列を、全て配列にして取得する
     hashtags.uniq.map do |hashtag|
       tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
-      post.hastags << tag# postに付与されているhashtagの配列にtagを追加
+      post.hashtags << tag# postに付与されているhashtagの配列にtagを追加
     end
   end
 
@@ -109,7 +109,7 @@ class Post < ApplicationRecord
     hashtags = self.remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
       tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
-      post.hastags << tag
+      post.hashtags << tag
     end
   end
 
