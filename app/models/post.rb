@@ -20,6 +20,7 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :iine_users, through: :likes, source: :user#「ポストにいいねをしたユーザーの一覧」という関連
   has_many :comments
+  has_and_belongs_to_many :hastags
 
   # scope
   scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
@@ -60,30 +61,6 @@ class Post < ApplicationRecord
   end
 
   # 総合ランキング
-  # def self.overall_ranking
-  #   posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
-  #   # => [["aaa", 3], ["天狗", 1]]
-  #   eatery_points = {}
-  #   posts.each { |post| eatery_points[post] = {point: 0} }
-  #   # => {["aaa", 3]=>{:point=>0}, ["天狗", 1]=>{:point=>0}}
-  #   posts = posts.flatten
-  #   # => ["aaa", 3, "天狗", 1]
-  #   dup_records = Post.where(eatery_name: posts).where(category_id: posts)
-  #   # => ["aaa", 3, "天狗", 1]と一致したレコードが全て取得できる
-  #   eatery_points.each do |key, value|
-  #     dup_records.each do |one|
-  #       value[:point] = value[:point] + one.ranking_point_before_type_cast + one.likes_count if one.eatery_name == key[0]
-  #     end
-  #   end
-  #   # => {["aaa", 3]=>{:point=>6}, ["天狗", 1]=>{:point=>10}}
-  #   # ポイントが加算されていくはずが...console上だと
-  #   # one.ranking_point => "１位" or "２位" or "３位"
-  #   # になってしまいIntegerにStringは + できませんと怒られる...
-  #   Hash[ eatery_points.sort_by{ |k, v| -v[:point] } ]
-  #   # => {["aaa", 3]=>{:point=>10}, ["天狗", 1]=>{:point=>6}}
-  # end
-
-  # 総合ランキング（リファクタリング後）
   def self.overall_ranking
     eatery_points, dup_posts = outputs_duplicate_shop_name_and_category# selfが省略されている
     eatery_points.each do |k, v|
@@ -106,6 +83,8 @@ class Post < ApplicationRecord
   # callback
   before_save :set_default
   before_update :set_default
+  after_create :create_hashtag# DBへのコミット直前に実施する
+  before_update :update_hashtag
 
   private
 
@@ -113,6 +92,25 @@ class Post < ApplicationRecord
     # eatery_addressとeatery_website値に未登録をセット
     self.eatery_address = '未登録' if eatery_address.blank?
     self.eatery_website = '未登録' if eatery_website.blank?
+  end
+
+  def create_hashtag
+    post = Post.find_by(id: self.id)
+    hashtags = self.remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)# scan:引数に指定した文字列と一致する文字列を、全て配列にして取得する
+    hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      post.hastags << tag# postに付与されているhashtagの配列にtagを追加
+    end
+  end
+
+  def update_hashtag
+    post = Post.find_by(id: self.id)
+    post.hashtags.clear# clear:要素をすべて削除し、配列を空にする
+    hashtags = self.remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      post.hastags << tag
+    end
   end
 
   # attr_accessor :image # for caching images table value
