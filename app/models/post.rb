@@ -8,9 +8,9 @@ class Post < ApplicationRecord
   # validates: latitude
   # validates: longitude
   validates :eatery_website,
-    length: { maximum: 500 },
-    format: { with: /\A#{URI::regexp(%w(http https))}\z/ },
-    unless: :eatery_website?
+            length: { maximum: 500 },
+            format: { with: /\A#{URI::regexp(%w(http https))}\z/ },
+            unless: :eatery_website?
   validates :remarks, presence: true
 
   # enum
