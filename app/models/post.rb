@@ -7,7 +7,10 @@ class Post < ApplicationRecord
   validates :ranking_point, uniqueness: { scope: %i[category_id user_id] }
   # validates: latitude
   # validates: longitude
-  validates :eatery_website, length: { maximum: 500 }#, format: { with: /\A#{URI::regexp(%w(http https))}\z/ }
+  validates :eatery_website,
+    length: { maximum: 500 },
+    format: { with: /\A#{URI::regexp(%w(http https))}\z/ },
+    unless: :eatery_website?
   validates :remarks, presence: true
 
   # enum
@@ -92,6 +95,10 @@ class Post < ApplicationRecord
     # eatery_addressとeatery_website値に未登録をセット
     self.eatery_address = '未登録' if eatery_address.blank?
     self.eatery_website = '未登録' if eatery_website.blank?
+  end
+
+  def eatery_website?
+    eatery_website == '' || eatery_website == '未登録'
   end
 
   def create_hashtag
