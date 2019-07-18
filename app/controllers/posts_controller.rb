@@ -90,6 +90,11 @@ class PostsController < ApplicationController
     redirect_to user_path(@post.user_id)
   end
 
+  def hashtag
+    @hashtag = Hashtag.find_by(hashname: params[:name])
+    @hashtag_posts = @hashtag.posts
+  end
+
   private
 
   def post_params
