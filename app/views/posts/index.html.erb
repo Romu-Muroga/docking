@@ -90,7 +90,7 @@
               <div class="caption">
                 <p>お気に入りの理由は？</p>
                 <div class="remarks">
-                  <%= simple_format(post.remarks.truncate(150, omission: '...')) %>
+                  <%= render_with_hashtags(simple_format(post.remarks.truncate(150, omission: '...'))) %>
                 </div>
                 <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
                 <p>
