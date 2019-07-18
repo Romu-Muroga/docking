@@ -38,7 +38,6 @@
             </div>
             <div class="eatery_info">
               <span>Address: <%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
-              <!-- TODO: 存在しないアドレスだと404エラーになる -->
               <% if @post.eatery_website == "未登録" %>
                 <span>Website: 未登録<span>&nbsp;&nbsp;&nbsp;
               <% else %>

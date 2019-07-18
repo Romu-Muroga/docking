@@ -1,5 +1,5 @@
 // いいね！した投稿エリア
-.iine_post_area {
+.iine_post_area, .hashtag_post_area {
   margin-top: 80px;
   .iine_post {
     margin: 0 15px 27px 15px;
@@ -55,4 +55,12 @@
     padding: 63px;
     font-size: 14px;
   }
+}
+
+// ハッシュタグエリア
+.hashname_area {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 60px;
+  font-size: -webkit-xxx-large;
 }
