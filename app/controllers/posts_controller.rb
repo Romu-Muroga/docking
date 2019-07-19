@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.build_picture# has_oneでアソシエーションが定義されている場合に使える構文らしい
+    @post.build_picture# has_oneでアソシエーションが定義されている場合に使える構文
   end
 
   def create

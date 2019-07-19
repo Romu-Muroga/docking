@@ -10,6 +10,8 @@ module PostsHelper
 
   # ハッシュタグをリンク化する
   def render_with_hashtags(remarks)
+    # gsub:第1引数に正規表現のパターンを指定してブロックを渡すと、パターンにマッチする部分をすべて取り出して繰り返しブロックを実行します。
+    # マッチした部分はブロックの戻り値に置き換わり、新しい文字列が返ります。
     remarks.gsub(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/) { |word| link_to word, "/post/hashtag/#{word.delete("#")}" }.html_safe
   end
 end

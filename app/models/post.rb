@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   belongs_to :category
   has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   has_many :likes
-  has_many :iine_users, through: :likes, source: :user#「ポストにいいねをしたユーザーの一覧」という関連
+  has_many :iine_users, through: :likes, source: :user
   has_many :comments
   has_and_belongs_to_many :hashtags
 
@@ -47,7 +47,6 @@ class Post < ApplicationRecord
   scope :uniq_eatery_food, -> { select('MIN(id) as id, eatery_food').group(:eatery_food) }
   scope :uniq_eatery_address, -> { select('MIN(id) as id, eatery_address').group(:eatery_address) }
 
-  # いいね機能
   # Postをいいねする
   def iine(user)
     likes.create(user_id: user.id)
@@ -65,7 +64,8 @@ class Post < ApplicationRecord
 
   # 総合ランキング
   def self.overall_ranking
-    eatery_points, dup_posts = outputs_duplicate_shop_name_and_category# selfが省略されている
+    # (self.)outputs_duplicate_shop_name_and_category
+    eatery_points, dup_posts = outputs_duplicate_shop_name_and_category
     eatery_points.each do |k, v|
       dup_posts.each do |post|
         likes_and_ranking_points = post.ranking_point_before_type_cast + post.likes_count
@@ -75,24 +75,28 @@ class Post < ApplicationRecord
     Hash[eatery_points.sort_by { |_, v| -v[:point] }]
   end
 
-  def self.outputs_duplicate_shop_name_and_category# selfが必要
+  # selfが必要
+  def self.outputs_duplicate_shop_name_and_category
     eatery_points = {}
-    posts = Post.group(:eatery_name, :category_id).having('count(*) >= 2').pluck(:eatery_name, :category_id)
+    posts = Post.group(:eatery_name, :category_id)
+                .having('count(*) >= 2')
+                .pluck(:eatery_name, :category_id)
     posts = posts.each { |post| eatery_points[post] = { point: 0 } }.flatten
-    dup_posts = Post.where(eatery_name: posts).or(Post.where(category_id: posts))
+    dup_posts = Post.where(eatery_name: posts)
+                    .or(Post.where(category_id: posts))
     return eatery_points, dup_posts
   end
 
   # callback
   before_save :set_default
   before_update :set_default
-  after_create :create_hashtag# DBへのコミット直前に実施する
+  # DBへのコミット直前に実施する
+  after_create :create_hashtag
   before_update :update_hashtag
 
   private
 
-  def set_default# TODO: DBのdefault値の役割は？
-    # eatery_addressとeatery_website値に未登録をセット
+  def set_default
     self.eatery_address = '未登録' if eatery_address.blank?
     self.eatery_website = '未登録' if eatery_website.blank?
   end
@@ -103,17 +107,20 @@ class Post < ApplicationRecord
 
   def create_hashtag
     post = Post.find_by(id: self.id)
-    hashtags = self.remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)# scan:引数に指定した文字列と一致する文字列を、全て配列にして取得する
+    # scan:引数に指定した文字列と一致する文字列を、全て配列にして取得する
+    hashtags = remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
       tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
-      post.hashtags << tag# postに付与されているhashtagの配列にtagを追加
+      # postに付与されているhashtagの配列にtagを追加
+      post.hashtags << tag
     end
   end
 
   def update_hashtag
     post = Post.find_by(id: self.id)
-    post.hashtags.clear# clear:要素をすべて削除し、配列を空にする
-    hashtags = self.remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    # clear:要素をすべて削除し、配列を空にする
+    post.hashtags.clear
+    hashtags = remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
       tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
       post.hashtags << tag

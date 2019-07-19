@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @user.build_picture#has_oneでアソシエーションが定義されている場合に使える構文らしい
+    @user.build_picture#has_oneでアソシエーションが定義されている場合に使える構文
   end
 
   def create
