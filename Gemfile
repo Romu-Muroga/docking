@@ -21,7 +21,7 @@ gem 'faker'
 # file upload
 gem 'carrierwave'
 # image resize
-gem 'mini_magick'
+gem 'mini_magick', '>= 4.9.4'
 # iine count
 gem 'counter_culture', '~> 1.8'
 # autocomplete

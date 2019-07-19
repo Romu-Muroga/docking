@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     get :autocomplete_post_eatery_address, on: :collection
     resources :comments, only: %i[create destroy]
   end
+  get '/post/hashtag/:name', to: 'posts#hashtag'
   resources :likes, only: %i[create destroy]
 end
