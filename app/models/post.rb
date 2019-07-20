@@ -29,17 +29,17 @@ class Post < ApplicationRecord
   scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
   scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
   scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
-  scope :all_search, lambda { |address, category, rank, name|
-    where('eatery_address LIKE ?', "%#{address}%")
-    .where(category_id: category)
-    .where(ranking_point: rank)
-    .where('eatery_name LIKE ?', "%#{name}%")
-    .latest
-  }
-  scope :address_search, ->(address) { where('eatery_address LIKE ?', "%#{address}%").latest }
-  scope :category_search, ->(category) { where(category_id: category).latest }
-  scope :rank_search, ->(rank) { where(ranking_point: rank).latest }
-  scope :name_search, ->(name) { where('eatery_name LIKE ?', "%#{name}%").latest }
+  # scope :all_search, lambda { |address, category, rank, name|
+  #   where('eatery_address LIKE ?', "%#{address}%")
+  #   .where(category_id: category)
+  #   .where(ranking_point: rank)
+  #   .where('eatery_name LIKE ?', "%#{name}%")
+  #   .latest
+  # }
+  # scope :address_search, ->(address) { where('eatery_address LIKE ?', "%#{address}%").latest }
+  # scope :category_search, ->(category) { where(category_id: category).latest }
+  # scope :rank_search, ->(rank) { where(ranking_point: rank).latest }
+  # scope :name_search, ->(name) { where('eatery_name LIKE ?', "%#{name}%").latest }
   scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
   # autocomplete

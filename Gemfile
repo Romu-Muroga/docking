@@ -16,18 +16,20 @@ gem 'uglifier', '>= 1.3.0'
 
 # has_secure_password
 gem 'bcrypt', '~> 3.1.11'
-# seed data
-gem 'faker'
 # file upload
 gem 'carrierwave'
-# image resize
-gem 'mini_magick', '>= 4.9.4'
 # iine count
 gem 'counter_culture', '~> 1.8'
+# seed data
+gem 'faker'
 # autocomplete
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
+# image resize
+gem 'mini_magick', '>= 4.9.4'
+# search
+gem 'ransack'
 
 group :development, :test do
   # debug

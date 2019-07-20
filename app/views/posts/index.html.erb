@@ -23,14 +23,6 @@
         </div>
       </div>
       <div class="col-xs-offset-3 col-xs-7 col-md-offset-3 col-md-6 centerbar">
-        <!-- <p id="slideshow"> -->
-          <%#= image_tag("/images/photo1.jpg", class: "img-responsive active") %>
-          <%#= image_tag("/images/photo2.jpg", class: "img-responsive") %>
-          <%#= image_tag("/images/photo3.jpg", class: "img-responsive") %>
-          <%#= image_tag("/images/photo4.jpg", class: "img-responsive") %>
-          <%#= image_tag("/images/photo5.png", class: "img-responsive") %>
-          <%#= image_tag("/images/photo6.jpg", class: "img-responsive") %>
-        <!-- </p> -->
         <ul id="slide_wrapp">
           <li class="slide_item"><%= image_tag("/images/photo1.jpg") %></li>
           <li class="slide_item"><%= image_tag("/images/photo2.jpg") %></li>
@@ -39,23 +31,6 @@
           <li class="slide_item"><%= image_tag("/images/photo5.png") %></li>
           <li class="slide_item"><%= image_tag("/images/photo6.jpg") %></li>
         </ul>
-        <!-- <script type="text/javascript">
-          function slideSwitch() {
-             var $active = $('#slideshow img.active');
-             if ( $active.length == 0 ) $active = $('#slideshow img:last');
-             var $next =  $active.next().length ? $active.next()
-                : $('#slideshow img:first');
-             $active.addClass('last-active');
-             $next.css({opacity: 0.0})
-                .addClass('active')
-                .animate({opacity: 1.0}, 1000, function() {
-                     $active.removeClass('active last-active');
-                });
-          };
-          $(function() {
-             setInterval( "slideSwitch()", 3000 );
-          });
-        </script> -->
         <table border="2" width="100%" class="ranking_table">
           <tr>
             <td><%= link_to "総合ランキング", posts_path(overall_sort: "true"), class: cp(posts_path(overall_sort: "true")) %></td>
@@ -123,28 +98,7 @@
       <div class="col-xs-2 col-md-2 rightsidebar">
         <div class="new_post_and_search_menu">
           <%= link_to "New post", new_post_path, class: "cp_btn" %>
-          <%= form_with(model: Post.new, url: search_posts_path, method: :get, local: true, class: "search_form_outer") do |f| %>
-            <div class="search_form_inner">
-              <div class="form-group">
-                <%= f.label :eatery_address %>
-                <%= f.text_field :eatery_address, class: "form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :eatery_name %>
-                <%= f.text_field :eatery_name, class: "form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :category_id %>
-                <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true, selected: "", class: "form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :ranking_point %>
-                <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
-                <%= f.select :ranking_point, Post.ranking_points.keys, include_blank: true, selected: "", class: "form-control" %>
-              </div>
-              <%= f.submit "Search!", class: "btn" %>
-            </div>
-          <% end %>
+          <%= render 'search_form' %>
         </div>
       </div>
     </div>

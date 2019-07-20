@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def index
     category_list
+    @q = Post.ransack(params[:q])
     @posts = if params[:category_id]
                Post.category_sort(params[:category_id])
              elsif params[:iine_sort]
@@ -22,16 +23,18 @@ class PostsController < ApplicationController
 
   def search
     category_list
-    address = params[:post][:eatery_address]
-    category = params[:post][:category_id]
-    rank = params[:post][:ranking_point]
-    name = params[:post][:eatery_name]
-    if address.present? || category.present? || rank.present? || name.present?
-      @posts = post_search(address, category, rank, name)
-      render :index
-    elsif address.blank? && category.blank? && rank.blank? && name.blank?
+    address = params[:q][:eatery_address_cont]
+    name = params[:q][:eatery_name_cont]
+    category = params[:q][:category_id_eq]
+    rank = params[:q][:ranking_point_eq]
+    if address.blank? && category.blank? && rank.blank? && name.blank?
       flash[:warning] = t('flash.Search_word_is_empty')
       redirect_to posts_path
+    else
+      # TODO: ransackはenumに対応してない。-> gem 'enum_help'
+      @q = Post.ransack(search_params)
+      @posts = @q.result(distinct: true)
+      render :index
     end
   end
 
@@ -118,6 +121,15 @@ class PostsController < ApplicationController
     params.require(:post).permit(:image, :image_cache, :picture_delete_check)
   end
 
+  def search_params
+    params.require(:q).permit(
+      :eatery_address_cont,
+      :eatery_name_cont,
+      :category_id_eq,
+      :ranking_point_eq
+    )
+  end
+
   def set_post
     @post = Post.find(params[:id])# この記述は情報漏洩の危険があるためセキュリティー上の問題がある！！
     # @post = current_user.posts.find(params[:id])
@@ -141,29 +153,29 @@ class PostsController < ApplicationController
     @categories = Category.all
   end
 
-  def post_search(address, category, rank, name)
-    if address.present? && category.present? && rank.present? && name.present?
-      Post.all_search(address, category, rank, name)
-    elsif address.present? && category.present?
-      Post.address_search(address).category_search(category)
-    elsif address.present? && rank.present?
-      Post.address_search(address).rank_search(rank)
-    elsif address.present? && name.present?
-      Post.address_search(address).name_search(name)
-    elsif category.present? && rank.present?
-      Post.category_search(category).rank_search(rank)
-    elsif category.present? && name.present?
-      Post.category_search(category).name_search(name)
-    elsif rank.present? && name.present?
-      Post.rank_search(rank).name_search(name)
-    elsif address.present?
-      Post.address_search(address)
-    elsif category.present?
-      Post.category_search(category)
-    elsif rank.present?
-      Post.rank_search(rank)
-    elsif name.present?
-      Post.name_search(name)
-    end
-  end
+  # def post_search(address, category, rank, name)
+  #   if address.present? && category.present? && rank.present? && name.present?
+  #     Post.all_search(address, category, rank, name)
+  #   elsif address.present? && category.present?
+  #     Post.address_search(address).category_search(category)
+  #   elsif address.present? && rank.present?
+  #     Post.address_search(address).rank_search(rank)
+  #   elsif address.present? && name.present?
+  #     Post.address_search(address).name_search(name)
+  #   elsif category.present? && rank.present?
+  #     Post.category_search(category).rank_search(rank)
+  #   elsif category.present? && name.present?
+  #     Post.category_search(category).name_search(name)
+  #   elsif rank.present? && name.present?
+  #     Post.rank_search(rank).name_search(name)
+  #   elsif address.present?
+  #     Post.address_search(address)
+  #   elsif category.present?
+  #     Post.category_search(category)
+  #   elsif rank.present?
+  #     Post.rank_search(rank)
+  #   elsif name.present?
+  #     Post.name_search(name)
+  #   end
+  # end
 end
