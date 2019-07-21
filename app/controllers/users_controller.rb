@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   before_action :login_check, except: %i[new create]
-  before_action :set_user, only: %i[show iine_post_list edit update destroy destroy_confirm id_check]
+  before_action :set_user, only: %i[show iine_post_list edit update destroy destroy_confirm]
   # TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする
-  before_action :id_check, only: %i[show iine_post_list edit update destroy destroy_confirm]
 
   def new
     @user = User.new
-    @user.build_picture#has_oneでアソシエーションが定義されている場合に使える構文らしい
+    @user.build_picture
   end
 
   def create
@@ -65,7 +64,6 @@ class UsersController < ApplicationController
   def destroy_confirm; end
 
   def destroy
-    # render nothing: :true
     checkbox_value = params[:user][:destroy_check].to_i
     # user >> (o)posts >> (x)picture
     # ポリモーフィックでhas_oneの関連を持つpictureは、dependent: :destroyで、
@@ -93,11 +91,21 @@ class UsersController < ApplicationController
 
   # params[:user][:image]は、picturesテーブルに保存するためuser_paramsと分離させる。
   def picture_params
-    params.require(:user).permit(:image, :image_cache, :picture_delete_check)
+    params.require(:user).permit(
+      :image,
+      :image_cache,
+      :picture_delete_check
+    )
   end
 
   def set_user
-    @user = User.find(params[:id])
+    # TODO
+    if params[:id] == current_user.id.to_s
+      @user = current_user
+    else
+      flash[:danger] = t('flash.Unlike_users')
+      redirect_to user_path(current_user)
+    end
   end
 
   def login_check
@@ -107,12 +115,6 @@ class UsersController < ApplicationController
     redirect_to new_session_path
   end
 
-  def id_check
-    return if @user.id == current_user.id
-
-    flash[:danger] = t('flash.Unlike_users')
-    redirect_to user_path(current_user)
-  end
   # メソッド化しようとしたけど、返り値が全てtrueになってしまうため中止
   # def true_or_false
   #   if params[:user][:destroy_check] = "1"

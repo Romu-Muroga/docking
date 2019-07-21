@@ -1,0 +1,25 @@
+<%= search_form_for(@q, url: search_posts_path, method: :get, local: true, class: "search_form_outer") do |f| %>
+  <div class="search_form_inner">
+    <div class="form-group">
+      <%= f.label :eatery_address_cont, t('activerecord.attributes.post.eatery_address') %>
+      <%= f.text_field :eatery_address_cont, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :eatery_name_cont, t('activerecord.attributes.post.eatery_name') %>
+      <%= f.text_field :eatery_name_cont, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :category_id_eq, t('activerecord.attributes.post.category_id') %>
+      <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :ranking_point_eq, t('activerecord.attributes.post.ranking_point') %>
+      <%= f.select :ranking_point_eq,
+                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), "#{rp[1]}"] },
+                   include_blank: true,
+                   class: "form-control"
+                   %>
+    </div>
+    <%= f.submit "Search!", class: "btn" %>
+  </div>
+<% end %>

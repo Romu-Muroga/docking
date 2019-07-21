@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
-  # バリデーション
+  # validates
   validates :name, presence: true, length: { in: 1..500 }
-  # アソシエーション
+  # association
   has_many :posts
 end
