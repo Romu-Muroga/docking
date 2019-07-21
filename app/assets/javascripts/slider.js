@@ -80,12 +80,13 @@ class Slider {
   setPattern() {
     this.index_pattern = /posts$/  //末尾にマッチ
     this.category_pattern = /categories\/\d+\/posts/
+    this.search_pattern = /posts\/search/
     // etc
   }
 
   run() {
     const url = window.location.pathname
-    if (url.match(this.index_pattern) || url.match(this.category_pattern)) {
+    if (url.match(this.index_pattern) || url.match(this.category_pattern) || url.match(this.search_pattern)) {
       // this.index_callback();
       this.index_callback(true);
       console.log("matchしている！！")
