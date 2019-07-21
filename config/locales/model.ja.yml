@@ -5,6 +5,12 @@ ja:
       category: "カテゴリー"
       user: "ユーザー"
       picture: "写真"
+    enum:
+      post:
+        ranking_point:
+          first_place: "１位"
+          second_place: "２位"
+          third_place: "３位"
     attributes:
       post:
         category_id: "Category"

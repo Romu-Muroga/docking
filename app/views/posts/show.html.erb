@@ -22,7 +22,9 @@
               <% end %>
               <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
               <div class="caption_user_post_time">
-                <%= @post.user.name.truncate(12, omission: '...') %>さんが<%= @post.category.name %>の<%= @post.ranking_point %>に投稿しました<br>
+                <%= @post.user.name.truncate(12, omission: '...') %>さんが
+                <%= @post.category.name %>の
+                <%= t("activerecord.enum.post.ranking_point.#{@post.ranking_point}") %>に投稿しました。<br>
                 <time datetime="<%= @post.updated_at %>">
                   <%= time_ago_in_words(@post.updated_at, include_seconds: true)+"前" %>
                 </time>

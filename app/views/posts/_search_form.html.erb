@@ -14,8 +14,11 @@
     </div>
     <div class="form-group">
       <%= f.label :ranking_point_eq, t('activerecord.attributes.post.ranking_point') %>
-      <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
-      <%= f.select :ranking_point_eq, Post.ranking_points.keys, include_blank: true, class: "form-control" %>
+      <%= f.select :ranking_point_eq,
+                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), "#{rp[1]}"] },
+                   include_blank: true,
+                   class: "form-control"
+                   %>
     </div>
     <%= f.submit "Search!", class: "btn" %>
   </div>

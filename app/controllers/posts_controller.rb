@@ -1,23 +1,25 @@
 class PostsController < ApplicationController
+  # before_action
   before_action :login_check
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[edit update destroy]
-
+  # autocomplete
   autocomplete :post, :eatery_name, full: true, scopes: [:uniq_eatery_name], full_model: true
   autocomplete :post, :eatery_food, full: true, scopes: [:uniq_eatery_food], full_model: true
   autocomplete :post, :eatery_address, full: true, scopes: [:uniq_eatery_address], full_model: true
 
   def index
     category_list
+    # defined for search_form
     @q = Post.ransack(params[:q])
     @posts = if params[:category_id]
-               Post.category_sort(params[:category_id])
+               @q.result.category_sort(params[:category_id])
              elsif params[:iine_sort]
-               Post.iine_ranking
+               @q.result.iine_ranking
              elsif params[:overall_sort]
-               Post.overall_ranking
+               @q.result.overall_ranking
              else
-               Post.latest
+               @q.result.latest
              end
   end
 
@@ -31,19 +33,26 @@ class PostsController < ApplicationController
       flash[:warning] = t('flash.Search_word_is_empty')
       redirect_to posts_path
     else
-      # TODO: ransackはenumに対応してない。-> gem 'enum_help'
+      # TODO: enumの対応
+      # @q =>  Condition <attributes: ["ranking_point"], predicate: eq, values: ["１位"]
+      # enumで定義した１位: 3で検索してほしいけど、"１位" => 0になってしまう…
+      # => SELECT "posts".* FROM "posts" WHERE "posts"."ranking_point" = 0
+      # ranking_pointカラムには、integerの3,2,1のいずれかしか格納されていない。
+      # 解決策: formから送るvalueを<option value="3">１位</option>にして、@q => values: ["3"]とすればいい。
       @q = Post.ransack(search_params)
-      @posts = @q.result(distinct: true)
+      @posts = @q.result.latest
       render :index
     end
   end
 
   def new
     @post = Post.new
-    @post.build_picture# has_oneでアソシエーションが定義されている場合に使える構文
+    # build_picture: has_oneでアソシエーションが定義されている場合に使える構文
+    @post.build_picture
   end
 
   def create
+    params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
     @post = Post.new(post_params)
     @post.build_picture(image: picture_params[:image]) if picture_params[:image]# 投稿画像は未登録可
     if @post.save
@@ -55,8 +64,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new# 入力フォームで使用するインスタンスを作成
-    @comments = @post.comments# コメント一覧表示で使用するためのコメントデータを用意
+    # 入力フォームで使用するインスタンスを作成
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   def edit; end
@@ -64,6 +74,7 @@ class PostsController < ApplicationController
   def update
     # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
+      params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
       @post.update!(post_params)
       checkbox_value = params[:post][:picture_delete_check].to_i
       form_submit_image = picture_params[:image]
@@ -118,7 +129,11 @@ class PostsController < ApplicationController
 
   # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
   def picture_params
-    params.require(:post).permit(:image, :image_cache, :picture_delete_check)
+    params.require(:post).permit(
+      :image,
+      :image_cache,
+      :picture_delete_check
+    )
   end
 
   def search_params
@@ -131,8 +146,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])# この記述は情報漏洩の危険があるためセキュリティー上の問題がある！！
-    # @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def login_check
@@ -152,30 +166,4 @@ class PostsController < ApplicationController
   def category_list
     @categories = Category.all
   end
-
-  # def post_search(address, category, rank, name)
-  #   if address.present? && category.present? && rank.present? && name.present?
-  #     Post.all_search(address, category, rank, name)
-  #   elsif address.present? && category.present?
-  #     Post.address_search(address).category_search(category)
-  #   elsif address.present? && rank.present?
-  #     Post.address_search(address).rank_search(rank)
-  #   elsif address.present? && name.present?
-  #     Post.address_search(address).name_search(name)
-  #   elsif category.present? && rank.present?
-  #     Post.category_search(category).rank_search(rank)
-  #   elsif category.present? && name.present?
-  #     Post.category_search(category).name_search(name)
-  #   elsif rank.present? && name.present?
-  #     Post.rank_search(rank).name_search(name)
-  #   elsif address.present?
-  #     Post.address_search(address)
-  #   elsif category.present?
-  #     Post.category_search(category)
-  #   elsif rank.present?
-  #     Post.rank_search(rank)
-  #   elsif name.present?
-  #     Post.name_search(name)
-  #   end
-  # end
 end

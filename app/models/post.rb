@@ -14,32 +14,22 @@ class Post < ApplicationRecord
   validates :remarks, presence: true
 
   # enum
-  enum ranking_point: { １位: 3, ２位: 2, ３位: 1 }
+  enum ranking_point: { first_place: 3, second_place: 2, third_place: 1 }
 
   # association
-  belongs_to :user
-  belongs_to :category
-  has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
+  has_and_belongs_to_many :hashtags
   has_many :likes
   has_many :iine_users, through: :likes, source: :user
   has_many :comments
-  has_and_belongs_to_many :hashtags
+  # TODO: foreign_key: { on_delete: :cascade }
+  has_one :picture, as: :imageable, dependent: :destroy
+  belongs_to :user
+  belongs_to :category
 
   # scope
   scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
   scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
   scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
-  # scope :all_search, lambda { |address, category, rank, name|
-  #   where('eatery_address LIKE ?', "%#{address}%")
-  #   .where(category_id: category)
-  #   .where(ranking_point: rank)
-  #   .where('eatery_name LIKE ?', "%#{name}%")
-  #   .latest
-  # }
-  # scope :address_search, ->(address) { where('eatery_address LIKE ?', "%#{address}%").latest }
-  # scope :category_search, ->(category) { where(category_id: category).latest }
-  # scope :rank_search, ->(rank) { where(ranking_point: rank).latest }
-  # scope :name_search, ->(name) { where('eatery_name LIKE ?', "%#{name}%").latest }
   scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
   # autocomplete
@@ -47,12 +37,12 @@ class Post < ApplicationRecord
   scope :uniq_eatery_food, -> { select('MIN(id) as id, eatery_food').group(:eatery_food) }
   scope :uniq_eatery_address, -> { select('MIN(id) as id, eatery_address').group(:eatery_address) }
 
-  # Postをいいねする
+  # Iine to post.
   def iine(user)
     likes.create(user_id: user.id)
   end
 
-  # Postのいいねを解除する
+  # Remove post iine.
   def uniine(user)
     likes.find_by(user_id: user.id).destroy
   end
@@ -62,7 +52,7 @@ class Post < ApplicationRecord
     iine_users.include?(user)
   end
 
-  # 総合ランキング
+  # Overall ranking
   def self.overall_ranking
     # (self.)outputs_duplicate_shop_name_and_category
     eatery_points, dup_posts = outputs_duplicate_shop_name_and_category

@@ -27,7 +27,7 @@
           <% @user_posts.each do |user_post| %>
             <div class="thumbnail">
               <p class="category_label"><%= user_post.category.name %></p>
-              <h3><%= user_post.ranking_point %>&nbsp;&nbsp;&nbsp;<%= user_post.eatery_name %></h3>
+              <h3><%= t("activerecord.enum.post.ranking_point.#{user_post.ranking_point}") %>&nbsp;&nbsp;&nbsp;<%= user_post.eatery_name %></h3>
               <h4>Menu: &nbsp;<%= user_post.eatery_food %></h4>
               <% if user_post.picture.present? %>
                 <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
@@ -39,7 +39,7 @@
                 <div class="remarks">
                   <%= render_with_hashtags(simple_format(user_post.remarks.truncate(150, omission: '...'))) %>
                 </div>
-                <p><%= link_to "Learn more!", post_path(user_post), class: "btn btn-show" %></p>
+                <p><%= link_to 'Learn more!', post_path(user_post), class: "btn btn-show" %></p>
                 <!-- フォロー/フォロワー機能を実装したときに必要 -->
                 <% if user_post.user_id != current_user.id %>
                   <div id="post-<%= user_post.id %>" data-post-id="<%= user_post.id %>" class="iine_button">
@@ -74,7 +74,7 @@
             <%= link_to destroy_confirm_user_path(current_user), class: "user_account_menu_link" do %>
               <i class="fas fa-sad-tear fa-2x"></i> Close the account
             <% end %>
-            <%= link_to "New post", new_post_path, class: "cp_btn" %>
+            <%= link_to 'New post', new_post_path, class: "cp_btn" %>
             <%= link_to iine_post_list_user_path(@user), class: "iine_posts_link" do %>
               <%= content_tag :span, "いいね！済みのリスト", id: "heart" %>
             <% end %>

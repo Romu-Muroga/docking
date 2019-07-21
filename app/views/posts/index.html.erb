@@ -31,10 +31,10 @@
           <li class="slide_item"><%= image_tag("/images/photo5.png") %></li>
           <li class="slide_item"><%= image_tag("/images/photo6.jpg") %></li>
         </ul>
-        <table border="2" width="100%" class="ranking_table">
+        <table border="1" width="100%" class="ranking_table">
           <tr>
-            <td><%= link_to "総合ランキング", posts_path(overall_sort: "true"), class: cp(posts_path(overall_sort: "true")) %></td>
-            <td><%= link_to "いいね！ランキング", posts_path(iine_sort: "true"), class: cp(posts_path(iine_sort: "true")) %></td>
+            <td><%= link_to '総合ランキング', posts_path(overall_sort: "true"), class: cp(posts_path(overall_sort: "true")) %></td>
+            <td><%= link_to 'いいね！ランキング', posts_path(iine_sort: "true"), class: cp(posts_path(iine_sort: "true")) %></td>
           </tr>
         </table>
         <% if @posts.class == Hash %>
@@ -67,7 +67,6 @@
                 <div class="remarks">
                   <%= render_with_hashtags(simple_format(post.remarks.truncate(150, omission: '...'))) %>
                 </div>
-                <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
                 <p>
                   <span>
                     Post information:&nbsp;
@@ -75,10 +74,15 @@
                       <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>
                     </time>
                   </span>
-                  <span><%= post.user.name.truncate(12, omission: '...') %>さんが<%= post.category.name %>の<%= post.ranking_point %>に投稿しました。<%#= link_to post.user.name, user_path(post.user) %></span>
+                  <span>
+                    <%= post.user.name.truncate(12, omission: '...') %>さんが
+                    <%= post.category.name %>の
+                    <%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>に投稿しました。
+                    <%#= link_to post.user.name, user_path(post.user) %>
+                  </span>
                 </p>
                 <p>Address: <%= post.eatery_address %></p>
-                <p><%= link_to "Learn more!", post_path(post), class: "btn btn-show" %></p>
+                <p><%= link_to 'Learn more!', post_path(post), class: "btn btn-show" %></p>
                 <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">
                   <%= render "likes/like", post: post %><!-- いいねボタン -->
                 </div>
@@ -97,7 +101,7 @@
       </div>
       <div class="col-xs-2 col-md-2 rightsidebar">
         <div class="new_post_and_search_menu">
-          <%= link_to "New post", new_post_path, class: "cp_btn" %>
+          <%= link_to 'New post', new_post_path, class: "cp_btn" %>
           <%= render 'search_form' %>
         </div>
       </div>
