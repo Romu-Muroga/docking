@@ -39,9 +39,10 @@ https://cacoo.com/diagrams/qzbpgYsOZwdL6hjK/2DB02
 #### ランキング新規登録画面及び編集画面
 https://cacoo.com/diagrams/qzbpgYsOZwdL6hjK/02A72
 ## 使用Gem
-- jquery-rails
-- jquery-ui-rails
-- rails-jquery-autocomplete
 - counter_culture
 - carrierwave
+- jquery-rails
+- jquery-ui-rails
 - mini_magick
+- rails-jquery-autocomplete
+- ransack
