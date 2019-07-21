@@ -17,15 +17,17 @@
     </div>
     <div class="form-group">
       <%= f.label :ranking_point %>
-      <!-- formはデフォルトで""がついてしまうため、.keysが必要 -->
       <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
-      <%= f.select :ranking_point, Post.ranking_points.keys, class: "form-control" %>
+      <%= f.select :ranking_point,
+                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), "#{rp[1]}"] },
+                   class: "form-control"
+                   %>
       <% if current_user.posts.present? %>
         <div class="unavailable_post">
           <% current_user.posts.order(ranking_point: :desc).each do |post| %>
             <p>
               <%= Category.find(post.category_id).name %>の
-              <%= post.ranking_point %>は既に使用されています。
+              <%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>は既に使用されています。
             </p>
           <% end %>
         </div>

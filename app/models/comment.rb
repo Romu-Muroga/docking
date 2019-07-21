@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
-  # バリデーション
+  # validates
   validates :content, presence: true
-  # アソシエーション
+  # association
   belongs_to :user
   belongs_to :post
 end
