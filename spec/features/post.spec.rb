@@ -1,185 +1,168 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.feature "投稿機能", type: :feature do
+RSpec.feature '投稿機能', type: :feature do
   # save_and_open_page
-  # ユーザー
   user1 = FactoryBot.create(:user)
   user2 = FactoryBot.create(:second_user)
-  # カテゴリー
-  category1 = FactoryBot.create(:category)# 和食
-  # category2 = FactoryBot.create(:second_category)# ラーメン・麺類
-  category2 = Category.create(name: "ラーメン・麺類")
-  # ポスト
-  post1 = FactoryBot.create(:post, user: user1, category: category1)
-  post2 = FactoryBot.create(:second_post, user: user1, category: category2)
-  # 写真
+
+  category1 = FactoryBot.create(:category)
+  category2 = FactoryBot.create(:second_category)
+
+  post1 = FactoryBot.create(:post, category: category1, user: user1)
+  post2 = FactoryBot.create(:second_post, category: category2, user: user1)
+  post3 = FactoryBot.create(:post, category: category1, user: user2)
+
+  # picture
   FactoryBot.create(:picture, imageable_id: post1.id, imageable_type: post1.class)
-  FactoryBot.create(:second_picture, imageable_id: post2.id, imageable_type: post2.class)
-  # いいね
-  # FactoryBot.create(:post_like, post: post1, user: user1)
+  FactoryBot.create(:picture, imageable_id: post2.id, imageable_type: post2.class)
+  FactoryBot.create(:picture, imageable_id: post3.id, imageable_type: post3.class)
+  # iine
+  FactoryBot.create(:like, post: post2, user: user2)
 
   def login(email)
     visit root_path
-    within "header .nav" do
-      click_on "ログイン"
+    within '.start_button' do
+      click_on 'Login'
     end
-    fill_in "メールアドレス", with: email
-    fill_in "パスワード", with: 'password'
-    within ".form_outer" do
-      click_on "ログイン"
+    fill_in 'メールアドレス', with: email
+    fill_in 'パスワード', with: 'password'
+    within '.form_outer' do
+      click_on 'ログイン'
     end
   end
 
   def logout
-    visit posts_path
-    click_on "ログアウト"
+    click_on 'ログアウト'
   end
 
   background do
-    login("test_user_01@dic.com")
+    login('test_user_01@dic.com')
   end
 
-  scenario "ポストの新規登録テスト" do
-    click_on "新規登録"
+  scenario '新規投稿テスト' do
+    click_on 'New post'
 
-    select "和食", from: "post_category_id"
-    select "２位", from: "post_ranking_point"
-    fill_in "店名", with: "和食レストラン２"
-    fill_in "メニュー名", with: "チキンかあさん煮定食"
-    attach_file "画像", "#{Rails.root}/spec/fixtures/default.png"
-    fill_in "一言、好きな理由を添えて投稿をお願いします", with: "美味しかった！"
+    select '和食', from: 'post_category_id'
+    select '２位', from: 'post_ranking_point'
+    fill_in 'Eatery name', with: '和食レストラン２'
+    fill_in 'Menu', with: 'チキンかあさん煮定食'
+    attach_file '画像', "#{Rails.root}/spec/fixtures/default.png"
+    fill_in '一言、好きな理由を添えて投稿をお願いします', with: '美味しかった！'
 
-    click_on "登録する"
+    click_on '登録する'
 
-    within ".thumbnail[2]" do
-      expect(page).to have_content "和食"
-      expect(page).to have_content "２位"
-      expect(page).to have_content "和食レストラン２"
-      expect(page).to have_content "チキンかあさん煮定食"
-      expect(page).to have_content "未登録"
-      expect(page).to have_content "美味しかった！"
+    within '.thumbnail' do
+      expect(page).to have_content '和食'
+      expect(page).to have_content '２位'
+      expect(page).to have_content '和食レストラン２'
+      expect(page).to have_content 'チキンかあさん煮定食'
+      expect(page).to have_content '未登録'
+      expect(page).to have_content '美味しかった！'
     end
   end
 
-  scenario "ポストを編集できるかテスト" do
+  scenario '投稿記事を編集できるかテスト' do
     visit user_path(user1)
-    all("div.thumbnail")[0].click_on "編集"
+    all('div.thumbnail')[0].click_on 'EDIT'
 
-    select "和食", from: "post_category_id"
-    select "１位", from: "post_ranking_point"
-    fill_in "店名", with: "店名を編集しました！"
-    fill_in "メニュー名", with: "サバの味噌煮定食"
-    attach_file "画像", "#{Rails.root}/spec/fixtures/default.png"
-    fill_in "一言、好きな理由を添えて投稿をお願いします", with: "美味しかった！"
+    select '和食', from: 'post_category_id'
+    select '１位', from: 'post_ranking_point'
+    fill_in 'Eatery name', with: 'Eatery nameを編集しました！'
+    fill_in 'Menu', with: 'サバの味噌煮定食'
+    attach_file '画像', "#{Rails.root}/spec/fixtures/default.png"
+    fill_in '一言、好きな理由を添えて投稿をお願いします', with: '美味しかった！'
 
-    click_on "更新する"
+    click_on '更新する'
 
-    within ".thumbnail" do
-      expect(page).to have_content "和食"
-      expect(page).to have_content "１位"
-      expect(page).to have_content "店名を編集しました！"
-      expect(page).to have_content "サバの味噌煮定食"
-      expect(page).to have_content "未登録"
-      expect(page).to have_content "美味しかった！"
+    within '.thumbnail' do
+      expect(page).to have_content '和食'
+      expect(page).to have_content '１位'
+      expect(page).to have_content 'Eatery nameを編集しました！'
+      expect(page).to have_content 'サバの味噌煮定食'
+      expect(page).to have_content '未登録'
+      expect(page).to have_content '美味しかった！'
     end
   end
 
-  scenario "ポストを削除できるかテスト" do
+  scenario '投稿を削除できるかテスト' do
     visit user_path(user1)
-    all("div.thumbnail")[0].click_on "削除"
+    all('div.thumbnail')[0].click_on 'DELETE'
 
-    expect(page).to have_content "投稿を削除しました"
+    expect(page).to have_content '投稿を削除しました'
   end
 
-  scenario "みんなのお気に入り画面へ遷移できるかテスト" do
+  scenario 'ランキング一覧ページへ遷移できるかテスト' do
     visit user_path(user1)
-    within "header" do
-      click_on "みんなのお気に入り"
+    within 'header' do
+      click_on 'ランキング一覧'
     end
 
-    expect(page).to have_content "いいねランキング"
-    expect(page).to have_content "総合ランキング"
+    expect(page).to have_content '総合ランキング'
+    expect(page).to have_content 'いいね！ランキング'
   end
 
-  scenario "所在地で検索できるかテスト" do
+  scenario '所在地で検索できるかテスト' do
     visit posts_path
-    fill_in "post_eatery_address", with: "未登録"
-    click_on "検索"
+    fill_in 'q_eatery_address_cont', with: '未登録'
+    click_on 'Search!'
 
-    expect(page).to have_content "和食レストラン"
+    expect(page).to have_content '和食レストラン', 'ラーメン屋'
   end
 
-  scenario "店名で検索できるかテスト" do
+  scenario '店名で検索できるかテスト' do
     visit posts_path
-    fill_in "post[eatery_name]", with: "和食レストラン"
-    click_on "検索"
+    fill_in 'q_eatery_name_cont', with: '和食レストラン'
+    click_on 'Search!'
 
-    expect(page).to have_content "和食レストラン"
+    expect(page).to have_content '和食レストラン'
   end
 
-  scenario "カテゴリーで検索できるかテスト" do
+  scenario 'カテゴリーで検索できるかテスト' do
     visit posts_path
-    select "和食", from: "post_category_id"
-    click_on "検索"
+    select '和食', from: 'q_category_id_eq'
+    click_on 'Search!'
 
-    expect(page).to have_content "和食レストラン"
+    expect(page).to have_content '和食レストラン'
   end
 
-  scenario "順位で検索できるかテスト" do
+  scenario '順位で検索できるかテスト' do
     visit posts_path
-    select "１位", from: "post_ranking_point"
-    click_on "検索"
+    select '１位', from: 'q_ranking_point_eq'
+    click_on 'Search!'
 
-    expect(page).to have_content "和食レストラン", "ラーメン屋"
+    expect(page).to have_content '和食レストラン', 'ラーメン屋'
   end
 
-  scenario "いいねランキングでソートできるかテスト" do
-    logout
-    login("test_user_02@dic.com")
-    Like.create!(post_id: post1.id, user_id: user2.id)# @user2.idにすると@userがnilになってしまう？
-
+  scenario 'いいね！ランキングでソートできるかテスト' do
     visit posts_path
-    click_on "いいねランキング"
+    click_on 'いいね！ランキング'
 
-    all(".thumbnail")[0].click_on "詳細をみる"
-    expect(page).to have_content "和食レストラン"
+    all('.thumbnail')[0].click_on 'Learn more!'
+    expect(page).to have_content 'ラーメン屋'
   end
 
-  scenario "総合ランキングでソートできるかテスト" do
-    Like.create!(post_id: post1.id, user_id: user2.id)
-    Post.create!(
-      ranking_point: 3,
-      eatery_name: "和食レストラン",
-      eatery_food: "-------",
-      eatery_address: "-------",
-      eatery_website: "-------",
-      remarks: "-------",
-      likes_count: 0,
-      category_id: category1.id,
-      user_id: user2.id
-    )
-
+  scenario '総合ランキングでソートできるかテスト' do
     visit posts_path
-    click_on "総合ランキング"
+    click_on '総合ランキング'
 
-    expect(page).to have_content "7ポイント"
+    expect(page).to have_content '1位 店名：和食レストラン（和食） 6ポイント'
   end
 
-  scenario "カテゴリーでソートできるかテスト" do
+  scenario 'カテゴリーでソートできるかテスト' do
     visit posts_path
-    within "tr.active_category[1]" do
-      click_link "和食"
+    within 'tr.active_category[1]' do
+      click_link '和食'
     end
 
-    expect(page).to have_content "和食レストラン"
+    expect(page).to have_content '和食レストラン'
   end
 
-  scenario "私のお気に入りへ遷移できるかテスト" do
-    visit user_path(user1)
-    within "header" do
-      click_on "私のお気に入り"
+  scenario '私のお気に入りへ遷移できるかテスト' do
+    visit posts_path
+    within 'header' do
+      click_on '私のお気に入り'
     end
 
-    expect(page).to have_content "test_user_01"
+    expect(page).to have_content 'test_user_01'
   end
 end
