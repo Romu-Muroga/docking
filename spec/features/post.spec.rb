@@ -1,24 +1,7 @@
 require 'rails_helper'
+# save_and_open_page
 
 RSpec.feature '投稿機能', type: :feature do
-  # save_and_open_page
-  user1 = FactoryBot.create(:user)
-  user2 = FactoryBot.create(:second_user)
-
-  category1 = FactoryBot.create(:category)
-  category2 = FactoryBot.create(:second_category)
-
-  post1 = FactoryBot.create(:post, category: category1, user: user1)
-  post2 = FactoryBot.create(:second_post, category: category2, user: user1)
-  post3 = FactoryBot.create(:post, category: category1, user: user2)
-
-  # picture
-  FactoryBot.create(:picture, imageable_id: post1.id, imageable_type: post1.class)
-  FactoryBot.create(:picture, imageable_id: post2.id, imageable_type: post2.class)
-  FactoryBot.create(:picture, imageable_id: post3.id, imageable_type: post3.class)
-  # iine
-  FactoryBot.create(:like, post: post2, user: user2)
-
   def login(email)
     visit root_path
     within '.start_button' do
@@ -36,6 +19,23 @@ RSpec.feature '投稿機能', type: :feature do
   end
 
   background do
+    # user
+    user1 = FactoryBot.create(:user)
+    user2 = FactoryBot.create(:second_user)
+    # category
+    category1 = FactoryBot.create(:category)
+    category2 = FactoryBot.create(:second_category)
+    # post
+    post1 = FactoryBot.create(:post, category: category1, user: user1)
+    post2 = FactoryBot.create(:second_post, category: category2, user: user1)
+    post3 = FactoryBot.create(:post, category: category1, user: user2)
+    # picture
+    FactoryBot.create(:picture, imageable_id: post1.id, imageable_type: post1.class)
+    FactoryBot.create(:picture, imageable_id: post2.id, imageable_type: post2.class)
+    FactoryBot.create(:picture, imageable_id: post3.id, imageable_type: post3.class)
+    # iine
+    FactoryBot.create(:like, post: post2, user: user2)
+    # login
     login('test_user_01@dic.com')
   end
 
@@ -62,7 +62,6 @@ RSpec.feature '投稿機能', type: :feature do
   end
 
   scenario '投稿記事を編集できるかテスト' do
-    visit user_path(user1)
     all('div.thumbnail')[0].click_on 'EDIT'
 
     select '和食', from: 'post_category_id'
@@ -85,14 +84,12 @@ RSpec.feature '投稿機能', type: :feature do
   end
 
   scenario '投稿を削除できるかテスト' do
-    visit user_path(user1)
     all('div.thumbnail')[0].click_on 'DELETE'
 
     expect(page).to have_content '投稿を削除しました'
   end
 
   scenario 'ランキング一覧ページへ遷移できるかテスト' do
-    visit user_path(user1)
     within 'header' do
       click_on 'ランキング一覧'
     end
