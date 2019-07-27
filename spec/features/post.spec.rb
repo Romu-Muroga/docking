@@ -89,77 +89,60 @@ RSpec.feature '投稿機能', type: :feature do
     expect(page).to have_content '投稿を削除しました'
   end
 
-  scenario 'ランキング一覧ページへ遷移できるかテスト' do
-    within 'header' do
-      click_on 'ランキング一覧'
+  feature '検索、ソート機能', type: :feature do
+    background do
+      within 'header' do
+        click_on 'ランキング一覧'
+      end
     end
 
-    expect(page).to have_content '総合ランキング'
-    expect(page).to have_content 'いいね！ランキング'
-  end
+    scenario '所在地で検索できるかテスト' do
+      fill_in 'q_eatery_address_cont', with: '未登録'
+      click_on 'Search!'
 
-  scenario '所在地で検索できるかテスト' do
-    visit posts_path
-    fill_in 'q_eatery_address_cont', with: '未登録'
-    click_on 'Search!'
-
-    expect(page).to have_content '和食レストラン', 'ラーメン屋'
-  end
-
-  scenario '店名で検索できるかテスト' do
-    visit posts_path
-    fill_in 'q_eatery_name_cont', with: '和食レストラン'
-    click_on 'Search!'
-
-    expect(page).to have_content '和食レストラン'
-  end
-
-  scenario 'カテゴリーで検索できるかテスト' do
-    visit posts_path
-    select '和食', from: 'q_category_id_eq'
-    click_on 'Search!'
-
-    expect(page).to have_content '和食レストラン'
-  end
-
-  scenario '順位で検索できるかテスト' do
-    visit posts_path
-    select '１位', from: 'q_ranking_point_eq'
-    click_on 'Search!'
-
-    expect(page).to have_content '和食レストラン', 'ラーメン屋'
-  end
-
-  scenario 'いいね！ランキングでソートできるかテスト' do
-    visit posts_path
-    click_on 'いいね！ランキング'
-
-    all('.thumbnail')[0].click_on 'Learn more!'
-    expect(page).to have_content 'ラーメン屋'
-  end
-
-  scenario '総合ランキングでソートできるかテスト' do
-    visit posts_path
-    click_on '総合ランキング'
-
-    expect(page).to have_content '1位 店名：和食レストラン（和食） 6ポイント'
-  end
-
-  scenario 'カテゴリーでソートできるかテスト' do
-    visit posts_path
-    within 'tr.active_category[1]' do
-      click_link '和食'
+      expect(page).to have_content '和食レストラン', 'ラーメン屋'
     end
 
-    expect(page).to have_content '和食レストラン'
-  end
+    scenario '店名で検索できるかテスト' do
+      fill_in 'q_eatery_name_cont', with: '和食レストラン'
+      click_on 'Search!'
 
-  scenario '私のお気に入りへ遷移できるかテスト' do
-    visit posts_path
-    within 'header' do
-      click_on '私のお気に入り'
+      expect(page).to have_content '和食レストラン'
     end
 
-    expect(page).to have_content 'test_user_01'
+    scenario 'カテゴリーで検索できるかテスト' do
+      select '和食', from: 'q_category_id_eq'
+      click_on 'Search!'
+
+      expect(page).to have_content '和食レストラン'
+    end
+
+    scenario '順位で検索できるかテスト' do
+      select '１位', from: 'q_ranking_point_eq'
+      click_on 'Search!'
+
+      expect(page).to have_content '和食レストラン', 'ラーメン屋'
+    end
+
+    scenario 'いいね！ランキングでソートできるかテスト' do
+      click_on 'いいね！ランキング'
+
+      all('.thumbnail')[0].click_on 'Learn more!'
+      expect(page).to have_content 'ラーメン屋'
+    end
+
+    scenario '総合ランキングでソートできるかテスト' do
+      click_on '総合ランキング'
+
+      expect(page).to have_content '1位 店名：和食レストラン（和食） 6ポイント'
+    end
+
+    scenario 'カテゴリーでソートできるかテスト' do
+      within 'tr.active_category[1]' do
+        click_link '和食'
+      end
+
+      expect(page).to have_content '和食レストラン'
+    end
   end
 end
