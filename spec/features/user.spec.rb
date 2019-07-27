@@ -67,5 +67,13 @@ RSpec.feature 'ユーザー機能', type: :feature do
       click_on 'ログアウト'
       expect(page).to have_content 'ログアウトしました'
     end
+
+    scenario 'アカウント削除ができるかテスト' do
+      click_on 'Close the account'
+      check 'チェックを入れて退会ボタンを押してください'
+      click_on '退会する'
+
+      expect(page).to have_content 'test_user_01さんのアカウントを削除しました。ご利用いただき、ありがとうございました！'
+    end
   end
 end
