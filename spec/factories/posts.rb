@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   factory :post do
     ranking_point { 3 }
     eatery_name { '和食レストラン' }

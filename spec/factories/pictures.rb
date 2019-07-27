@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   factory :picture do
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/default.png')) }
     imageable_id {}
