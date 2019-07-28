@@ -20,21 +20,21 @@ RSpec.feature '投稿機能', type: :feature do
 
   background do
     # user
-    user1 = FactoryBot.create(:user)
-    user2 = FactoryBot.create(:second_user)
+    user1 = create(:user)
+    user2 = create(:second_user)
     # category
-    category1 = FactoryBot.create(:category)
-    category2 = FactoryBot.create(:second_category)
+    category1 = create(:category)
+    category2 = create(:second_category)
     # post
-    post1 = FactoryBot.create(:post, category: category1, user: user1)
-    post2 = FactoryBot.create(:second_post, category: category2, user: user1)
-    post3 = FactoryBot.create(:post, category: category1, user: user2)
+    post1 = create(:post, category: category1, user: user1)
+    post2 = create(:second_post, category: category2, user: user1)
+    post3 = create(:post, category: category1, user: user2)
     # picture
-    FactoryBot.create(:picture, imageable_id: post1.id, imageable_type: post1.class)
-    FactoryBot.create(:picture, imageable_id: post2.id, imageable_type: post2.class)
-    FactoryBot.create(:picture, imageable_id: post3.id, imageable_type: post3.class)
+    create(:picture, imageable_id: post1.id, imageable_type: post1.class)
+    create(:picture, imageable_id: post2.id, imageable_type: post2.class)
+    create(:picture, imageable_id: post3.id, imageable_type: post3.class)
     # iine
-    FactoryBot.create(:like, post: post2, user: user2)
+    create(:like, post: post2, user: user2)
     # login
     login('test_user_01@dic.com')
   end

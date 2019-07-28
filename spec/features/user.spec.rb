@@ -3,10 +3,10 @@ require 'rails_helper'
 
 RSpec.feature 'ユーザー機能', type: :feature do
   background do
-    user1 = FactoryBot.create(:user)
-    category1 = FactoryBot.create(:category)
-    post1 = FactoryBot.create(:post, category: category1, user: user1)
-    FactoryBot.create(:picture, imageable_id: post1.id, imageable_type: post1.class)
+    user1 = create(:user)
+    category1 = create(:category)
+    post1 = create(:post, category: category1, user: user1)
+    create(:picture, imageable_id: post1.id, imageable_type: post1.class)
   end
 
   scenario 'ログインできるかテスト' do
