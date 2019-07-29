@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   let!(:test_user_01) { create(:user) }
-  let!(:japanese_food) { create(:category) }
+  let!(:washoku) { create(:category) }
   let!(:ramen) { create(:second_category) }
   it 'ranking_pointが空だとバリデーションが通らない' do
     post = Post.new(
@@ -11,7 +11,9 @@ RSpec.describe Post, type: :model do
       eatery_food: 'test',
       eatery_address: '',
       eatery_website: '',
-      remarks: 'test'
+      remarks: 'test',
+      category: washoku,
+      user: test_user_01
     )
     # be_validでvalid?メソッドを呼んで、それが返す値が（真 = true）ではない（not_to）ことを期待するテスト
     expect(post).not_to be_valid
@@ -26,7 +28,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
@@ -38,7 +40,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
@@ -53,7 +55,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
@@ -65,7 +67,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
@@ -80,7 +82,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
@@ -95,7 +97,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     post = Post.new(
@@ -106,7 +108,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post.save).to eq false
@@ -121,7 +123,7 @@ RSpec.describe Post, type: :model do
       eatery_website: "https://#{'a' * 501}@dic.com",
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
@@ -133,7 +135,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '不正なフォーマット',
       remarks: 'test',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
@@ -148,7 +150,7 @@ RSpec.describe Post, type: :model do
       eatery_website: '',
       remarks: '',
       likes_count: 0,
-      category: japanese_food,
+      category: washoku,
       user: test_user_01
     )
     expect(post).not_to be_valid
