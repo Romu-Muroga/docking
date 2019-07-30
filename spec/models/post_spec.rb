@@ -111,7 +111,7 @@ RSpec.describe Post, type: :model do
       category: washoku,
       user: test_user_01
     )
-    expect(post.save).to eq false
+    expect(post).not_to be_valid
   end
 
   it 'eatery_websiteが501文字以上または不正なフォーマットだとバリデーションが通らない' do

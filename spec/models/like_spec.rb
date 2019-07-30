@@ -7,11 +7,11 @@ RSpec.describe Like, type: :model do
   it '同じ投稿にいいね！しようとするとバリデーションが通らない' do
     create(:like, post: washoku_restaurant, user: test_user_01)
     like = Like.new(post: washoku_restaurant, user: test_user_01)
-    expect(like.save).to eq false
+    expect(like).not_to be_valid
   end
 
   it 'post_idまたはuser_idがnilだとバリデーションが通らない' do
     like = Like.new(post: nil, user: nil)
-    expect(like.save).to eq false
+    expect(like).not_to be_valid
   end
 end
