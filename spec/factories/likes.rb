@@ -1,12 +1,11 @@
 FactoryBot.define do
-
-  factory :post_like do
-    post { nil }
-    user { nil }
+  factory :like do
+    post {}
+    user {}
   end
 
-  factory :second_post_like, class: Like do
-    post { nil }
-    user { nil }
+  factory :second_like, class: Like do
+    post {}
+    user {}
   end
 end

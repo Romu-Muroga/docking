@@ -15,7 +15,7 @@
               <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
               <!-- 文字列の"true","false"をboolean型に変換する必要がある -->
               <%= f.check_box "destroy_check", {}, 1, 2 %>
-              <%= f.label "destroy_check", "チェック入れて退会ボタンを押してください" %>
+              <%= f.label "destroy_check", "チェックを入れて退会ボタンを押してください" %>
             </div>
           </div>
           <%= f.submit "退会する", class: "btn btn-default" %>

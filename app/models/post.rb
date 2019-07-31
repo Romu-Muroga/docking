@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
   # validates
   validates :ranking_point, presence: true
+  validates :ranking_point, uniqueness: { scope: %i[category_id user_id] }
   validates :eatery_name, presence: true, length: { in: 1..200 }
   validates :eatery_food, presence: true, length: { in: 1..200 }
   validates :eatery_address, length: { maximum: 500 }
-  validates :ranking_point, uniqueness: { scope: %i[category_id user_id] }
   # validates: latitude
   # validates: longitude
   validates :eatery_website,
@@ -27,12 +27,12 @@ class Post < ApplicationRecord
   belongs_to :category
 
   # scope
-  scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
   scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
-  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
   scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
-  # autocomplete
+  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
+  scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
+  # scope for autocomplete
   scope :uniq_eatery_name, -> { select('MIN(id) as id, eatery_name').group(:eatery_name) }
   scope :uniq_eatery_food, -> { select('MIN(id) as id, eatery_food').group(:eatery_food) }
   scope :uniq_eatery_address, -> { select('MIN(id) as id, eatery_address').group(:eatery_address) }

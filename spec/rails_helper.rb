@@ -59,7 +59,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # テストごとに生成されたテストデータを自動で削除する仕組みを導入するための記述
+  # Automatically delete test data generated for each test
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end
@@ -71,4 +71,7 @@ RSpec.configure do |config|
   config.after(:all) do
     DatabaseCleaner.clean
   end
+
+  # Omit FactoryBot
+  config.include FactoryBot::Syntax::Methods
 end

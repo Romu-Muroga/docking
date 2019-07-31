@@ -2,7 +2,11 @@ class User < ApplicationRecord
   # validates
   before_validation { email.downcase! }#downcase!でバリデーションする前にメールアドレスの値を小文字に変換
   validates :name, presence: true, length: { in: 1..500 }
-  validates :email, presence: true, length: { in: 1..500 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: true
+  validates :email,
+            presence: true,
+            length: { in: 1..500 },
+            format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+            uniqueness: true
   validates :password, presence: true, length: { in: 6..100 }
 
   has_secure_password
@@ -11,7 +15,7 @@ class User < ApplicationRecord
   # authenticateメソッドが使えるようになる (引数の文字列がパスワードと一致するとUserオブジェクトを、間違っているとfalseを返すメソッド)
 
   # association
-  has_one :picture, as: :imageable, dependent: :destroy#TODO: foreign_key: { on_delete: :cascade }
+  has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   has_many :posts
   has_many :likes
   has_many :iine_posts, through: :likes, source: :post#「ユーザーがいいねをしたポストの一覧」という関連
