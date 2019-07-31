@@ -40,8 +40,7 @@
   }
 }
 
-
-// アカウントとログインフォームの背景画像
+// アカウント新規登録、アカウント情報編集、ログインフォームの背景画像
 #user_form_area {
   background: url("/images/top_page.jpg");
   // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
@@ -89,5 +88,8 @@
   }
   &.account_area {
     height: 150%;
+  }
+  label[for="user_picture_delete_check"] {
+    display: inline;
   }
 }

@@ -37,14 +37,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
-  # Rspec
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
-  gem 'spring-commands-rspec'
-  # FeatureSpec save_and_open_page
-  gem 'launchy'
   # ENV
   gem 'dotenv-rails'
 end
@@ -58,7 +50,14 @@ end
 
 group :test do
   gem 'chromedriver-helper'
+  # Rspec
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'launchy'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'spring-commands-rspec'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
