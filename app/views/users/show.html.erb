@@ -68,7 +68,7 @@
             <%= image_tag("/images/default.png", class: "img-responsive")%>
           <% end %>
           <% if @user.id == current_user.id %>
-            <%= link_to admin_categories_path, class: "user_account_menu_link" do %>
+            <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
               <i class="fas fa-hammer fa-2x"></i> Administrator page
             <% end %><br>
             <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>

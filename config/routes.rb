@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :sessions, only: %i[new create destroy]
   namespace :admin do
     resources :categories
+    resources :tops, only: %i[index]
   end
   get '/categories/:category_id/users/:id', to: 'users#show', as: :category_user
   get '/categories/:category_id/posts', to: 'posts#index', as: :category_posts
