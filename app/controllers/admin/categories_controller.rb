@@ -1,5 +1,4 @@
-class CategoriesController < ApplicationController
-  # 管理者画面実装予定
+class Admin::CategoriesController < ApplicationController
   # before_action :current_user_admin?
   before_action :set_category, only: %i[edit update destroy]
 

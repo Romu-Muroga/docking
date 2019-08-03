@@ -49,7 +49,7 @@
                 <% if user_post.user_id == current_user.id %>
                   <p class="edit_delete_button">
                     <%= link_to 'EDIT', edit_post_path(user_post), class: "btn btn-warning" %>
-                    <%= link_to 'DELETE', post_path(user_post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
+                    <%= link_to 'DELETE', post_path(user_post), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-danger" %>
                   </p>
                 <% end %>
               </div>
@@ -68,6 +68,9 @@
             <%= image_tag("/images/default.png", class: "img-responsive")%>
           <% end %>
           <% if @user.id == current_user.id %>
+            <%= link_to admin_categories_path, class: "user_account_menu_link" do %>
+              <i class="fas fa-hammer fa-2x"></i> Administrator page
+            <% end %><br>
             <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
               <i class="fas fa-user-edit fa-2x"></i> Edit account info
             <% end %><br>
@@ -76,7 +79,7 @@
             <% end %>
             <%= link_to 'New post', new_post_path, class: "cp_btn" %>
             <%= link_to iine_post_list_user_path(@user), class: "iine_posts_link" do %>
-              <%= content_tag :span, "いいね！済みのリスト", id: "heart" %>
+              <%= content_tag :span, 'いいね！済みのリスト', id: "heart" %>
             <% end %>
             <!-- <p>フォローリストに変更予定</p> -->
             <!-- <div class="iine_box"> -->

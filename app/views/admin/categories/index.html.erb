@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
-        <h3>カテゴリー一覧画面<%= link_to 'カテゴリー新規登録', new_category_path %></h3>
+        <h3>カテゴリー一覧画面<%= link_to 'カテゴリー新規登録', new_admin_category_path %></h3>
         <table class="table">
           <thead>
             <tr>
@@ -15,8 +15,8 @@
               <tr>
                 <td><%= category.name %></td>
                 <td>
-                  <%= link_to 'EDIT', edit_category_path(category) %>&nbsp;
-                  <%= link_to 'DELETE', category_path(category), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+                  <%= link_to 'EDIT', edit_admin_category_path(category) %>&nbsp;
+                  <%= link_to 'DELETE', admin_category_path(category), method: :delete, data: { confirm: '削除してよろしいですか？' } %>
                 </td>
               </tr>
             <% end %>
