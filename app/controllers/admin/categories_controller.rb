@@ -24,8 +24,8 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:success] = 'カテゴリーを更新しました！'
-      redirect_to categories_path
+      flash[:success] = t('flash.update', content: @category.model_name.human)
+      redirect_to admin_categories_path
     else
       render :edit
     end
