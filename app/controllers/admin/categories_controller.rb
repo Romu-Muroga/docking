@@ -13,8 +13,8 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = 'カテゴリーを登録しました！'
-      redirect_to categories_path
+      flash[:success] = t('flash.create', content: @category.name)
+      redirect_to admin_categories_path
     else
       render :new
     end
@@ -39,7 +39,7 @@ class Admin::CategoriesController < ApplicationController
 
   private
 
-  def caregory_params
+  def category_params
     params.require(:category).permit(:name)
   end
 

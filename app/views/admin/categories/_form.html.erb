@@ -1,8 +1,8 @@
-<%= form_with(model: @category, local: true, class: "form_outer") do |f| %>
+<%= form_with(model: @category, url: admin_categories_path, local: true, class: "form_outer") do |f| %>
   <div class="form_inner">
     <% if @category.errors.any? %>
-      <div id="error_explanation"><!-- TODO: CSS当たってない？ -->
-        <h2><%= @category.errors.count %>件のエラーがあります。</h2>
+      <div id="error_explanation">
+        <h4><%= @category.errors.count %>件のエラーがあります。</h4>
         <ul>
           <% @category.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>

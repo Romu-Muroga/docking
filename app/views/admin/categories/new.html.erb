@@ -1,8 +1,8 @@
-<div class="wrapper">
+<div class="wrapper" id="category_form_area">
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
-        <h3>カテゴリー新規登録画面</h3>
+        <h3><span class="underline"><%= t('views.categories.new_page') %></span></h3>
         <%= render partial: "form", locals: { category: @category } %>
       </div>
     </div>

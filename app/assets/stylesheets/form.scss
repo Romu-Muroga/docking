@@ -3,7 +3,7 @@
   // タイトル
   h3 {
     text-align: center;
-    span.underline{
+    span.underline {
       background: linear-gradient(transparent 50%, yellow 50%);
     }
   }
@@ -13,6 +13,17 @@
     .unavailable_post {
       border: solid 1px lightgray;
       padding: 10px;
+    }
+  }
+}
+
+// カテゴリーフォーム
+#category_form_area {
+  margin-top: 25vh;
+  h3 {
+    text-align: center;
+    span.underline {
+      background: linear-gradient(transparent 50%, yellow 50%);
     }
   }
 }

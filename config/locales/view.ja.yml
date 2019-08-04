@@ -23,3 +23,5 @@ ja:
     posts:
       new_page: "New post"
       edit_page: "Edit post"
+    categories:
+      new_page: "New category"
