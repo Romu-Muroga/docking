@@ -14,7 +14,10 @@
 // 管理者専用カテゴリー一覧ページ
 .admin_category_index {
   margin-top: 45px;
-  a.btn {
+  .btn {
     margin-left: 61%;
+  }
+  .category_destroy_link {
+    color: red;
   }
 }

@@ -16,7 +16,12 @@
                 <td><%= category.name %></td>
                 <td>
                   <%= link_to 'EDIT', edit_admin_category_path(category) %>&nbsp;
-                  <%= link_to 'DELETE', admin_category_path(category), method: :delete, data: { confirm: "#{category.name}を削除してよろしいですか？" } %>
+                  <%= link_to 'DELETE',
+                              admin_category_path(category),
+                              method: :delete,
+                              data: { confirm: "#{category.name}を削除してよろしいですか？" },
+                              class: "category_destroy_link"
+                  %>
                 </td>
               </tr>
             <% end %>

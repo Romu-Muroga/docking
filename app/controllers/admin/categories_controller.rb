@@ -33,8 +33,8 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    flash[:success] = 'カテゴリーを削除しました！'
-    redirect_to categories_path
+    flash[:success] = t('flash.destroy', content: @category.name)
+    redirect_to admin_categories_path
   end
 
   private
