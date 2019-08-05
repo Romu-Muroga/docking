@@ -17,12 +17,11 @@ class Post < ApplicationRecord
   enum ranking_point: { first_place: 3, second_place: 2, third_place: 1 }
 
   # association
-  has_and_belongs_to_many :hashtags
-  has_many :likes
+  has_and_belongs_to_many :hashtags, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :iine_users, through: :likes, source: :user
-  has_many :comments
-  # TODO: foreign_key: { on_delete: :cascade }
-  has_one :picture, as: :imageable, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
   belongs_to :user
   belongs_to :category
 

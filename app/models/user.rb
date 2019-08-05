@@ -16,8 +16,8 @@ class User < ApplicationRecord
 
   # association
   has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
-  has_many :posts
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :iine_posts, through: :likes, source: :post#「ユーザーがいいねをしたポストの一覧」という関連
-  has_many :comments
+  has_many :comments, dependent: :destroy
 end
