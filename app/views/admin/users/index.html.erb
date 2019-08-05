@@ -7,6 +7,7 @@
           <thead>
             <tr>
               <th>アカウント名</th>
+              <th>管理者権限</th>
               <th></th><!-- 空マス -->
             </tr>
           </thead>
@@ -14,6 +15,11 @@
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.name %></td>
+                <% if user.admin %>
+                  <td>あり</td>
+                <% else %>
+                  <td>なし</td>
+                <% end %>
                 <td>
                   <%= link_to 'EDIT', edit_admin_user_path(user) %>&nbsp;
                   <%= link_to 'DELETE',
