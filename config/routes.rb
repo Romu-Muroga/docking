@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :categories
     resources :tops, only: %i[index]
+    resources :users, only: %i[index edit update destroy]
   end
   get '/categories/:category_id/users/:id', to: 'users#show', as: :category_user
   get '/categories/:category_id/posts', to: 'posts#index', as: :category_posts

@@ -12,12 +12,23 @@
 }
 
 // 管理者専用カテゴリー一覧ページ
-.admin_category_index {
+.admin_categories_index {
   margin-top: 45px;
   .btn-primary {
     margin-left: 47%;
   }
   .category_destroy_link {
+    color: red;
+  }
+  .table {
+    margin-top: 20px;
+  }
+}
+
+// 管理者専用ユーザー一覧ページ
+.admin_users_index {
+  margin-top: 45px;
+  .user_destroy_link {
     color: red;
   }
   .table {
