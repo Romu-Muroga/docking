@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # validates
-  before_validation { email.downcase! }#downcase!でバリデーションする前にメールアドレスの値を小文字に変換
+  # downcase!でバリデーションする前にメールアドレスの値を小文字に変換
+  before_validation { email.downcase! }
   validates :name, presence: true, length: { in: 1..500 }
   validates :email,
             presence: true,
@@ -8,7 +9,8 @@ class User < ApplicationRecord
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: true
   validates :password, presence: true, length: { in: 6..100 }
-  validates :admin, presence: true
+  # validates :admin, presence: true だと、admin == falseのときにエラーが出る
+  validates :admin, inclusion: { in: [true, false] }
 
   has_secure_password
   # セキュアにハッシュ化したパスワードを、データベース内のpassword_digestというカラムに保存する
