@@ -8,6 +8,7 @@ class User < ApplicationRecord
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: true
   validates :password, presence: true, length: { in: 6..100 }
+  validates :admin, presence: true
 
   has_secure_password
   # セキュアにハッシュ化したパスワードを、データベース内のpassword_digestというカラムに保存する

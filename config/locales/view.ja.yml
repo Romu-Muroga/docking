@@ -18,6 +18,7 @@ ja:
       new_page: "Sign up"
       edit_page: "Edit account info"
       destroy_page: "退会処理"
+      admin_edit_page: "Edit admin authority"
     sessions:
       login_page: "Login"
     posts:

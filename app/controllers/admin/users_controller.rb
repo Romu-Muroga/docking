@@ -3,6 +3,13 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+  end
+
   def destroy
     user = User.find(params[:id])
     return unless user.posts.destroy_all && user.destroy
