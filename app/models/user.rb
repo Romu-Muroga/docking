@@ -9,7 +9,6 @@ class User < ApplicationRecord
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: true
   validates :password, presence: true, length: { in: 6..100 }
-  # validates :admin, presence: true だと、admin == falseのときにエラーが出る
   validates :admin, inclusion: { in: [true, false] }
 
   has_secure_password
