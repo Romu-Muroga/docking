@@ -6,7 +6,7 @@ class User < ApplicationRecord
             length: { in: 1..500 },
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: true
-  validates :password, presence: true, length: { in: 6..100 }
+  validates :password, presence: true, length: { in: 6..100 }, on: :create
   validates :admin, inclusion: { in: [true, false] }
 
   has_secure_password

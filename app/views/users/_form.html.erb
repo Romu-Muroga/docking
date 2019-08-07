@@ -18,14 +18,16 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: "form-control" %>
     </div>
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, placeholder: "6文字以上必要です。", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: "form-control" %>
-    </div>
+    <% if new_or_create_page? %>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: "6文字以上必要です。", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+    <% end %>
     <!-- Pictureモデルのimage属性をセット -->
     <div class="form-group">
       <%= f.label :image, "アイコン画像を選択してください（任意）" %>
