@@ -1,7 +1,5 @@
 class User < ApplicationRecord
   # validates
-  # downcase!でバリデーションする前にメールアドレスの値を小文字に変換
-  before_validation { email.downcase! }
   validates :name, presence: true, length: { in: 1..500 }
   validates :email,
             presence: true,
@@ -22,4 +20,20 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :iine_posts, through: :likes, source: :post#「ユーザーがいいねをしたポストの一覧」という関連
   has_many :comments, dependent: :destroy
+
+  # callback
+  before_validation { email.downcase! }
+  before_update :last_admin_user_update?
+
+  private
+
+  def last_admin_user_update?
+    admin_users = User.where(admin: true)
+    if admin_users.count == 1 && admin_users.first == self && !admin
+      errors.add(:admin, 'は、最低一名必要です。')
+      throw :abort
+    else
+      true
+    end
+  end
 end

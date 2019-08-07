@@ -19,11 +19,11 @@
             <%= f.hidden_field :password, value: @user.password_digest %>
             <div class="form-group">
               <%= f.label :admin %>
-              <div class="radio">
-                <label><%= f.radio_button :admin, 0, checked: @user.admin %>あり</label>
+              <div>
+                <label><%= f.radio_button :admin, 0, checked: @user.admin %>&nbsp;&nbsp;あり</label>
               </div>
-              <div class="radio">
-                <label><%= f.radio_button :admin, 1, checked: !@user.admin %>なし</label>
+              <div>
+                <label><%= f.radio_button :admin, 1, checked: !@user.admin %>&nbsp;&nbsp;なし</label>
               </div>
             </div>
           </div>
