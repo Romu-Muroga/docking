@@ -15,7 +15,12 @@
             <tbody>
               <% @categories.each do |category| %>
                 <tr class="active_category">
-                  <td><%= link_to category.name, category_user_path(category, @user), class: cp(category_user_path(category, @user)) %></td>
+                  <td>
+                    <%= link_to category.name,
+                                category_user_path(category, @user),
+                                class: cp(category_user_path(category, @user))
+                    %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
@@ -27,7 +32,10 @@
           <% @user_posts.each do |user_post| %>
             <div class="thumbnail">
               <p class="category_label"><%= user_post.category.name %></p>
-              <h3><%= t("activerecord.enum.post.ranking_point.#{user_post.ranking_point}") %>&nbsp;&nbsp;&nbsp;<%= user_post.eatery_name %></h3>
+              <h3>
+                <%= t("activerecord.enum.post.ranking_point.#{user_post.ranking_point}") %>&nbsp;&nbsp;
+                <%= user_post.eatery_name %>
+              </h3>
               <h4>Menu: &nbsp;<%= user_post.eatery_food %></h4>
               <% if user_post.picture.present? %>
                 <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
@@ -49,7 +57,12 @@
                 <% if user_post.user_id == current_user.id %>
                   <p class="edit_delete_button">
                     <%= link_to 'EDIT', edit_post_path(user_post), class: "btn btn-warning" %>
-                    <%= link_to 'DELETE', post_path(user_post), method: :delete, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-danger" %>
+                    <%= link_to 'DELETE',
+                                post_path(user_post),
+                                method: :delete,
+                                data: { confirm: '削除してよろしいですか？' },
+                                class: "btn btn-danger"
+                    %>
                   </p>
                 <% end %>
               </div>
