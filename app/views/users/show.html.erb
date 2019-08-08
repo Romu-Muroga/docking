@@ -67,39 +67,21 @@
           <% else %>
             <%= image_tag("/images/default.png", class: "img-responsive")%>
           <% end %>
-          <% if @user.id == current_user.id %>
-            <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
-              <i class="fas fa-hammer fa-2x"></i>&nbsp;&nbsp;Administrator page
-            <% end %><br>
-            <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
-              <i class="fas fa-user-edit fa-2x"></i>&nbsp;&nbsp;Edit account info
-            <% end %><br>
-            <%= link_to password_reset_user_path(current_user), class: "user_account_menu_link" do %>
-              <i class="fas fa-unlock-alt fa-2x"></i>&nbsp;&nbsp;&nbsp;&nbsp;Change password
-            <% end %><br>
-            <%= link_to destroy_confirm_user_path(current_user), class: "user_account_menu_link" do %>
-              <i class="fas fa-sad-tear fa-2x"></i>&nbsp;&nbsp;&nbsp;Close the account
-            <% end %>
-            <%= link_to 'New post', new_post_path, class: "cp_btn" %>
-            <%= link_to iine_post_list_user_path(@user), class: "iine_posts_link" do %>
-              <%= content_tag :span, 'いいね！済みのリスト', id: "heart" %>
-            <% end %>
-            <!-- <p>フォローリストに変更予定</p> -->
-            <!-- <div class="iine_box"> -->
-              <%# if @user.iine_posts.present? %>
-                <%# @user.iine_posts.each do |iine_post| %>
-                  <%# if iine_post.user.picture.present? %>
-                    <!-- <span><%#= image_tag(iine_post.user.picture.image.url, size: "30x30") %></span> -->
-                  <%# else %>
-                    <!-- <span><%#= image_tag("/images/default.png", size: "30x30") %></span> -->
-                  <%# end %>
-                  <!-- <span style="font-size: 12px"><%#= iine_post.user.name %></span> -->
-                  <!-- <span><%#= link_to "#{iine_post.eatery_name}", post_path(iine_post) %></span><br> -->
-                <%# end %>
-              <%# else %>
-                <!-- <p class="no_iine_posts_message">いいね！した<br>投稿がありません。</p> -->
-              <%# end %>
-            <!-- </div> -->
+          <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
+            <i class="fas fa-hammer fa-2x"></i>&nbsp;&nbsp;Administrator page
+          <% end %><br>
+          <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
+            <i class="fas fa-user-edit fa-2x"></i>&nbsp;&nbsp;Edit account info
+          <% end %><br>
+          <%= link_to password_reset_user_path(current_user), class: "user_account_menu_link" do %>
+            <i class="fas fa-unlock-alt fa-2x"></i>&nbsp;&nbsp;&nbsp;&nbsp;Change password
+          <% end %><br>
+          <%= link_to destroy_confirm_user_path(current_user), class: "user_account_menu_link" do %>
+            <i class="fas fa-sad-tear fa-2x"></i>&nbsp;&nbsp;&nbsp;Close the account
+          <% end %>
+          <%= link_to 'New post', new_post_path, class: "cp_btn" %>
+          <%= link_to iine_post_list_user_path(@user), class: "iine_posts_link" do %>
+            <%= content_tag :span, 'いいね！済みのリスト', id: "heart" %>
           <% end %>
         </div>
       </div>
