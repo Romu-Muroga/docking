@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users do
     get :destroy_confirm, on: :member
     get :iine_post_list, on: :member
+    get :password_reset, on: :member
+    patch :password_update, on: :member
   end
   resources :sessions, only: %i[new create destroy]
   namespace :admin do

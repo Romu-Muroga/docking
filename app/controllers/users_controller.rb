@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :login_check, except: %i[new create]
-  before_action :set_user, only: %i[show iine_post_list edit update destroy destroy_confirm]
-  # TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする
+  before_action :set_user, only: %i[
+    show iine_post_list edit password_reset
+    password_update update destroy destroy_confirm
+  ]
 
   def new
     @user = User.new
@@ -35,6 +37,20 @@ class UsersController < ApplicationController
   end
 
   def edit; end
+
+  def password_reset; end
+
+  def password_update
+    if params[:user][:password].blank?
+      @user.add_errors
+      render :password_reset
+    elsif @user.update(user_params)
+      flash[:success] = t('flash.password_updated')
+      redirect_to user_path(@user)
+    else
+      render :password_reset
+    end
+  end
 
   def update
     # @postと@post.pictureのどちらかが更新に失敗したとき、どちらも更新しない設定

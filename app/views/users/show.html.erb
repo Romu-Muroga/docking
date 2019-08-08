@@ -69,13 +69,16 @@
           <% end %>
           <% if @user.id == current_user.id %>
             <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
-              <i class="fas fa-hammer fa-2x"></i> Administrator page
+              <i class="fas fa-hammer fa-2x"></i>&nbsp;&nbsp;Administrator page
             <% end %><br>
             <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
-              <i class="fas fa-user-edit fa-2x"></i> Edit account info
+              <i class="fas fa-user-edit fa-2x"></i>&nbsp;&nbsp;Edit account info
+            <% end %><br>
+            <%= link_to password_reset_user_path(current_user), class: "user_account_menu_link" do %>
+              <i class="fas fa-unlock-alt fa-2x"></i>&nbsp;&nbsp;&nbsp;&nbsp;Change password
             <% end %><br>
             <%= link_to destroy_confirm_user_path(current_user), class: "user_account_menu_link" do %>
-              <i class="fas fa-sad-tear fa-2x"></i> Close the account
+              <i class="fas fa-sad-tear fa-2x"></i>&nbsp;&nbsp;&nbsp;Close the account
             <% end %>
             <%= link_to 'New post', new_post_path, class: "cp_btn" %>
             <%= link_to iine_post_list_user_path(@user), class: "iine_posts_link" do %>

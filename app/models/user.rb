@@ -6,7 +6,7 @@ class User < ApplicationRecord
             length: { in: 1..500 },
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: true
-  validates :password, presence: true, length: { in: 6..100 }, on: :create
+  validates :password, presence: true, length: { in: 6..100 }, allow_nil: true
   validates :admin, inclusion: { in: [true, false] }
 
   has_secure_password
@@ -20,6 +20,11 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :iine_posts, through: :likes, source: :post#「ユーザーがいいねをしたポストの一覧」という関連
   has_many :comments, dependent: :destroy
+
+  # method
+  def add_errors
+    errors.add(:password, 'を入力してください')
+  end
 
   # callback
   before_validation { email.downcase! }
