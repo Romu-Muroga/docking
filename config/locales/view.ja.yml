@@ -14,6 +14,7 @@ ja:
     Delete_account_Thank_you_for_using: "%{user}さんのアカウントを削除しました。ご利用いただき、ありがとうございました！"
     Please_check: "チェックボックスにチェックを入れてください"
     password_updated: "パスワードを更新しました"
+    admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
   views:
     users:
       new_page: "Sign up"

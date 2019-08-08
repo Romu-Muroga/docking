@@ -18,9 +18,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    return unless @user.posts.destroy_all && @user.destroy
-
-    flash[:success] = t('flash.destroy', content: @user.name)
+    if @user.posts.destroy_all && @user.destroy
+      flash[:success] = t('flash.destroy', content: @user.name)
+    else
+      flash[:danger] = t('flash.admin_last_user_cannot_be_deleted', user: @user.name)
+    end
     redirect_to admin_users_path
   end
 

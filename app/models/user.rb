@@ -29,6 +29,7 @@ class User < ApplicationRecord
   # callback
   before_validation { email.downcase! }
   before_update :last_admin_user_update?
+  before_destroy :last_admin_user_destroy?
 
   private
 
@@ -40,5 +41,9 @@ class User < ApplicationRecord
     else
       true
     end
+  end
+
+  def last_admin_user_destroy?
+    throw :abort if User.where(admin: true).count == 1 && admin
   end
 end
