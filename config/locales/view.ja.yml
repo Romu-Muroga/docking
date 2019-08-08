@@ -13,13 +13,21 @@ ja:
     account_information_update: "アカウント情報を更新しました"
     Delete_account_Thank_you_for_using: "%{user}さんのアカウントを削除しました。ご利用いただき、ありがとうございました！"
     Please_check: "チェックボックスにチェックを入れてください"
+    password_updated: "パスワードを更新しました"
+    admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
+    Not_authorized: "管理者権限がありません！"
   views:
     users:
       new_page: "Sign up"
       edit_page: "Edit account info"
+      password_reset_page: "Change password"
       destroy_page: "退会処理"
+      admin_edit_page: "Edit admin authority"
     sessions:
       login_page: "Login"
     posts:
       new_page: "New post"
       edit_page: "Edit post"
+    categories:
+      new_page: "New category"
+      edit_page: "Edit category"

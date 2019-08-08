@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 admin_categories_index">
+        <%= link_to 'back', admin_tops_path, class: "btn btn-default" %>
+        <%= link_to 'New category', new_admin_category_path, class: "btn btn-primary" %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>カテゴリー名</th>
+              <th></th><!-- 空マス -->
+            </tr>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.name %></td>
+                <td>
+                  <%= link_to 'EDIT', edit_admin_category_path(category) %>&nbsp;
+                  <%= link_to 'DELETE',
+                              admin_category_path(category),
+                              method: :delete,
+                              data: { confirm: "#{category.name}を削除してよろしいですか？" },
+                              class: "category_destroy_link"
+                  %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
