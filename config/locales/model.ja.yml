@@ -21,11 +21,12 @@ ja:
         eatery_website: "Website"
         remarks: "好きな理由"
       category:
-        name: "カテゴリー名"
+        name: "Category name"
       user:
         name: "名前"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+        admin: "管理者権限"
       picture:
         image: "画像"

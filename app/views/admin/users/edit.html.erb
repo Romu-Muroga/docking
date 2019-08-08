@@ -1,0 +1,35 @@
+<div class="wrapper" id="admin_form_area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
+        <h3><span class="underline"><%= t('views.users.admin_edit_page') %></span></h3>
+        <%= form_with(model: [:admin, @user], local: true, class: "form_outer") do |f| %>
+          <div class="form_inner">
+            <% if @user.errors.any? %>
+              <div id="error_explanation">
+                <h4><%= @user.errors.count %>件のエラーがあります。</h4>
+                <ul>
+                  <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <h3><%= @user.name %></h3>
+            <div class="form-group">
+              <%= f.label :admin %>
+              <div>
+                <label><%= f.radio_button :admin, 0, checked: @user.admin %>&nbsp;&nbsp;あり</label>
+              </div>
+              <div>
+                <label><%= f.radio_button :admin, 1, checked: !@user.admin %>&nbsp;&nbsp;なし</label>
+              </div>
+            </div>
+          </div>
+          <%= f.submit class: "btn btn-default" %>
+        <% end %>
+        <%= link_to 'back', admin_users_path, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+</div>
