@@ -15,6 +15,7 @@ ja:
     Please_check: "チェックボックスにチェックを入れてください"
     password_updated: "パスワードを更新しました"
     admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
+    Not_authorized: "管理者権限がありません！"
   views:
     users:
       new_page: "Sign up"

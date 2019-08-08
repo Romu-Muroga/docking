@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  # before_action :current_user_admin?
+  before_action :current_user_admin?
   before_action :set_category, only: %i[edit update destroy]
 
   def index
@@ -47,12 +47,10 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-  # 管理者画面実装予定
-  # 管理者権限を持つユーザーでなかったらルートパスへ移動
-  # def current_user_admin?
-  #   unless logged_in? && current_user.admin?
-  #     flash[:danger] = '権限がありません！'
-  #     redirect_to root_path
-  #   end
-  # end
+  def current_user_admin?
+    return if logged_in? && current_user.admin
+
+    flash[:danger] = t('flash.Not_authorized')
+    redirect_to root_path
+  end
 end

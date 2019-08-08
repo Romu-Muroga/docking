@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :current_user_admin?
   before_action :set_user, only: %i[edit update destroy]
 
   def index
@@ -34,5 +35,12 @@ class Admin::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def current_user_admin?
+    return if logged_in? && current_user.admin
+
+    flash[:danger] = t('flash.Not_authorized')
+    redirect_to root_path
   end
 end

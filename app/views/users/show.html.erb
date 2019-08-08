@@ -80,9 +80,11 @@
           <% else %>
             <%= image_tag("/images/default.png", class: "img-responsive")%>
           <% end %>
-          <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
-            <i class="fas fa-hammer fa-2x"></i>&nbsp;&nbsp;Administrator page
-          <% end %><br>
+          <% if @user.admin %>
+            <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
+              <i class="fas fa-hammer fa-2x"></i>&nbsp;&nbsp;Administrator page
+            <% end %><br>
+          <% end %>
           <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
             <i class="fas fa-user-edit fa-2x"></i>&nbsp;&nbsp;Edit account info
           <% end %><br>
