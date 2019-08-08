@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       if @user.picture.blank? && form_submit_image.blank?
         false
       elsif @user.picture.present? && form_submit_image.blank? && checkbox_value == 1
-        @user.picture.destroy
+        @user.picture.destroy!
       elsif @user.picture.present? && form_submit_image.blank?
         false
       elsif @user.picture.present?
