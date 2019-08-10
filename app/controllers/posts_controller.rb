@@ -81,7 +81,7 @@ class PostsController < ApplicationController
       if @post.picture.blank? && form_submit_image.blank?
         false
       elsif @post.picture.present? && form_submit_image.blank? && checkbox_value == 1
-        @post.picture.destroy
+        @post.picture.destroy!
       elsif @post.picture.present? && form_submit_image.blank?
         false
       elsif @post.picture.present?
