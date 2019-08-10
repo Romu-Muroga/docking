@@ -17,8 +17,8 @@ class PostsController < ApplicationController
              else
                @q.result.latest
              end
-    @iine_ranking_posts = @q.result.iine_ranking
-    @overall_ranking_posts = @q.result.overall_ranking
+    @iine_ranking_posts = Post.iine_ranking
+    @overall_ranking_posts = Post.overall_ranking
   end
 
   def search
@@ -39,8 +39,8 @@ class PostsController < ApplicationController
       # 解決策: formから送るvalueを<option value="3">１位</option>にして、@q => values: ["3"]とすればいい。
       @q = Post.ransack(search_params)
       @posts = @q.result.latest
-      @iine_ranking_posts = @q.result.iine_ranking
-      @overall_ranking_posts = @q.result.overall_ranking
+      @iine_ranking_posts = Post.iine_ranking
+      @overall_ranking_posts = Post.overall_ranking
       render :index
     end
   end
