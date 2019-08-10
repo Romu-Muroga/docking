@@ -48,13 +48,16 @@ a:hover {
   height: 45px;
   padding-right: 20px;
   background-color: rgba(255, 255, 255, 0.5);
+  .app_logo {
+    margin: 4px 4px 4px 50px;
+  }
   nav.navibar {
     display: flex;
     position: relative;
     top: 1.4vh;
     margin-left: auto;
   }
-  a {
+  nav a {
     color: black;
     font-weight: bold;
     &:hover {
@@ -81,4 +84,49 @@ div.alert {
   width: 666px;
   opacity: 1;
   z-index: 11;
+}
+
+// カテゴリーリスト
+.category_list  {
+  margin-top: 20px;
+  tbody tr td {
+    padding: 0;
+  }
+  tbody a {
+    color: black;
+    display: block;
+    padding: 10px;
+    // 選択中のカテゴリー
+    &.current {
+      color: white;
+      background-color: black;
+      padding: 10px;
+    }
+  }
+  // マウスカーソルを重ねたとき
+  .table-hover {
+    tbody td:hover {
+      background-color: black;
+      a:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+// 新規登録ボタン
+a.cp_btn {
+	display: block;
+	width: 100%;
+  margin-top: 22px;
+	padding: 0.8em;
+	text-align: center;
+	color: #EC407A;
+	border: 2px solid #EC407A;
+	border-radius: 3px;
+	transition: .4s;//ふわっと
+  &:hover {
+    background: #EC407A;
+  	color: #fff;
+  }
 }

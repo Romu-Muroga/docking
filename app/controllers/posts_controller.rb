@@ -14,13 +14,11 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @posts = if params[:category_id]
                @q.result.category_sort(params[:category_id])
-             elsif params[:iine_sort]
-               @q.result.iine_ranking
-             elsif params[:overall_sort]
-               @q.result.overall_ranking
              else
                @q.result.latest
              end
+    @iine_ranking_posts = @q.result.iine_ranking
+    @overall_ranking_posts = @q.result.overall_ranking
   end
 
   def search
@@ -41,6 +39,8 @@ class PostsController < ApplicationController
       # 解決策: formから送るvalueを<option value="3">１位</option>にして、@q => values: ["3"]とすればいい。
       @q = Post.ransack(search_params)
       @posts = @q.result.latest
+      @iine_ranking_posts = @q.result.iine_ranking
+      @overall_ranking_posts = @q.result.overall_ranking
       render :index
     end
   end

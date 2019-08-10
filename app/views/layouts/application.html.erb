@@ -15,6 +15,11 @@
   <body>
     <% if logged_in? %>
       <header class="site-header">
+        <div class="app_logo">
+          <%= link_to posts_path do %>
+            <%= image_tag("/images/logo.png", size: "125", class: "img-responsive") %>
+          <% end %>
+        </div>
         <nav class="navibar">
           <%= link_to 'ランキング一覧', posts_path %>&nbsp;&nbsp;&nbsp;
           <%= link_to '私のお気に入り', user_path(current_user) %>&nbsp;&nbsp;&nbsp;
