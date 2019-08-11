@@ -38,6 +38,9 @@
     list-style: none;
     display: inline;//リストを横並び
   }
+  p.new_post_heading {
+    padding-top: 10px;
+  }
   // 投稿がありません
   .no_post_message {}
   // ２番目〜最後
