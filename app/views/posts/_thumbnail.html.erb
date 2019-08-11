@@ -2,15 +2,31 @@
   <ul>
     <li class="category_label"><%= post.category.name %></li>
   </ul>
-  <ul>
-    <li class="eatery_name"><%= post.eatery_name %></li>
-    <li class="eatery_food">Menu: &nbsp;<%= post.eatery_food %></li>
-  </ul>
-  <% if post.picture.present? %>
-    <%= image_tag(post.picture.image.url, class: "img-responsive") %>
-  <% else %>
-    <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
-  <% end %>
+  <div class="link_to_detail">
+    <% if post.picture.present? %>
+      <%= link_to post_path(post) do %>
+        <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+        <div class="mask">
+          <div class="mask_message">
+            <%= post.eatery_name %><br>
+            Menu: &nbsp;<%= post.eatery_food %><br>
+            ...Learn more!
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to post_path(post) do %>
+        <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
+        <div class="mask">
+          <div class="mask_message">
+            <%= post.eatery_name %><br>
+            Menu: &nbsp;<%= post.eatery_food %><br>
+            ...Learn more!
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
   <div class="caption">
     <p><%= post.user.name.truncate(12, omission: '...') %>さん</p>
     <p>
@@ -25,7 +41,6 @@
       </span>
     </p>
     <p>Address: <%= post.eatery_address %></p>
-    <%= link_to 'Learn more!', post_path(post), class: "btn btn-show" %>
     <% if post.user_id == current_user.id %>
       <%= link_to 'EDIT', edit_post_path(post), class: "btn btn-warning" %>
       <%= link_to 'DELETE',

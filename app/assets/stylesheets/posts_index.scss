@@ -30,15 +30,6 @@
     border-radius: 0.3em;
     padding: 5px
   }
-  // 店名
-  .eatery_name {
-    font-weight: bold;
-    margin-left: 10px;
-  }
-  // メニュー
-  .eatery_food {
-    margin-left: 16px;
-  }
   ul {
     margin: 10px 0;
     padding-left: 9px;
@@ -55,7 +46,42 @@
   }
   // ２番目〜最後
   .second_to_last {
-    padding: 0;
+    padding: 0 9px;
+    div.col-md-4 {
+      padding: 0 6px;
+    }
+  }
+  .link_to_detail {
+    position: relative;
+    margin-bottom: 30px;
+    // マウスホバー時、文字列を表示するエフェクト
+    .mask {
+      width: 100%;
+      height:	100%;
+      position:	absolute;	/* 絶対位置指定 */
+      top: 0;
+      left: 0;
+      opacity: 0;	/* マスクを表示しない */
+      background-color:	rgba(0,0,0,0.4);	/* マスクは半透明 */
+      -webkit-transition:	all 0.6s ease;
+      transition:	all 0.6s ease;
+      &_message {
+        width: 100%;
+        height: 50%;
+        font-size: 120%;
+        text-align: center;
+        color: #fff;
+        position:	absolute;	/* 絶対位置指定 */
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+  }
+  .link_to_detail:hover .mask {
+    opacity: 1;	/* マスクを表示する */
   }
 }
 

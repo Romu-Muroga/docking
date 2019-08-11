@@ -11,17 +11,18 @@
         </div>
       </div>
       <div class="col-md-offset-2 col-md-7 centerbar">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <% if @posts.present? %>
             <%= render partial: 'thumbnail', locals: { post: @posts.first } %>
           <% else %>
             <h4 class="no_post_message">投稿がありません</h4>
           <% end %>
         </div>
+        <div class="col-md-6"></div>
         <div class="col-md-12 second_to_last">
           <% if @posts.present? %>
             <% @posts[1..-1].each do |post| %>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <%= render partial: 'thumbnail', locals: { post: post } %>
               </div>
             <% end %>

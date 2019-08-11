@@ -15,9 +15,13 @@
       <% iine_ranking_posts.each do |post| %>
         <p class="c-txtsp">
           <% if post.picture.present? %>
-            <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+            <%= link_to post_path(post) do %>
+              <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+            <% end %>
           <% else %>
-            <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
+            <%= link_to post_path(post) do %>
+              <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
+            <% end %>
           <% end %>
         </p>
       <% end %>
