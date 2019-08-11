@@ -92,6 +92,7 @@
 
 // 右
 .right_section {
+  padding-left: 0;
   // スライドショー
   #slide_wrapp {
     position: relative;
@@ -123,32 +124,6 @@
       }
     }
   }
-  // // ランキング
-  // table.ranking_table {
-  //   margin: 18px 0;
-  //   text-align: center;
-  //   border-radius: 1%;
-  //   td {
-  //     padding: 0;
-  //     width: 50%;
-  //     &:hover {
-  //       background-color: black;
-  //     }
-  //   }
-  //   a {
-  //     color: black;
-  //     display: block;
-  //     padding: 10px 0 10px 0;
-  //     &:hover {
-  //       color: white;
-  //     }
-  //     // 選択中のランキング
-  //     &.current {
-  //       color: white;
-  //       background-color: black;
-  //     }
-  //   }
-  // }
 }
 
 // いいね！済みのハート
