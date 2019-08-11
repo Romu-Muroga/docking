@@ -1,0 +1,31 @@
+<div class="tabs">
+  <input id="all" type="radio" name="tab_item" checked>
+  <label class="tab_item" for="all">総合ランキング</label>
+  <input id="iine" type="radio" name="tab_item">
+  <label class="tab_item" for="iine">いいね！ランキング</label>
+  <div class="tab_content" id="all_content">
+    <div class="tab_content_description">
+      <p class="c-txtsp">
+        <%= render partial: 'overall_ranking', locals: { posts: overall_ranking_posts } %>
+      </p>
+    </div>
+  </div>
+  <div class="tab_content" id="iine_content">
+    <div class="tab_content_description">
+      <% iine_ranking_posts.each.with_index(1) do |post, i| %>
+        <p class="c-txtsp">
+          <%= i %>位
+          <% if post.picture.present? %>
+            <%= link_to post_path(post) do %>
+              <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+            <% end %>
+          <% else %>
+            <%= link_to post_path(post) do %>
+              <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
+            <% end %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

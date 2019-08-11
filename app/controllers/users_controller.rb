@@ -25,6 +25,8 @@ class UsersController < ApplicationController
 
   def show
     @categories = Category.all
+    @picture = Picture.find(Picture.random_post_picture_id) if
+               Picture.random_post_picture_id.present?
     @user_posts = if params[:category_id]
                     Post.user_category_sort(@user, params[:category_id])
                   else

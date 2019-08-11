@@ -1,61 +1,49 @@
-// カテゴリーリスト
-.category_list  {
-  tbody tr td {
-    padding: 0;
-  }
-  tbody a {
-    color: black;
-    display: block;
-    padding: 10px;
-    // 選択中のカテゴリー
-    &.current {
-      color: white;
-      background-color: black;
-      padding: 10px;
+#my_page_area {
+  // 詳細をみるボタン
+  a.btn-show {
+    color: silver;
+    border-color: silver;
+    margin: 15px 0 10px 10px;
+    &:hover {
+      color: black;
+      border-color: black;
     }
   }
-  // マウスカーソルを重ねたとき
-  .table-hover {
-    tbody td:hover {
-      background-color: black;
-      a:hover {
-        color: white;
+  li.category_label {
+    font-size: 130%;
+  }
+  li.ranking_point {
+    font-size: 130%;
+    margin-right: 10px;
+  }
+  div.left_section {
+    position: sticky;
+    padding-top: 60px;
+    .category_list {
+      margin: 0;
+    }
+  }
+  div.center_section {
+    margin-top: 10px;
+    .catch_picture {
+      margin-bottom: 10px;
+      img {
+        margin: auto;
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
       }
     }
   }
-}
-
-// 新規登録ボタン
-a.cp_btn {
-	display: block;
-	width: 92%;
-  margin-top: 22px;
-	padding: 0.8em;
-	text-align: center;
-	color: #EC407A;
-	border: 2px solid #EC407A;
-	border-radius: 3px;
-	transition: .4s;//ふわっと
-  &:hover {
-    background: #EC407A;
-  	color: #fff;
-  }
-}
-
-// 詳細をみるボタン
-a.btn-show {
-  color: silver;
-  border-color: silver;
-  margin-top: 10px;
-  &:hover {
-    color: black;
-    border-color: black;
+  div.right_section {
+    padding: 0 15px 0 15px;
+    margin-top: 120px;
+    width: 20%;
   }
 }
 
 // アカウントメニュー
 .user_account_menu {
-  margin-top: 40px;
   p {
     font-size: 17px;
   }

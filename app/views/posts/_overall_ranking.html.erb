@@ -1,0 +1,14 @@
+<h5 class="ranking_info">
+  総合ランキングは、お客さま１人１人がマイページで登録したお気に入りのランキングをポイント（主観的な評価）によって集計し、<br>
+  <br>
+  １位＝３pt<br>
+  ２位＝２pt<br>
+  ３位＝１pt<br>
+  <br>
+  その合計に、いいね！のカウント数（客観的な評価）を加算して算出されています。<br>
+  <br>
+  主観的 + 客観的 = 総合評価ランキングです。
+</h5>
+<% posts.each.with_index(1) do |(key, value), i| %>
+  <p class="overall_ranking"><%= i %>位 店名：<%= key[0] %>（<%= Category.find(key[1]).name %>） <%= value[:point] %>ポイント</p>
+<% end %>

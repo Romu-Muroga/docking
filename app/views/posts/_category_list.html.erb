@@ -1,0 +1,14 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>カテゴリー名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% categories.each do |category| %>
+      <tr class="active_category">
+        <td><%= link_to category.name, category_posts_path(category), class: cp(category_posts_path(category)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

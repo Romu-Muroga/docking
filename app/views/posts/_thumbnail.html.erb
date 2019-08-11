@@ -1,0 +1,57 @@
+<div class="thumbnail">
+  <ul>
+    <li class="category_label"><%= post.category.name %></li>
+  </ul>
+  <div class="link_to_detail">
+    <% if post.picture.present? %>
+      <%= link_to post_path(post) do %>
+        <%= image_tag(post.picture.image.url, class: "img-responsive") %>
+        <div class="mask">
+          <div class="mask_message">
+            <%= post.eatery_name %><br>
+            Menu: &nbsp;<%= post.eatery_food %><br>
+            ...Learn more!
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to post_path(post) do %>
+        <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
+        <div class="mask">
+          <div class="mask_message">
+            <%= post.eatery_name %><br>
+            Menu: &nbsp;<%= post.eatery_food %><br>
+            ...Learn more!
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="caption">
+    <p><%= post.user.name.truncate(12, omission: '...') %>さん</p>
+    <p>
+      <span>
+        <time datetime="<%= post.updated_at %>">
+          <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>・
+        </time>
+      </span>
+      <span>
+        <%= post.category.name %>の
+        <%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>に投稿しました。
+      </span>
+    </p>
+    <p>Address: <%= post.eatery_address %></p>
+    <% if post.user_id == current_user.id %>
+      <%= link_to 'EDIT', edit_post_path(post), class: "btn btn-warning" %>
+      <%= link_to 'DELETE',
+                  post_path(post),
+                  method: :delete,
+                  data: { confirm: "削除してよろしいですか？" },
+                  class: "btn btn-danger"
+      %>
+    <% end %>
+    <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">
+      <%= render "likes/like", post: post %><!-- いいねボタン -->
+    </div>
+  </div>
+</div>
