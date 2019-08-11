@@ -39,11 +39,7 @@
     display: inline;//リストを横並び
   }
   // 投稿がありません
-  .no_post_message {
-    width: 170px;
-    margin: 0 auto;
-    margin-top: 33vh;
-  }
+  .no_post_message {}
   // ２番目〜最後
   .second_to_last {
     padding: 0 9px;
