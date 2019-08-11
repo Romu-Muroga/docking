@@ -1,0 +1,39 @@
+<div class="thumbnail">
+  <ul>
+    <li class="category_label"><%= user_post.category.name %></li>
+    <li class="ranking_point">
+      <%= t("activerecord.enum.post.ranking_point.#{user_post.ranking_point}") %>&nbsp;&nbsp;
+      <%= user_post.eatery_name %>
+    </li>
+    <li class="eatery_food">Menu: &nbsp;<%= user_post.eatery_food %></li>
+  </ul>
+  <% if user_post.picture.present? %>
+    <%= image_tag(user_post.picture.image.url, class: "img-responsive") %>
+  <% else %>
+    <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
+  <% end %>
+  <div class="caption">
+    <p>お気に入りの理由は？</p>
+    <div class="remarks">
+      <%= render_with_hashtags(simple_format(user_post.remarks.truncate(150, omission: '...'))) %>
+    </div>
+    <p><%= link_to 'Learn more!', post_path(user_post), class: "btn btn-show" %></p>
+    <!-- フォロー/フォロワー機能を実装したときに必要 -->
+    <% if user_post.user_id != current_user.id %>
+      <div id="post-<%= user_post.id %>" data-post-id="<%= user_post.id %>" class="iine_button">
+        <%= render "likes/like", post: user_post %><!-- いいねボタン -->
+      </div>
+    <% end %>
+    <% if user_post.user_id == current_user.id %>
+      <p class="edit_delete_button">
+        <%= link_to 'EDIT', edit_post_path(user_post), class: "btn btn-warning" %>
+        <%= link_to 'DELETE',
+                    post_path(user_post),
+                    method: :delete,
+                    data: { confirm: '削除してよろしいですか？' },
+                    class: "btn btn-danger"
+        %>
+      </p>
+    <% end %>
+  </div>
+</div>

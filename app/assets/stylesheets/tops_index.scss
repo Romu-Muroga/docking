@@ -60,6 +60,16 @@
         margin-right: 10px;
       }
     }
+    .test_user_info {
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: sans-serif;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+    }
   }
 }
 
@@ -80,55 +90,5 @@
     .content {
       line-height: 40px;
     }
-  }
-}
-
-// Dockingのイメージ画像の部分
-#home_sec03 {
-  position: relative;
-  top: 60px;
-  width: 50%;
-  margin-left: 20%;
-  .circle_sec01 {
-    border: solid lightgray;
-    border-radius: 50%;
-    background-color: lightgray;
-    width: 260px;
-  }
-  .circle_sec02 {
-    position: relative;
-    top: -45px;
-    left: 47px;
-    height: 350px;
-    width: 350px;
-    background-image: linear-gradient(-90deg, #FF00A1, #F6FF00);
-    border-radius: 50%;
-    z-index: 10;
-    opacity: 0.9;
-    margin: 0 auto;
-  }
-  // 左側の項目
-  .left_sec {
-    position: relative;
-    top: 10px;
-    width: 177px;
-    margin: 0 auto;
-    height: 250px;
-  }
-  // 中央の項目
-  .center_sec {
-    position: relative;
-    top: 140px;
-    left: 104px;
-    font-size: 40px;
-    color: white;
-  }
-  // 右側の項目
-  .right_sec {
-    position: relative;
-    top: 10px;
-    width: 177px;
-    margin: 0 auto;
-    height: 250px;
   }
 }

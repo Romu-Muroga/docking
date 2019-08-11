@@ -1,109 +1,41 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-3 col-md-offset-1 col-md-2 leftsidebar">
-        <div class="category_list">
-          <%= link_to posts_path, class: "logo" do %>
-            <%= image_tag("/images/logo.png", class: "img-responsive") %>
-          <% end %>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Category</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @categories.each do |category| %>
-                <tr class="active_category">
-                  <td><%= link_to category.name, category_posts_path(category), class: cp(category_posts_path(category)) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="col-xs-offset-3 col-xs-7 col-md-offset-3 col-md-6 centerbar">
-        <ul id="slide_wrapp">
-          <li class="slide_item"><%= image_tag("/images/photo1.jpg") %></li>
-          <li class="slide_item"><%= image_tag("/images/photo2.jpg") %></li>
-          <li class="slide_item"><%= image_tag("/images/photo3.jpg") %></li>
-          <li class="slide_item"><%= image_tag("/images/photo4.jpg") %></li>
-          <li class="slide_item"><%= image_tag("/images/photo5.png") %></li>
-          <li class="slide_item"><%= image_tag("/images/photo6.jpg") %></li>
-        </ul>
-        <table border="1" width="100%" class="ranking_table">
-          <tr>
-            <td><%= link_to '総合ランキング', posts_path(overall_sort: "true"), class: cp(posts_path(overall_sort: "true")) %></td>
-            <td><%= link_to 'いいね！ランキング', posts_path(iine_sort: "true"), class: cp(posts_path(iine_sort: "true")) %></td>
-          </tr>
-        </table>
-        <% if @posts.class == Hash %>
-          <h5 class="ranking_info">
-            総合ランキングは、お客さま１人１人がマイページで登録したお気に入りのランキングをポイントによって集計し、<br>
-            <br>
-            １位＝３pt<br>
-            ２位＝２pt<br>
-            ３位＝１pt<br>
-            <br>
-            その合計に、いいね！のカウント数を加算して算出されています。<br>
-            主観的な評価（ランキングのポイント） + 客観的な評価（いいね！のカウント数） = 総合ランキング<br>です。
-          </h5>
-          <% @posts.each.with_index(1) do |(key, value), i| %>
-            <h3 class="overall_ranking"><%= i %>位 店名：<%= key[0] %>（<%= Category.find(key[1]).name %>） <%= value[:point] %>ポイント</h3>
-          <% end %>
-        <% elsif @posts.present? %>
-          <% @posts.each do |post| %>
-            <div class="thumbnail">
-              <p class="category_label"><%= post.category.name %></p>
-              <h3><%= post.eatery_name %></h3>
-              <h4>Menu: &nbsp;<%= post.eatery_food %></h4>
-              <% if post.picture.present? %>
-                <%= image_tag(post.picture.image.url, class: "img-responsive") %>
-              <% else %>
-                <%= image_tag("/images/default2.jpg", class: "img-responsive")%>
-              <% end %>
-              <div class="caption">
-                <p>お気に入りの理由は？</p>
-                <div class="remarks">
-                  <%= render_with_hashtags(simple_format(post.remarks.truncate(150, omission: '...'))) %>
-                </div>
-                <p>
-                  <span>
-                    Post information:&nbsp;
-                    <time datetime="<%= post.updated_at %>">
-                      <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>
-                    </time>
-                  </span>
-                  <span>
-                    <%= post.user.name.truncate(12, omission: '...') %>さんが
-                    <%= post.category.name %>の
-                    <%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>に投稿しました。
-                    <%#= link_to post.user.name, user_path(post.user) %>
-                  </span>
-                </p>
-                <p>Address: <%= post.eatery_address %></p>
-                <p><%= link_to 'Learn more!', post_path(post), class: "btn btn-show" %></p>
-                <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">
-                  <%= render "likes/like", post: post %><!-- いいねボタン -->
-                </div>
-                <% if post.user_id == current_user.id %>
-                  <p class="edit_delete_button">
-                    <%= link_to 'EDIT', edit_post_path(post), class: "btn btn-warning" %>
-                    <%= link_to 'DELETE', post_path(post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
-                  </p>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <h4 class="no_post_message">投稿がありません</h4>
-        <% end %>
-      </div>
-      <div class="col-xs-2 col-md-2 rightsidebar">
-        <div class="new_post_and_search_menu">
+      <div class="col-md-2 left_section">
+        <div>
+          <%= render partial: 'search_form' %>
           <%= link_to 'New post', new_post_path, class: "cp_btn" %>
-          <%= render 'search_form' %>
         </div>
+        <div class="category_list">
+          <%= render partial: 'category_list', locals: { categories: @categories } %>
+        </div>
+      </div>
+      <div class="col-md-offset-2 col-md-7 center_section">
+        <div class="row">
+          <div class="col-md-6">
+            <% if @posts.present? %>
+              <p class="new_post_heading">最新記事</p>
+              <%= render partial: 'thumbnail', locals: { post: @posts.first } %>
+            <% else %>
+              <h4 class="no_post_message">投稿がありません</h4>
+            <% end %>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+        <div class="row second_to_last row-eq-height">
+          <% if @posts.present? %>
+            <% @posts[1..-1].each do |post| %>
+              <div class="col-md-4">
+                <%= render partial: 'thumbnail', locals: { post: post } %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-3 right_section">
+        <%= render partial: 'slide_wrapp' %>
+        <%= render partial: 'tabs', locals: { iine_ranking_posts: @iine_ranking_posts,
+                                              overall_ranking_posts: @overall_ranking_posts } %>
       </div>
     </div>
   </div>

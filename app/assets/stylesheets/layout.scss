@@ -8,20 +8,24 @@ body {
   width: 100%;
   height: 100%;
   background-color: #F7F2E8;
+  font-family: serif;
 }
 
+// マウスホバー時の下線を消す
 a:hover {
   text-decoration: none;
 }
 
+// 編集と削除ボタン
 .edit_delete_button {
   border-top: solid 1px lightgray;
   padding-top: 11px;
   .btn-warning {
-    margin-right: 6px;
+    margin: 0 6px 0 10px;
   }
 }
 
+// yieldで切り替わるviewの一番外側を囲むブロック
 .wrapper {
   padding-top: 45px;
   width: 100%;
@@ -33,40 +37,42 @@ a:hover {
   word-wrap: break-word;
 }
 
+// デフォルトのpaddingをリセット
 .thumbnail {
   padding: 0;
 }
 
 // ヘッダー
 .site-header {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   position: fixed;
   top: 0;
   z-index: 100;
   width: 100%;
   height: 45px;
-  padding-right: 20px;
   background-color: rgba(255, 255, 255, 0.5);
-  nav.navibar {
-    display: flex;
-    position: relative;
-    top: 1.4vh;
-    margin-left: auto;
-  }
-  a {
-    color: black;
-    font-weight: bold;
-    &:hover {
-      color: black;
+  .app_logo {
+    width: 125px;
+    margin: auto;
+    img {
+      width: 125px;
+      margin-top: 4px;
     }
-    &.active {
-      color: #EC407A;
-      font-size: 18px;
+  }
+  .dropdown {
+    position: fixed;
+    top: 5px;
+    right: 100px;
+    .dropdown-menu {
+      a.current {
+        color: #EC407A;
+      }
     }
   }
 }
 
+// yieldを囲むブロック
 .main_section {
   width: 100%;
   height: 100%;
@@ -81,4 +87,56 @@ div.alert {
   width: 666px;
   opacity: 1;
   z-index: 11;
+}
+
+// カテゴリーリスト
+.category_list  {
+  margin-top: 20px;
+  tbody tr td {
+    padding: 0;
+  }
+  tbody a {
+    color: black;
+    display: block;
+    padding: 10px;
+    // 選択中のカテゴリー
+    &.current {
+      color: white;
+      background-color: black;
+      padding: 10px;
+    }
+  }
+  // マウスカーソルを重ねたとき
+  .table-hover {
+    tbody td:hover {
+      background-color: black;
+      a:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+// 新規登録ボタン
+a.cp_btn {
+	display: block;
+	width: 100%;
+  margin-top: 22px;
+	padding: 0.8em;
+	text-align: center;
+	color: #EC407A;
+	border: 2px solid #EC407A;
+	border-radius: 3px;
+	transition: .4s;//ふわっと
+  &:hover {
+    background: #EC407A;
+  	color: #fff;
+  }
+}
+
+// いいね!ボタンを右に寄せる
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
 }
