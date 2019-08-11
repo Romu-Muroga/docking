@@ -51,6 +51,11 @@
       padding: 0 6px;
     }
   }
+  // Bootstrapのグリットスタイルでカラム同士の高さ指定しないで高さを揃える
+  .row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .link_to_detail {
     position: relative;
     margin-bottom: 30px;
@@ -79,9 +84,9 @@
         margin: auto;
       }
     }
-  }
-  .link_to_detail:hover .mask {
-    opacity: 1;	/* マスクを表示する */
+    &:hover .mask {
+      opacity: 1;	/* マスクを表示する */
+    }
   }
 }
 
