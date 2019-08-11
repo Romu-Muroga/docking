@@ -25,6 +25,7 @@ a:hover {
   }
 }
 
+// yieldで切り替わるviewの一番外側を囲むブロック
 .wrapper {
   padding-top: 45px;
   width: 100%;
@@ -36,6 +37,7 @@ a:hover {
   word-wrap: break-word;
 }
 
+// デフォルトのpaddingをリセット
 .thumbnail {
   padding: 0;
 }
@@ -73,6 +75,7 @@ a:hover {
   }
 }
 
+// yieldを囲むブロック
 .main_section {
   width: 100%;
   height: 100%;
@@ -132,4 +135,11 @@ a.cp_btn {
     background: #EC407A;
   	color: #fff;
   }
+}
+
+// いいね!ボタンを右に寄せる
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
 }
