@@ -1,11 +1,26 @@
-// 詳細をみるボタン
-a.btn-show {
-  color: silver;
-  border-color: silver;
-  margin: 0 10px;
-  &:hover {
-    color: black;
-    border-color: black;
+#my_page_area {
+  // 詳細をみるボタン
+  a.btn-show {
+    color: silver;
+    border-color: silver;
+    margin: 15px 0 10px 10px;
+    &:hover {
+      color: black;
+      border-color: black;
+    }
+  }
+  li.category_label {
+    font-size: 130%;
+  }
+  li.ranking_point {
+    font-size: 130%;
+    margin-right: 10px;
+  }
+  div.right_section {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
   }
 }
 

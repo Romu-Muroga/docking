@@ -11,15 +11,17 @@ body {
   font-family: serif;
 }
 
+// マウスホバー時の下線を消す
 a:hover {
   text-decoration: none;
 }
 
+// 編集と削除ボタン
 .edit_delete_button {
   border-top: solid 1px lightgray;
   padding-top: 11px;
   .btn-warning {
-    margin-right: 6px;
+    margin: 0 6px 0 10px;
   }
 }
 

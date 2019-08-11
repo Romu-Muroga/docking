@@ -1,10 +1,10 @@
-<div class="wrapper">
+<div class="wrapper" id="my_page_area">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-2 col-md-offset-1 col-md-2 left_section">
+      <div class="col-md-3 left_section">
         <%= render partial: 'category_list', locals: { categories: @categories } %>
       </div>
-      <div class="col-xs-offset-2 col-xs-7 col-md-offset-3 col-md-6 center_section">
+      <div class="col-md-offset-3 col-md-6 center_section">
         <% if @user_posts.present? %>
           <% @user_posts.each do |user_post| %>
             <%= render partial: 'thumbnail', locals: { user_post: user_post } %>
@@ -13,7 +13,7 @@
           <h4 class="no_post_message">投稿がありません</h4>
         <% end %>
       </div>
-      <div class="col-xs-3 col-md-2 right_section">
+      <div class="col-md-offset-1 col-md-2 right_section">
         <%= render partial: 'user_account_menu' %>
       </div>
     </div>
