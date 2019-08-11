@@ -7,6 +7,13 @@
             <%= render partial: 'category_list', locals: { categories: @categories } %>
           </div>
           <div class="col-md-6 center_section">
+            <div class="catch_picture">
+              <% if @picture.present? %>
+                <%= image_tag(@picture.image.url, class: "img-responsive") %>
+              <% else %>
+                <%= image_tag("/images/honey.jpg", class: "img-responsive") %>
+              <% end %>
+            </div>
             <% if @user_posts.present? %>
               <% @user_posts.each do |user_post| %>
                 <%= render partial: 'thumbnail', locals: { user_post: user_post } %>
@@ -15,7 +22,7 @@
               <h4 class="no_post_message">投稿がありません</h4>
             <% end %>
           </div>
-          <div class="col-md-2 right_section">
+          <div class="col-md-3 right_section">
             <%= render partial: 'user_account_menu' %>
           </div>
         </div>
