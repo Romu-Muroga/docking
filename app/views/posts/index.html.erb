@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2 leftsidebar">
+      <div class="col-md-2 left_section">
         <div>
           <%= render partial: 'search_form' %>
           <%= link_to 'New post', new_post_path, class: "cp_btn" %>
@@ -10,7 +10,7 @@
           <%= render partial: 'category_list', locals: { categories: @categories } %>
         </div>
       </div>
-      <div class="col-md-offset-2 col-md-7 centerbar">
+      <div class="col-md-offset-2 col-md-7 center_section">
         <div class="col-md-6">
           <% if @posts.present? %>
             <%= render partial: 'thumbnail', locals: { post: @posts.first } %>
@@ -29,7 +29,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-md-3 rightsidebar">
+      <div class="col-md-3 right_section">
         <%= render partial: 'slide_wrapp' %>
         <%= render partial: 'tabs', locals: { iine_ranking_posts: @iine_ranking_posts,
                                               overall_ranking_posts: @overall_ranking_posts } %>

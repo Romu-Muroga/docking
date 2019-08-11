@@ -1,5 +1,5 @@
 // 左
-.leftsidebar {
+.left_section {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -21,7 +21,7 @@
 }
 
 // 中央
-.centerbar {
+.center_section {
   // カテゴリーラベル
   .category_label {
     width: auto;
@@ -86,7 +86,7 @@
 }
 
 // 右
-.rightsidebar {
+.right_section {
   // スライドショー
   #slide_wrapp {
     position: relative;
