@@ -54,6 +54,18 @@
   &_link {
     color: black;
     display: inline-block;
+    .hammer {
+      margin-left: 12px;
+    }
+    .user-edit {
+      margin-left: 9px;
+    }
+    .unlock-alt {
+      margin-left: 18px;
+    }
+    .sad-tear {
+      margin-left: 15px;
+    }
     &:hover {
       color: black;
     }
