@@ -13,10 +13,12 @@
   <div class="tab_content" id="iine_content">
     <div class="tab_content_description">
       <% iine_ranking_posts.each.with_index(1) do |post, i| %>
-        <p class="c-txtsp">
+        <div class="c-txtsp">
           <%= i %>位
-          <%= picture_link(post) %>
-        </p>
+          <div class="mask">
+            <%= picture_link(post) %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
