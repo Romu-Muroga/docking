@@ -1,10 +1,6 @@
 <div class="user_account_menu">
   <p><%= current_user.name.truncate(12, omission: '...') %></p>
-  <% if current_user.picture.present? %>
-    <%= image_tag(current_user.picture.image.url, class: "img-responsive") %>
-  <% else %>
-    <%= image_tag("/images/default.png", class: "img-responsive")%>
-  <% end %>
+  <%= picture_not_link(current_user) %>
   <% if current_user.admin %>
     <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
       <i class="fas fa-hammer fa-2x"></i>&nbsp;&nbsp;Administrator page
