@@ -44,31 +44,53 @@
 
 // アカウントメニュー
 .user_account_menu {
-  p {
+  text-align: center;
+  p.account_name {
     font-size: 17px;
   }
-  i.fas {
-    margin: 8px 0 5px 0;
-    color: gray;
+  img {
+    margin-bottom: 10px;
   }
   &_link {
     color: black;
-    display: inline-block;
-    .hammer {
-      margin-left: 12px;
+    position: relative;
+    i.fas {
+      margin: 8px 3px 5px 0;
+      color: gray;
     }
-    .user-edit {
-      margin-left: 9px;
+    .fukidashi {
+      display: none;
+      width: 160px;
+      position: absolute;
+      top: 29px;
+      left: -7px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #33cc99;
+      color: #fff;
+      font-weight: bold;
     }
-    .unlock-alt {
-      margin-left: 18px;
+    .fukidashi:after {
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: -19px;
+      left: 0;
+      margin-left: 10px;
+      border-top: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 30px solid #33cc99;
+      border-left: 30px solid transparent;
+      border-width: 10px;
+      pointer-events: none;
+      content: '';
     }
-    .sad-tear {
-      margin-left: 15px;
+    i.fas:hover + .fukidashi {
+      display: block;
     }
-    &:hover {
-      color: black;
-    }
+  }
+  a.cp_btn {
+    margin-top: 40px;
   }
   // いいね！済みのリスト
   a.iine_posts_link {

@@ -1,23 +1,23 @@
 <div class="user_account_menu">
-  <p><%= current_user.name.truncate(12, omission: '...') %></p>
+  <p class="account_name"><%= current_user.name.truncate(12, omission: '...') %></p>
   <%= picture_not_link(current_user) %>
   <% if current_user.admin %>
     <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
       <i class="fas fa-hammer fa-2x"></i>
-      <span class="hammer">Administrator page</span>
-    <% end %><br>
+      <p class="fukidashi">管理者専用ページ</p>
+    <% end %>
   <% end %>
   <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
     <i class="fas fa-user-edit fa-2x"></i>
-    <span class="user-edit">Edit account info</span>
-  <% end %><br>
+    <p class="fukidashi">アカウント情報の変更</p>
+  <% end %>
   <%= link_to password_reset_user_path(current_user), class: "user_account_menu_link" do %>
     <i class="fas fa-unlock-alt fa-2x"></i>
-    <span class="unlock-alt">Change password</span>
-  <% end %><br>
+    <p class="fukidashi">パスワードを変更する</p>
+  <% end %>
   <%= link_to destroy_confirm_user_path(current_user), class: "user_account_menu_link" do %>
     <i class="fas fa-sad-tear fa-2x"></i>
-    <span class="sad-tear">Close the account</span>
+    <p class="fukidashi">退会する</p>
   <% end %>
   <%= link_to 'New post', new_post_path, class: "cp_btn" %>
   <%= link_to iine_post_list_user_path(current_user), class: "iine_posts_link" do %>
