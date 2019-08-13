@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.build_picture(image: picture_params[:image]) if picture_params[:image]# アイコン画像は未登録可
     if @user.save
-      # セーブできたら同時にログイン
+      # Login at the same time if user can save
       session[:user_id] = @user.id
       flash[:success] = t('flash.account_registration_and_login_completed', user: @user.name)
       redirect_to user_path(@user.id)
@@ -118,7 +118,7 @@ class UsersController < ApplicationController
 
   def set_user
     # TODO
-    if params[:id] == current_user.id.to_s
+    if params[:id].to_i == current_user.id
       @user = current_user
     else
       flash[:danger] = t('flash.Unlike_users')

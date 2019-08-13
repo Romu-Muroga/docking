@@ -99,7 +99,7 @@ class Post < ApplicationRecord
     # scan:引数に指定した文字列と一致する文字列を、全て配列にして取得する
     hashtags = remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
-      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      tag = Hashtag.find_or_create_by(hashname: hashtag.tr('＃', '#').delete('#'))
       # postに付与されているhashtagの配列にtagを追加
       post.hashtags << tag
     end
@@ -111,7 +111,7 @@ class Post < ApplicationRecord
     post.hashtags.clear
     hashtags = remarks.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
-      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      tag = Hashtag.find_or_create_by(hashname: hashtag.tr('＃', '#').delete('#'))
       post.hashtags << tag
     end
   end
