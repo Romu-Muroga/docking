@@ -55,7 +55,7 @@
     color: black;
     position: relative;
     i.fas {
-      margin: 8px 3px 5px 0;
+      margin: 8px 3px 5px 3px;
       color: gray;
     }
     .fukidashi {
@@ -66,9 +66,8 @@
       left: -7px;
       padding: 10px;
       border-radius: 5px;
-      background: #33cc99;
-      color: #fff;
-      font-weight: bold;
+      background: powderblue;
+      color: black;
     }
     .fukidashi:after {
       position: absolute;
@@ -76,10 +75,10 @@
       height: 0;
       top: -19px;
       left: 0;
-      margin-left: 10px;
+      margin-left: 13px;
       border-top: 30px solid transparent;
       border-right: 30px solid transparent;
-      border-bottom: 30px solid #33cc99;
+      border-bottom: 30px solid powderblue;
       border-left: 30px solid transparent;
       border-width: 10px;
       pointer-events: none;
