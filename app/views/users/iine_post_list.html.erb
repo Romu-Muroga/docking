@@ -3,11 +3,7 @@
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8 col-md-offset-2 col-md-8">
         <div class="user_area">
-          <% if @user.picture.present? %>
-            <%= image_tag(@user.picture.image.url, class: "img-responsive") %>
-          <% else %>
-            <%= image_tag("/images/default.png", class: "img-responsive")%>
-          <% end %>
+          <%= picture_not_link(@user) %>
           <div class="user_name"><%= @user.name.truncate(12, omission: '...') %>さんがいいね！した投稿</div>
         </div>
         <div class="iine_post_area">

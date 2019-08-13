@@ -64,4 +64,11 @@ input[name="tab_item"] {
   p.overall_ranking {
     font-size: 20px;
   }
+  .mask {
+    opacity: 1;
+    transition:	all 0.2s ease;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }

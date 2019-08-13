@@ -1,10 +1,6 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %><!-- コメントのidがnilではなかったら -->
-    <% if comment.user.picture.present? %>
-      <span><%= image_tag(comment.user.picture.image.url, size: "30x30") %></span>
-    <% else %>
-      <span><%= image_tag("/images/default.png", size: "30x30") %></span>
-    <% end %>
+    <%= picture_not_link(comment.user) %>
     <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
     <span>&nbsp;&nbsp;<%= comment.user.name.truncate(12, omission: '...') %><%#= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></span>
     <p><%= simple_format(comment.content) %></p>

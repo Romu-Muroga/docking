@@ -3,11 +3,7 @@
     <div class="row">
       <div class="col-xs-12 col-md-offset-1 col-md-7">
         <div class="thumbnail">
-          <% if @post.picture.present? %>
-            <%= image_tag(@post.picture.image.url, class: "img-responsive") %>
-          <% else %>
-            <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
-          <% end %>
+          <%= picture_not_link(@post) %>
           <div class="thumbnail_header">
             <span class="category_label_in_posts_show"><%= @post.category.name %></span>
             <span class="item">Eatery name: </span><span><%= @post.eatery_name %></span>&nbsp;&nbsp
@@ -15,11 +11,7 @@
           </div>
           <div class="caption">
             <div class="caption_user">
-              <% if @post.user.picture.present? %>
-                <%= image_tag(@post.user.picture.image.url, size: "48x48") %>
-              <% else %>
-                <%= image_tag("/images/default.png", size: "48x48") %>
-              <% end %>
+              <%= picture_not_link(@post.user) %>
               <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
               <div class="caption_user_post_time">
                 <%= @post.user.name.truncate(12, omission: '...') %>さんが

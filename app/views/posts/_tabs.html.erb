@@ -13,18 +13,12 @@
   <div class="tab_content" id="iine_content">
     <div class="tab_content_description">
       <% iine_ranking_posts.each.with_index(1) do |post, i| %>
-        <p class="c-txtsp">
+        <div class="c-txtsp">
           <%= i %>位
-          <% if post.picture.present? %>
-            <%= link_to post_path(post) do %>
-              <%= image_tag(post.picture.image.url, class: "img-responsive") %>
-            <% end %>
-          <% else %>
-            <%= link_to post_path(post) do %>
-              <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
-            <% end %>
-          <% end %>
-        </p>
+          <div class="mask">
+            <%= picture_link(post) %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
