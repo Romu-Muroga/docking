@@ -5,10 +5,11 @@
     background: url("/images/top_page.jpg");
     // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     position: relative;
     height: 800px;
     width: 100%;
-    background-attachment: fixed;
     &:before {
       content: '';
       position: absolute;
