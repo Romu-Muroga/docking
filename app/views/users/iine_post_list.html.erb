@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8 col-md-offset-2 col-md-8">
         <div class="user_area">
-          <%= picture_not_link(@user) %>
+          <%= user_picture_link(@user) %>
           <div class="user_name"><%= @user.name.truncate(12, omission: '...') %>さんがいいね！した投稿</div>
         </div>
         <div class="iine_post_area">
@@ -13,14 +13,14 @@
                 <%= link_to post_path(iine_post) do %>
                   <%= image_tag(iine_post.picture.image.url) %>
                   <div class="mask">
-                		<div class="caption">Learn more!</div>
+                		<div class="mask_message">Learn more!</div>
                 	</div>
                 <% end %>
               <% else %>
                 <%= link_to post_path(iine_post) do %>
                   <%= image_tag("/images/default2.jpg") %>
                   <div class="mask">
-                    <div class="caption">Learn more!</div>
+                    <div class="mask_message">Learn more!</div>
                   </div>
                 <% end %>
               <% end %>

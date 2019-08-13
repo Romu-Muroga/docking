@@ -3,17 +3,10 @@
   margin-top: 80px;
   .iine_post {
     margin: 0 15px 27px 15px;
-    // background-color: #000;//マウスオーバー時の背景色
     padding: 0;
     width: 29.333333%;
     position: relative;
     // マウスホバー時、文字列を表示するエフェクト
-    .caption {
-    	font-size: 130%;
-    	text-align: center;
-    	padding-top: 110px;
-    	color: #fff;
-    }
     .mask {
     	width: 100%;
     	height:	100%;
@@ -24,6 +17,12 @@
     	background-color:	rgba(0,0,0,0.4);	/* マスクは半透明 */
     	-webkit-transition:	all 0.2s ease;
     	transition:	all 0.2s ease;
+      &_message {
+      	font-size: 130%;
+      	text-align: center;
+      	padding-top: 110px;
+      	color: #fff;
+      }
     }
     &:hover .mask {
       opacity: 1;	/* マスクを表示する */
@@ -34,12 +33,9 @@
     height: 250px;
     object-fit: cover;
   }
-  // div.iine_post img:hover {
-  //   opacity: 0.3;
-  // }
 }
 
-// ユーザーエリア
+// アカウント名が表示するエリア
 .user_area {
   display: flex;
   margin-left: 30%;
@@ -57,7 +53,7 @@
   }
 }
 
-// ハッシュタグエリア
+// ハッシュタグ名が表示するエリア
 .hashname_area {
   text-align: center;
   font-weight: bold;
