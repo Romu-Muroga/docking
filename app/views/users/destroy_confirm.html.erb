@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4" style="margin-top: 170px">
+      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 destroy_confirm">
         <h3><%= t("views.users.destroy_page") %></h3>
         <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
         <%= form_with(model: User.new, url: user_path(@user.id), method: :delete, local: true, class: "form_outer") do |f| %>
@@ -20,6 +20,7 @@
           </div>
           <%= f.submit "退会する", class: "btn btn-default" %>
         <% end %>
+        <%= link_to '戻る', user_path(current_user), class: "btn btn-default" %>
       </div>
     </div>
   </div>

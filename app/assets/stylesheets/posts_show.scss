@@ -29,7 +29,6 @@
       margin-right: 10px;
     }
   }
-
   // 投稿の補足文
   .caption {
     &_user_block {
@@ -76,9 +75,8 @@
       }
     }
   }
-
   // コメントエリア
-  .right_section  {
+  .right_section {
     padding: 0 0 0 14px;
     p.title {
       padding-bottom: 5px;
@@ -104,7 +102,7 @@
           width: 85%;
           display: inline-block;
           margin-left: 45px;
-          margin-bottom: 5px;
+          margin-bottom: 10px;
           p {
             margin: 0;
           }
