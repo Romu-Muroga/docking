@@ -1,92 +1,123 @@
-// サムネイルヘッダー
-.thumbnail_header {
-  height: 100%;
-  padding: 20px;
-  margin-bottom: 10px;
-  border-bottom: solid 1px lightgray;
-  span {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  span.item {
-    font-weight: normal;
-  }
-  // ポスト詳細ページのカテゴリーラベル
-  span.category_label_in_posts_show {
-    position: relative;
-    top: 0px;
-    left: 6px;
-    width: auto;
-    display: inline;
-    background-color: papayawhip;
-    text-align: center;
-    border-radius: 0.3em;
-    padding: 5px;
-    margin-right: 22px;
-    font-weight: normal;
-  }
-}
-
-// 投稿の説明
-.caption {
-  &_user {
-    display: flex;
-    img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+#post_show_area {
+  padding-top: 80px;
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline-block;
+      list-style: none;
     }
-    &_post_time {
-      padding: 4px 4px 4px 15px;
-      time {
-        color: silver;
+  }
+  // サムネイルヘッダー
+  .thumbnail_header {
+    padding: 20px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px lightgray;
+    li {
+      font-size: 16px;
+    }
+    // ポスト詳細ページのカテゴリーラベル
+    li.category_label {
+      width: auto;
+      background-color: papayawhip;
+      text-align: center;
+      border-radius: 0.3em;
+      padding: 5px;
+      margin-right: 22px;
+    }
+    li.eatery_name {
+      margin-right: 10px;
+    }
+  }
+
+  // 投稿の補足文
+  .caption {
+    &_user_block {
+      display: flex;
+      img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+      }
+      &_post_time {
+        padding: 4px 4px 4px 15px;
+        time {
+          color: silver;
+        }
+      }
+      // いいね！をカウント数を表示するブロック
+      &_iine_count {
+        // color: red;
+        color: white;
+        // text-shadow: 0 0 10px red, 0 0 15px red;
+        padding: 13px;
+        font-size: 16px;
+        // background: #6f0101;
+        background-color: #ED3833;
+        text-align: center;
+        margin-left: auto;
+        margin-right: 4px;
       }
     }
-    // いいね！をカウント数を表示するブロック
-    .iine_count {
-      // color: red;
-      color: white;
-      // text-shadow: 0 0 10px red, 0 0 15px red;
-      padding: 13px;
-      font-size: 16px;
-      // background: #6f0101;
-      background-color: #ED3833;
-      text-align: center;
-      margin-left: auto;
-      margin-right: 4px;
+    &_remarks_title {
+      padding-top: 10px;
+    }
+    &_remarks {
+      margin-top: 5px;
+      padding: 3px 7px;
+      min-height: 70px;
+      background-color: #f5f5f5;
+    }
+    // 店の情報
+    &_eatery_info {
+      padding: 10px;
+      .eatery_address {
+        margin-right: 10px;
+      }
     }
   }
-  .remarks_title {
-    padding-top: 10px;
-  }
-  // 備考欄
-  .remarks {
-    margin-top: 5px;
-    padding: 3px 7px;
-    min-height: 70px;
-    background-color: #f5f5f5;
-  }
-  // 店の情報
-  .eatery_info {
-    padding: 10px;
-  }
-}
 
-// コメントエリアのテキストがブロック内で折り返されるように設定
-#comments_area {
-  height: 60vh;
-  word-wrap: break-word;
-  overflow: scroll;
-  img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: inline-block;
+  // コメントエリア
+  .right_section  {
+    padding: 0 0 0 14px;
+    p.title {
+      padding-bottom: 5px;
+      border-bottom: solid 1px lightgray;
+    }
+    // コメントエリアのテキストがブロック内で折り返されるように設定
+    #comments_area {
+      width: 100%;
+      height: 60vh;
+      word-wrap: break-word;
+      overflow: scroll;
+      .comments_area_inner {
+        position: relative;
+        img {
+          border-radius: 50%;
+          width: 11%;
+          display: inline-block;
+          position:absolute;
+          top: 0;
+          left: 0;
+        }
+        .comments_area_content {
+          width: 85%;
+          display: inline-block;
+          margin-left: 45px;
+          margin-bottom: 5px;
+          p {
+            margin: 0;
+          }
+          .comments_area_account_name {
+            font-weight: bold;
+            display: inline-block;
+          }
+          time {
+            display: inline-block;
+            color: silver;
+          }
+        }
+      }
+    }
   }
-}
-
-// コメントエリアのタイトルとボディとの間の隙間
-.right_section p.title {
-  padding-bottom: 5px;
-  border-bottom: solid 1px lightgray;
 }

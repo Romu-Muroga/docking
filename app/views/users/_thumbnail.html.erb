@@ -24,10 +24,10 @@
       <p class="edit_delete_button">
         <%= link_to 'EDIT', edit_post_path(user_post), class: "btn btn-warning" %>
         <%= link_to 'DELETE',
-                    post_path(user_post),
-                    method: :delete,
-                    data: { confirm: '削除してよろしいですか？' },
-                    class: "btn btn-danger"
+                     post_path(user_post),
+                     method: :delete,
+                     data: { confirm: '削除してよろしいですか？' },
+                     class: "btn btn-danger"
         %>
       </p>
     <% end %>

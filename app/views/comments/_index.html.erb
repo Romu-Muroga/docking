@@ -1,13 +1,19 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %><!-- コメントのidがnilではなかったら -->
-    <%= picture_not_link(comment.user) %>
-    <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
-    <span>&nbsp;&nbsp;<%= comment.user.name.truncate(12, omission: '...') %><%#= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></span>
-    <p><%= simple_format(comment.content) %></p>
-    <% if comment.user == current_user %><!--そのコメントをしたユーザーと現在のユーザーが一致していたら -->
-      <p class="comment_delete_btn">
-        <%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %>
-      </p>
-    <% end %>
+    <div class="comments_area_inner">
+      <%= picture_not_link(comment.user) %>
+      <div class="comments_area_content">
+        <p class="comments_area_account_name"><%= comment.user.name.truncate(12, omission: '...') %></p>
+        <time datetime="<%= comment.created_at %>">
+          <%= time_ago_in_words(comment.created_at, include_seconds: true)+"前" %>
+        </time>
+        <%= simple_format(comment.content) %>
+        <% if comment.user == current_user %><!--そのコメントをしたユーザーと現在のユーザーが一致していたら -->
+          <p class="comments_area_delete_btn">
+            <%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %>
+          </p>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 <% end %>

@@ -1,19 +1,21 @@
-<div class="wrapper">
+<div class="wrapper" id="post_show_area">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12 col-md-offset-1 col-md-7">
+      <div class="col-md-offset-1 col-md-7">
         <div class="thumbnail">
           <%= picture_not_link(@post) %>
           <div class="thumbnail_header">
-            <span class="category_label_in_posts_show"><%= @post.category.name %></span>
-            <span class="item">Eatery name: </span><span><%= @post.eatery_name %></span>&nbsp;&nbsp
-            <span class="item">Menu: </span><span><%= @post.eatery_food %></span>
+            <ul>
+              <li class="category_label"><%= @post.category.name %></li>
+              <li class="eatery_name"><%= @post.eatery_name %></li>
+              <li class="eatery_food">Menu: <%= @post.eatery_food %></li>
+            </ul>
           </div>
           <div class="caption">
-            <div class="caption_user">
+            <div class="caption_user_block">
               <%= picture_not_link(@post.user) %>
               <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
-              <div class="caption_user_post_time">
+              <div class="caption_user_block_post_time">
                 <%= @post.user.name.truncate(12, omission: '...') %>さんが
                 <%= @post.category.name %>の
                 <%= t("activerecord.enum.post.ranking_point.#{@post.ranking_point}") %>に投稿しました。<br>
@@ -22,21 +24,23 @@
                 </time>
                 <%#= link_to @post.user.name, user_path(@post.user) %>
               </div>
-              <div class="iine_count">
+              <div class="caption_user_block_iine_count">
                 いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
               </div>
             </div>
-            <p class="remarks_title">お気に入りの理由は？</p>
-            <div class="remarks">
+            <p class="caption_remarks_title">お気に入りの理由は？</p>
+            <div class="caption_remarks">
               <%= render_with_hashtags(simple_format(@post.remarks)) %>
             </div>
-            <div class="eatery_info">
-              <span>Address: <%= @post.eatery_address %></span>&nbsp;&nbsp;&nbsp;
-              <% if @post.eatery_website == "未登録" %>
-                <span>Website: 未登録<span>&nbsp;&nbsp;&nbsp;
-              <% else %>
-                <span>Website: <%= link_to @post.eatery_name, @post.eatery_website %></span>&nbsp;&nbsp;&nbsp;
-              <% end %>
+            <div class="caption_eatery_info">
+              <ul>
+                <li class="eatery_address">Address: <%= @post.eatery_address %></li>
+                <% if @post.eatery_website == "未登録" %>
+                  <li class="eatery_website">Website: 未登録<li>
+                <% else %>
+                  <li class="eatery_website">Website: <%= link_to @post.eatery_name, @post.eatery_website %></li>
+                <% end %>
+              </ul>
             </div>
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
               <%= render "likes/like", post: @post %><!-- いいねボタン -->
@@ -44,22 +48,29 @@
             <% if @post.user_id == current_user.id %>
               <p class="edit_delete_button">
                 <%= link_to 'EDIT', edit_post_path(@post), class: "btn btn-warning" %>
-                <%= link_to 'DELETE', post_path(@post), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
+                <%= link_to 'DELETE',
+                             post_path(@post),
+                             method: :delete,
+                             data: { confirm: "削除してよろしいですか？" },
+                             class: "btn btn-danger"
+                %>
               </p>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-3 right_section">
+      <div class="col-md-3 right_section">
         <p class="title">コメント</p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
           <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
           <%= render partial: 'comments/index', locals: { comments: @comments } %>
         </div>
-        <%# if logged_in? %>
-          <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-          <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-        <%# end %>
+        <div class="comments_form_area">
+          <%# if logged_in? %>
+            <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+            <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+          <%# end %>
+        </div>
       </div>
     </div>
   </div>
