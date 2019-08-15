@@ -7,8 +7,8 @@
           <div class="thumbnail_header">
             <ul>
               <li class="category_label"><%= @post.category.name %></li>
-              <li class="eatery_name"><%= @post.eatery_name %></li>
-              <li class="eatery_food">Menu: <%= @post.eatery_food %></li>
+              <li class="en_text"><%= @post.eatery_name %></li>
+              <li class="ef_text">Menu: <%= @post.eatery_food %></li>
             </ul>
           </div>
           <div class="caption">
@@ -34,16 +34,16 @@
             </div>
             <div class="caption_eatery_info">
               <ul>
-                <li class="eatery_address">Address: <%= @post.eatery_address %></li>
+                <li class="eadd_text">Address: <%= @post.eatery_address %></li>
                 <% if @post.eatery_website == "未登録" %>
-                  <li class="eatery_website">Website: 未登録<li>
+                  <li class="eweb_text">Website: 未登録<li>
                 <% else %>
-                  <li class="eatery_website">Website: <%= link_to @post.eatery_name, @post.eatery_website %></li>
+                  <li class="eweb_text">Website: <%= link_to @post.eatery_name, @post.eatery_website %></li>
                 <% end %>
               </ul>
             </div>
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
-              <%= render "likes/like", post: @post %><!-- いいねボタン -->
+              <%= render "likes/like", post: @post %>
             </div>
             <% if @post.user_id == current_user.id %>
               <p class="edit_delete_button">

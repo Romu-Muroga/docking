@@ -7,25 +7,27 @@
           <div class="user_name"><%= @user.name.truncate(12, omission: '...') %>さんがいいね！した投稿</div>
         </div>
         <div class="iine_post_area">
-          <% @iine_posts.each do |iine_post| %>
-            <div class="col-xs-4 col-md-4 iine_post">
-              <% if iine_post.picture.present? %>
-                <%= link_to post_path(iine_post) do %>
-                  <%= image_tag(iine_post.picture.image.url) %>
-                  <div class="mask">
-                    <div class="mask_message">Learn more!</div>
-                  </div>
+          <div class="row">
+            <% @iine_posts.each do |iine_post| %>
+              <div class="col-xs-4 col-md-4 iine_post">
+                <% if iine_post.picture.present? %>
+                  <%= link_to post_path(iine_post) do %>
+                    <%= image_tag(iine_post.picture.image.url) %>
+                    <div class="mask">
+                      <div class="mask_message">Learn more!</div>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <%= link_to post_path(iine_post) do %>
+                    <%= image_tag("/images/default2.jpg") %>
+                    <div class="mask">
+                      <div class="mask_message">Learn more!</div>
+                    </div>
+                  <% end %>
                 <% end %>
-              <% else %>
-                <%= link_to post_path(iine_post) do %>
-                  <%= image_tag("/images/default2.jpg") %>
-                  <div class="mask">
-                    <div class="mask_message">Learn more!</div>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

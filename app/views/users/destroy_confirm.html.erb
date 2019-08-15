@@ -1,12 +1,12 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 destroy_confirm">
+      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 destroy_confirm_section">
         <h3><%= t("views.users.destroy_page") %></h3>
         <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
         <%= form_with(model: User.new, url: user_path(@user.id), method: :delete, local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
-            <h5 style="line-height: 20px; font-size: 15px;">
+            <h5>
               退会するとお客様に関連する情報が全て削除され、<br>
               ログインできなくなります。<br>
               また登録されていたデータは復元できません。よろしいですか？
@@ -19,8 +19,8 @@
             </div>
           </div>
           <%= f.submit "退会する", class: "btn btn-default" %>
+          <%= link_to '戻る', user_path(current_user), class: "btn btn-default" %>
         <% end %>
-        <%= link_to '戻る', user_path(current_user), class: "btn btn-default" %>
       </div>
     </div>
   </div>
