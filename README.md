@@ -1,4 +1,5 @@
 # Docking
+![top_page_screenshot](https://user-images.githubusercontent.com/44666292/63150251-471cfc80-c041-11e9-9694-62fdf4e81aec.png)
 ## 概要
 自分の好きなものをランキング形式で投稿して共有するアプリ（ver.飲食店）
 ## コンセプト
