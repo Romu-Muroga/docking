@@ -1,4 +1,4 @@
-<div class="wrapper" id="user_form_area">
+<div class="wrapper" id="account_form_area">
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 login_form">
@@ -18,6 +18,11 @@
           <%= f.submit "ログイン", class: "btn btn-primary" %>
         <% end %>
         <p>アカウントをお持ちでない方は<%= link_to 'こちら', new_user_path %></p>
+        <div class="otameshi_insert_data" style="border: solid 1px white; padding: 6px;">
+          ※お試し用入力データ<br>
+          メールアドレス：test@dic.com<br>
+          パスワード：12345678
+        </div>
       </div>
     </div>
   </div>
