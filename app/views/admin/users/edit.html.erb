@@ -17,7 +17,7 @@
             <% end %>
             <h3><%= @user.name %></h3>
             <div class="form-group">
-              <%= f.label :admin %>
+              <%= f.label :admin, '管理者権限' %>
               <div>
                 <label><%= f.radio_button :admin, 0, checked: @user.admin %>&nbsp;&nbsp;あり</label>
               </div>
