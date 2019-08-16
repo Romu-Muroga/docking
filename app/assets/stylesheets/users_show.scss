@@ -12,7 +12,7 @@
   li.category_label {
     font-size: 130%;
   }
-  li.ranking_point {
+  li.rp_text {
     font-size: 130%;
     margin-right: 10px;
   }
@@ -34,6 +34,12 @@
         object-fit: cover;
       }
     }
+    .caption_remarks {
+      margin-top: 5px;
+      padding: 3px 7px;
+      min-height: 70px;
+      background-color: #f5f5f5;
+    }
   }
   div.right_section {
     padding: 0 15px 0 15px;
@@ -49,13 +55,15 @@
     font-size: 17px;
   }
   img {
-    margin-bottom: 10px;
+    max-width: 100%;
+    max-height: 187px;
+    margin: 0 auto;
   }
   &_link {
     color: black;
     position: relative;
     i.fas {
-      margin: 8px 3px 5px 0;
+      margin: 8px 3px 5px 3px;
       color: gray;
     }
     .fukidashi {
@@ -66,9 +74,8 @@
       left: -7px;
       padding: 10px;
       border-radius: 5px;
-      background: #33cc99;
-      color: #fff;
-      font-weight: bold;
+      background: powderblue;
+      color: black;
     }
     .fukidashi:after {
       position: absolute;
@@ -76,10 +83,10 @@
       height: 0;
       top: -19px;
       left: 0;
-      margin-left: 10px;
+      margin-left: 13px;
       border-top: 30px solid transparent;
       border-right: 30px solid transparent;
-      border-bottom: 30px solid #33cc99;
+      border-bottom: 30px solid powderblue;
       border-left: 30px solid transparent;
       border-width: 10px;
       pointer-events: none;

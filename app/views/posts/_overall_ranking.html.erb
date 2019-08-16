@@ -10,5 +10,5 @@
   主観的 + 客観的 = 総合評価ランキングです。
 </h5>
 <% posts.each.with_index(1) do |(key, value), i| %>
-  <p class="overall_ranking"><%= i %>位 店名：<%= key[0] %>（<%= Category.find(key[1]).name %>） <%= value[:point] %>ポイント</p>
+  <p class="or_text"><%= i %>位 <%= key[0] %>（<%= Category.find(key[1]).name %>） <%= value[:point] %>ポイント</p>
 <% end %>

@@ -15,9 +15,7 @@
               <% end %>
             </div>
             <% if @user_posts.present? %>
-              <% @user_posts.each do |user_post| %>
-                <%= render partial: 'thumbnail', locals: { user_post: user_post } %>
-              <% end %>
+              <%= render partial: 'thumbnail', collection: @user_posts, as: 'user_post' %>
             <% else %>
               <h4 class="no_post_message">投稿がありません</h4>
             <% end %>
