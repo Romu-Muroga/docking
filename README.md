@@ -10,7 +10,7 @@
 それがこのアプリケーション、個人のランキング × 個人のランキング ＝ **Docking** になります。
 ## バージョン
 ![ruby version](https://img.shields.io/badge/Ruby-v2.5.3-blue.svg)
-![rails version](https://img.shields.io/badge/Rails-v5.2.2-green)
+![rails version](https://img.shields.io/badge/Rails-v5.2.3-green)
 ![pstgresql version](https://img.shields.io/badge/PostgreSQL-v10.5-brightgreen)
 ## 機能一覧
 - [x] ログイン機能
