@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :hashtag do
-    hashname { "MyString" }
+    hashname { 'MyString' }
   end
 end

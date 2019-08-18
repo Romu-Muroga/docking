@@ -1,9 +1,8 @@
 class PostsController < ApplicationController
-  # before_action
   before_action :login_check
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[edit update destroy]
-  # autocomplete
+
   autocomplete :post, :eatery_name, full: true, scopes: [:uniq_eatery_name], full_model: true
   autocomplete :post, :eatery_food, full: true, scopes: [:uniq_eatery_food], full_model: true
   autocomplete :post, :eatery_address, full: true, scopes: [:uniq_eatery_address], full_model: true
@@ -31,12 +30,6 @@ class PostsController < ApplicationController
       flash[:warning] = t('flash.Search_word_is_empty')
       redirect_to posts_path
     else
-      # TODO: enumの対応
-      # @q =>  Condition <attributes: ["ranking_point"], predicate: eq, values: ["１位"]
-      # enumで定義した１位: 3で検索してほしいけど、"１位" => 0になってしまう…
-      # => SELECT "posts".* FROM "posts" WHERE "posts"."ranking_point" = 0
-      # ranking_pointカラムには、integerの3,2,1のいずれかしか格納されていない。
-      # 解決策: formから送るvalueを<option value="3">１位</option>にして、@q => values: ["3"]とすればいい。
       @q = Post.ransack(search_params)
       @posts = @q.result.latest
       @iine_ranking_posts = Post.iine_ranking
@@ -47,14 +40,14 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # build_picture: has_oneでアソシエーションが定義されている場合に使える構文
+    # build_picture: has_oneが定義されている場合に使える構文
     @post.build_picture
   end
 
   def create
     params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
     @post = Post.new(post_params)
-    @post.build_picture(image: picture_params[:image]) if picture_params[:image]# 投稿画像は未登録可
+    @post.build_picture(image: picture_params[:image]) if picture_params[:image]
     if @post.save
       flash[:success] = t('flash.create', content: @post.eatery_name)
       redirect_to post_path(@post)
@@ -64,7 +57,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    # 入力フォームで使用するインスタンスを作成
+    # Create instance to be used in input form
     @comment = Comment.new
     @comments = @post.comments
   end
@@ -72,7 +65,6 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    # @postと@post.pictureのどちらかがupdateに失敗したとき、どちらもupdateしない設定
     ActiveRecord::Base.transaction do
       params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
       @post.update!(post_params)
@@ -94,7 +86,7 @@ class PostsController < ApplicationController
     flash[:success] = t('flash.update', content: @post.model_name.human)
     redirect_to post_path(@post)
   rescue ActiveRecord::RecordInvalid
-    # TODO: エラーメッセージが必要？
+    # TODO: Add error message?
     render :edit
   end
 
@@ -127,7 +119,7 @@ class PostsController < ApplicationController
     )
   end
 
-  # params[:post][:image]は、picturesテーブルに保存するためpost_paramsと分離させる。
+  # picturesテーブルに保存するparameterは、post_paramsと分離させる。
   def picture_params
     params.require(:post).permit(
       :image,

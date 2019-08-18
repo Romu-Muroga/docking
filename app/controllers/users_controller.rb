@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.build_picture(image: picture_params[:image]) if picture_params[:image]# アイコン画像は未登録可
+    @user.build_picture(image: picture_params[:image]) if picture_params[:image]
     if @user.save
       # Login at the same time if user can save
       session[:user_id] = @user.id
@@ -55,7 +55,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @postと@post.pictureのどちらかが更新に失敗したとき、どちらも更新しない設定
     ActiveRecord::Base.transaction do
       @user.update!(user_params)
       checkbox_value = params[:user][:picture_delete_check].to_i
@@ -107,7 +106,7 @@ class UsersController < ApplicationController
     )
   end
 
-  # params[:user][:image]は、picturesテーブルに保存するためuser_paramsと分離させる。
+  # picturesテーブルに保存するparameterはuser_paramsと分離させる。
   def picture_params
     params.require(:user).permit(
       :image,
@@ -132,13 +131,4 @@ class UsersController < ApplicationController
     flash[:danger] = t('flash.Please_login')
     redirect_to new_session_path
   end
-
-  # メソッド化しようとしたけど、返り値が全てtrueになってしまうため中止
-  # def true_or_false
-  #   if params[:user][:destroy_check] = "1"
-  #     return true
-  #   elsif params[:user][:destroy_check] = "2"
-  #     return false
-  #   end
-  # end
 end

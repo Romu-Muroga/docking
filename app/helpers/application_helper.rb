@@ -1,5 +1,5 @@
 module ApplicationHelper
-  # 現在のページをハイライトする
+  # Highlight current page
   def cp(path)
     'current' if current_page?(path)
   end

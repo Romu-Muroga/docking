@@ -21,7 +21,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :iine_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
-  has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
+  # TODO: foreign_key: { on_delete: :cascade }
+  has_one :picture, as: :imageable, dependent: :destroy
   belongs_to :user
   belongs_to :category
 
@@ -29,8 +30,8 @@ class Post < ApplicationRecord
   scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
   scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
-  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
-  scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
+  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }
+  scope :latest, -> { order(updated_at: :desc).includes(:user) }
   # scope for autocomplete
   scope :uniq_eatery_name, -> { select('MIN(id) as id, eatery_name').group(:eatery_name) }
   scope :uniq_eatery_food, -> { select('MIN(id) as id, eatery_food').group(:eatery_food) }
@@ -46,7 +47,7 @@ class Post < ApplicationRecord
     likes.find_by(user_id: user.id).destroy
   end
 
-  # 現在のユーザーがいいねしてたらtrueを返す
+  # Returns true if the current user iine
   def iine?(user)
     iine_users.include?(user)
   end
