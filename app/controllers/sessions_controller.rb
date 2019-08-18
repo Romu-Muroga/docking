@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && password_check(user, params[:session][:password])
       session[:user_id] = user.id
-      flash[:success] = t('flash.You_are_now_logged')
-      redirect_to user_path(user.id)
+      redirect_to user_path(user.id), success: t('flash.You_are_now_logged')
     else
       flash[:danger] = t('flash.Login_failed')
       render :new
@@ -16,8 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    flash[:success] = t('flash.logged_out')
-    redirect_to root_path
+    redirect_to root_path, success: t('flash.logged_out')
   end
 
   private

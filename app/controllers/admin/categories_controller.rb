@@ -13,8 +13,8 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = t('flash.create', content: @category.name)
-      redirect_to admin_categories_path
+      redirect_to admin_categories_path,
+                  success: t('flash.create', content: @category.name)
     else
       render :new
     end
@@ -24,8 +24,8 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:success] = t('flash.update', content: @category.model_name.human)
-      redirect_to admin_categories_path
+      redirect_to admin_categories_path,
+                  success: t('flash.update', content: @category.model_name.human)
     else
       render :edit
     end
@@ -33,8 +33,8 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    flash[:success] = t('flash.destroy', content: @category.name)
-    redirect_to admin_categories_path
+    redirect_to admin_categories_path,
+                success: t('flash.destroy', content: @category.name)
   end
 
   private
@@ -50,7 +50,6 @@ class Admin::CategoriesController < ApplicationController
   def current_user_admin?
     return if logged_in? && current_user.admin
 
-    flash[:danger] = t('flash.Not_authorized')
-    redirect_to root_path
+    redirect_to root_path, danger: t('flash.Not_authorized')
   end
 end

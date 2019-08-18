@@ -16,8 +16,8 @@ class UsersController < ApplicationController
     if @user.save
       # Login at the same time if user can save
       session[:user_id] = @user.id
-      flash[:success] = t('flash.account_registration_and_login_completed', user: @user.name)
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id),
+                  success: t('flash.account_registration_and_login_completed', user: @user.name)
     else
       render :new
     end
@@ -47,8 +47,7 @@ class UsersController < ApplicationController
       @user.add_errors
       render :password_reset
     elsif @user.update(user_params)
-      flash[:success] = t('flash.password_updated')
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), success: t('flash.password_updated')
     else
       render :password_reset
     end
@@ -72,8 +71,7 @@ class UsersController < ApplicationController
         @user.picture.save!
       end
     end
-    flash[:success] = t('flash.account_information_update')
-    redirect_to user_path(@user)
+    redirect_to user_path(@user), success: t('flash.account_information_update')
   rescue ActiveRecord::RecordInvalid
     render :edit
   end
@@ -86,11 +84,10 @@ class UsersController < ApplicationController
     # ポリモーフィックでhas_oneの関連を持つpictureは、dependent: :destroyで、
     # user.pictureは消せるけど、孫にあたるpost.pictureまでは消せない
     if checkbox_value == 1 && (@user.posts.destroy_all && @user.destroy)
-      flash[:success] = t('flash.Delete_account_Thank_you_for_using', user: @user.name)
-      redirect_to root_path
+      redirect_to root_path,
+                  success: t('flash.Delete_account_Thank_you_for_using', user: @user.name)
     else
-      flash[:warning] = t('flash.Please_check')
-      redirect_to destroy_confirm_user_path(@user)
+      redirect_to destroy_confirm_user_path(@user), warning: t('flash.Please_check')
     end
   end
 
@@ -120,15 +117,13 @@ class UsersController < ApplicationController
     if params[:id].to_i == current_user.id
       @user = current_user
     else
-      flash[:danger] = t('flash.Unlike_users')
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), danger: t('flash.Unlike_users')
     end
   end
 
   def login_check
     return if logged_in?
 
-    flash[:danger] = t('flash.Please_login')
-    redirect_to new_session_path
+    redirect_to new_session_path, danger: t('flash.Please_login')
   end
 end

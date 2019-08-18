@@ -27,8 +27,7 @@ class PostsController < ApplicationController
     category = params[:q][:category_id_eq]
     rank = params[:q][:ranking_point_eq]
     if address.blank? && category.blank? && rank.blank? && name.blank?
-      flash[:warning] = t('flash.Search_word_is_empty')
-      redirect_to posts_path
+      redirect_to posts_path, warning: t('flash.Search_word_is_empty')
     else
       @q = Post.ransack(search_params)
       @posts = @q.result.latest
@@ -49,8 +48,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.build_picture(image: picture_params[:image]) if picture_params[:image]
     if @post.save
-      flash[:success] = t('flash.create', content: @post.eatery_name)
-      redirect_to post_path(@post)
+      redirect_to post_path(@post),
+                  success: t('flash.create', content: @post.eatery_name)
     else
       render :new
     end
@@ -83,8 +82,8 @@ class PostsController < ApplicationController
         @post.picture.save!
       end
     end
-    flash[:success] = t('flash.update', content: @post.model_name.human)
-    redirect_to post_path(@post)
+    redirect_to post_path(@post),
+                success: t('flash.update', content: @post.model_name.human)
   rescue ActiveRecord::RecordInvalid
     # TODO: Add error message?
     render :edit
@@ -92,8 +91,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = t('flash.destroy', content: @post.model_name.human)
-    redirect_to user_path(@post.user_id)
+    redirect_to user_path(@post.user_id),
+                success: t('flash.destroy', content: @post.model_name.human)
   end
 
   def hashtag
@@ -144,15 +143,13 @@ class PostsController < ApplicationController
   def login_check
     return if logged_in?
 
-    flash[:danger] = t('flash.Please_login')
-    redirect_to new_session_path
+    redirect_to new_session_path, danger: t('flash.Please_login')
   end
 
   def id_check
     return if @post.user_id == current_user.id
 
-    flash[:danger] = t('flash.Unlike_users')
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id), danger: t('flash.Unlike_users')
   end
 
   def category_list
