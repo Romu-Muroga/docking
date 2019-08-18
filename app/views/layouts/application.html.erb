@@ -13,27 +13,9 @@
   </head>
   <body>
     <% if logged_in? %>
-      <header class="site-header">
-        <div class="app_logo">
-          <%= link_to posts_path do %>
-            <%= image_tag("/images/logo.png", class: "img-responsive") %>
-          <% end %>
-        </div>
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fas fa-bars fa-2x"></i>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><%= link_to 'ランキング一覧', posts_path, class: cp(posts_path) %></li>
-            <li><%= link_to '私のお気に入り', user_path(current_user), class: cp(user_path(current_user)) %></li>
-            <li><%= link_to 'ログアウト', session_path(current_user), method: :delete %></li>
-          </ul>
-        </div>
-      </header>
+      <%= render partial: 'layouts/header' %>
     <% end %>
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
+    <%= render partial: 'layouts/flash' %>
     <div class="main_section">
       <%= yield %>
     </div>
