@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_path(user.id), success: t('flash.You_are_now_logged')
     else
-      flash[:danger] = t('flash.Login_failed')
+      flash.now[:danger] = t('flash.Login_failed')
       render :new
     end
   end
