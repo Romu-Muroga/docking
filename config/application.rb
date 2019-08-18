@@ -10,10 +10,9 @@ module Docking
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-    # タイムゾーンを日本時間に設定
+    # Set time zone to Japan time
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-    # rails g実行時に自動作成したくないものの設定
     config.generators do |g|
       g.assets false
       g.helper false
@@ -27,7 +26,7 @@ module Docking
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
 
-    # フォームのエラーメッセージ
+    # Error message to form
     config.action_view.field_error_proc = proc do |html_tag, instance|
       if instance.is_a?(ActionView::Helpers::Tags::Label)
         # skip when label
@@ -36,6 +35,9 @@ module Docking
         "<div class=\"has-error\">#{html_tag}<span class=\"help-block\">#{instance.error_message.first}</span></div>".html_safe
       end
     end
+
+    # Constraints helper
+    config.action_controller.include_all_helpers = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
