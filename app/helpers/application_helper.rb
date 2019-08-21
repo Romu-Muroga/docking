@@ -1,8 +1,17 @@
 module ApplicationHelper
   include SessionsHelper
-  # Highlight current page
+  # Highlight current link
   def cp(path)
     'current' if current_page?(path)
+  end
+
+  def posts_index_page?(target_controller, target_action)
+    'current' if target_controller == 'posts' &&
+                 (target_action == 'index' || target_action == 'search')
+  end
+
+  def my_page?(target_controller, target_action)
+    'current' if target_controller == 'users' && target_action == 'show'
   end
 
   # リンク付き画像(Post)
