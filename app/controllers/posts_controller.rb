@@ -91,7 +91,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to user_path(@post.user_id),
+    redirect_to posts_path,
                 success: t('flash.destroy', content: @post.model_name.human)
   end
 
