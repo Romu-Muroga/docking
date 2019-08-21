@@ -20,6 +20,7 @@
       <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), "#{rp[1]}"] },
+                   selected: post.ranking_point_before_type_cast,
                    class: "form-control"
                    %>
       <% if current_user.posts.present? %>
@@ -39,7 +40,7 @@
                                autocomplete_post_eatery_name_posts_path,
                                update_elements: {},
                                'data-noMatchesLabel': 'Sorry, nothing found.',
-                               placeholder: "例：（店名：中華一番）○ 中華一番 x 中華いちばん",
+                               placeholder: "例：中華一番 (正) 中華一番 (誤) 中華いちばん",
                                class: "form-control"
       %>
     </div>
