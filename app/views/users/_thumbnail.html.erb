@@ -9,7 +9,7 @@
   </ul>
   <%= picture_not_link(user_post) %>
   <div class="caption">
-    <p>お気に入りの理由は？</p>
+    <p>説明欄</p>
     <div class="caption_remarks">
       <%= render_with_hashtags(simple_format(
           h(user_post.remarks.truncate(150, omission: '...')), {}, sanitize: false, wrapper_tag: "div"

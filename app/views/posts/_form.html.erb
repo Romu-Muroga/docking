@@ -35,7 +35,9 @@
       <% end %>
     </div>
     <div class="form-group">
-      <%= f.label :eatery_name, "Eatery name（できるかぎり正確な店名で、ご登録をお願いします）" %>
+      <%= f.label :eatery_name do %>
+        店名&emsp;※できるかぎり正確な名称で、ご登録をお願いします&ensp;m(_ _)m
+      <% end %>
       <%= f.autocomplete_field :eatery_name,
                                autocomplete_post_eatery_name_posts_path,
                                update_elements: {},
@@ -55,7 +57,7 @@
       %>
     </div>
     <div class="form-group">
-      <%= f.label :eatery_address, "Address（任意）" %>
+      <%= f.label :eatery_address, "所在地（任意）" %>
       <%= f.autocomplete_field :eatery_address,
                                autocomplete_post_eatery_address_posts_path,
                                update_elements: {},
@@ -89,7 +91,7 @@
       </div>
     <% end %>
     <div class="form-group">
-      <%= f.label :remarks, "一言、好きな理由を添えて投稿をお願いします" %>
+      <%= f.label :remarks, "詳しい説明" %>
       <%= f.text_area :remarks, class: "form-control" %>
     </div>
   </div>
