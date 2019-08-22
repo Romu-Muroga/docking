@@ -1,17 +1,25 @@
 class Post < ApplicationRecord
-  # validates
-  validates :ranking_point, presence: true
+  # validation
+  validates :category_id,
+            presence: true,
+            numericality: true,
+            inclusion: { in: Category.pluck(:id) }
+  validates :ranking_point,
+            presence: true,
+            numericality: true,
+            inclusion: { in: %w[first_place second_place third_place] }
   validates :ranking_point, uniqueness: { scope: %i[category_id user_id] }
   validates :eatery_name, presence: true, length: { in: 1..200 }
   validates :eatery_food, presence: true, length: { in: 1..200 }
-  validates :eatery_address, length: { maximum: 500 }
+  validates :eatery_address, presence: true, length: { maximum: 500 }
   # validates: latitude
   # validates: longitude
   validates :eatery_website,
+            presence: true,
             length: { maximum: 500 },
-            format: { with: /\A#{URI::regexp(%w[http https])}\z/ },
+            format: { with: /\A#{URI.regexp(%w[http https])}\z/ },
             unless: :eatery_website?
-  validates :remarks, presence: true
+  validates :remarks, length: { maximum: 2000 }
 
   # enum
   enum ranking_point: { first_place: 3, second_place: 2, third_place: 1 }
@@ -78,8 +86,7 @@ class Post < ApplicationRecord
   end
 
   # callback
-  before_save :set_default
-  before_update :set_default
+  before_validation :set_default
   # DBへのコミット直前に実施する
   after_create :create_hashtag
   before_update :update_hashtag
