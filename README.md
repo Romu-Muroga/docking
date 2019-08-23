@@ -12,7 +12,7 @@
 ## バージョン
 ![ruby version](https://img.shields.io/badge/Ruby-v2.5.3-blue.svg)
 ![rails version](https://img.shields.io/badge/Rails-v5.2.3-green)
-![pstgresql version](https://img.shields.io/badge/PostgreSQL-v11.4-brightgreen)
+![pstgresql version](https://img.shields.io/badge/PostgreSQL-v11.5-brightgreen)
 ## 機能一覧
 - [x] ログイン機能
 - [x] アカウント登録機能
