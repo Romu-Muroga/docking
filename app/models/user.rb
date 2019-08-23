@@ -15,10 +15,11 @@ class User < ApplicationRecord
   # authenticateメソッドが使えるようになる (引数の文字列がパスワードと一致するとUserオブジェクトを、間違っているとfalseを返すメソッド)
 
   # association
-  has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
+  # TODO: foreign_key: { on_delete: :cascade }
+  has_one :picture, as: :imageable, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :iine_posts, through: :likes, source: :post#「ユーザーがいいねをしたポストの一覧」という関連
+  has_many :iine_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
 
   # method

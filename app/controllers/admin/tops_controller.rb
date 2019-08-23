@@ -7,7 +7,6 @@ class Admin::TopsController < ApplicationController
   def current_user_admin?
     return if logged_in? && current_user.admin
 
-    flash[:danger] = t('flash.Not_authorized')
-    redirect_to root_path
+    redirect_to root_path, danger: t('flash.Not_authorized')
   end
 end

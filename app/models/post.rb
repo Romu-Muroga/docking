@@ -1,17 +1,25 @@
 class Post < ApplicationRecord
-  # validates
-  validates :ranking_point, presence: true
+  # validation
+  validates :category_id,
+            presence: true,
+            numericality: true,
+            inclusion: { in: Category.pluck(:id) }
+  validates :ranking_point,
+            presence: true,
+            numericality: true,
+            inclusion: { in: %w[first_place second_place third_place] }
   validates :ranking_point, uniqueness: { scope: %i[category_id user_id] }
   validates :eatery_name, presence: true, length: { in: 1..200 }
   validates :eatery_food, presence: true, length: { in: 1..200 }
-  validates :eatery_address, length: { maximum: 500 }
+  validates :eatery_address, presence: true, length: { maximum: 500 }
   # validates: latitude
   # validates: longitude
   validates :eatery_website,
+            presence: true,
             length: { maximum: 500 },
-            format: { with: /\A#{URI::regexp(%w[http https])}\z/ },
+            format: { with: /\A#{URI.regexp(%w[http https])}\z/ },
             unless: :eatery_website?
-  validates :remarks, presence: true
+  validates :remarks, length: { maximum: 2000 }
 
   # enum
   enum ranking_point: { first_place: 3, second_place: 2, third_place: 1 }
@@ -21,7 +29,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :iine_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
-  has_one :picture, as: :imageable, dependent: :destroy# TODO: foreign_key: { on_delete: :cascade }
+  # TODO: foreign_key: { on_delete: :cascade }
+  has_one :picture, as: :imageable, dependent: :destroy
   belongs_to :user
   belongs_to :category
 
@@ -29,8 +38,8 @@ class Post < ApplicationRecord
   scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
   scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
-  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }# １０位までかつN+1問題対策
-  scope :latest, -> { order(updated_at: :desc).includes(:user) }# 更新順に並び替えかつN+1問題対策
+  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }
+  scope :latest, -> { order(updated_at: :desc).includes(:user) }
   # scope for autocomplete
   scope :uniq_eatery_name, -> { select('MIN(id) as id, eatery_name').group(:eatery_name) }
   scope :uniq_eatery_food, -> { select('MIN(id) as id, eatery_food').group(:eatery_food) }
@@ -46,7 +55,7 @@ class Post < ApplicationRecord
     likes.find_by(user_id: user.id).destroy
   end
 
-  # 現在のユーザーがいいねしてたらtrueを返す
+  # Returns true if the current user iine
   def iine?(user)
     iine_users.include?(user)
   end
@@ -77,8 +86,7 @@ class Post < ApplicationRecord
   end
 
   # callback
-  before_save :set_default
-  before_update :set_default
+  before_validation :set_default
   # DBへのコミット直前に実施する
   after_create :create_hashtag
   before_update :update_hashtag

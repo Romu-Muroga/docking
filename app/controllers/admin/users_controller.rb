@@ -11,8 +11,8 @@ class Admin::UsersController < ApplicationController
   def update
     params[:user][:admin] = params[:user][:admin] == '0'
     if @user.update(user_params)
-      flash[:success] = t('flash.update', content: @user.name)
-      redirect_to admin_users_path
+      redirect_to admin_users_path,
+                  success: t('flash.update', content: @user.name)
     else
       render :edit
     end
@@ -40,7 +40,6 @@ class Admin::UsersController < ApplicationController
   def current_user_admin?
     return if logged_in? && current_user.admin
 
-    flash[:danger] = t('flash.Not_authorized')
-    redirect_to root_path
+    redirect_to root_path, danger: t('flash.Not_authorized')
   end
 end
