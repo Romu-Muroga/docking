@@ -1,35 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-12" id="home_sec01">
-      <div class="start_up_area">
-        <%= image_tag("/images/logo2.png") %>
-        <p class="catch_copy">
-          Dockingの使命は、一人一人の“お気に入り”が集まる場所を提供することです（ver.飲食店）
-        </p>
-        <p class="sub_catch_copy">Ranking x Ranking = Docking</p>
-        <% unless logged_in?  %>
-          <div class="start_button">
-            <%= link_to 'Login', new_session_path, class: "btn btn-default" %>
-            <%= link_to 'Sign up', new_user_path, class: "btn btn-default" %>
-          </div>
-          <div class="test_user_info">
-            ※お試し用メールアドレスとパスワードは下記です。<br>
-            メールアドレス：test@dic.com<br>
-            パスワード：12345678
-          </div>
-        <% end %>
-      </div>
+      <%= render partial: 'start_up_area' %>
     </div>
     <div class="col-xs-12 col-md-12" id=home_sec02>
-      <div class="text_area">
-        <p class="title">Dockingの価値観は、Dockingが考える３つの機会を提供することに基づいています。</p>
-        <p class="content">
-          食べることが好きな人が、同じ好みや情熱の下に集まることができる機会を提供すること。<br>
-          何が人々の心に響くかということを既存のランキングによってではなく自分たちで決めることができる機会を提供すること。<br>
-          既存のランキングが「パブリックからパーソナルへ」変わる機会を提供すること。<br>
-          <br>
-        </p>
-      </div>
+      <%= render partial: 'text_area' %>
     </div>
   </div>
 </div>

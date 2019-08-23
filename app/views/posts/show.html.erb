@@ -28,9 +28,8 @@
                 いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
               </div>
             </div>
-            <p class="caption_remarks_title">お気に入りの理由は？</p>
             <div class="caption_remarks">
-              <%= render_with_hashtags(simple_format(@post.remarks)) %>
+              <%= render_with_hashtags(simple_format(h(@post.remarks), {}, sanitize: false, wrapper_tag: "div")) %>
             </div>
             <div class="caption_eatery_info">
               <ul>

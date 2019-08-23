@@ -1,0 +1,18 @@
+<div class="start_up_area">
+  <%= image_tag("/images/logo2.png") %>
+  <p class="catch_copy">
+    Dockingの使命は、一人一人の“お気に入り”が集まる場所を提供することです（ver.飲食店）
+  </p>
+  <p class="sub_catch_copy">Ranking x Ranking = Docking</p>
+  <% unless logged_in?  %>
+    <div class="start_button">
+      <%= link_to 'Login', new_session_path, class: "btn btn-default" %>
+      <%= link_to 'Sign up', new_user_path, class: "btn btn-default" %>
+    </div>
+    <div class="test_user_info">
+      ※お試し用メールアドレスとパスワードは下記です。<br>
+      メールアドレス：test@dic.com<br>
+      パスワード：12345678
+    </div>
+  <% end %>
+</div>

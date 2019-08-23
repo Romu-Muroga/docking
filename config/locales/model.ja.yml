@@ -5,6 +5,9 @@ ja:
       category: "カテゴリー"
       user: "ユーザー"
       picture: "写真"
+      comment: "コメント"
+      hashtag: "ハッシュタグ"
+      like: "いいね！"
     enum:
       post:
         ranking_point:
@@ -13,13 +16,13 @@ ja:
           third_place: "３位"
     attributes:
       post:
-        category_id: "Category"
-        ranking_point: "Rank"
-        eatery_name: "Eatery name"
-        eatery_food: "Menu"
-        eatery_address: "Address"
+        category_id: "カテゴリー"
+        ranking_point: "順位"
+        eatery_name: "店名"
+        eatery_food: "メニュー"
+        eatery_address: "所在地"
         eatery_website: "Website"
-        remarks: "好きな理由"
+        remarks: "備考欄"
       category:
         name: "カテゴリー名"
       user:

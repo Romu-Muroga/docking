@@ -1,10 +1,11 @@
 class LikesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    return if @post.iine?(current_user)# @postを現在のユーザーがいいねしていなかったら
+    return if @post.iine?(current_user)
 
     @post.iine(current_user)
-    @post.reload# データベースからレコードを再取得する
+    # Re-fetch records from database
+    @post.reload
     respond_to do |format|
       format.html { redirect_to request.referrer || root_url }
       format.js
@@ -13,10 +14,10 @@ class LikesController < ApplicationController
 
   def destroy
     @post = Like.find(params[:id]).post
-    return unless @post.iine?(current_user)# @postを現在のユーザーがいいねしていたら
-    
+    return unless @post.iine?(current_user)
+
     @post.uniine(current_user)
-    @post.reload# データベースからレコードを再取得する
+    @post.reload
     respond_to do |format|
       format.html { redirect_to request.referrer || root_url }
       format.js
