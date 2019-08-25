@@ -44,14 +44,18 @@ class PostsController < ApplicationController
   end
 
   def create
-    params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
-    @post = Post.new(post_params)
-    @post.build_picture(image: picture_params[:image]) if picture_params[:image]
-    if @post.save
-      redirect_to post_path(@post),
-                  success: t('flash.create', content: @post.eatery_name)
-    else
-      render :new
+    begin
+      params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
+      @post = Post.new(post_params)
+      @post.build_picture(image: picture_params[:image]) if picture_params[:image]
+      if @post.save
+        redirect_to post_path(@post),
+                    success: t('flash.create', content: @post.eatery_name)
+      else
+        render :new
+      end
+    rescue ArgumentError
+      redirect_to new_post_path, danger: t('flash.Invalid_value')
     end
   end
 
@@ -67,26 +71,17 @@ class PostsController < ApplicationController
     ActiveRecord::Base.transaction do
       params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
       @post.update!(post_params)
-      checkbox_value = params[:post][:picture_delete_check].to_i
+      checkbox_value = params[:post][:picture_delete_check]
       form_submit_image = picture_params[:image]
-      if @post.picture.blank? && form_submit_image.blank?
-        false
-      elsif @post.picture.present? && form_submit_image.blank? && checkbox_value == 1
-        @post.picture.destroy!
-      elsif @post.picture.present? && form_submit_image.blank?
-        false
-      elsif @post.picture.present?
-        @post.picture.update!(image: form_submit_image)
-      elsif @post.picture.blank?
-        @post.build_picture(image: form_submit_image)
-        @post.picture.save!
-      end
+      post_picture_update(@post, form_submit_image, checkbox_value)
     end
-    redirect_to post_path(@post),
-                success: t('flash.update', content: @post.model_name.human)
-  rescue ActiveRecord::RecordInvalid
-    # TODO: Add error message?
-    render :edit
+      redirect_to post_path(@post),
+                  success: t('flash.update', content: @post.model_name.human)
+    rescue ArgumentError
+      redirect_to edit_post_path(@post), danger: t('flash.Invalid_value')
+    rescue => e
+      puts e.message
+      render :edit
   end
 
   def destroy
@@ -154,5 +149,16 @@ class PostsController < ApplicationController
 
   def category_list
     @categories = Category.all
+  end
+
+  def post_picture_update(post, form_submit_image, checkbox_value)
+    if post.picture.present? && checkbox_value == '1'
+      post.picture.destroy!
+    elsif post.picture.present? && form_submit_image.present?
+      post.picture.update!(image: form_submit_image)
+    elsif post.picture.blank? && form_submit_image.present?
+      post.build_picture(image: form_submit_image)
+      post.picture.save!
+    end
   end
 end
