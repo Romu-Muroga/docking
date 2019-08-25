@@ -6,9 +6,8 @@ FactoryBot.define do
     eatery_address { '未登録' }
     eatery_website { '未登録' }
     remarks { '美味しかった！' }
-    likes_count { 0 }
-    category {}
-    user {}
+    association :category, factory: :category
+    association :user, factory: :user
   end
 
   factory :second_post, class: Post do
@@ -18,8 +17,7 @@ FactoryBot.define do
     eatery_address { '未登録' }
     eatery_website { '未登録' }
     remarks { '美味しかった！' }
-    likes_count { 0 }
-    category {}
-    user {}
+    association :category, factory: :second_category
+    association :user, factory: :user
   end
 end
