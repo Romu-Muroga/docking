@@ -1,5 +1,4 @@
 module ApplicationHelper
-  include SessionsHelper
   # Highlight current link
   def cp(path)
     'current' if current_page?(path)
