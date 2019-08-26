@@ -48,7 +48,7 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def current_user_admin?
-    return if logged_in? && current_user.admin
+    return if current_user.admin
 
     redirect_to root_path, danger: t('flash.Not_authorized')
   end

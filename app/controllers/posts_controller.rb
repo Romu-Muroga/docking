@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :login_check
   before_action :set_post, only: %i[show edit update destroy id_check]
   before_action :id_check, only: %i[edit update destroy]
 
@@ -133,12 +132,6 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def login_check
-    return if logged_in?
-
-    redirect_to login_path, danger: t('flash.Please_login')
   end
 
   def id_check

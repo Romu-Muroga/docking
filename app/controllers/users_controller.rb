@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :login_check, except: %i[new create]
+  skip_before_action :login_check, only: %i[new create]
   before_action :set_user, only: %i[
     show iine_post_list edit password_reset
     password_update update destroy destroy_confirm
@@ -109,12 +109,6 @@ class UsersController < ApplicationController
     else
       redirect_to user_path(current_user), danger: t('flash.Unlike_users')
     end
-  end
-
-  def login_check
-    return if logged_in?
-
-    redirect_to login_path, danger: t('flash.Please_login')
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)
