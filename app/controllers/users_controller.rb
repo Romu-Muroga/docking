@@ -56,24 +56,14 @@ class UsersController < ApplicationController
   def update
     ActiveRecord::Base.transaction do
       @user.update!(user_params)
-      checkbox_value = params[:user][:picture_delete_check].to_i
+      checkbox_value = params[:user][:picture_delete_check]
       form_submit_image = picture_params[:image]
-      if @user.picture.blank? && form_submit_image.blank?
-        false
-      elsif @user.picture.present? && form_submit_image.blank? && checkbox_value == 1
-        @user.picture.destroy!
-      elsif @user.picture.present? && form_submit_image.blank?
-        false
-      elsif @user.picture.present?
-        @user.picture.update!(image: form_submit_image)
-      else
-        @user.build_picture(image: form_submit_image)
-        @user.picture.save!
-      end
+      user_picture_update(@user, form_submit_image, checkbox_value)
     end
-    redirect_to user_path(@user), success: t('flash.account_information_update')
-  rescue ActiveRecord::RecordInvalid
-    render :edit
+      redirect_to user_path(@user), success: t('flash.account_information_update')
+    rescue => e
+      puts e.message
+      render :edit
   end
 
   def destroy_confirm; end
@@ -125,5 +115,16 @@ class UsersController < ApplicationController
     return if logged_in?
 
     redirect_to new_session_path, danger: t('flash.Please_login')
+  end
+
+  def user_picture_update(user, form_submit_image, checkbox_value)
+    if user.picture.present? && checkbox_value == '1'
+      user.picture.destroy!
+    elsif user.picture.present? && form_submit_image.present?
+      user.picture.update!(image: form_submit_image)
+    elsif user.picture.blank? && form_submit_image.present?
+      user.build_picture(image: form_submit_image)
+      user.picture.save!
+    end
   end
 end
