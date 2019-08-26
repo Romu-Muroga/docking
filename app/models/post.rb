@@ -6,8 +6,8 @@ class Post < ApplicationRecord
             inclusion: { in: Category.pluck(:id) }
   validates :ranking_point,
             uniqueness: { scope: %i[category_id user_id] }
-  validates :eatery_name, presence: true, length: { in: 1..200 }
-  validates :eatery_food, presence: true, length: { in: 1..200 }
+  validates :eatery_name, presence: true, length: { maximum: 200 }
+  validates :eatery_food, presence: true, length: { maximum: 200 }
   validates :eatery_address, presence: true, length: { maximum: 500 }
   # validates: latitude
   # validates: longitude

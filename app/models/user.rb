@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   # validates
-  validates :name, presence: true, length: { in: 1..500 }
+  validates :name, presence: true, length: { maximum: 500 }
   validates :email,
             presence: true,
-            length: { in: 1..500 },
+            length: { maximum: 500 },
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: true
   validates :password, presence: true, length: { in: 6..100 }, allow_nil: true
