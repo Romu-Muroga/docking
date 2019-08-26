@@ -114,7 +114,7 @@ class UsersController < ApplicationController
   def login_check
     return if logged_in?
 
-    redirect_to new_session_path, danger: t('flash.Please_login')
+    redirect_to login_path, danger: t('flash.Please_login')
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)

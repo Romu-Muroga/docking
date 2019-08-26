@@ -4,7 +4,7 @@
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 login_form">
         <h3><%= t("views.sessions.login_page") %></h3>
         <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
-        <%= form_with(scope: :session, url: sessions_path, local: true, class: "form_outer") do |f| %>
+        <%= form_with(scope: :session, url: login_path, local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
             <div class="form-group">
               <%= f.label :email, "メールアドレス" %>

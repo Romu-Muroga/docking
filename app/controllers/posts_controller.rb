@@ -138,7 +138,7 @@ class PostsController < ApplicationController
   def login_check
     return if logged_in?
 
-    redirect_to new_session_path, danger: t('flash.Please_login')
+    redirect_to login_path, danger: t('flash.Please_login')
   end
 
   def id_check
