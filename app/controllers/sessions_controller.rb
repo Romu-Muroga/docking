@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    # session.delete(:user_id)
+    reset_session
     redirect_to root_path, success: t('flash.logged_out')
   end
 
