@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       form_submit_image = picture_params[:image]
       user_picture_update(@user, form_submit_image, checkbox_value)
     end
-      redirect_to user_path(@user), success: t('flash.account_information_update')
+    redirect_to user_path(@user), success: t('flash.account_information_update')
     rescue => e
       puts e.message
       render :edit
@@ -103,12 +103,8 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    # TODO
-    if params[:id].to_i == current_user.id
-      @user = current_user
-    else
-      redirect_to user_path(current_user), danger: t('flash.Unlike_users')
-    end
+    @user = User.find(params[:id])
+    redirect_to posts_path, danger: t('flash.Unlike_users') unless @user == current_user
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)
