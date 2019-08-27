@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :poster?
   before_action :login_check
 
   private
@@ -17,5 +17,9 @@ class ApplicationController < ActionController::Base
     return if logged_in?
 
     redirect_to login_path, danger: t('flash.Please_login')
+  end
+
+  def poster?(post)
+    post.user_id == current_user.id
   end
 end

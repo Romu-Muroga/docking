@@ -44,7 +44,7 @@
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
               <%= render "likes/like", post: @post %>
             </div>
-            <% if @post.user_id == current_user.id %>
+            <% if poster?(@post) %>
               <p class="edit_delete_button">
                 <%= link_to 'EDIT', edit_post_path(@post), class: "btn btn-warning" %>
                 <%= link_to 'DELETE',
@@ -61,14 +61,10 @@
       <div class="col-md-3 right_section">
         <p class="title">コメント</p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
-          <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
           <%= render partial: 'comments/index', locals: { comments: @comments } %>
         </div>
         <div class="comments_form_area">
-          <%# if logged_in? %>
-            <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-            <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-          <%# end %>
+          <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
         </div>
       </div>
     </div>

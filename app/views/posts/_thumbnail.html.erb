@@ -41,7 +41,7 @@
       </span>
     </p>
     <p>Address: <%= post.eatery_address %></p>
-    <% if post.user_id == current_user.id %>
+    <% if poster?(post) %>
       <%= link_to 'EDIT', edit_post_path(post), class: "btn btn-warning" %>
       <%= link_to 'DELETE',
                    post_path(post),

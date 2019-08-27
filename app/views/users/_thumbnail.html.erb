@@ -22,7 +22,7 @@
         <%= render "likes/like", post: user_post %>
       </div>
     <% end %>
-    <% if user_post.user_id == current_user.id %>
+    <% if poster?(user_post) %>
       <p class="edit_delete_button">
         <%= link_to 'EDIT', edit_post_path(user_post), class: "btn btn-warning" %>
         <%= link_to 'DELETE',

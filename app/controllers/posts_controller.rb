@@ -132,7 +132,7 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
     redirect_to posts_path,
-                danger: t('flash.Unlike_users') unless @post.user_id == current_user
+                danger: t('flash.Unlike_users') unless poster?(@post)
   end
 
   def category_list
