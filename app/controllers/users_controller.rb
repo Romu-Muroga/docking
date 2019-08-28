@@ -70,12 +70,11 @@ class UsersController < ApplicationController
 
   def destroy
     checkbox_value = params[:user][:destroy_check].to_i
-    # user >> (o)posts >> (x)picture
-    # ポリモーフィックでhas_oneの関連を持つpictureは、dependent: :destroyで、
-    # user.pictureは消せるけど、孫にあたるpost.pictureまでは消せない
-    if checkbox_value == 1
-      @user.posts.destroy_all && @user.destroy
+    if checkbox_value == 1 && @user.destroy
       reset_session
+    elsif checkbox_value == 1 && !@user.destroy
+      redirect_to destroy_confirm_user_path(@user),
+                  danger: t('flash.admin_last_user_cannot_be_deleted', user: @user.name)
     else
       redirect_to destroy_confirm_user_path(@user), warning: t('flash.please_check')
     end
