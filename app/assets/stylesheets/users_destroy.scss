@@ -1,26 +1,38 @@
-.destroy_secsion {
-  text-align: center;
-  margin-top: 23vh;
-  img {
-    margin: 0 auto;
+#quit_block {
+  .destroy_secsion {
+    text-align: center;
+    margin-top: 23vh;
+    img {
+      margin: 0 auto;
+    }
+    .title {
+      border: solid 1px silver;
+      padding: 10px;
+    }
+    .content {
+      line-height: 30px;
+      margin-bottom: 20px;
+    }
+    a.btn {
+      border-radius: unset;
+    }
+    a.btn-toppage {
+      color: silver;
+      border-color: silver;
+      &:hover {
+        color: black;
+        border-color: black;
+      }
+    }
   }
-  .title {
-    border: solid 1px silver;
-    padding: 10px;
-  }
-  .content {
-    line-height: 30px;
-    margin-bottom: 20px;
-  }
-  a.btn {
-    border-radius: unset;
-  }
-  a.btn-toppage {
-    color: silver;
-    border-color: silver;
-    &:hover {
-      color: black;
-      border-color: black;
+  .destroy_confirm_section {
+    margin-top: 24vh;
+    .btn-default {
+      margin-bottom: 10px;
+    }
+    h5 {
+      line-height: 20px;
+      font-size: 15px;
     }
   }
 }

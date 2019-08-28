@@ -1,5 +1,5 @@
-<%= form_with(model: user, local: true, class: "user_form_outer") do |f| %>
-  <div class="user_form_inner">
+<%= form_with(model: user, local: true, class: "form_outer") do |f| %>
+  <div class="form_inner">
     <% if user.errors.any? %>
       <div id="error_explanation">
         <h4>エラーが発生しました。以下の項目について確認してください。</h4>

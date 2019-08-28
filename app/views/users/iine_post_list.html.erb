@@ -6,7 +6,7 @@
           <%= user_picture_link(@user) %>
           <div class="user_name"><%= @user.name.truncate(12, omission: '...') %>さんがいいね！した投稿</div>
         </div>
-        <div class="iine_post_area">
+        <div class="iine_posts_area">
           <div class="row">
             <% @iine_posts.each do |iine_post| %>
               <div class="col-xs-4 col-md-4 iine_post">
