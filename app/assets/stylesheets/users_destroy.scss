@@ -1,0 +1,26 @@
+.destroy_secsion {
+  text-align: center;
+  margin-top: 23vh;
+  img {
+    margin: 0 auto;
+  }
+  .title {
+    border: solid 1px silver;
+    padding: 10px;
+  }
+  .content {
+    line-height: 30px;
+    margin-bottom: 20px;
+  }
+  a.btn {
+    border-radius: unset;
+  }
+  a.btn-toppage {
+    color: silver;
+    border-color: silver;
+    &:hover {
+      color: black;
+      border-color: black;
+    }
+  }
+}

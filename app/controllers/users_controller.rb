@@ -73,9 +73,9 @@ class UsersController < ApplicationController
     # user >> (o)posts >> (x)picture
     # ポリモーフィックでhas_oneの関連を持つpictureは、dependent: :destroyで、
     # user.pictureは消せるけど、孫にあたるpost.pictureまでは消せない
-    if checkbox_value == 1 && (@user.posts.destroy_all && @user.destroy)
-      redirect_to root_path,
-                  success: t('flash.delete_account_Thank_you_for_using')
+    if checkbox_value == 1
+      @user.posts.destroy_all && @user.destroy
+      reset_session
     else
       redirect_to destroy_confirm_user_path(@user), warning: t('flash.please_check')
     end
@@ -104,7 +104,8 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-    redirect_to posts_path, danger: t('flash.access_denied', url: url_for(only_path: false)) unless @user == current_user
+    redirect_to posts_path,
+                danger: t('flash.access_denied', url: url_for(only_path: false)) unless @user == current_user
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)

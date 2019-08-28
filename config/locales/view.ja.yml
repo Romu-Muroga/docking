@@ -11,7 +11,6 @@ ja:
     search_word_is_empty: "検索ワードが空白です"
     account_registration_and_login_completed: "%{user}さんのアカウント登録とログインが完了しました"
     account_info_update: "アカウント情報が更新されました"
-    delete_account_Thank_you_for_using: "退会処理が完了しました。「Docking」をご利用いただき、ありがとうございました。\nまたのご利用をお待ちしております。"
     please_check: "チェックボックスにチェックを入れてください"
     password_updated: "パスワードが更新されました"
     admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
