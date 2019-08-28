@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def login_check
     return if logged_in?
 
-    redirect_to login_path, danger: t('flash.Please_login')
+    redirect_to login_path, danger: t('flash.please_login')
   end
 
   def poster?(post)

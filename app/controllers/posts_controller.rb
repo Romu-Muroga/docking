@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     category = params[:q][:category_id_eq]
     rank = params[:q][:ranking_point_eq]
     if address.blank? && category.blank? && rank.blank? && name.blank?
-      redirect_to posts_path, warning: t('flash.Search_word_is_empty')
+      redirect_to posts_path, warning: t('flash.search_word_is_empty')
     else
       @q = Post.ransack(search_params)
       @posts = @q.result.latest
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
         render :new
       end
     rescue ArgumentError
-      redirect_to new_post_path, danger: t('flash.Invalid_value')
+      redirect_to new_post_path, danger: t('flash.invalid_value')
     end
   end
 
@@ -76,7 +76,7 @@ class PostsController < ApplicationController
     redirect_to post_path(@post),
                 success: t('flash.update', content: @post.model_name.human)
     rescue ArgumentError
-      redirect_to edit_post_path(@post), danger: t('flash.Invalid_value')
+      redirect_to edit_post_path(@post), danger: t('flash.invalid_value')
     rescue => e
       puts e.message
       render :edit
@@ -132,7 +132,7 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
     redirect_to posts_path,
-                danger: t('flash.Unlike_users') unless poster?(@post)
+                danger: t('flash.access_denied', url: url_for(only_path: false)) unless poster?(@post)
   end
 
   def category_list

@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       form_submit_image = picture_params[:image]
       user_picture_update(@user, form_submit_image, checkbox_value)
     end
-    redirect_to user_path(@user), success: t('flash.account_information_update')
+    redirect_to user_path(@user), success: t('flash.account_info_update')
     rescue => e
       puts e.message
       render :edit
@@ -75,9 +75,9 @@ class UsersController < ApplicationController
     # user.pictureは消せるけど、孫にあたるpost.pictureまでは消せない
     if checkbox_value == 1 && (@user.posts.destroy_all && @user.destroy)
       redirect_to root_path,
-                  success: t('flash.Delete_account_Thank_you_for_using', user: @user.name)
+                  success: t('flash.delete_account_Thank_you_for_using')
     else
-      redirect_to destroy_confirm_user_path(@user), warning: t('flash.Please_check')
+      redirect_to destroy_confirm_user_path(@user), warning: t('flash.please_check')
     end
   end
 
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-    redirect_to posts_path, danger: t('flash.Unlike_users') unless @user == current_user
+    redirect_to posts_path, danger: t('flash.access_denied', url: url_for(only_path: false)) unless @user == current_user
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)

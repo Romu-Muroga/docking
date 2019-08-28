@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: session_params[:email].downcase)
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to user_path(user.id), success: t('flash.You_are_now_logged')
+      redirect_to user_path(user.id), success: t('flash.login_succeeded')
     else
-      flash.now[:danger] = t('flash.Login_failed')
+      flash.now[:danger] = t('flash.login_failed')
       render :new
     end
   end
