@@ -70,6 +70,9 @@ a:hover {
       background-color: unset;
     }
     .dropdown-menu {
+      li a {
+        font-size: 0.9em;
+      }
       a.current {
         color: #EC407A;
       }
