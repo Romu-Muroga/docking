@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       # Login at the same time if user can save
       session[:user_id] = @user.id
-      redirect_to user_path(@user.id),
+      redirect_to (@user),
                   success: t('flash.account_registration_and_login_completed', user: @user.name)
     else
       render :new
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       @user.add_errors
       render :password_reset
     elsif @user.update(user_params)
-      redirect_to user_path(@user), success: t('flash.password_updated')
+      redirect_to (@user), success: t('flash.password_updated')
     else
       render :password_reset
     end
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       form_submit_image = picture_params[:image]
       user_picture_update(@user, form_submit_image, checkbox_value)
     end
-    redirect_to user_path(@user), success: t('flash.account_info_update')
+    redirect_to (@user), success: t('flash.account_info_update')
     rescue => e
       puts e.message
       render :edit

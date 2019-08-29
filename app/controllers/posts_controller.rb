@@ -46,7 +46,7 @@ class PostsController < ApplicationController
       @post = Post.new(post_params)
       @post.build_picture(image: picture_params[:image]) if picture_params[:image]
       if @post.save
-        redirect_to post_path(@post),
+        redirect_to (@post),
                     success: t('flash.create', content: @post.eatery_name)
       else
         render :new
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
       form_submit_image = picture_params[:image]
       post_picture_update(@post, form_submit_image, checkbox_value)
     end
-    redirect_to post_path(@post),
+    redirect_to (@post),
                 success: t('flash.update', content: @post.model_name.human)
     rescue ArgumentError
       redirect_to edit_post_path(@post), danger: t('flash.invalid_value')
