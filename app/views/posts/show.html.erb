@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="caption_remarks">
-              <%= render_with_hashtags(simple_format(h(@post.remarks), {}, sanitize: false, wrapper_tag: "div")) %>
+              <%= render_with_hashtags(auto_link(simple_format(h(@post.remarks), {}, sanitize: false, wrapper_tag: "div"))) %>
             </div>
             <div class="caption_eatery_info">
               <ul>

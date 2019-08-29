@@ -30,6 +30,8 @@ gem 'rails-jquery-autocomplete'
 gem 'mini_magick', '>= 4.9.4'
 # search
 gem 'ransack'
+# auto_link
+gem 'rails_autolink'
 
 group :development, :test do
   # debug
@@ -50,7 +52,6 @@ group :development do
 end
 
 group :test do
-  gem 'webdrivers'
   # Rspec
   gem 'capybara'
   gem 'database_cleaner'
@@ -59,6 +60,7 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'spring-commands-rspec'
+  gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
