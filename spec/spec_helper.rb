@@ -14,10 +14,10 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+# Initial setting of capybara
 require 'capybara/rspec'
 
 RSpec.configure do |config|
-  # Initial setting of capybara
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless
   end
