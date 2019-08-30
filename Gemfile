@@ -54,7 +54,6 @@ end
 group :test do
   # Rspec
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'rspec-rails'
