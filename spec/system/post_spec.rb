@@ -1,32 +1,45 @@
 require 'rails_helper'
 # save_and_open_page
 RSpec.describe '投稿管理機能', type: :system do
-  describe '一覧表示機能' do
-    before do
-      user_a = create(:user, name: 'ユーザーA', email: 'a@example.com')
-      category_washoku = create(:category, name: '和食')
-      create(
-        :post,
-        ranking_point: 'first_place',
-        eatery_name: '和食レストラン',
-        eatery_food: 'サバの味噌煮定食',
-        remarks: '味噌に拘っている',
-        category: category_washoku,
-        user: user_a
-      )
-    end
+  let(:user_a) { create(:user, name: 'ユーザーA', email: 'a@example.com') }
+  let(:category_washoku) { create(:category, name: '和食') }
+  let!(:post_a) do
+    create(:post,
+           ranking_point: 'first_place',
+           eatery_name: '和食レストラン',
+           eatery_food: 'サバの味噌煮定食',
+           category: category_washoku,
+           user: user_a)
+  end
 
+  before do
+    visit login_path
+    fill_in 'メールアドレス', with: login_user.email
+    fill_in 'パスワード', with: login_user.password
+    click_button 'ログイン'
+  end
+
+  describe '一覧表示機能' do
     context 'ユーザーAがログインしているとき' do
-      before do
-        visit login_path
-        fill_in 'メールアドレス', with: 'a@example.com'
-        fill_in 'パスワード', with: 'password'
-        click_button 'ログイン'
-      end
+      let(:login_user) { user_a }
 
       it 'ユーザーAが作成した投稿が表示される' do
         visit posts_path
         expect(find('.link_to_detail').hover).to have_content '和食レストラン', 'サバの味噌煮定食'
+      end
+    end
+  end
+
+  describe '詳細表示機能' do
+    context 'ユーザーAがログインしているとき' do
+      let(:login_user) { user_a }
+
+      before do
+        visit post_path(post_a)
+      end
+
+      it 'ユーザーAが作成した投稿が表示される' do
+        expect(page).to have_content '和食レストラン', 'サバの味噌煮定食'
       end
     end
   end

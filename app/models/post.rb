@@ -1,9 +1,5 @@
 class Post < ApplicationRecord
   # validation
-  validates :category_id,
-            presence: true,
-            numericality: true,
-            inclusion: { in: Category.pluck(:id) }
   validates :ranking_point,
             uniqueness: { scope: %i[category_id user_id] }
   validates :eatery_name, presence: true, length: { maximum: 200 }
