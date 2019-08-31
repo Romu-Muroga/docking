@@ -19,8 +19,8 @@
       <%= f.label :ranking_point %>
       <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
       <%= f.select :ranking_point,
-                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), "#{rp[1]}"] },
-                   selected: post.ranking_point_before_type_cast,
+                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
+                   selected: post.ranking_point,
                    class: "form-control"
                    %>
       <% if current_user.posts.present? %>

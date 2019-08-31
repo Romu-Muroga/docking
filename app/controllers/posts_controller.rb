@@ -36,13 +36,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # build_picture: has_oneが定義されている場合に使える構文
+    # build_picture: has_one syntax
     @post.build_picture
   end
 
   def create
     begin
-      params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
       @post = Post.new(post_params)
       @post.build_picture(image: picture_params[:image]) if picture_params[:image]
       if @post.save
@@ -67,7 +66,6 @@ class PostsController < ApplicationController
 
   def update
     ActiveRecord::Base.transaction do
-      params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
       @post.update!(post_params)
       checkbox_value = params[:post][:picture_delete_check]
       form_submit_image = picture_params[:image]
