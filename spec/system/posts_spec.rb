@@ -22,6 +22,16 @@ RSpec.describe '投稿管理機能', type: :system do
            user: user_b)
   end
 
+  shared_context '全項目を入力' do
+    let(:post_category) { '和食' }
+    let(:post_ranking) { '２位' }
+    let(:post_eatery_name) { '和食レストラン' }
+    let(:post_eatery_food) { 'サバの味噌煮定食' }
+    let(:post_eatery_address) { '東京都渋谷区' }
+    let(:post_eatery_website) { 'https://example.com' }
+    let(:post_remarks) { '美味しかった' }
+  end
+
   before do
     visit login_path
     fill_in 'メールアドレス', with: login_user.email
@@ -68,13 +78,7 @@ RSpec.describe '投稿管理機能', type: :system do
     end
 
     context '新規投稿画面で店名を入力したとき' do
-      let(:post_category) { '和食' }
-      let(:post_ranking) { '２位' }
-      let(:post_eatery_name) { '和食レストラン' }
-      let(:post_eatery_food) { 'サバの味噌煮定食' }
-      let(:post_eatery_address) { '東京都渋谷区' }
-      let(:post_eatery_website) { 'https://example.com' }
-      let(:post_remarks) { '美味しかった' }
+      include_context '全項目を入力'
 
       it '正常に登録される' do
         expect(page).to have_selector '.alert-success', text: '和食レストラン'
@@ -93,6 +97,30 @@ RSpec.describe '投稿管理機能', type: :system do
       it 'エラーとなる' do
         within '#error_explanation' do
           expect(page).to have_content '店名を入力してください'
+        end
+      end
+    end
+
+    context '新規投稿画面でメニューを入力したとき' do
+      include_context '全項目を入力'
+
+      it '正常に登録される' do
+        expect(page).to have_content 'サバの味噌煮定食'
+      end
+    end
+
+    context '新規投稿画面でメニューを入力しなかったとき' do
+      let(:post_category) { '和食' }
+      let(:post_ranking) { '２位' }
+      let(:post_eatery_name) { '和食レスラン' }
+      let(:post_eatery_food) { '' }
+      let(:post_eatery_address) { '東京都渋谷区' }
+      let(:post_eatery_website) { 'https://example.com' }
+      let(:post_remarks) { '美味しかった' }
+
+      it 'エラーとなる' do
+        within '#error_explanation' do
+          expect(page).to have_content 'メニューを入力してください'
         end
       end
     end
