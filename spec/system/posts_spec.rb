@@ -43,29 +43,54 @@ RSpec.describe '投稿管理機能', type: :system do
       end
     end
   end
-  #
-  # scenario '新規投稿テスト' do
-  #   click_on 'New post'
-  #
-  #   select '和食', from: 'post_category_id'
-  #   select '２位', from: 'post_ranking_point'
-  #   fill_in 'Eatery name', with: '和食レストラン２'
-  #   fill_in 'Menu', with: 'チキンかあさん煮定食'
-  #   attach_file '画像', "#{Rails.root}/spec/fixtures/default.png"
-  #   fill_in '一言、好きな理由を添えて投稿をお願いします', with: '美味しかった！'
-  #
-  #   click_on '登録する'
-  #
-  #   within '.thumbnail' do
-  #     expect(page).to have_content '和食'
-  #     expect(page).to have_content '２位'
-  #     expect(page).to have_content '和食レストラン２'
-  #     expect(page).to have_content 'チキンかあさん煮定食'
-  #     expect(page).to have_content '未登録'
-  #     expect(page).to have_content '美味しかった！'
-  #   end
-  # end
-  #
+
+  describe '新規投稿機能' do
+    let(:login_user) { user_a }
+
+    before do
+      visit new_post_path
+      select post_category, from: 'カテゴリー'
+      select post_ranking, from: '順位'
+      fill_in '店名', with: post_eatery_name
+      fill_in 'メニュー', with: post_eatery_food
+      fill_in '所在地（任意）', with: post_eatery_address
+      fill_in 'Website（任意）', with: post_eatery_website
+      attach_file '画像（任意）', "#{Rails.root}/spec/fixtures/default.png"
+      fill_in '詳しい説明', with: post_remarks
+      click_button '登録する'
+    end
+
+    context '新規投稿画面で店名を入力したとき' do
+      let(:post_category) { '和食' }
+      let(:post_ranking) { '２位' }
+      let(:post_eatery_name) { '和食レストラン' }
+      let(:post_eatery_food) { 'サバの味噌煮定食' }
+      let(:post_eatery_address) { '東京都渋谷区' }
+      let(:post_eatery_website) { 'https://example.com' }
+      let(:post_remarks) { '美味しかった' }
+
+      it '正常に登録される' do
+        expect(page).to have_selector '.alert-success', text: '和食レストラン'
+      end
+    end
+
+    context '新規投稿画面で店名を入力しなかったとき' do
+      let(:post_category) { '和食' }
+      let(:post_ranking) { '２位' }
+      let(:post_eatery_name) { '' }
+      let(:post_eatery_food) { 'サバの味噌煮定食' }
+      let(:post_eatery_address) { '東京都渋谷区' }
+      let(:post_eatery_website) { 'https://example.com' }
+      let(:post_remarks) { '美味しかった' }
+
+      it 'エラーとなる' do
+        within '#error_explanation' do
+          expect(page).to have_content '店名を入力してください'
+        end
+      end
+    end
+  end
+
   # scenario '投稿記事を編集できるかテスト' do
   #   all('div.thumbnail')[0].click_on 'EDIT'
   #
