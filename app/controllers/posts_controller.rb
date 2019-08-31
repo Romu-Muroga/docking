@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   def create
     begin
-      @post = Post.new(post_params)
+      @post = current_user.posts.new(post_params)
       @post.build_picture(image: picture_params[:image]) if picture_params[:image]
       if @post.save
         redirect_to (@post),
@@ -104,8 +104,6 @@ class PostsController < ApplicationController
       :longitude,
       :eatery_website,
       :remarks
-    ).merge(
-      user_id: current_user.id
     )
   end
 
