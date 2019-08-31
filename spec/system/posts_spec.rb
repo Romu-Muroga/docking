@@ -2,7 +2,9 @@ require 'rails_helper'
 # save_and_open_page
 RSpec.describe '投稿管理機能', type: :system do
   let(:user_a) { create(:user, name: 'ユーザーA', email: 'a@example.com') }
+  let(:user_b) { create(:user, name: 'ユーザーB', email: 'b@example.com') }
   let(:category_washoku) { create(:category, name: '和食') }
+  let(:category_ramen) { create(:category, name: 'ラーメン') }
   let!(:post_a) do
     create(:post,
            ranking_point: 'first_place',
@@ -10,6 +12,14 @@ RSpec.describe '投稿管理機能', type: :system do
            eatery_food: 'サバの味噌煮定食',
            category: category_washoku,
            user: user_a)
+  end
+  let!(:post_b) do
+    create(:post,
+           ranking_point: 'first_place',
+           eatery_name: 'ラーメン屋',
+           eatery_food: '醤油ラーメン',
+           category: category_ramen,
+           user: user_b)
   end
 
   before do
@@ -20,27 +30,24 @@ RSpec.describe '投稿管理機能', type: :system do
   end
 
   describe '一覧表示機能' do
-    context 'ユーザーAがログインしているとき' do
-      let(:login_user) { user_a }
+    let(:login_user) { user_a }
 
-      it 'ユーザーAが作成した投稿が表示される' do
-        visit posts_path
-        expect(find('.link_to_detail').hover).to have_content '和食レストラン', 'サバの味噌煮定食'
-      end
+    it '投稿一覧が表示される' do
+      visit posts_path
+      expect(page.all('.link_to_detail')[0].hover).to have_content 'ラーメン', '醤油ラーメン'
+      expect(page.all('.link_to_detail')[1].hover).to have_content '和食レストラン', 'サバの味噌煮定食'
     end
   end
 
   describe '詳細表示機能' do
-    context 'ユーザーAがログインしているとき' do
-      let(:login_user) { user_a }
+    let(:login_user) { user_a }
 
-      before do
-        visit post_path(post_a)
-      end
+    before do
+      visit post_path(post_a)
+    end
 
-      it 'ユーザーAが作成した投稿が表示される' do
-        expect(page).to have_content '和食レストラン', 'サバの味噌煮定食'
-      end
+    it '投稿記事の詳細が表示される' do
+      expect(page).to have_content '和食レストラン', 'サバの味噌煮定食'
     end
   end
 
