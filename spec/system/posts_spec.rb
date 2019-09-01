@@ -95,6 +95,18 @@ RSpec.describe '投稿管理機能', type: :system do
           expect(page).to have_content '店名を入力してください'
         end
       end
+
+      context '店名を200文字以上入力したとき' do
+        include_context '全項目を入力' do
+          let(:post_eatery_name) { 'a' * 201 }
+        end
+
+        it 'エラーとなる' do
+          within '#error_explanation' do
+            expect(page).to have_content '店名は200文字以内で入力してください'
+          end
+        end
+      end
     end
 
     context '新規投稿画面でメニューを入力しなかったとき' do
@@ -107,6 +119,18 @@ RSpec.describe '投稿管理機能', type: :system do
           expect(page).to have_content 'メニューを入力してください'
         end
       end
+
+      context 'メニューを200文字以上入力したとき' do
+        include_context '全項目を入力' do
+          let(:post_eatery_food) { 'a' * 201 }
+        end
+
+        it 'エラーとなる' do
+          within '#error_explanation' do
+            expect(page).to have_content 'メニューは200文字以内で入力してください'
+          end
+        end
+      end
     end
 
     context '新規投稿画面で所在地を入力しなかったとき' do
@@ -116,6 +140,18 @@ RSpec.describe '投稿管理機能', type: :system do
 
       it '未登録と保存される' do
         expect(page).to have_selector '.eadd_text', text: '未登録'
+      end
+
+      context '所在地を500文字以上入力したとき' do
+        include_context '全項目を入力' do
+          let(:post_eatery_address) { 'a' * 501 }
+        end
+
+        it 'エラーとなる' do
+          within '#error_explanation' do
+            expect(page).to have_content '所在地は500文字以内で入力してください'
+          end
+        end
       end
     end
 
@@ -127,6 +163,18 @@ RSpec.describe '投稿管理機能', type: :system do
       it '未登録と保存される' do
         expect(page).to have_selector '.eweb_text', text: '未登録'
       end
+
+      context 'Websiteを500文字以上入力したとき' do
+        include_context '全項目を入力' do
+          let(:post_eatery_website) { 'a' * 501 }
+        end
+
+        it 'エラーとなる' do
+          within '#error_explanation' do
+            expect(page).to have_content 'Websiteは500文字以内で入力してください'
+          end
+        end
+      end
     end
 
     context '新規投稿画面で詳しい説明を入力しなかったとき' do
@@ -136,6 +184,18 @@ RSpec.describe '投稿管理機能', type: :system do
 
       it '空文字列で保存される' do
         expect(page).to have_selector '.caption_remarks', text: ''
+      end
+
+      context '詳しい説明を2000文字以上入力したとき' do
+        include_context '全項目を入力' do
+          let(:post_remarks) { 'a' * 2001 }
+        end
+
+        it 'エラーとなる' do
+          within '#error_explanation' do
+            expect(page).to have_content '詳しい説明は2000文字以内で入力してください'
+          end
+        end
       end
     end
   end
