@@ -175,6 +175,18 @@ RSpec.describe '投稿管理機能', type: :system do
           end
         end
       end
+
+      context 'WebsiteのURLを不正な値で入力したとき' do
+        include_context '全項目を入力' do
+          let(:post_eatery_website) { 'xxxxx://example.com' }
+        end
+
+        it 'エラーとなる' do
+          within '#error_explanation' do
+            expect(page).to have_content 'Websiteは不正な値です'
+          end
+        end
+      end
     end
 
     context '新規投稿画面で詳しい説明を入力しなかったとき' do
@@ -195,6 +207,18 @@ RSpec.describe '投稿管理機能', type: :system do
           within '#error_explanation' do
             expect(page).to have_content '詳しい説明は2000文字以内で入力してください'
           end
+        end
+      end
+    end
+
+    context '新規投稿画面で登録済みのカテゴリーと順位の組み合わせで入力をしたとき' do
+      include_context '全項目を入力' do
+        let(:post_ranking) { '１位' }
+      end
+
+      it 'エラーとなる' do
+        within '#error_explanation' do
+          expect(page).to have_content '順位はすでに存在します'
         end
       end
     end
