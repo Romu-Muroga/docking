@@ -77,7 +77,7 @@ RSpec.describe '投稿管理機能', type: :system do
       click_button '登録する'
     end
 
-    context '新規投稿画面で店名を入力したとき' do
+    context '新規投稿画面で全項目を入力したとき' do
       include_context '全項目を入力'
 
       it '正常に登録される' do
@@ -86,13 +86,9 @@ RSpec.describe '投稿管理機能', type: :system do
     end
 
     context '新規投稿画面で店名を入力しなかったとき' do
-      let(:post_category) { '和食' }
-      let(:post_ranking) { '２位' }
-      let(:post_eatery_name) { '' }
-      let(:post_eatery_food) { 'サバの味噌煮定食' }
-      let(:post_eatery_address) { '東京都渋谷区' }
-      let(:post_eatery_website) { 'https://example.com' }
-      let(:post_remarks) { '美味しかった' }
+      include_context '全項目を入力' do
+        let(:post_eatery_name) { '' }
+      end
 
       it 'エラーとなる' do
         within '#error_explanation' do
@@ -101,27 +97,45 @@ RSpec.describe '投稿管理機能', type: :system do
       end
     end
 
-    context '新規投稿画面でメニューを入力したとき' do
-      include_context '全項目を入力'
-
-      it '正常に登録される' do
-        expect(page).to have_content 'サバの味噌煮定食'
-      end
-    end
-
     context '新規投稿画面でメニューを入力しなかったとき' do
-      let(:post_category) { '和食' }
-      let(:post_ranking) { '２位' }
-      let(:post_eatery_name) { '和食レスラン' }
-      let(:post_eatery_food) { '' }
-      let(:post_eatery_address) { '東京都渋谷区' }
-      let(:post_eatery_website) { 'https://example.com' }
-      let(:post_remarks) { '美味しかった' }
+      include_context '全項目を入力' do
+        let(:post_eatery_food) { '' }
+      end
 
       it 'エラーとなる' do
         within '#error_explanation' do
           expect(page).to have_content 'メニューを入力してください'
         end
+      end
+    end
+
+    context '新規投稿画面で所在地を入力しなかったとき' do
+      include_context '全項目を入力' do
+        let(:post_eatery_address) { '' }
+      end
+
+      it '未登録と保存される' do
+        expect(page).to have_selector '.eadd_text', text: '未登録'
+      end
+    end
+
+    context '新規投稿画面でWebsiteを入力しなかったとき' do
+      include_context '全項目を入力' do
+        let(:post_eatery_website) { '' }
+      end
+
+      it '未登録と保存される' do
+        expect(page).to have_selector '.eweb_text', text: '未登録'
+      end
+    end
+
+    context '新規投稿画面で詳しい説明を入力しなかったとき' do
+      include_context '全項目を入力' do
+        let(:post_remarks) { '' }
+      end
+
+      it '空文字列で保存される' do
+        expect(page).to have_selector '.caption_remarks', text: ''
       end
     end
   end
