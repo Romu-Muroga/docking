@@ -1,7 +1,7 @@
 class Picture < ApplicationRecord
   #imageカラムに、ImageUploaderを紐付け
   mount_uploader :image, ImageUploader
-  # validates
+  # validation
   validates :image, :imageable_type, :imageable_id, presence: true
   # association
   belongs_to :imageable, polymorphic: true

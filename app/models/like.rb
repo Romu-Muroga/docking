@@ -1,5 +1,5 @@
 class Like < ApplicationRecord
-  # validates
+  # validation
   validates :post_id, uniqueness: { scope: :user_id }
   validates :post_id, :user_id, presence: true
   # association
