@@ -9,11 +9,11 @@ class PostsController < ApplicationController
     # defined for search_form
     @q = Post.ransack(params[:q])
     @posts = if params[:category_id]
-               @q.result.category_sort(params[:category_id])
+               @q.result.category_sort(params[:category_id]).includes(:category, :picture, :user, :iine_users)
              else
-               @q.result.latest
+               @q.result.latest.includes(:category, :picture, :user, :iine_users)
              end
-    @iine_ranking_posts = Post.iine_ranking
+    @iine_ranking_posts = Post.iine_ranking.includes(:picture)
     @overall_ranking_posts = Post.overall_ranking
   end
 
