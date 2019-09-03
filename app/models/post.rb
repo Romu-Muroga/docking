@@ -63,7 +63,7 @@ class Post < ApplicationRecord
         v[:point] += likes_and_ranking_points if post.eatery_name == k[0]
       end
     end
-    Hash[eatery_points.sort_by { |_, v| -v[:point] }]
+    Hash[eatery_points.sort_by { |_, v| -v[:point] }[0..19]]
   end
 
   # selfが必要
