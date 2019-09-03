@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-2 left_section">
         <div>
-          <%= render partial: 'search_form' %>
+          <%= render partial: 'search_form', locals: { categories: @categories } %>
           <%= link_to 'New post', new_post_path, class: "cp_btn" %>
         </div>
         <div class="category_list">
