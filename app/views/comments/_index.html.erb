@@ -1,7 +1,7 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %><!-- コメントのidがnilではなかったら -->
     <div class="comments_area_inner">
-      <%= picture_not_link(comment.user) %>
+      <%= no_link_picture(comment.user) %>
       <div class="comments_area_content">
         <p class="comments_area_account_name"><%= comment.user.name.truncate(12, omission: '...') %></p>
         <time datetime="<%= comment.created_at %>">
