@@ -70,6 +70,9 @@ a:hover {
       background-color: unset;
     }
     .dropdown-menu {
+      li a {
+        font-size: 0.9em;
+      }
       a.current {
         color: #EC407A;
       }
@@ -78,7 +81,7 @@ a:hover {
 }
 
 // yieldを囲むブロック
-.main_section {
+.main_block {
   width: 100%;
   height: 100%;
 }

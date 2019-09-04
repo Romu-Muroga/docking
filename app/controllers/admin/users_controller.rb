@@ -38,8 +38,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def current_user_admin?
-    return if logged_in? && current_user.admin
+    return if current_user.admin
 
-    redirect_to root_path, danger: t('flash.Not_authorized')
+    render file: Rails.root.join('public/404.html'),
+           status: :not_found,
+           layout: false,
+           content_type: 'text/html'
   end
 end

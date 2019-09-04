@@ -1,16 +1,9 @@
 class Post < ApplicationRecord
   # validation
-  validates :category_id,
-            presence: true,
-            numericality: true,
-            inclusion: { in: Category.pluck(:id) }
   validates :ranking_point,
-            presence: true,
-            numericality: true,
-            inclusion: { in: %w[first_place second_place third_place] }
-  validates :ranking_point, uniqueness: { scope: %i[category_id user_id] }
-  validates :eatery_name, presence: true, length: { in: 1..200 }
-  validates :eatery_food, presence: true, length: { in: 1..200 }
+            uniqueness: { scope: %i[category_id user_id] }
+  validates :eatery_name, presence: true, length: { maximum: 200 }
+  validates :eatery_food, presence: true, length: { maximum: 200 }
   validates :eatery_address, presence: true, length: { maximum: 500 }
   # validates: latitude
   # validates: longitude
@@ -29,7 +22,6 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :iine_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
-  # TODO: foreign_key: { on_delete: :cascade }
   has_one :picture, as: :imageable, dependent: :destroy
   belongs_to :user
   belongs_to :category
@@ -38,8 +30,8 @@ class Post < ApplicationRecord
   scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
   scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
-  scope :iine_ranking, -> { order(likes_count: :desc).limit(10).includes(:user) }
-  scope :latest, -> { order(updated_at: :desc).includes(:user) }
+  scope :iine_ranking, -> { order(likes_count: :desc).limit(10) }
+  scope :latest, -> { order(updated_at: :desc) }
   # scope for autocomplete
   scope :uniq_eatery_name, -> { select('MIN(id) as id, eatery_name').group(:eatery_name) }
   scope :uniq_eatery_food, -> { select('MIN(id) as id, eatery_food').group(:eatery_food) }
@@ -70,10 +62,9 @@ class Post < ApplicationRecord
         v[:point] += likes_and_ranking_points if post.eatery_name == k[0]
       end
     end
-    Hash[eatery_points.sort_by { |_, v| -v[:point] }]
+    Hash[eatery_points.sort_by { |_, v| -v[:point] }[0..19]]
   end
 
-  # selfが必要
   def self.outputs_duplicate_shop_name_and_category
     eatery_points = {}
     posts = Post.group(:eatery_name, :category_id)
@@ -123,16 +114,4 @@ class Post < ApplicationRecord
       post.hashtags << tag
     end
   end
-
-  # attr_accessor :image # for caching images table value
-
-  # defo. [id, content].map { column: self.attr_accessor: column }
-  # has_many(arg1, [...arg2])をすると
-  # attr_accessor: arg1 # as
-  # arg1を読んだときのメソッド(ex. before_get_arg1)ができる
-  # def before_get_arg1
-  #   @post = self # == Post.find(:id)
-  #   @arg1 = Arg1.where(id: self.id)
-  #   return @arg1
-  # end
 end

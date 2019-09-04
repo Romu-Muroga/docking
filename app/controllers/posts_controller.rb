@@ -1,8 +1,5 @@
 class PostsController < ApplicationController
-  before_action :login_check
-  before_action :set_post, only: %i[show edit update destroy id_check]
-  before_action :id_check, only: %i[edit update destroy]
-
+  before_action :set_post, only: %i[edit update destroy]
   autocomplete :post, :eatery_name, full: true, scopes: [:uniq_eatery_name], full_model: true
   autocomplete :post, :eatery_food, full: true, scopes: [:uniq_eatery_food], full_model: true
   autocomplete :post, :eatery_address, full: true, scopes: [:uniq_eatery_address], full_model: true
@@ -12,11 +9,11 @@ class PostsController < ApplicationController
     # defined for search_form
     @q = Post.ransack(params[:q])
     @posts = if params[:category_id]
-               @q.result.category_sort(params[:category_id])
+               @q.result.category_sort(params[:category_id]).includes(:category, :picture, :user, :iine_users)
              else
-               @q.result.latest
+               @q.result.latest.includes(:category, :picture, :user, :iine_users)
              end
-    @iine_ranking_posts = Post.iine_ranking
+    @iine_ranking_posts = Post.iine_ranking.includes(:picture)
     @overall_ranking_posts = Post.overall_ranking
   end
 
@@ -27,7 +24,7 @@ class PostsController < ApplicationController
     category = params[:q][:category_id_eq]
     rank = params[:q][:ranking_point_eq]
     if address.blank? && category.blank? && rank.blank? && name.blank?
-      redirect_to posts_path, warning: t('flash.Search_word_is_empty')
+      redirect_to posts_path, warning: t('flash.search_word_is_empty')
     else
       @q = Post.ransack(search_params)
       @posts = @q.result.latest
@@ -39,23 +36,27 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # build_picture: has_oneが定義されている場合に使える構文
+    # build_picture: has_one syntax
     @post.build_picture
   end
 
   def create
-    params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
-    @post = Post.new(post_params)
-    @post.build_picture(image: picture_params[:image]) if picture_params[:image]
-    if @post.save
-      redirect_to post_path(@post),
-                  success: t('flash.create', content: @post.eatery_name)
-    else
-      render :new
+    begin
+      @post = current_user.posts.new(post_params)
+      @post.build_picture(image: picture_params[:image]) if picture_params[:image]
+      if @post.save
+        redirect_to (@post),
+                    success: t('flash.create', content: @post.eatery_name)
+      else
+        render :new
+      end
+    rescue ArgumentError
+      redirect_to new_post_path, danger: t('flash.invalid_value')
     end
   end
 
   def show
+    @post = Post.find(params[:id])
     # Create instance to be used in input form
     @comment = Comment.new
     @comments = @post.comments
@@ -65,34 +66,29 @@ class PostsController < ApplicationController
 
   def update
     ActiveRecord::Base.transaction do
-      params[:post][:ranking_point] = params[:post][:ranking_point].to_i# TODO
       @post.update!(post_params)
-      checkbox_value = params[:post][:picture_delete_check].to_i
+      checkbox_value = params[:post][:picture_delete_check]
       form_submit_image = picture_params[:image]
-      if @post.picture.blank? && form_submit_image.blank?
-        false
-      elsif @post.picture.present? && form_submit_image.blank? && checkbox_value == 1
-        @post.picture.destroy!
-      elsif @post.picture.present? && form_submit_image.blank?
-        false
-      elsif @post.picture.present?
-        @post.picture.update!(image: form_submit_image)
-      elsif @post.picture.blank?
-        @post.build_picture(image: form_submit_image)
-        @post.picture.save!
-      end
+      post_picture_update(@post, form_submit_image, checkbox_value)
     end
-    redirect_to post_path(@post),
+    redirect_to (@post),
                 success: t('flash.update', content: @post.model_name.human)
-  rescue ActiveRecord::RecordInvalid
-    # TODO: Add error message?
-    render :edit
+    rescue ArgumentError
+      redirect_to edit_post_path(@post), danger: t('flash.invalid_value')
+    rescue => e
+      puts e.message
+      render :edit
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_path,
-                success: t('flash.destroy', content: @post.model_name.human)
+    if params[:submitted_page] == 'mypage'
+      redirect_to (@post.user),
+                  success: t('flash.destroy', content: @post.model_name.human)
+    else
+      redirect_to posts_path,
+                  success: t('flash.destroy', content: @post.model_name.human)
+    end
   end
 
   def hashtag
@@ -113,8 +109,6 @@ class PostsController < ApplicationController
       :longitude,
       :eatery_website,
       :remarks
-    ).merge(
-      user_id: current_user.id
     )
   end
 
@@ -138,21 +132,22 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def login_check
-    return if logged_in?
-
-    redirect_to new_session_path, danger: t('flash.Please_login')
-  end
-
-  def id_check
-    return if @post.user_id == current_user.id
-
-    redirect_to user_path(current_user.id), danger: t('flash.Unlike_users')
+    redirect_to posts_path,
+                danger: t('flash.access_denied', url: url_for(only_path: false)) unless poster?(@post)
   end
 
   def category_list
     @categories = Category.all
+  end
+
+  def post_picture_update(post, form_submit_image, checkbox_value)
+    if post.picture.present? && checkbox_value == '1'
+      post.picture.destroy!
+    elsif post.picture.present? && form_submit_image.present?
+      post.picture.update!(image: form_submit_image)
+    elsif post.picture.blank? && form_submit_image.present?
+      post.build_picture(image: form_submit_image)
+      post.picture.save!
+    end
   end
 end

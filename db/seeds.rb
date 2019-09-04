@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(name: "管理人", email: "admin@dic.com", password: "12345678", admin: true)
+#
+# User.create!(name: "管理人", email: "admin@dic.com", password: "12345678", admin: true)
+# User.create!(name: "テスト一朗", email: "test@dic.com", password: "12345678", admin: false)
 #
 # Category.create!(name: "和食")
 # Category.create!(name: "ラーメン・麺類")
@@ -22,7 +24,7 @@ User.create!(name: "管理人", email: "admin@dic.com", password: "12345678", ad
 # Category.create!(name: "鍋")
 # Category.create!(name: "しゃぶしゃぶ・すき焼き")
 # Category.create!(name: "その他")
-
+#
 # Post.create!(ranking_point: 3,
 #              eatery_name: "魚べえ",
 #              eatery_food: "生しらす定食",

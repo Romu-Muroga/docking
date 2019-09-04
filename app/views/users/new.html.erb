@@ -1,10 +1,10 @@
-<div class="wrapper" id="account_form_area">
+<div class="wrapper" id="sign_up_block">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 account_form">
+      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 input_form_area">
         <h3><%= t('views.users.new_page') %></h3>
         <%= render partial: 'form', locals: { user: @user } %>
-        <%= link_to 'ログインページへ', new_session_path, class: "btn btn-default" %>
+        <%= link_to 'ログインページへ', login_path, class: "btn btn-default" %>
       </div>
     </div>
   </div>

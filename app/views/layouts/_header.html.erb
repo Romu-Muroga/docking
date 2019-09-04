@@ -9,9 +9,9 @@
       <i class="fas fa-bars fa-2x"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><%= link_to 'ランキング一覧', posts_path, class: posts_index_page?(params[:controller], params[:action]) %></li>
-      <li><%= link_to '私のお気に入り', user_path(current_user), class: my_page?(params[:controller], params[:action]) %></li>
-      <li><%= link_to 'ログアウト', session_path(current_user), method: :delete %></li>
+      <li><%= link_to '投稿一覧', posts_path, class: posts_index_page?(params[:controller], params[:action]) %></li>
+      <li><%= link_to '私のお気に入りランキング', user_path(current_user), class: my_page?(params[:controller], params[:action]) %></li>
+      <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
     </ul>
   </div>
 </header>
