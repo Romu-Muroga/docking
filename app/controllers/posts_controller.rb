@@ -82,8 +82,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path,
-                success: t('flash.destroy', content: @post.model_name.human)
+    if params[:submitted_page] == 'mypage'
+      redirect_to (@post.user),
+                  success: t('flash.destroy', content: @post.model_name.human)
+    else
+      redirect_to posts_path,
+                  success: t('flash.destroy', content: @post.model_name.human)
+    end
   end
 
   def hashtag
