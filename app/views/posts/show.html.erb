@@ -1,9 +1,9 @@
-<div class="wrapper" id="post_show_area">
+<div class="wrapper" id="post_show_block">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-offset-1 col-md-7">
         <div class="thumbnail">
-          <%= picture_not_link(@post) %>
+          <%= no_link_picture(@post) %>
           <div class="thumbnail_header">
             <ul>
               <li class="category_label"><%= @post.category.name %></li>
@@ -13,7 +13,7 @@
           </div>
           <div class="caption">
             <div class="caption_user_block">
-              <%= picture_not_link(@post.user) %>
+              <%= no_link_picture(@post.user) %>
               <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
               <div class="caption_user_block_post_time">
                 <%= @post.user.name.truncate(12, omission: '...') %>さんが
@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="caption_remarks">
-              <%= render_with_hashtags(simple_format(h(@post.remarks), {}, sanitize: false, wrapper_tag: "div")) %>
+              <%= render_with_hashtags(auto_link(simple_format(h(@post.remarks), {}, sanitize: false, wrapper_tag: "div"))) %>
             </div>
             <div class="caption_eatery_info">
               <ul>
@@ -44,7 +44,7 @@
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
               <%= render "likes/like", post: @post %>
             </div>
-            <% if @post.user_id == current_user.id %>
+            <% if poster?(@post) %>
               <p class="edit_delete_button">
                 <%= link_to 'EDIT', edit_post_path(@post), class: "btn btn-warning" %>
                 <%= link_to 'DELETE',
@@ -61,14 +61,10 @@
       <div class="col-md-3 right_section">
         <p class="title">コメント</p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
-          <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
           <%= render partial: 'comments/index', locals: { comments: @comments } %>
         </div>
         <div class="comments_form_area">
-          <%# if logged_in? %>
-            <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-            <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-          <%# end %>
+          <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
         </div>
       </div>
     </div>

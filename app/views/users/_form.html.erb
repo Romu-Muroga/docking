@@ -1,8 +1,8 @@
-<%= form_with(model: user, local: true, class: "user_form_outer") do |f| %>
-  <div class="user_form_inner">
+<%= form_with(model: user, local: true, class: "form_outer") do |f| %>
+  <div class="form_inner">
     <% if user.errors.any? %>
       <div id="error_explanation">
-        <h4><%= user.errors.count %>件のエラーがあります。</h4>
+        <h4>エラーが発生しました。以下の項目について確認してください。</h4>
         <ul>
           <% user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>

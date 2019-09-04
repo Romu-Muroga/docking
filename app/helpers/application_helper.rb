@@ -1,5 +1,4 @@
 module ApplicationHelper
-  include SessionsHelper
   # Highlight current link
   def cp(path)
     'current' if current_page?(path)
@@ -14,8 +13,7 @@ module ApplicationHelper
     'current' if target_controller == 'users' && target_action == 'show'
   end
 
-  # リンク付き画像(Post)
-  def post_picture_link(post)
+  def linked_post_picture(post)
     if post.picture.present?
       link_to post_path(post) do
         image_tag(post.picture.image.url, class: 'img-responsive')
@@ -27,8 +25,7 @@ module ApplicationHelper
     end
   end
 
-  # リンク付き画像(User)
-  def user_picture_link(user)
+  def linked_user_picture(user)
     if user.picture.present?
       link_to user_path(user) do
         image_tag(user.picture.image.url, class: 'img-responsive')
@@ -40,8 +37,8 @@ module ApplicationHelper
     end
   end
 
-  # リンク無し画像(Post and User)
-  def picture_not_link(instance)
+  # instance: Post or User
+  def no_link_picture(instance)
     if instance.picture.present?
       image_tag(instance.picture.image.url, class: 'img-responsive')
     elsif instance.class == User

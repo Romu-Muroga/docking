@@ -2,12 +2,15 @@
 .admin_top_menu {
   text-align: center;
   margin-top: 30vh;
-  li {
-    list-style: none;
-  }
-  li a {
-    margin-bottom: 20px;
-    width: 214px;
+  ul {
+    padding: 0;
+    li {
+      list-style: none;
+    }
+    li a {
+      margin-bottom: 20px;
+      width: 214px;
+    }
   }
 }
 
@@ -15,7 +18,7 @@
 .admin_categories_index {
   margin-top: 45px;
   .btn-primary {
-    margin-left: 47%;
+    margin-left: 45%;
   }
   .category_destroy_link {
     color: red;

@@ -1,13 +1,13 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %><!-- コメントのidがnilではなかったら -->
     <div class="comments_area_inner">
-      <%= picture_not_link(comment.user) %>
+      <%= no_link_picture(comment.user) %>
       <div class="comments_area_content">
         <p class="comments_area_account_name"><%= comment.user.name.truncate(12, omission: '...') %></p>
         <time datetime="<%= comment.created_at %>">
           <%= time_ago_in_words(comment.created_at, include_seconds: true)+"前" %>
         </time>
-        <%= simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div") %>
+        <%= auto_link(simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div")) %>
         <% if comment.user == current_user %><!--そのコメントをしたユーザーと現在のユーザーが一致していたら -->
           <p class="comments_area_delete_btn">
             <%= link_to 'コメントを削除する', post_comment_path(comment.post_id, comment.id), method: :delete, remote: true %>

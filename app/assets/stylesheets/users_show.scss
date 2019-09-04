@@ -1,4 +1,4 @@
-#my_page_area {
+#my_page_block {
   // 詳細をみるボタン
   a.btn-show {
     color: silver;
@@ -58,6 +58,7 @@
     max-width: 100%;
     max-height: 187px;
     margin: 0 auto;
+    padding-bottom: 30px;
   }
   &_link {
     color: black;

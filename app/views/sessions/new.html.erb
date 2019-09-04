@@ -1,10 +1,10 @@
-<div class="wrapper" id="account_form_area">
+<div class="wrapper" id="login_block">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 login_form">
+      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 input_form_area">
         <h3><%= t("views.sessions.login_page") %></h3>
         <!-- Sessionモデルがないため、リソースの名前とそれに対応するURLを指定する必要がある -->
-        <%= form_with(scope: :session, url: sessions_path, local: true, class: "form_outer") do |f| %>
+        <%= form_with(scope: :session, url: login_path, local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
             <div class="form-group">
               <%= f.label :email, "メールアドレス" %>

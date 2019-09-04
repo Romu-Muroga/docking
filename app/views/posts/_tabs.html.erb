@@ -6,7 +6,7 @@
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
-        <%= render partial: 'overall_ranking', locals: { posts: overall_ranking_posts } %>
+        <%= render partial: 'overall_ranking', locals: { overall_ranking_posts: overall_ranking_posts } %>
       </p>
     </div>
   </div>
@@ -16,7 +16,7 @@
         <div class="c-txtsp">
           <%= i %>位
           <div class="mask">
-            <%= post_picture_link(post) %>
+            <%= linked_post_picture(post) %>
           </div>
         </div>
       <% end %>

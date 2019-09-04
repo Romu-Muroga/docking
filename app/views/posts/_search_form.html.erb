@@ -10,18 +10,12 @@
     </div>
     <div class="form-group">
       <%= f.label :category_id_eq, t('activerecord.attributes.post.category_id') %>
-      <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: true, class: "form-control" %>
+      <%= f.collection_select :category_id_eq, categories, :id, :name, include_blank: true, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :ranking_point_eq, t('activerecord.attributes.post.ranking_point') %>
-      <!-- TODO: enumの対応
-      @q =>  Condition <attributes: ["ranking_point"], predicate: eq, values: ["１位"]
-      enumで定義した１位: 3で検索してほしいけど、"１位" => 0になってしまう…
-      => SELECT "posts".* FROM "posts" WHERE "posts"."ranking_point" = 0
-      ranking_pointカラムには、integerの3,2,1のいずれかしか格納されていない。
-      解決策: formから送るvalueを<option value="3">１位</option>にして、@q => values: ["3"]とすればいい。 -->
       <%= f.select :ranking_point_eq,
-                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), "#{rp[1]}"] },
+                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[1]] },
                    include_blank: true,
                    class: "form-control"
                    %>

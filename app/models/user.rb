@@ -1,21 +1,16 @@
 class User < ApplicationRecord
-  # validates
-  validates :name, presence: true, length: { in: 1..500 }
+  # validation
+  validates :name, presence: true, length: { maximum: 500 }
   validates :email,
             presence: true,
-            length: { in: 1..500 },
-            format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+            length: { maximum: 500 },
             uniqueness: true
+  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, allow_blank: true
   validates :password, presence: true, length: { in: 6..100 }, allow_nil: true
   validates :admin, inclusion: { in: [true, false] }
-
   has_secure_password
-  # セキュアにハッシュ化したパスワードを、データベース内のpassword_digestというカラムに保存する
-  # 2つのペアの仮想的な属性 (passwordとpassword_confirmation) が使えるようになる。また、存在性と値が一致するかどうかのバリデーションも追加される
-  # authenticateメソッドが使えるようになる (引数の文字列がパスワードと一致するとUserオブジェクトを、間違っているとfalseを返すメソッド)
 
   # association
-  # TODO: foreign_key: { on_delete: :cascade }
   has_one :picture, as: :imageable, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy

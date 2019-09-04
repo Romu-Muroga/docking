@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :login_check, except: %i[new create]
+  skip_before_action :login_check, only: %i[new create]
   before_action :set_user, only: %i[
     show iine_post_list edit password_reset
     password_update update destroy destroy_confirm
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       # Login at the same time if user can save
       session[:user_id] = @user.id
-      redirect_to user_path(@user.id),
+      redirect_to (@user),
                   success: t('flash.account_registration_and_login_completed', user: @user.name)
     else
       render :new
@@ -28,9 +28,9 @@ class UsersController < ApplicationController
     @picture = Picture.find(Picture.random_post_picture_id) if
                Picture.random_post_picture_id.present?
     @user_posts = if params[:category_id]
-                    Post.user_category_sort(@user, params[:category_id])
+                    Post.user_category_sort(@user, params[:category_id]).includes(:category, :picture)
                   else
-                    @user.posts.default_sort
+                    @user.posts.default_sort.includes(:category, :picture)
                   end
   end
 
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       @user.add_errors
       render :password_reset
     elsif @user.update(user_params)
-      redirect_to user_path(@user), success: t('flash.password_updated')
+      redirect_to (@user), success: t('flash.password_updated')
     else
       render :password_reset
     end
@@ -56,38 +56,27 @@ class UsersController < ApplicationController
   def update
     ActiveRecord::Base.transaction do
       @user.update!(user_params)
-      checkbox_value = params[:user][:picture_delete_check].to_i
+      checkbox_value = params[:user][:picture_delete_check]
       form_submit_image = picture_params[:image]
-      if @user.picture.blank? && form_submit_image.blank?
-        false
-      elsif @user.picture.present? && form_submit_image.blank? && checkbox_value == 1
-        @user.picture.destroy!
-      elsif @user.picture.present? && form_submit_image.blank?
-        false
-      elsif @user.picture.present?
-        @user.picture.update!(image: form_submit_image)
-      else
-        @user.build_picture(image: form_submit_image)
-        @user.picture.save!
-      end
+      user_picture_update(@user, form_submit_image, checkbox_value)
     end
-    redirect_to user_path(@user), success: t('flash.account_information_update')
-  rescue ActiveRecord::RecordInvalid
-    render :edit
+    redirect_to (@user), success: t('flash.account_info_update')
+    rescue => e
+      puts e.message
+      render :edit
   end
 
   def destroy_confirm; end
 
   def destroy
     checkbox_value = params[:user][:destroy_check].to_i
-    # user >> (o)posts >> (x)picture
-    # ポリモーフィックでhas_oneの関連を持つpictureは、dependent: :destroyで、
-    # user.pictureは消せるけど、孫にあたるpost.pictureまでは消せない
-    if checkbox_value == 1 && (@user.posts.destroy_all && @user.destroy)
-      redirect_to root_path,
-                  success: t('flash.Delete_account_Thank_you_for_using', user: @user.name)
+    if checkbox_value == 1 && @user.destroy
+      reset_session
+    elsif checkbox_value == 1 && !@user.destroy
+      redirect_to destroy_confirm_user_path(@user),
+                  danger: t('flash.admin_last_user_cannot_be_deleted', user: @user.name)
     else
-      redirect_to destroy_confirm_user_path(@user), warning: t('flash.Please_check')
+      redirect_to destroy_confirm_user_path(@user), warning: t('flash.please_check')
     end
   end
 
@@ -113,17 +102,19 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    # TODO
-    if params[:id].to_i == current_user.id
-      @user = current_user
-    else
-      redirect_to user_path(current_user), danger: t('flash.Unlike_users')
-    end
+    @user = User.find(params[:id])
+    redirect_to posts_path,
+                danger: t('flash.access_denied', url: url_for(only_path: false)) unless @user == current_user
   end
 
-  def login_check
-    return if logged_in?
-
-    redirect_to new_session_path, danger: t('flash.Please_login')
+  def user_picture_update(user, form_submit_image, checkbox_value)
+    if user.picture.present? && checkbox_value == '1'
+      user.picture.destroy!
+    elsif user.picture.present? && form_submit_image.present?
+      user.picture.update!(image: form_submit_image)
+    elsif user.picture.blank? && form_submit_image.present?
+      user.build_picture(image: form_submit_image)
+      user.picture.save!
+    end
   end
 end

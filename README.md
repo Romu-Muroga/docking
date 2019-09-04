@@ -59,3 +59,4 @@ https://cacoo.com/diagrams/qzbpgYsOZwdL6hjK/02A72
 - mini_magick
 - rails-jquery-autocomplete
 - ransack
+- rails_autolink
