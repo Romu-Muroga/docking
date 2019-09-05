@@ -3,25 +3,17 @@
     <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post }%>
     <p>※各カテゴリー１位〜３位まで、ご登録いただけます。</p>
     <div class="form-group chg_inblock">
-      <ul class="default_reset">
-        <li class="ctg_area">
-          <%= f.label :category_id %><br>
-          <%= f.collection_select :category_id, Category.all, :id, :name, prompt: '選択されていません', class: "form-control" %>
-        </li>
-      </ul>
+      <%= f.label :category_id %><br>
+      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: '選択されていません', class: "form-control" %>
     </div>
     <div class="form-group chg_inblock">
-      <ul class="default_reset">
-        <li class="rp_area">
-          <%= f.label :ranking_point %><br>
-          <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
-          <%= f.select :ranking_point,
-                       Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
-                       prompt: '選択されていません',
-                       class: "form-control"
-          %>
-        </li>
-      </ul>
+      <%= f.label :ranking_point %><br>
+      <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
+      <%= f.select :ranking_point,
+                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
+                   prompt: '選択されていません',
+                   class: "form-control"
+      %>
     </div>
     <%= render partial: 'posts/form_parts/unavailable_post', locals: { post: post } %>
     <div class="row">

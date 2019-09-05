@@ -64,15 +64,8 @@
   }
   div.chg_inblock {
     display: inline-block;
-  }
-  ul.default_reset {
-    padding: 0;
-    margin: 0;
-    li.ctg_area, li.rp_area {
-      list-style: none;
-      display: inline-block;
-      margin-left: 5px;
-      margin-right: 5px;
+    .has-error {
+      display: inline-grid;
     }
   }
 }
@@ -122,6 +115,7 @@
 
 // フォームに付与するエラーメッセージ
 .has-error {
+  margin-bottom: 0;
   .form-control {
     border-color: red;
   }

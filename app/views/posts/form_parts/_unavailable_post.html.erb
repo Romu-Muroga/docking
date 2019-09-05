@@ -1,4 +1,4 @@
-<% if current_user.posts.present? %>
+<% if current_user.posts.first&.persisted? %>
   <div class="unavailable_post">
     登録済みのリスト
     <div class="unavailable_post_list">
