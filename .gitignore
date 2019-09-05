@@ -29,6 +29,3 @@
 
 # 環境変数
 .env
-
-# Gemfile.lockのバックアップ
-/Backup_Gemfile.lock

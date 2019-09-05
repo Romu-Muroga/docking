@@ -6,7 +6,9 @@
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
-        <%= render partial: 'overall_ranking', locals: { overall_ranking_posts: overall_ranking_posts } %>
+        <%= render partial: 'posts/index_parts/overall_ranking',
+                   locals: { overall_ranking_posts: overall_ranking_posts }
+        %>
       </p>
     </div>
   </div>

@@ -1,5 +1,4 @@
 #my_page_block {
-  // 詳細をみるボタン
   a.btn-show {
     color: silver;
     border-color: silver;
@@ -48,7 +47,6 @@
   }
 }
 
-// アカウントメニュー
 .user_account_menu {
   text-align: center;
   p.account_name {
@@ -100,7 +98,6 @@
   a.cp_btn {
     margin-top: 40px;
   }
-  // いいね！済みのリスト
   a.iine_posts_link {
     color: black;
     display: inline-block;

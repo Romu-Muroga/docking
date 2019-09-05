@@ -1,0 +1,81 @@
+<%= form_with(model: post, local: true, class: "post_form_outer") do |f| %>
+  <div class="post_form_inner">
+    <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post }%>
+    <p>※各カテゴリー１位〜３位まで、ご登録いただけます。</p>
+    <div class="form-group chg_inblock">
+      <%= f.label :category_id %><br>
+      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: '選択されていません', class: "form-control" %>
+    </div>
+    <div class="form-group chg_inblock">
+      <%= f.label :ranking_point %><br>
+      <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
+      <%= f.select :ranking_point,
+                   Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
+                   prompt: '選択されていません',
+                   class: "form-control"
+      %>
+    </div>
+    <%= render partial: 'posts/form_parts/unavailable_post', locals: { post: post } %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :eatery_name %>
+          <%= f.autocomplete_field :eatery_name,
+                                   autocomplete_post_eatery_name_posts_path,
+                                   update_elements: {},
+                                   'data-noMatchesLabel': 'Sorry, nothing found.',
+                                   placeholder: "例：中華一番",
+                                   class: "form-control"
+          %>
+        </div>
+        <div class="form-group">
+          <%= f.label :eatery_food %>
+          <%= f.autocomplete_field :eatery_food,
+                                   autocomplete_post_eatery_food_posts_path,
+                                   update_elements: {},
+                                   'data-noMatchesLabel': 'Sorry, nothing found.',
+                                   placeholder: "例：醤油ラーメン",
+                                   class: "form-control"
+          %>
+        </div>
+        <div class="form-group">
+          <%= f.label :eatery_address, "所在地（任意）" %>
+          <%= f.autocomplete_field :eatery_address,
+                                   autocomplete_post_eatery_address_posts_path,
+                                   update_elements: {},
+                                   'data-noMatchesLabel': 'Sorry, nothing found.',
+                                   placeholder: "例：東京都渋谷区",
+                                   class: "form-control"
+          %>
+        </div>
+        <div class="form-group">
+          <%= f.label :eatery_website, "Website（任意）" %>
+          <%= f.text_field :eatery_website, placeholder: "例：https://xxxxxxx.com", class: "form-control" %>
+        </div>
+        <!-- Pictureモデルのimage属性をセット -->
+        <div class="form-group imgInput"><!-- TODO: image_cache -->
+          <%= f.label :image, "画像（任意）" %>
+          <%= f.file_field :image, class: "form-control", id: "upfile" %>
+        </div>
+        <% if post_with_pictures_edit_page?(post) %>
+          <div class="form-group">
+            <%= f.check_box "picture_delete_check", {}, 1, 2 %>
+            <%= f.label "picture_delete_check", "登録済みの画像を削除" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-6 imgPrev">
+        <%= render partial: 'posts/form_parts/image_prev', locals: { post: post } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :remarks %>
+          <%= f.text_area :remarks, rows: 7, cols: 40, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= f.submit class: "btn btn-default" %>
+<% end %>
