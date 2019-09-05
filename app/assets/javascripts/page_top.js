@@ -1,4 +1,3 @@
-// ターボリンクのロードが終わってから発動する
 $(document).on("turbolinks:load", () => {
   var pagetop = $('#page_top');
   pagetop.hide();

@@ -1,6 +1,4 @@
-// 投稿フォーム
 #post_form_block {
-  // タイトル
   h3 {
     text-align: center;
     span.underline {
@@ -70,7 +68,6 @@
   }
 }
 
-// カテゴリーフォーム
 #new_category_block, #edit_category_block {
   margin-top: 25vh;
   h3 {
@@ -85,7 +82,6 @@
   }
 }
 
-// 管理者権限編集フォーム
 #admin_change_block {
   text-align: center;
   margin-top: 25vh;
@@ -103,7 +99,6 @@
   }
 }
 
-// エラーメッセージ
 #error_explanation {
   background-color: azure;
   color: black;
@@ -113,7 +108,6 @@
   margin-bottom: 13px;
 }
 
-// フォームに付与するエラーメッセージ
 .has-error {
   margin-bottom: 0;
   .form-control {
@@ -130,7 +124,6 @@
 #sign_up_block, #password_reset_block, #login_block,
 #edit_account_info_block {
   background: url("/images/top_page.jpg");
-  // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
   background-size: cover;
   position: relative;
   height: 150%;
