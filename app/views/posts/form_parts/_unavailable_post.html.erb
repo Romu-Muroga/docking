@@ -1,0 +1,13 @@
+<% if current_user.posts.present? %>
+  <div class="unavailable_post">
+    登録済みのリスト
+    <div class="unavailable_post_list">
+      <% current_user.posts.order(:category_id, ranking_point: :desc).each do |post| %>
+        <span>
+          <%= Category.find(post.category_id).name %>
+          &#183;&#183;&#183;<%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>&emsp;&emsp;
+        </span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
