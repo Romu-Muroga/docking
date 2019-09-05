@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 # User.create!(name: "管理人", email: "admin@dic.com", password: "12345678", admin: true)
-# User.create!(name: "テスト一朗", email: "test@dic.com", password: "12345678", admin: false)
+# User.create!(name: "テスト一郎", email: "test@dic.com", password: "12345678", admin: false)
 #
 # Category.create!(name: "和食")
 # Category.create!(name: "ラーメン・麺類")

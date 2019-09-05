@@ -1,4 +1,3 @@
-// 管理者専用トップページ
 .admin_top_menu {
   text-align: center;
   margin-top: 30vh;
@@ -14,7 +13,6 @@
   }
 }
 
-// 管理者専用カテゴリー一覧ページ
 .admin_categories_index {
   margin-top: 45px;
   .btn-primary {
@@ -28,7 +26,6 @@
   }
 }
 
-// 管理者専用ユーザー一覧ページ
 .admin_users_index {
   margin-top: 45px;
   .user_destroy_link {

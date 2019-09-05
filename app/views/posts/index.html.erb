@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-md-2 left_section">
         <div>
-          <%= render partial: 'search_form', locals: { categories: @categories } %>
+          <%= render partial: 'posts/index_parts/search_form', locals: { categories: @categories } %>
           <%= link_to 'New post', new_post_path, class: "cp_btn" %>
         </div>
         <div class="category_list">
-          <%= render partial: 'category_list', locals: { categories: @categories } %>
+          <%= render partial: 'posts/index_parts/category_list', locals: { categories: @categories } %>
         </div>
       </div>
       <div class="col-md-offset-2 col-md-7 center_section">
@@ -15,7 +15,7 @@
           <div class="col-md-6">
             <% if @posts.present? %>
               <p class="new_post_heading">最新記事</p>
-              <%= render partial: 'thumbnail', locals: { post: @posts.first } %>
+              <%= render partial: 'posts/index_parts/thumbnail', locals: { post: @posts.first } %>
             <% else %>
               <h4 class="no_post_message">投稿がありません</h4>
             <% end %>
@@ -26,16 +26,20 @@
           <% if @posts.present? %>
             <% @posts[1..-1].each do |post| %>
               <div class="col-md-4">
-                <%= render partial: 'thumbnail', locals: { post: post } %>
+                <%= render partial: 'posts/index_parts/thumbnail', locals: { post: post } %>
               </div>
             <% end %>
           <% end %>
         </div>
       </div>
       <div class="col-md-3 right_section">
-        <%= render partial: 'slide_wrapp' %>
-        <%= render partial: 'tabs', locals: { iine_ranking_posts: @iine_ranking_posts,
-                                              overall_ranking_posts: @overall_ranking_posts } %>
+        <%= render partial: 'posts/index_parts/slide_wrapp' %>
+        <%= render partial: 'posts/index_parts/tabs',
+                   locals: {
+                     iine_ranking_posts: @iine_ranking_posts,
+                     overall_ranking_posts: @overall_ranking_posts
+                   }
+        %>
       </div>
     </div>
   </div>

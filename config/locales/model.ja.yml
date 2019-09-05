@@ -23,7 +23,7 @@ ja:
         eatery_food: "メニュー"
         eatery_address: "所在地"
         eatery_website: "Website"
-        remarks: "詳しい説明"
+        remarks: "メモ"
       category:
         name: "カテゴリー名"
       user:

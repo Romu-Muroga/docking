@@ -22,7 +22,6 @@
 
 // 中央
 .center_section {
-  // カテゴリーラベル
   .category_label {
     width: auto;
     background-color: papayawhip;
@@ -36,12 +35,11 @@
   }
   li {
     list-style: none;
-    display: inline;//リストを横並び
+    display: inline;
   }
   p.new_post_heading {
     padding-top: 10px;
   }
-  // 投稿がありません
   .no_post_message {}
   // ２番目〜最後
   .second_to_last {
@@ -58,7 +56,6 @@
   .link_to_detail {
     position: relative;
     margin-bottom: 30px;
-    // マウスホバー時、文字列を表示するエフェクト
     .mask {
       width: 100%;
       height:	100%;

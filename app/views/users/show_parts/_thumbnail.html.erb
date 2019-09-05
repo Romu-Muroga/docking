@@ -9,7 +9,7 @@
   </ul>
   <%= no_link_picture(user_post) %>
   <div class="caption">
-    <p>詳しい説明</p>
+    <p><%= Post.human_attribute_name :remarks %></p>
     <div class="caption_remarks">
       <%= render_with_hashtags(auto_link(simple_format(
           h(user_post.remarks.truncate(150, omission: '...')), {}, sanitize: false, wrapper_tag: "div"
