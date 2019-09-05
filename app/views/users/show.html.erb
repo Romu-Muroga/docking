@@ -4,7 +4,7 @@
       <div class="col-md-offset-1 col-md-10">
         <div class="row">
           <div class="col-md-3 left_section">
-            <%= render partial: 'category_list', locals: { categories: @categories } %>
+            <%= render partial: 'users/show_parts/category_list', locals: { categories: @categories } %>
           </div>
           <div class="col-md-6 center_section">
             <div class="catch_picture">
@@ -15,13 +15,13 @@
               <% end %>
             </div>
             <% if @user_posts.present? %>
-              <%= render partial: 'thumbnail', collection: @user_posts, as: 'user_post' %>
+              <%= render partial: 'users/show_parts/thumbnail', collection: @user_posts, as: 'user_post' %>
             <% else %>
               <h4 class="no_post_message">投稿がありません</h4>
             <% end %>
           </div>
           <div class="col-md-3 right_section">
-            <%= render partial: 'user_account_menu' %>
+            <%= render partial: 'users/show_parts/user_account_menu' %>
           </div>
         </div>
       </div>
