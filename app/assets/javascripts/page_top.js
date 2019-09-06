@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 $(document).on("turbolinks:load", () => {
-=======
-// ターボリンクのロードが終わってから発動する
-$(document).on('turbolinks:load', () => {
->>>>>>> Improved the symptom that the slide show of ranking list page is not displayed
   var pagetop = $('#page_top');
   pagetop.hide();
   $(window).scroll(function () {
