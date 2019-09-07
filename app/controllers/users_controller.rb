@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :login_check, only: %i[new create]
+  skip_before_action :login_check, only: %i[new confirm create]
   before_action :set_user, only: %i[
     show iine_post_list edit password_reset
     password_update update destroy destroy_confirm
@@ -10,10 +10,21 @@ class UsersController < ApplicationController
     @user.build_picture
   end
 
-  def create
+  def confirm
     @user = User.new(user_params)
     @user.build_picture(image: picture_params[:image]) if picture_params[:image]
-    if @user.save
+    @user.picture.image.cache! if @user.picture.present?
+    return if @user.valid?
+
+    render :new
+  end
+
+  def create
+    @user = User.new(user_params)
+    @user.build_picture.image.retrieve_from_cache!(params[:cache][:image]) if params[:cache]
+    if params[:back]
+      render :new
+    elsif @user.save
       # Login at the same time if user can save
       session[:user_id] = @user.id
       redirect_to (@user),
@@ -56,8 +67,8 @@ class UsersController < ApplicationController
   def update
     ActiveRecord::Base.transaction do
       @user.update!(user_params)
-      checkbox_value = params[:user][:picture_delete_check]
       form_submit_image = picture_params[:image]
+      checkbox_value = picture_params[:picture_delete_check].to_i
       user_picture_update(@user, form_submit_image, checkbox_value)
     end
     redirect_to (@user), success: t('flash.account_info_update')
@@ -69,7 +80,7 @@ class UsersController < ApplicationController
   def destroy_confirm; end
 
   def destroy
-    checkbox_value = params[:user][:destroy_check].to_i
+    checkbox_value = user_params[:destroy_check].to_i
     if checkbox_value == 1 && @user.destroy
       reset_session
     elsif checkbox_value == 1 && !@user.destroy
@@ -96,7 +107,6 @@ class UsersController < ApplicationController
   def picture_params
     params.require(:user).permit(
       :image,
-      :image_cache,
       :picture_delete_check
     )
   end
@@ -108,7 +118,7 @@ class UsersController < ApplicationController
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)
-    if user.picture.present? && checkbox_value == '1'
+    if user.picture.present? && checkbox_value == 1
       user.picture.destroy!
     elsif user.picture.present? && form_submit_image.present?
       user.picture.update!(image: form_submit_image)

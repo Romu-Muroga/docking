@@ -17,7 +17,7 @@ ja:
     invalid_value: "不正な値です"
   views:
     users:
-      new_page: "Sign up"
+      new_page: "Create account"
       edit_page: "Edit account info"
       password_reset_page: "Change password"
       destroy_page: "退会処理"

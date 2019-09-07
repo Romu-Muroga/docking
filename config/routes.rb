@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
   get '/posts/hashtag/:name', to: 'posts#hashtag'
   resources :users do
+    post :confirm, on: :collection
     get :destroy_confirm, on: :member
     get :iine_post_list, on: :member
     get :password_reset, on: :member

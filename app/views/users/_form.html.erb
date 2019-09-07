@@ -1,4 +1,4 @@
-<%= form_with(model: user, local: true, class: "form_outer") do |f| %>
+<%= form_with(model: user, url: { action: choose_confirm_or_update }, local: true, class: "form_outer") do |f| %>
   <div class="form_inner">
     <% if user.errors.any? %>
       <div id="error_explanation">
@@ -18,7 +18,7 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: "form-control" %>
     </div>
-    <% if new_or_create_page? %>
+    <% if Create_account_page? %>
       <div class="form-group">
         <%= f.label :password %>
         <%= f.password_field :password, placeholder: "6文字以上必要です。", class: "form-control" %>
@@ -32,16 +32,13 @@
     <div class="form-group">
       <%= f.label :image, "アイコン画像を選択してください（任意）" %>
       <%= f.file_field :image, class: "form-control" %>
-      <%= f.hidden_field :image_cache %>
     </div>
-    <% if user_with_pictures_edit_page?(user) %>
+    <% if current_user&.picture.present? %>
       <div class="form-group">
-        <!-- 値をtrue/falseにしてコントローラに送ると、ActiveRecord::Type::Boolean.new.cast(value)を使って -->
-        <!-- 文字列の"true","false"をboolean型に変換する必要がある -->
         <%= f.check_box "picture_delete_check", {}, 1, 2 %>
-        <%= f.label "picture_delete_check", "登録済みのアイコン画像を削除する場合は、チェックを入れてください" %>
+        <%= f.label "picture_delete_check", "登録済みのアイコン画像を削除" %>
       </div>
     <% end %>
   </div>
-  <%= f.submit class: "btn btn-primary" %>
+  <%= f.submit choose_confirm_screen, class: choose_the_button_color %>
 <% end %>

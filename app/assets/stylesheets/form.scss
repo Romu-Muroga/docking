@@ -121,42 +121,16 @@
   }
 }
 
-#sign_up_block, #password_reset_block, #login_block,
-#edit_account_info_block {
+#login_block {
   background: url("/images/top_page.jpg");
   background-size: cover;
   position: relative;
-  height: 150%;
   width: 100%;
+  height: 100%;
   color: white;
   margin: 0;
-  padding-top: 150px;
+  padding-top: 160px;
   background-attachment: fixed;
-  .input_form_area {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  form {
-    opacity: 0.8;
-  }
-  input.btn {
-    color: white;
-    width: 100%;
-    margin-top: 10px;
-  }
-  a.btn {
-    color: black;
-    width: 100%;
-    margin-top: 20px;
-    opacity: 0.8;
-  }
-  p {
-    margin-top: 20px;
-  }
-  p a {
-    color: red;
-    font-weight: bold;
-  }
   &:before {
     content: '';
     position: absolute;
@@ -166,7 +140,60 @@
     left: 0;
     background-color: rgba(0,0,0,0.5);
   }
-  label[for="user_picture_delete_check"] {
-    display: inline;
+  .input_form_area {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  input.btn {
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+  }
+  p {
+    margin-top: 20px;
+  }
+  p a {
+    color: red;
+    font-weight: bold;
+  }
+  label {
+    font-size: small;
   }
 }
+
+#create_account_block {
+  width: 100%;
+  height: 125%;
+  background-color: white;
+  .input_form_area {
+    padding-left: 60px;
+    padding-right: 60px;
+    img {
+      width: 157px;
+      margin: 0 auto 15px;
+    }
+    h3 {
+      margin-top: 0;
+      font-weight: bold;
+    }
+    &_body {
+      padding: 20px;
+      border: solid 1px silver;
+      border-radius: 4px;
+    }
+    input.btn-default {
+      background-color: silver;
+    }
+    input.btn, a.btn {
+      width: 100%;
+      margin-top: 15px;
+      color: black;
+    }
+    label {
+      font-size: small;
+    }
+  }
+}
+
+// #password_reset_block, #edit_account_info_block {
+// }
