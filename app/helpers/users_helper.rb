@@ -3,6 +3,10 @@ module UsersHelper
     action_name == 'new' || action_name == 'confirm' || action_name == 'create'
   end
 
+  def Edit_account_info_page?
+    action_name == 'edit' || action_name == 'update'
+  end
+
   def choose_confirm_or_update
     if action_name == 'new' || action_name == 'confirm' || action_name == 'create'
       'confirm'

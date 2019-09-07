@@ -2,12 +2,31 @@
   <div class="form_inner">
     <% if user.errors.any? %>
       <div id="error_explanation">
-        <h4>エラーが発生しました。以下の項目について確認してください。</h4>
+        <h5>エラーが発生しました。以下の項目について確認してください。</h5>
         <ul>
           <% user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
         </ul>
+      </div>
+    <% end %>
+    <% if Edit_account_info_page? %>
+      <div class="imgPrev">
+        <% if user.picture.present? %>
+          <%= image_tag(user.picture.image.url, class: "imgView") %>
+          <div class="mask" onclick="$('#upfile').click()">
+            <div class="mask_message">
+              <i class="fas fa-file-import fa-5x"></i>
+            </div>
+          </div>
+        <% else %>
+          <%= image_tag('/images/default.png', class: "imgView") %>
+          <div class="mask" onclick="$('#upfile').click()">
+            <div class="mask_message">
+              <i class="fas fa-file-import fa-5x"></i>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
     <div class="form-group">
@@ -29,9 +48,9 @@
       </div>
     <% end %>
     <!-- Pictureモデルのimage属性をセット -->
-    <div class="form-group">
+    <div class="form-group imgInput">
       <%= f.label :image, "アイコン画像を選択してください（任意）" %>
-      <%= f.file_field :image, class: "form-control" %>
+      <%= f.file_field :image, class: "form-control", id: "upfile" %>
     </div>
     <% if current_user&.picture.present? %>
       <div class="form-group">

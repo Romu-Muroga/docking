@@ -54,10 +54,13 @@ class UsersController < ApplicationController
   def password_reset; end
 
   def password_update
-    if params[:user][:password].blank?
-      @user.add_errors
+    if params[:user][:old_password].blank? || params[:user][:password].blank?
+      @user.password_blank_error(params[:user][:old_password], params[:user][:password])
       render :password_reset
-    elsif @user.update(user_params)
+    elsif !@user&.authenticate(old_password_params[:old_password])
+      @user.errors.add(:old_password, 'が違います')
+      render :password_reset
+    elsif @user&.authenticate(old_password_params[:old_password]) && @user.update(user_params)
       redirect_to (@user), success: t('flash.password_updated')
     else
       render :password_reset
@@ -111,6 +114,10 @@ class UsersController < ApplicationController
     )
   end
 
+  def old_password_params
+    params.require(:user).permit(:old_password)
+  end
+
   def set_user
     @user = User.find(params[:id])
     redirect_to posts_path,
@@ -118,7 +125,9 @@ class UsersController < ApplicationController
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)
-    if user.picture.present? && checkbox_value == 1
+    if user.picture.present? && checkbox_value == 1 && form_submit_image.present?
+      user.picture.update!(image: form_submit_image)
+    elsif user.picture.present? && checkbox_value == 1
       user.picture.destroy!
     elsif user.picture.present? && form_submit_image.present?
       user.picture.update!(image: form_submit_image)
