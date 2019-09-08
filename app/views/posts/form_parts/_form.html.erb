@@ -53,7 +53,8 @@
           <%= f.text_field :eatery_website, placeholder: "例：https://xxxxxxx.com", class: "form-control" %>
         </div>
         <!-- Pictureモデルのimage属性をセット -->
-        <div class="form-group imgInput"><!-- TODO: image_cache -->
+        <!-- TODO: image_cache -->
+        <div class="form-group imgInput">
           <%= f.label :image, "画像（任意）" %>
           <%= f.file_field :image, class: "form-control", id: "upfile" %>
         </div>

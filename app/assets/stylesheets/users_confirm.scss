@@ -1,0 +1,47 @@
+#signup_confirm_block {
+  background-color: white;
+  .confirm_area {
+    padding-left: 60px;
+    padding-right: 60px;
+    img.app_logo {
+      width: 157px;
+      margin: 0 auto 15px;
+    }
+    form.form_outer {
+      text-align: center;
+      margin-top: 20px;
+      .confirm_list {
+        padding: 20px;
+        border: solid 1px silver;
+        border-radius: 4px;
+        word-wrap: break-word;
+        .confirm_message {
+          margin-bottom: 17px;
+          line-height: 27px;
+        }
+        li {
+          list-style: none;
+        }
+        &_icon {
+          img {
+            max-height: 200px;
+            margin: 0 auto;
+          }
+        }
+        &_name, &_email {
+          font-size: 1.2em;
+          color: black;
+          margin: 10px 0;
+        }
+      }
+      ul {
+        padding: 0;
+      }
+      input[type=submit] {
+        width: 100%;
+        margin-top: 20px;
+        color: black;
+      }
+    }
+  }
+}
