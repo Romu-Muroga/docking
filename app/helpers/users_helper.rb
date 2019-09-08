@@ -16,7 +16,11 @@ module UsersHelper
   end
 
   def choose_confirm_screen
-    '確認画面へ' if action_name == 'new' || action_name == 'confirm' || action_name == 'create'
+    if action_name == 'new' || action_name == 'confirm' || action_name == 'create'
+      '確認画面へ'
+    elsif action_name == 'edit' || action_name == 'update'
+      'アカウント情報を更新する'
+    end
   end
 
   def choose_the_button_color
