@@ -2,9 +2,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 input_form_area">
-        <h3><%= t('views.users.edit_page') %></h3>
-        <%= render partial: 'form', locals: { user: @user } %>
-        <%= link_to '戻る', user_path(current_user), class: "btn btn-default" %>
+        <div class="input_form_area_body">
+          <h3><%= t('views.users.edit_page') %></h3>
+          <%= render partial: 'form', locals: { user: @user } %>
+          <%= link_to 'キャンセル', user_path(current_user), class: "btn btn-default" %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,30 @@
+<div class="wrapper" id="signup_confirm_block">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 confirm_area">
+        <%= image_tag("/images/logo3.png", class: "img-responsive app_logo") %>
+        <%= form_with(model: @user, local: true, class: "form_outer") do |f| %>
+          <div class="confirm_list">
+            <h4 class="confirm_message">※以下の内容で登録します。<br>ご確認をお願いいたします。</h4>
+            <ul>
+              <% if @user.picture.present? %>
+                <li class="confirm_list_icon"><%= image_tag(@user.picture.image.url, class: "img-responsive") %></li>
+                <%= hidden_field_tag :"cache[image]", @user.picture.image.cache_name %>
+              <% else %>
+                <li class="confirm_list_icon"><%= image_tag('/images/default.png', class: "img-responsive") %></li>
+              <% end %>
+              <li class="confirm_list_name"><%= @user.name %></li>
+              <li class="confirm_list_email"><%= @user.email %></li>
+            </ul>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :password %>
+            <%= f.hidden_field :password_confirmation %>
+            <%= f.submit '入力画面に戻る', name: 'back', class: "btn btn-default" %><br>
+            <%= f.submit 'Create your Docking account', class: "btn btn-warning" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

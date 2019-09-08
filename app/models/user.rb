@@ -18,8 +18,15 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   # method
-  def add_errors
-    errors.add(:password, 'を入力してください')
+  def password_blank_error(old_password, new_password)
+    if old_password.blank? && new_password.blank?
+      errors.add(:old_password, 'を入力してください')
+      errors.add(:password, 'を入力してください')
+    elsif old_password.blank?
+      errors.add(:old_password, 'を入力してください')
+    else
+      errors.add(:password, 'を入力してください')
+    end
   end
 
   # callback

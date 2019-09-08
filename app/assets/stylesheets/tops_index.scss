@@ -2,13 +2,12 @@
   padding: 0;
   .start_up_area {
     background: url("/images/top_page.jpg");
-    // background: url(http://design-levelup.com/wp-content/uploads/2018/09/desk-3139127_1280.jpg);
     background-size: cover;
-    background-position: center;
+    // background-position: center;
     background-attachment: fixed;
     position: relative;
-    height: 800px;
     width: 100%;
+    height: 800px;
     &:before {
       content: '';
       position: absolute;
@@ -49,7 +48,7 @@
     }
     .start_button {
       position: absolute;
-      top: 65%;
+      top: 61%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 16px;
@@ -58,11 +57,12 @@
       z-index: 10;
       a.btn {
         margin-right: 10px;
+        font-weight: bold;
       }
     }
     .test_user_info {
       position: absolute;
-      top: 80%;
+      top: 74%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: sans-serif;
