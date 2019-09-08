@@ -12,21 +12,24 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new(user_params)
+    session[:user] = @user
     @user.build_picture(image: picture_params[:image]) if picture_params[:image]
     @user.picture.image.cache! if @user.picture.present?
     return if @user.valid?
 
+    session.delete(:user)
     render :new
   end
 
   def create
-    @user = User.new(user_params)
-    @user.build_picture.image.retrieve_from_cache!(params[:cache][:image]) if params[:cache]
+    @user = User.new(session[:user])
+    @user.build_picture.image.retrieve_from_cache!(params[:cache][:image]) if params[:cache]#TODO
     if params[:back]
+      session.delete(:user)
       render :new
     elsif @user.save
-      # Login at the same time if user can save
       session[:user_id] = @user.id
+      session.delete(:user)
       redirect_to (@user),
                   success: t('flash.account_registration_and_login_completed', user: @user.name)
     else

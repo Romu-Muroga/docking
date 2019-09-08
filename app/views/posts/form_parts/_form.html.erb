@@ -58,6 +58,7 @@
           <%= f.label :image, "画像（任意）" %>
           <%= f.file_field :image, class: "form-control", id: "upfile" %>
         </div>
+        <%# TODO: ファイル選択とチェック両方された時 %>
         <% if post_with_pictures_edit_page?(post) %>
           <div class="form-group">
             <%= f.check_box "picture_delete_check", {}, 1, 2 %>
