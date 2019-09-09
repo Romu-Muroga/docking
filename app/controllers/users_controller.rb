@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(session[:user])
-    @user.build_picture.image.retrieve_from_cache!(cache_params) if params[:cache]
+    @user.build_picture.image.retrieve_from_cache!(cache_params[:image]) if params[:cache]
     if params[:back]
       session.delete(:user)
       render :new
@@ -59,11 +59,7 @@ class UsersController < ApplicationController
 
   def password_update
     # TODO: リファクタリング
-    if params[:user][:old_password].blank? || params[:user][:password].blank?
-      @user.password_blank_error(params[:user][:old_password], params[:user][:password])
-      render :password_reset
-    elsif !@user&.authenticate(old_password_params[:old_password])
-      @user.errors.add(:old_password, 'が違います')
+    if @user.password_insert_errors(params[:user][:old_password], params[:user][:password])
       render :password_reset
     elsif @user&.authenticate(old_password_params[:old_password]) && @user.update(user_params)
       redirect_to (@user), success: t('flash.password_updated')
