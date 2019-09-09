@@ -14,7 +14,6 @@
           <div class="caption">
             <div class="caption_user_block">
               <%= no_link_picture(@post.user) %>
-              <!-- TODO: フォロー/フォロワー機能を実装したらフォロワーだけがユーザーのshowページを閲覧できるようにする -->
               <div class="caption_user_block_post_time">
                 <%= @post.user.name.truncate(12, omission: '...') %>さんが
                 <%= @post.category.name %>の
@@ -22,7 +21,6 @@
                 <time datetime="<%= @post.updated_at %>">
                   <%= time_ago_in_words(@post.updated_at, include_seconds: true)+"前" %>
                 </time>
-                <%#= link_to @post.user.name, user_path(@post.user) %>
               </div>
               <div class="caption_user_block_iine_count">
                 いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件

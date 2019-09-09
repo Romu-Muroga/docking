@@ -67,9 +67,14 @@ class PostsController < ApplicationController
   def update
     ActiveRecord::Base.transaction do
       @post.update!(post_params)
-      checkbox_value = params[:post][:picture_delete_check]
+      checkbox_value = params[:post][:picture_delete_check].to_i
       form_submit_image = picture_params[:image]
-      post_picture_update(@post, form_submit_image, checkbox_value)
+      if @post.picture.present?
+        post_picture_update(@post, form_submit_image, checkbox_value)
+      elsif @post.picture.blank? && form_submit_image.present?
+        @post.build_picture(image: form_submit_image)
+        @post.picture.save!
+      end
     end
     redirect_to (@post),
                 success: t('flash.update', content: @post.model_name.human)
@@ -141,13 +146,13 @@ class PostsController < ApplicationController
   end
 
   def post_picture_update(post, form_submit_image, checkbox_value)
-    if post.picture.present? && checkbox_value == '1'
-      post.picture.destroy!
-    elsif post.picture.present? && form_submit_image.present?
+    # TODO: 例外処理
+    if form_submit_image.present? && checkbox_value == 1
       post.picture.update!(image: form_submit_image)
-    elsif post.picture.blank? && form_submit_image.present?
-      post.build_picture(image: form_submit_image)
-      post.picture.save!
+    elsif form_submit_image.present?
+      post.picture.update!(image: form_submit_image)
+    elsif checkbox_value == 1
+      post.picture.destroy!
     end
   end
 end

@@ -12,21 +12,25 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new(user_params)
-    @user.build_picture(image: picture_params[:image]) if picture_params[:image]
+    session[:user] = @user
+    # TODO: params[:user][:image].present?
+    @user.build_picture(image: picture_params[:image]) if params[:user][:image]
     @user.picture.image.cache! if @user.picture.present?
     return if @user.valid?
 
+    session.delete(:user)
     render :new
   end
 
   def create
-    @user = User.new(user_params)
-    @user.build_picture.image.retrieve_from_cache!(params[:cache][:image]) if params[:cache]
+    @user = User.new(session[:user])
+    @user.build_picture.image.retrieve_from_cache!(cache_params[:image]) if params[:cache]
     if params[:back]
+      session.delete(:user)
       render :new
     elsif @user.save
-      # Login at the same time if user can save
       session[:user_id] = @user.id
+      session.delete(:user)
       redirect_to (@user),
                   success: t('flash.account_registration_and_login_completed', user: @user.name)
     else
@@ -54,11 +58,8 @@ class UsersController < ApplicationController
   def password_reset; end
 
   def password_update
-    if params[:user][:old_password].blank? || params[:user][:password].blank?
-      @user.password_blank_error(params[:user][:old_password], params[:user][:password])
-      render :password_reset
-    elsif !@user&.authenticate(old_password_params[:old_password])
-      @user.errors.add(:old_password, 'が違います')
+    # TODO: リファクタリング
+    if @user.password_insert_errors(params[:user][:old_password], params[:user][:password])
       render :password_reset
     elsif @user&.authenticate(old_password_params[:old_password]) && @user.update(user_params)
       redirect_to (@user), success: t('flash.password_updated')
@@ -72,7 +73,12 @@ class UsersController < ApplicationController
       @user.update!(user_params)
       form_submit_image = picture_params[:image]
       checkbox_value = picture_params[:picture_delete_check].to_i
-      user_picture_update(@user, form_submit_image, checkbox_value)
+      if @user.picture.present?
+        user_picture_update(@user, form_submit_image, checkbox_value)
+      elsif @user.picture.blank? && form_submit_image.present?
+        @user.build_picture(image: form_submit_image)
+        @user.picture.save!
+      end
     end
     redirect_to (@user), success: t('flash.account_info_update')
     rescue => e
@@ -106,12 +112,15 @@ class UsersController < ApplicationController
     )
   end
 
-  # picturesテーブルに保存するparameterはuser_paramsと分離させる。
   def picture_params
     params.require(:user).permit(
       :image,
       :picture_delete_check
     )
+  end
+
+  def cache_params
+    params.require(:cache).permit(:image)
   end
 
   def old_password_params
@@ -125,15 +134,13 @@ class UsersController < ApplicationController
   end
 
   def user_picture_update(user, form_submit_image, checkbox_value)
-    if user.picture.present? && checkbox_value == 1 && form_submit_image.present?
+    # TODO: 例外処理
+    if form_submit_image.present? && checkbox_value == 1
       user.picture.update!(image: form_submit_image)
-    elsif user.picture.present? && checkbox_value == 1
+    elsif form_submit_image.present?
+      user.picture.update!(image: form_submit_image)
+    elsif checkbox_value == 1
       user.picture.destroy!
-    elsif user.picture.present? && form_submit_image.present?
-      user.picture.update!(image: form_submit_image)
-    elsif user.picture.blank? && form_submit_image.present?
-      user.build_picture(image: form_submit_image)
-      user.picture.save!
     end
   end
 end

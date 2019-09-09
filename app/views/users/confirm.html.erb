@@ -16,10 +16,6 @@
               <li class="confirm_list_name"><%= @user.name %></li>
               <li class="confirm_list_email"><%= @user.email %></li>
             </ul>
-            <%= f.hidden_field :name %>
-            <%= f.hidden_field :email %>
-            <%= f.hidden_field :password %>
-            <%= f.hidden_field :password_confirmation %>
             <%= f.submit '入力画面に戻る', name: 'back', class: "btn btn-default" %><br>
             <%= f.submit 'Create your Docking account', class: "btn btn-warning" %>
           </div>
