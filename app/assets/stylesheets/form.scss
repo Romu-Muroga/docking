@@ -62,6 +62,9 @@
   }
   div.chg_inblock {
     display: inline-block;
+    select {
+      border-color: #CCC;
+    }
     .has-error {
       display: inline-grid;
     }
