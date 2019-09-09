@@ -9,7 +9,8 @@
   <br>
   主観的 + 客観的 = 総合評価ランキングです。
 </h5>
-<!-- TODO: SQLの発行を抑える -->
 <% overall_ranking_posts.each.with_index(1) do |(key, value), i| %>
-  <p class="or_text"><%= i %>位 <%= key[0] %>（<%= Category.find(key[1]).name %>） <%= value[:point] %>ポイント</p>
+  <p class="or_text">
+    <%= i %>位 <%= key[0] %>（<%= categories.select{ |item|item.id == key[1] }.first.name %>） <%= value[:point] %>ポイント
+  </p>
 <% end %>

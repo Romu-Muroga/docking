@@ -2,7 +2,6 @@
   <div class="post_form_inner">
     <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post }%>
     <p>※各カテゴリー１位〜３位まで、ご登録いただけます。</p>
-    <!-- TODO: select boxのbordor colorを変更する -->
     <div class="form-group chg_inblock">
       <%= f.label :category_id %><br>
       <%= f.collection_select :category_id, Category.all, :id, :name, prompt: '選択されていません', class: "form-control" %>
