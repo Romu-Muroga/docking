@@ -11,7 +11,7 @@
     .unavailable_post {
       margin-bottom: 10px;
       &_list {
-        border: solid 1px lightgray;
+        border: solid 1px #CCC;
         padding: 10px;
       }
     }
@@ -185,7 +185,7 @@
       border-radius: 4px;
     }
     input.btn-default {
-      background-color: silver;
+      background-color: #CCC;
     }
     input.btn, a.btn {
       width: 100%;
