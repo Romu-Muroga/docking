@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def confirm
     @user = User.new(user_params)
     session[:user] = @user
+    # TODO: params[:user][:image].present?
     @user.build_picture(image: picture_params[:image]) if params[:user][:image]
     @user.picture.image.cache! if @user.picture.present?
     return if @user.valid?
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(session[:user])
-    @user.build_picture.image.retrieve_from_cache!(cache_params) if params[:cache][:image]
+    @user.build_picture.image.retrieve_from_cache!(cache_params) if params[:cache]
     if params[:back]
       session.delete(:user)
       render :new
@@ -57,6 +58,7 @@ class UsersController < ApplicationController
   def password_reset; end
 
   def password_update
+    # TODO: リファクタリング
     if params[:user][:old_password].blank? || params[:user][:password].blank?
       @user.password_blank_error(params[:user][:old_password], params[:user][:password])
       render :password_reset

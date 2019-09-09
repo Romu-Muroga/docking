@@ -8,7 +8,6 @@
     </div>
     <div class="form-group chg_inblock">
       <%= f.label :ranking_point %><br>
-      <!-- 動的にすでに存在する順位は選べないようにするにはAjaxの技術が必要 -->
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
                    prompt: '選択されていません',
@@ -52,13 +51,12 @@
           <%= f.label :eatery_website, "Website（任意）" %>
           <%= f.text_field :eatery_website, placeholder: "例：https://xxxxxxx.com", class: "form-control" %>
         </div>
-        <!-- Pictureモデルのimage属性をセット -->
-        <!-- TODO: image_cache -->
+        <!-- TODO: image_cacheの使い道 -->
         <div class="form-group imgInput">
           <%= f.label :image, "画像（任意）" %>
           <%= f.file_field :image, class: "form-control", id: "upfile" %>
         </div>
-        <%# TODO: ファイル選択とチェック両方された時 %>
+        <!-- TODO: ファイル選択とチェック両方されたとき -->
         <% if post_with_pictures_edit_page?(post) %>
           <div class="form-group">
             <%= f.check_box "picture_delete_check", {}, 1, 2 %>
