@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     elsif @user.save
       session[:user_id] = @user.id
       session.delete(:user)
+      # TODO: viewに表示される文字数制限について
       redirect_to (@user),
                   success: t('flash.account_registration_and_login_completed', user: @user.name)
     else

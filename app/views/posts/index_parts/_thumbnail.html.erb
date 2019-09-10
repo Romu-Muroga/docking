@@ -8,8 +8,8 @@
         <%= image_tag(post.picture.image.url, class: "img-responsive") %>
         <div class="mask">
           <div class="mask_message">
-            <%= post.eatery_name %><br>
-            Menu: &nbsp;<%= post.eatery_food %><br>
+            <%= post.eatery_name.truncate(12, omission: '...') %><br>
+            Menu: &nbsp;<%= post.eatery_food.truncate(12, omission: '...') %><br>
             ...Learn more!
           </div>
         </div>

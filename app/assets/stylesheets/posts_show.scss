@@ -1,30 +1,30 @@
 #post_show_block {
   padding-top: 80px;
-  ul {
-    padding: 0;
-    margin: 0;
-    li {
-      display: inline-block;
-      list-style: none;
-    }
-  }
   .thumbnail_header {
     padding: 20px;
     margin-bottom: 10px;
     border-bottom: solid 1px silver;
-    li {
-      font-size: 16px;
-    }
-    li.category_label {
-      width: auto;
-      background-color: papayawhip;
-      text-align: center;
-      border-radius: 0.3em;
-      padding: 5px;
-      margin-right: 22px;
-    }
-    li.en_text {
-      margin-right: 10px;
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        display: inline-block;
+        list-style: none;
+        font-size: 16px;
+        word-wrap: break-word;
+        max-width: 100%;
+        &.category_label {
+          width: auto;
+          background-color: papayawhip;
+          text-align: center;
+          border-radius: 0.3em;
+          padding: 5px;
+          margin-right: 22px;
+        }
+        &.en_text {
+          margin-right: 10px;
+        }
+      }
     }
   }
   .caption {
@@ -62,8 +62,18 @@
     }
     &_eatery_info {
       padding: 10px;
-      .eadd_text {
-        margin-right: 10px;
+      ul {
+        padding: 0;
+        margin: 0;
+        li {
+          display: inline-block;
+          list-style: none;
+          word-wrap: break-word;
+          max-width: 100%;
+          &.eadd_text {
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
