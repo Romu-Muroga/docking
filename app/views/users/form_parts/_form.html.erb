@@ -1,33 +1,8 @@
 <%= form_with(model: user, url: { action: choose_confirm_or_update }, local: true, class: "form_outer") do |f| %>
   <div class="form_inner">
-    <% if user.errors.any? %>
-      <div id="error_explanation">
-        <h5>エラーが発生しました。以下の項目について確認してください。</h5>
-        <ul>
-          <% user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render partial: 'users/form_parts/error_explanation', locals: { user: user } %>
     <% if Edit_account_info_page? %>
-      <div class="imgPrev">
-        <% if user.picture.present? %>
-          <%= image_tag(user.picture.image.url, class: "imgView") %>
-          <div class="mask" onclick="$('#upfile').click()">
-            <div class="mask_message">
-              <i class="fas fa-file-import fa-5x"></i>
-            </div>
-          </div>
-        <% else %>
-          <%= image_tag('/images/default.png', class: "imgView") %>
-          <div class="mask" onclick="$('#upfile').click()">
-            <div class="mask_message">
-              <i class="fas fa-file-import fa-5x"></i>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <%= render partial: 'users/form_parts/image_prev', locals: { user: user } %>
     <% end %>
     <div class="form-group">
       <%= f.label :name %>
