@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   end
 
   def iine_post_list
-    @iine_posts = @user.iine_posts
+    @iine_posts = @user.iine_posts.includes(:picture)
   end
 
   def edit; end
