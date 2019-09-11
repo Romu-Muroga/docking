@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
   end
   get '/posts/hashtag/:name', to: 'posts#hashtag'
-  resources :users do
-    post :confirm, on: :collection
+  resources :users, except: %i[index] do
+    post :confirm, on: :new
     get :destroy_confirm, on: :member
     get :iine_post_list, on: :member
     get :password_reset, on: :member
