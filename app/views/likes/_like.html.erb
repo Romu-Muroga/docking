@@ -2,6 +2,7 @@
   <span class="like clearfix">
     <% if post.iine?(current_user) %><!-- 既にいいねしている場合は、いいねボタンを塗りつぶされたハートとし、押下時にdestroyを呼ぶ -->
       <!-- remote: trueとjs.erbファイルを用いた非同期通信 -->
+      <!-- TODO: form_withに変更 -->
       <%= form_for(post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
         <%= button_tag(class: "btn btn-default btn-xs") do %>
           <%= content_tag :span, "#{post.likes_count}", id: "heart", style: "padding-left: 20px;" %>
