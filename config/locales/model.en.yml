@@ -1,0 +1,37 @@
+en:
+  activerecord:
+    models:
+      post: "Post"
+      category: "Category"
+      user: "User"
+      picture: "Picture"
+      comment: "Comment"
+      hashtag: "Hashtag"
+      like: "Like"
+    enum:
+      post:
+        ranking_point:
+          first_place: "No.1"
+          second_place: "No.2"
+          third_place: "No.3"
+    attributes:
+      post:
+        category_id: "Category"
+        category: "Category"
+        ranking_point: "Rank"
+        eatery_name: "Eatery name"
+        eatery_food: "Menu"
+        eatery_address: "Eatery address"
+        eatery_website: "Website"
+        remarks: "Meno"
+      category:
+        name: "Category name"
+      user:
+        name: "name"
+        email: "email"
+        password: "password"
+        password_confirmation: "password_confirmation"
+        admin: "admin"
+        current_password: "current password"
+      picture:
+        image: "image"

@@ -28,7 +28,7 @@
         <%= link_to 'DELETE',
                      post_path(user_post, submitted_page: 'mypage'),
                      method: :delete,
-                     data: { confirm: '削除してよろしいですか？' },
+                     data: { confirm: t('views.delete_message') },
                      class: "btn btn-danger"
         %>
       </p>

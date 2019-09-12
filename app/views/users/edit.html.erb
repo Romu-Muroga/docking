@@ -5,7 +5,7 @@
         <div class="input_form_area_body">
           <h3><%= t('views.users.edit_page') %></h3>
           <%= render partial: 'users/form_parts/form', locals: { user: @user } %>
-          <%= link_to 'キャンセル', user_path(current_user), class: "btn btn-default" %>
+          <%= link_to t('views.users.cancel'), user_path(current_user), class: "btn btn-default" %>
         </div>
       </div>
     </div>

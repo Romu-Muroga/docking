@@ -4,23 +4,23 @@
   <% if current_user.admin %>
     <%= link_to admin_tops_path, class: "user_account_menu_link" do %>
       <i class="fas fa-hammer fa-2x"></i>
-      <p class="fukidashi">管理者専用ページ</p>
+      <p class="fukidashi"><%= t('views.users.admin_only_page') %></p>
     <% end %>
   <% end %>
   <%= link_to edit_user_path(current_user), class: "user_account_menu_link" do %>
     <i class="fas fa-user-edit fa-2x"></i>
-    <p class="fukidashi">アカウント情報の変更</p>
+    <p class="fukidashi"><%= t('views.users.edit_page') %></p>
   <% end %>
   <%= link_to password_reset_user_path(current_user), class: "user_account_menu_link" do %>
     <i class="fas fa-unlock-alt fa-2x"></i>
-    <p class="fukidashi">パスワードを変更する</p>
+    <p class="fukidashi"><%= t('views.users.password_reset_page') %></p>
   <% end %>
   <%= link_to destroy_confirm_user_path(current_user), class: "user_account_menu_link" do %>
     <i class="fas fa-sad-tear fa-2x"></i>
-    <p class="fukidashi">退会する</p>
+    <p class="fukidashi"><%= t('views.users.quit') %></p>
   <% end %>
   <%= link_to 'New post', new_post_path, class: "cp_btn" %>
   <%= link_to iine_post_list_user_path(current_user), class: "iine_posts_link" do %>
-    <%= content_tag :span, 'いいね！済みのリスト', id: "heart" %>
+    <%= content_tag :span, t('views.users.like_list'), id: "heart" %>
   <% end %>
 </div>

@@ -6,7 +6,7 @@
         <div class="input_form_area_body">
           <h3><%= t('views.users.new_page') %></h3>
           <%= render partial: 'users/form_parts/form', locals: { user: @user } %>
-          <%= link_to 'ログインページへ', login_path, class: "btn btn-default" %>
+          <%= link_to t('views.users.to_login_page'), login_path, class: "btn btn-default" %>
         </div>
       </div>
     </div>

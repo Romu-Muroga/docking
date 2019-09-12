@@ -3,30 +3,64 @@ ja:
     create: "%{content}を登録しました"
     update: "%{content}を更新しました"
     destroy: "%{content}を削除しました"
-    login_succeeded: "ログインしました"
-    login_failed: "メールアドレスまたはパスワードが正しくありません"
-    logged_out: "ログアウトしました"
-    please_login: "ログインしてください"
+    login_succeeded: ログインしました
+    login_failed: メールアドレスまたはパスワードが正しくありません
+    logged_out: ログアウトしました
+    please_login: ログインしてください
     access_denied: "%{url}へのアクセスが拒否されました"
-    search_word_is_empty: "検索ワードが空白です"
+    search_word_is_empty: 検索ワードが空白です
     account_registration_and_login_completed: "%{user}さんのアカウント登録とログインが完了しました"
-    account_info_update: "アカウント情報が更新されました"
-    please_check: "チェックボックスにチェックを入れてください"
-    password_updated: "パスワードが更新されました"
+    account_info_update: アカウント情報が更新されました
+    please_check: チェックボックスにチェックを入れてください
+    password_updated: パスワードが更新されました
     admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
-    invalid_value: "不正な値です"
+    invalid_value: 不正な値です
   views:
+    error_occurred: エラーが発生しました。以下の項目について確認してください。
+    no_post: 投稿がありません
+    delete_message: 削除してよろしいですか？
+    tops:
+      login: ログイン
+      create_account: アカウント登録
     users:
-      new_page: "Create account"
-      edit_page: "Edit account info"
-      password_reset_page: "Change password"
-      destroy_page: "退会処理"
-      admin_edit_page: "Edit admin authority"
+      new_page: アカウント登録ページ
+      edit_page: アカウント情報編集ページ
+      password_reset_page: パスワード再設定ページ
+      destroy_page: 退会処理
+      admin_edit_page: Edit admin authority
+      to_login_page: ログインページへ
+      6_characters_or_more: ６文字以上必要です
+      select_icon_image: アイコン画像を選択してください（任意）
+      delete_icon_image: 登録済みのアイコン画像を削除
+      to_confirm_page: 確認画面へ
+      update_account_info: アカウント情報を更新する
+      confirm_message: |
+        ※以下の内容で登録します。
+        ご確認をお願いいたします。
+      to_new_page: 入力画面に戻る
+      create_account: アカウント登録
+      # create_account: Create your Docking account
+      cancel: キャンセル
+      new_password: 新しいパスワード
+      input_current_password: 現在のパスワードを入力してください
+      change_password: パスワードを変更する
+      check_and_press_button: チェックを入れて退会ボタンを押してください
+      quit: 退会する
+      admin_only_page: 管理者専用ページ
+      like_list: いいねリスト
+      user_liked_posts: "%{user}さんがいいね！した投稿"
+      quit_docking: 退会処理完了
+      to_top_page: トップページへ
     sessions:
-      login_page: "Login"
+      login_page: ログインページ
+      email: メールアドレス
+      password: パスワード
+      login: ログイン
+      no_account: アカウントをお持ちでない方は
+      here: こちら
     posts:
-      new_page: "New post"
-      edit_page: "Edit post"
+      new_page: New post
+      edit_page: Edit post
     categories:
-      new_page: "New category"
-      edit_page: "Edit category"
+      new_page: New category
+      edit_page: Edit category

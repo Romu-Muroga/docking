@@ -60,9 +60,9 @@ class UsersController < ApplicationController
 
   def password_update
     # TODO: リファクタリング
-    if @user.password_insert_errors(params[:user][:old_password], params[:user][:password])
+    if @user.password_insert_errors(params[:user][:current_password], params[:user][:password])
       render :password_reset
-    elsif @user&.authenticate(old_password_params[:old_password]) && @user.update(user_params)
+    elsif @user&.authenticate(current_password_params[:current_password]) && @user.update(user_params)
       redirect_to (@user), success: t('flash.password_updated')
     else
       render :password_reset
@@ -124,8 +124,8 @@ class UsersController < ApplicationController
     params.require(:cache).permit(:image)
   end
 
-  def old_password_params
-    params.require(:user).permit(:old_password)
+  def current_password_params
+    params.require(:user).permit(:current_password)
   end
 
   def set_user

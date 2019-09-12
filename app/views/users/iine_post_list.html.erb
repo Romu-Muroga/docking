@@ -4,7 +4,7 @@
       <div class="col-xs-offset-2 col-xs-8 col-md-offset-2 col-md-8">
         <div class="user_area">
           <%= linked_user_picture(@user) %>
-          <div class="user_name"><%= @user.name.truncate(12, omission: '...') %>さんがいいね！した投稿</div>
+          <div class="user_name"><%= t('views.users.user_liked_posts', user: @user.name.truncate(12, omission: '...')) %></div>
         </div>
         <div class="iine_posts_area">
           <div class="row">

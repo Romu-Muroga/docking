@@ -1,37 +1,37 @@
 ja:
   activerecord:
     models:
-      post: "投稿"
-      category: "カテゴリー"
-      user: "ユーザー"
-      picture: "写真"
-      comment: "コメント"
-      hashtag: "ハッシュタグ"
-      like: "いいね！"
+      post: 投稿
+      category: カテゴリー
+      user: ユーザー
+      picture: 写真
+      comment: コメント
+      hashtag: ハッシュタグ
+      like: いいね！
     enum:
       post:
         ranking_point:
-          first_place: "１位"
-          second_place: "２位"
-          third_place: "３位"
+          first_place: １位
+          second_place: ２位
+          third_place: ３位
     attributes:
       post:
-        category_id: "カテゴリー"
-        category: "カテゴリー"
-        ranking_point: "順位"
-        eatery_name: "店名"
-        eatery_food: "メニュー"
-        eatery_address: "所在地"
-        eatery_website: "Website"
-        remarks: "メモ"
+        category_id: カテゴリー
+        category: カテゴリー
+        ranking_point: 順位
+        eatery_name: 店名
+        eatery_food: メニュー
+        eatery_address: 所在地
+        eatery_website: Website
+        remarks: メモ
       category:
-        name: "カテゴリー名"
+        name: カテゴリー名
       user:
-        name: "名前"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "確認用パスワード"
-        admin: "管理者"
-        old_password: "現在のパスワード"
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        admin: 管理者
+        current_password: 現在のパスワード
       picture:
-        image: "画像"
+        image: 画像
