@@ -1,7 +1,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>カテゴリー名</th>
+      <th><%= Category.human_attribute_name(:name) %></th>
       <th></th><!-- 空マス -->
     </tr>
   </thead>
@@ -10,11 +10,11 @@
       <tr>
         <td><%= category.name %></td>
         <td>
-          <%= link_to 'EDIT', edit_admin_category_path(category) %>&nbsp;
-          <%= link_to 'DELETE',
+          <%= link_to t('views.edit_button'), edit_admin_category_path(category) %>&nbsp;
+          <%= link_to t('views.delete_button'),
                        admin_category_path(category),
                        method: :delete,
-                       data: { confirm: "#{category.name}を削除してよろしいですか？" },
+                       data: { confirm: t('views.admin.categories.category_delete_message', category: category.name) },
                        class: "category_destroy_link"
           %>
         </td>

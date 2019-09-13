@@ -1,8 +1,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>アカウント名</th>
-      <th>管理者権限</th>
+      <th><%= t('views.admin.users.account_name') %></th>
+      <th><%= t('views.admin.users.administrator_rights') %></th>
       <th></th><!-- 空マス -->
     </tr>
   </thead>
@@ -11,16 +11,16 @@
       <tr>
         <td><%= user.name %></td>
         <% if user.admin %>
-          <td>あり</td>
+          <td><%= t('views.admin.users.yes') %></td>
         <% else %>
-          <td>なし</td>
+          <td><%= t('views.admin.users.no') %></td>
         <% end %>
         <td>
-          <%= link_to 'EDIT', edit_admin_user_path(user) %>&nbsp;
-          <%= link_to 'DELETE',
+          <%= link_to t('views.edit_button'), edit_admin_user_path(user) %>&nbsp;
+          <%= link_to t('views.delete_button'),
                        admin_user_path(user),
                        method: :delete,
-                       data: { confirm: "#{user.name}を削除してよろしいですか？" },
+                       data: { confirm: t('views.admin.users.user_delete_message', user: user.name) },
                        class: "user_destroy_link"
           %>
         </td>

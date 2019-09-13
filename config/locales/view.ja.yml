@@ -29,7 +29,6 @@ ja:
       edit_page: アカウント情報編集ページ
       password_reset_page: パスワード再設定ページ
       destroy_page: 退会処理
-      admin_edit_page: Edit admin authority
       to_login_page: ログインページへ
       6_characters_or_more: ６文字以上必要です
       select_icon_image: アイコン画像を選択してください（任意）
@@ -86,6 +85,30 @@ ja:
       ex_url: "例：https://xxxxxxx.com"
       required: "%{attribute}（必須）"
       registered_list: 登録済みのリスト
-    categories:
-      new_page: New category
-      edit_page: Edit category
+    comments:
+      add_comment: コメントをする
+      delete_comment: コメントを削除する
+    layouts:
+      list_of_posts: 投稿一覧
+      my_favorite_ranking: 私のお気に入りランキング
+      logout: ログアウト
+    admin:
+      return_to_toppage: 管理トップページへ戻る
+      tops:
+        to_admin_category: カテゴリ管理画面へ
+        to_admin_user: ユーザー管理画面へ
+        return_to_mypage: マイページへ戻る
+      categories:
+        new_page: カテゴリー新規作成ページ
+        edit_page: カテゴリー編集ページ
+        return_to_category_list_page: カテゴリー一覧ページへ戻る
+        new_category: カテゴリー新規作成
+        category_delete_message: "%{category}を削除してもよろしいですか？"
+      users:
+        admin_edit_page: 管理権限編集ページ
+        administrator_rights: 管理者権限
+        account_name: アカウント名
+        "yes": あり
+        "no": なし
+        return_to_user_list_page: ユーザー一覧ページへ戻る
+        user_delete_message: "%{user}を削除してもよろしいですか？"
