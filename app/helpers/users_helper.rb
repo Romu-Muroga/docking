@@ -17,9 +17,9 @@ module UsersHelper
 
   def choose_confirm_screen_or_update_account_info
     if action_name == 'new' || action_name == 'confirm' || action_name == 'create'
-      t('users.to_confirm_page')
+      t('.to_confirm_page')
     elsif action_name == 'edit' || action_name == 'update'
-      t('users.update_account_info')
+      t('.update_account_info')
     end
   end
 

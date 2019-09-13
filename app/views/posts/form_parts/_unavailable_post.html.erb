@@ -4,6 +4,7 @@
     <div class="unavailable_post_list">
       <% current_user.posts.order(:category_id, ranking_point: :desc).each do |post| %>
         <span>
+          <!-- TDDO: N+1 -->
           <%= Category.find(post.category_id).name %>
           &#183;&#183;&#183;<%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>&emsp;&emsp;
         </span>

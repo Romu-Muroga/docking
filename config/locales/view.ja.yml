@@ -53,43 +53,58 @@ ja:
     required: "%{attribute}（必須）"
     registered_list: 登録済みのリスト
   sessions:
-    login_page: ログインページ
-    email: メールアドレス
-    password: パスワード
-    login: ログイン
-    no_account: アカウントをお持ちでない方は
-    here: こちら
+    new:
+      login_page: ログイン
+      email: メールアドレス
+      password: パスワード
+      login: ログイン
+      no_account: アカウントをお持ちでない方は
+      here: こちら
   tops:
-    login: ログイン
-    create_account: アカウント登録
+    start_up_area:
+      login: ログイン
+      create_account: アカウント作成
   users:
-    new_page: アカウント登録ページ
-    edit_page: アカウント情報編集ページ
-    password_reset_page: パスワード再設定ページ
-    destroy_page: 退会処理
-    to_login_page: ログインページへ
-    6_characters_or_more: ６文字以上必要です
-    select_icon_image: アイコン画像を選択してください（任意）
-    delete_icon_image: 登録済みのアイコン画像を削除
-    to_confirm_page: 確認画面へ
-    update_account_info: アカウント情報を更新する
-    confirm_message: |
-      ※以下の内容で登録します。
-      ご確認をお願いいたします。
-    to_new_page: 入力画面に戻る
-    create_account: アカウント登録
-    # create_account: Create your Docking account
-    cancel: キャンセル
-    new_password: 新しいパスワード
-    input_current_password: 現在のパスワードを入力してください
-    change_password: パスワードを変更する
-    check_and_press_button: チェックを入れて退会ボタンを押してください
-    quit: 退会する
-    admin_only_page: 管理者専用ページ
-    like_list: いいねリスト
-    user_liked_posts: "%{user}さんがいいね！した投稿"
-    quit_docking: 退会処理完了
-    to_top_page: トップページへ
+    form_parts:
+      form:
+        word_count: ６文字以上必要です
+        to_confirm_page: 確認画面へ
+        update_account_info: アカウント情報を更新する
+    show_parts:
+      user_account_menu:
+        admin_only_page: 管理者専用ページ
+        change_account_info: アカウント情報を変更
+        change_password: パスワードを変更する
+        quit_docking: 退会する
+        liked_posts: いいね！した投稿
+    confirm:
+      please_confirm: |
+        ※以下の内容で登録します。
+        ご確認をお願いいたします。
+      return_to_input: 入力画面に戻る
+      create_account: アカウントを作成する
+      # create_account: Create your Docking account
+    destroy_confirm:
+      quit_page: 退会処理
+      quit: 退会
+      cancel: キャンセル
+    destroy:
+      quit_completed: 退会処理完了
+      to_docking: Dockingへ
+    edit:
+      change_account_info_page: アカウント情報を変更する
+      cancel: キャンセル
+    iine_post_list:
+      user_liked_posts: "%{user}さんがいいね！した投稿"
+    new:
+      create_account_page: アカウント作成
+      to_login_page: ログインページへ
+    password_reset:
+      password_reset_page: パスワードを再設定する
+      new_password: 新しいパスワード
+      word_count: ６文字以上必要です
+      change_password: パスワードを変更する
+      cancel: キャンセル
   flash:
     create: "%{content}を登録しました"
     update: "%{content}を更新しました"
@@ -108,6 +123,6 @@ ja:
     invalid_value: 不正な値です
   error_occurred: エラーが発生しました。以下の項目について確認してください。
   no_post: 投稿がありません
-  delete_message: 削除してよろしいですか？
+  confirm_deletion: 削除してよろしいですか？
   edit_button: 編集
   delete_button: 削除

@@ -25,7 +25,7 @@ ja:
         eatery_website: Website
         remarks: メモ
         image: 画像
-        picture_delete_check: 登録済みの画像を削除
+        picture_delete_check: 画像を削除
       category:
         name: カテゴリー名
       user:
@@ -35,5 +35,8 @@ ja:
         password_confirmation: 確認用パスワード
         admin: 管理者
         current_password: 現在のパスワード
+        image: アイコン画像
+        picture_delete_check: アイコン画像を削除
+        destroy_check: よろしければ、チェックを入れて退会ボタンを押してください
       picture:
         image: 画像

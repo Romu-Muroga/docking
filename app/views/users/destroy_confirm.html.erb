@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 destroy_confirm_section">
-        <h3><%= t("views.users.destroy_page") %></h3>
+        <h3><%= t('.quit_page') %></h3>
         <%= form_with(model: @user, url: user_path(@user.id), method: :delete, local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
             <h5>
@@ -12,11 +12,11 @@
             </h5>
             <div class="form-group">
               <%= f.check_box "destroy_check", {}, 1, 2 %>
-              <%= f.label "destroy_check", t('users.check_and_press_button') %>
+              <%= f.label "destroy_check" %>
             </div>
           </div>
-          <%= f.submit t('users.quit'), class: "btn btn-default" %>
-          <%= link_to t('users.cancel'), user_path(current_user), class: "btn btn-default" %>
+          <%= f.submit t('.quit'), class: "btn btn-default" %>
+          <%= link_to t('.cancel'), user_path(current_user), class: "btn btn-default" %>
         <% end %>
       </div>
     </div>
