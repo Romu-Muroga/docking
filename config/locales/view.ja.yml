@@ -19,6 +19,8 @@ ja:
     error_occurred: エラーが発生しました。以下の項目について確認してください。
     no_post: 投稿がありません
     delete_message: 削除してよろしいですか？
+    edit_button: 編集
+    delete_button: 削除
     tops:
       login: ログイン
       create_account: アカウント登録
@@ -59,8 +61,31 @@ ja:
       no_account: アカウントをお持ちでない方は
       here: こちら
     posts:
-      new_page: New post
-      edit_page: Edit post
+      new_page: 投稿ページ
+      edit_page: 編集ページ
+      latest_article: 最新記事
+      overall_ranking_value: "%{rank}位 %{name}（%{category}）%{point}ポイント"
+      overall_ranking: 総合ランキング
+      like_ranking: いいね！ランキング
+      rank: "%{rank}位"
+      search: 検索
+      poster_name: "%{poster}さん"
+      posting_time: "%{time}前"
+      posting_data: "%{category}の%{rank}に投稿しました"
+      location: "所在地: %{address}"
+      store_name_and_menu: "%{store} Menu: %{menu}"
+      post_info: "%{user}さんが、%{category}の%{rank}に投稿しました"
+      number_of_likes: "いいね！登録 %{count}件"
+      unregistered_website: "Website: 未登録"
+      registered_website: "Website: "
+      restriction: ※各カテゴリー１位〜３位まで、ご登録いただけます
+      not_selected: 選択されていません
+      ex_name: "例：中華一番"
+      ex_food: "例：醤油ラーメン"
+      ex_address: "例：東京都渋谷区"
+      ex_url: "例：https://xxxxxxx.com"
+      required: "%{attribute}（必須）"
+      registered_list: 登録済みのリスト
     categories:
       new_page: New category
       edit_page: Edit category

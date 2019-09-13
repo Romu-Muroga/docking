@@ -24,6 +24,8 @@ ja:
         eatery_address: 所在地
         eatery_website: Website
         remarks: メモ
+        image: 画像
+        picture_delete_check: 登録済みの画像を削除
       category:
         name: カテゴリー名
       user:

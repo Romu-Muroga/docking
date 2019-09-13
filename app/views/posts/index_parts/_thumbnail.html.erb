@@ -28,26 +28,28 @@
     <% end %>
   </div>
   <div class="caption">
-    <p><%= post.user.name.truncate(12, omission: '...') %>さん</p>
+    <p><%= t('views.posts.poster_name', poster: post.user.name.truncate(12, omission: '...')) %></p>
     <p>
       <span>
         <time datetime="<%= post.updated_at %>">
-          <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>・
+          <%= t('views.posts.posting_time', time: time_ago_in_words(post.updated_at, include_seconds: true)) %>&#12539;
         </time>
       </span>
       <span>
-        <%= post.category.name %>の
-        <%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>に投稿しました。
+        <%= t('views.posts.posting_data',
+            category: post.category.name,
+            rank: t("activerecord.enum.post.ranking_point.#{post.ranking_point}"))
+        %>
       </span>
     </p>
-    <p>Address: <%= post.eatery_address %></p>
+    <p><%= t('views.posts.location', address: post.eatery_address) %></p>
     <% if poster?(post) %>
-      <%= link_to 'EDIT', edit_post_path(post), class: "btn btn-warning" %>
-      <%= link_to 'DELETE',
-                   post_path(post),
-                   method: :delete,
-                   data: { confirm: "削除してよろしいですか？" },
-                   class: "btn btn-danger"
+      <%= link_to t('views.edit_button'), edit_post_path(post), class: "btn btn-warning" %>
+      <%= link_to t('views.delete_button'),
+                  post_path(post),
+                  method: :delete,
+                  data: { confirm: t('views.delete_message') },
+                  class: "btn btn-danger"
       %>
     <% end %>
     <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">

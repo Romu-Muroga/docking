@@ -1,16 +1,16 @@
 <%= form_with(model: post, local: true, class: "post_form_outer") do |f| %>
   <div class="post_form_inner">
     <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post }%>
-    <p>※各カテゴリー１位〜３位まで、ご登録いただけます。</p>
+    <p><%= t('views.posts.restriction') %></p>
     <div class="form-group chg_inblock">
-      <%= f.label :category_id %><br>
-      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: '選択されていません', class: "form-control" %>
+      <%= f.label :category_id, t('views.posts.required', attribute: Post.human_attribute_name(:category_id)) %><br>
+      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: t('views.posts.not_selected'), class: "form-control" %>
     </div>
     <div class="form-group chg_inblock">
-      <%= f.label :ranking_point %><br>
+      <%= f.label :ranking_point, t('views.posts.required', attribute: Post.human_attribute_name(:ranking_point)) %><br>
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
-                   prompt: '選択されていません',
+                   prompt: t('views.posts.not_selected'),
                    class: "form-control"
       %>
     </div>
@@ -18,48 +18,48 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= f.label :eatery_name %>
+          <%= f.label :eatery_name, t('views.posts.required', attribute: Post.human_attribute_name(:eatery_name)) %>
           <%= f.autocomplete_field :eatery_name,
                                    autocomplete_post_eatery_name_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
-                                   placeholder: "例：中華一番",
+                                   placeholder: t('views.posts.ex_name'),
                                    class: "form-control"
           %>
         </div>
         <div class="form-group">
-          <%= f.label :eatery_food %>
+          <%= f.label :eatery_food, t('views.posts.required', attribute: Post.human_attribute_name(:eatery_food)) %>
           <%= f.autocomplete_field :eatery_food,
                                    autocomplete_post_eatery_food_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
-                                   placeholder: "例：醤油ラーメン",
+                                   placeholder: t('views.posts.ex_food'),
                                    class: "form-control"
           %>
         </div>
         <div class="form-group">
-          <%= f.label :eatery_address, "所在地（任意）" %>
+          <%= f.label :eatery_address %>
           <%= f.autocomplete_field :eatery_address,
                                    autocomplete_post_eatery_address_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
-                                   placeholder: "例：東京都渋谷区",
+                                   placeholder: t('views.posts.ex_address'),
                                    class: "form-control"
           %>
         </div>
         <div class="form-group">
-          <%= f.label :eatery_website, "Website（任意）" %>
-          <%= f.text_field :eatery_website, placeholder: "例：https://xxxxxxx.com", class: "form-control" %>
+          <%= f.label :eatery_website %>
+          <%= f.text_field :eatery_website, placeholder: t('views.posts.ex_url'), class: "form-control" %>
         </div>
         <!-- TODO: image_cacheの使い道 -->
         <div class="form-group imgInput">
-          <%= f.label :image, "画像（任意）" %>
+          <%= f.label :image %>
           <%= f.file_field :image, class: "form-control", id: "upfile" %>
         </div>
         <% if post_with_pictures_edit_page?(post) %>
           <div class="form-group">
             <%= f.check_box "picture_delete_check", {}, 1, 2 %>
-            <%= f.label "picture_delete_check", "登録済みの画像を削除" %>
+            <%= f.label "picture_delete_check" %>
           </div>
         <% end %>
       </div>

@@ -11,6 +11,11 @@
 </h5>
 <% overall_ranking_posts.each.with_index(1) do |(key, value), i| %>
   <p class="or_text">
-    <%= i %>位 <%= key[0] %>（<%= categories.select{ |item|item.id == key[1] }.first.name %>） <%= value[:point] %>ポイント
+    <%= t('views.posts.overall_ranking_value',
+           rank: i,
+           name: key[0],
+           category: categories.select{ |item|item.id == key[1] }.first.name,
+           point: value[:point])
+    %>
   </p>
 <% end %>

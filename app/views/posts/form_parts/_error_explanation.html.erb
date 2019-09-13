@@ -1,6 +1,6 @@
 <% if post.errors.any? %>
   <div id="error_explanation">
-    <h4>エラーが発生しました。以下の項目について確認してください。</h4>
+    <h4><%= t('views.error_occurred') %></h4>
     <ul>
       <% post.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
