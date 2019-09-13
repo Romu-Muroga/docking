@@ -15,7 +15,7 @@
     <% if Create_account_page? %>
       <div class="form-group">
         <%= f.label :password %>
-        <%= f.password_field :password, placeholder: t('views.users.6_characters_or_more'), class: "form-control" %>
+        <%= f.password_field :password, placeholder: t('users.6_characters_or_more'), class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :password_confirmation %>
@@ -23,13 +23,13 @@
       </div>
     <% end %>
     <div class="form-group imgInput">
-      <%= f.label :image, t('views.users.select_icon_image') %>
+      <%= f.label :image, t('users.select_icon_image') %>
       <%= f.file_field :image, class: "form-control", id: "upfile" %>
     </div>
     <% if current_user&.picture.present? %>
       <div class="form-group">
         <%= f.check_box "picture_delete_check", {}, 1, 2 %>
-        <%= f.label "picture_delete_check", t('views.users.delete_icon_image') %>
+        <%= f.label "picture_delete_check", t('users.delete_icon_image') %>
       </div>
     <% end %>
   </div>

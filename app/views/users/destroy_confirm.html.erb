@@ -12,11 +12,11 @@
             </h5>
             <div class="form-group">
               <%= f.check_box "destroy_check", {}, 1, 2 %>
-              <%= f.label "destroy_check", t('views.users.check_and_press_button') %>
+              <%= f.label "destroy_check", t('users.check_and_press_button') %>
             </div>
           </div>
-          <%= f.submit t('views.users.quit'), class: "btn btn-default" %>
-          <%= link_to t('views.users.cancel'), user_path(current_user), class: "btn btn-default" %>
+          <%= f.submit t('users.quit'), class: "btn btn-default" %>
+          <%= link_to t('users.cancel'), user_path(current_user), class: "btn btn-default" %>
         <% end %>
       </div>
     </div>

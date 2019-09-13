@@ -5,7 +5,7 @@
         <%= image_tag("/images/logo3.png", class: "img-responsive app_logo") %>
         <%= form_with(model: @user, local: true, class: "form_outer") do |f| %>
           <div class="confirm_list">
-            <h4 class="confirm_message"><%= simple_format(t('views.users.confirm_message')) %></h4>
+            <h4 class="confirm_message"><%= simple_format(t('users.confirm_message')) %></h4>
             <ul>
               <% if @user.picture.present? %>
                 <li class="confirm_list_icon"><%= image_tag(@user.picture.image.url, class: "img-responsive") %></li>
@@ -16,8 +16,8 @@
               <li class="confirm_list_name"><%= @user.name %></li>
               <li class="confirm_list_email"><%= @user.email %></li>
             </ul>
-            <%= f.submit t('views.users.to_new_page'), name: 'back', class: "btn btn-default" %><br>
-            <%= f.submit t('views.users.create_account'), class: "btn btn-warning" %>
+            <%= f.submit t('users.to_new_page'), name: 'back', class: "btn btn-default" %><br>
+            <%= f.submit t('users.create_account'), class: "btn btn-warning" %>
           </div>
         <% end %>
       </div>

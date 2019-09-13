@@ -24,11 +24,11 @@
     <% end %>
     <% if poster?(user_post) %>
       <p class="edit_delete_button">
-        <%= link_to t('views.edit_button'), edit_post_path(user_post), class: "btn btn-warning" %>
-        <%= link_to t('views.delete_button'),
+        <%= link_to t('edit_button'), edit_post_path(user_post), class: "btn btn-warning" %>
+        <%= link_to t('delete_button'),
                     post_path(user_post, submitted_page: 'mypage'),
                     method: :delete,
-                    data: { confirm: t('views.delete_message') },
+                    data: { confirm: t('delete_message') },
                     class: "btn btn-danger"
         %>
       </p>

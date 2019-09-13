@@ -10,7 +10,7 @@
         <%= auto_link(simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div")) %>
         <% if comment.user == current_user %>
           <p class="comments_area_delete_btn">
-            <%= link_to t('views.comments.delete_comment'), comment_path(comment), method: :delete, remote: true %>
+            <%= link_to t('comments.delete_comment'), comment_path(comment), method: :delete, remote: true %>
           </p>
         <% end %>
       </div>

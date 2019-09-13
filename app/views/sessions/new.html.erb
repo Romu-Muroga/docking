@@ -7,17 +7,17 @@
         <%= form_with(scope: :session, url: login_path, local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
             <div class="form-group">
-              <%= f.label :email, t('views.sessions.email') %>
+              <%= f.label :email, t('sessions.email') %>
               <%= f.email_field :email, class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= f.label :password, t('views.sessions.password') %>
+              <%= f.label :password, t('sessions.password') %>
               <%= f.password_field :password, class: "form-control" %>
             </div>
           </div>
-          <%= f.submit t('views.sessions.login'), class: "btn btn-primary" %>
+          <%= f.submit t('sessions.login'), class: "btn btn-primary" %>
         <% end %>
-        <p><%= t('views.sessions.no_account') %><%= link_to t('views.sessions.here'), new_user_path %></p>
+        <p><%= t('sessions.no_account') %><%= link_to t('sessions.here'), new_user_path %></p>
         <div class="otameshi_insert_data" style="border: solid 1px white; padding: 6px;">
           ※お試し用入力データ<br>
           メールアドレス：test@dic.com<br>

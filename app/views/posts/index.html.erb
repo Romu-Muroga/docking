@@ -14,10 +14,10 @@
         <div class="row">
           <div class="col-md-6">
             <% if @posts.present? %>
-              <p class="new_post_heading"><%= t('views.posts.latest_article') %></p>
+              <p class="new_post_heading"><%= t('posts.latest_article') %></p>
               <%= render partial: 'posts/index_parts/thumbnail', locals: { post: @posts.first } %>
             <% else %>
-              <h4 class="no_post_message"><%= t('views.no_post') %></h4>
+              <h4 class="no_post_message"><%= t('no_post') %></h4>
             <% end %>
           </div>
           <div class="col-md-6"></div>

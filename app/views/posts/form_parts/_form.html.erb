@@ -1,16 +1,16 @@
 <%= form_with(model: post, local: true, class: "post_form_outer") do |f| %>
   <div class="post_form_inner">
     <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post }%>
-    <p><%= t('views.posts.restriction') %></p>
+    <p><%= t('posts.restriction') %></p>
     <div class="form-group chg_inblock">
-      <%= f.label :category_id, t('views.posts.required', attribute: Post.human_attribute_name(:category_id)) %><br>
-      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: t('views.posts.not_selected'), class: "form-control" %>
+      <%= f.label :category_id, t('posts.required', attribute: Post.human_attribute_name(:category_id)) %><br>
+      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: t('posts.not_selected'), class: "form-control" %>
     </div>
     <div class="form-group chg_inblock">
-      <%= f.label :ranking_point, t('views.posts.required', attribute: Post.human_attribute_name(:ranking_point)) %><br>
+      <%= f.label :ranking_point, t('posts.required', attribute: Post.human_attribute_name(:ranking_point)) %><br>
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
-                   prompt: t('views.posts.not_selected'),
+                   prompt: t('posts.not_selected'),
                    class: "form-control"
       %>
     </div>
@@ -18,22 +18,22 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= f.label :eatery_name, t('views.posts.required', attribute: Post.human_attribute_name(:eatery_name)) %>
+          <%= f.label :eatery_name, t('posts.required', attribute: Post.human_attribute_name(:eatery_name)) %>
           <%= f.autocomplete_field :eatery_name,
                                    autocomplete_post_eatery_name_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
-                                   placeholder: t('views.posts.ex_name'),
+                                   placeholder: t('posts.ex_name'),
                                    class: "form-control"
           %>
         </div>
         <div class="form-group">
-          <%= f.label :eatery_food, t('views.posts.required', attribute: Post.human_attribute_name(:eatery_food)) %>
+          <%= f.label :eatery_food, t('posts.required', attribute: Post.human_attribute_name(:eatery_food)) %>
           <%= f.autocomplete_field :eatery_food,
                                    autocomplete_post_eatery_food_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
-                                   placeholder: t('views.posts.ex_food'),
+                                   placeholder: t('posts.ex_food'),
                                    class: "form-control"
           %>
         </div>
@@ -43,13 +43,13 @@
                                    autocomplete_post_eatery_address_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
-                                   placeholder: t('views.posts.ex_address'),
+                                   placeholder: t('posts.ex_address'),
                                    class: "form-control"
           %>
         </div>
         <div class="form-group">
           <%= f.label :eatery_website %>
-          <%= f.text_field :eatery_website, placeholder: t('views.posts.ex_url'), class: "form-control" %>
+          <%= f.text_field :eatery_website, placeholder: t('posts.ex_url'), class: "form-control" %>
         </div>
         <!-- TODO: image_cacheの使い道 -->
         <div class="form-group imgInput">

@@ -11,7 +11,7 @@
 </h5>
 <% overall_ranking_posts.each.with_index(1) do |(key, value), i| %>
   <p class="or_text">
-    <%= t('views.posts.overall_ranking_value',
+    <%= t('posts.overall_ranking_value',
            rank: i,
            name: key[0],
            category: categories.select{ |item|item.id == key[1] }.first.name,

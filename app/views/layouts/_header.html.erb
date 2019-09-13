@@ -9,9 +9,9 @@
       <i class="fas fa-bars fa-2x"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><%= link_to t('views.layouts.list_of_posts'), posts_path, class: posts_index_page?(params[:controller], params[:action]) %></li>
-      <li><%= link_to t('views.layouts.my_favorite_ranking'), user_path(current_user), class: my_page?(params[:controller], params[:action]) %></li>
-      <li><%= link_to t('views.layouts.logout'), logout_path, method: :delete %></li>
+      <li><%= link_to t('layouts.list_of_posts'), posts_path, class: posts_index_page?(params[:controller], params[:action]) %></li>
+      <li><%= link_to t('layouts.my_favorite_ranking'), user_path(current_user), class: my_page?(params[:controller], params[:action]) %></li>
+      <li><%= link_to t('layouts.logout'), logout_path, method: :delete %></li>
     </ul>
   </div>
 </header>

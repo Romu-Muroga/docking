@@ -1,6 +1,6 @@
 <% if current_user.posts.first&.persisted? %>
   <div class="unavailable_post">
-    <%= t('views.posts.registered_list') %>
+    <%= t('posts.registered_list') %>
     <div class="unavailable_post_list">
       <% current_user.posts.order(:category_id, ranking_point: :desc).each do |post| %>
         <span>

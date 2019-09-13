@@ -2,9 +2,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
-        <h3><span class="underline"><%= t('views.admin.categories.edit_page') %></span></h3>
+        <h3><span class="underline"><%= t('admin.categories.edit_page') %></span></h3>
         <%= render partial: "form", locals: { category: @category } %>
-        <%= link_to t('views.admin.categories.return_to_category_list_page'), admin_categories_path, class: "btn btn-default" %>
+        <%= link_to t('admin.categories.return_to_category_list_page'), admin_categories_path, class: "btn btn-default" %>
       </div>
     </div>
   </div>
