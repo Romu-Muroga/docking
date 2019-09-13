@@ -1,8 +1,8 @@
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
-  <label class="tab_item" for="all"><%= t('posts.overall_ranking') %></label>
+  <label class="tab_item" for="all"><%= t('.overall_ranking') %></label>
   <input id="iine" type="radio" name="tab_item">
-  <label class="tab_item" for="iine"><%= t('posts.like_ranking') %></label>
+  <label class="tab_item" for="iine"><%= t('.iine_ranking') %></label>
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
@@ -17,7 +17,7 @@
     <div class="tab_content_description">
       <% iine_ranking_posts.each.with_index(1) do |post, i| %>
         <div class="c-txtsp">
-          <%= t('posts.rank', rank: i) %>
+          <%= t('.rank', rank: i) %>
           <div class="mask">
             <%= linked_post_picture(post) %>
           </div>

@@ -7,24 +7,24 @@
           <div class="thumbnail_header">
             <ul>
               <li class="category_label"><%= @post.category.name %></li>
-              <li><%= t('posts.store_name_and_menu', store: @post.eatery_name, menu: @post.eatery_food) %></li>
+              <li><%= t('.eatery_name_and_menu', name: @post.eatery_name, menu: @post.eatery_food) %></li>
             </ul>
           </div>
           <div class="caption">
             <div class="caption_user_block">
               <%= no_link_picture(@post.user) %>
               <div class="caption_user_block_post_time">
-                <%= t('posts.post_info',
+                <%= t('.user_category_rank',
                     user: @post.user.name.truncate(12, omission: '...'),
                     category: @post.category.name,
                     rank: t("activerecord.enum.post.ranking_point.#{@post.ranking_point}"))
                 %><br>
                 <time datetime="<%= @post.updated_at %>">
-                  <%= t('posts.posting_time', time: time_ago_in_words(@post.updated_at, include_seconds: true)) %>
+                  <%= t('.posting_time', time: time_ago_in_words(@post.updated_at, include_seconds: true)) %>
                 </time>
               </div>
               <div class="caption_user_block_iine_count">
-                <%= t('posts.number_of_likes', count: @post.likes_count) %>
+                <%= t('.number_of_likes', count: @post.likes_count) %>
               </div>
             </div>
             <div class="caption_remarks">
@@ -32,11 +32,11 @@
             </div>
             <div class="caption_eatery_info">
               <ul>
-                <li class="eadd_text"><%= t('posts.location', address: @post.eatery_address) %></li>
+                <li class="eadd_text"><%= t('.location', address: @post.eatery_address) %></li>
                 <% if @post.eatery_website == "未登録" %>
-                  <li class="eweb_text"><%= t('posts.unregistered_website') %><li>
+                  <li class="eweb_text"><%= t('.unregistered_website') %><li>
                 <% else %>
-                  <li class="eweb_text"><%= t('posts.registered_website') %><%= link_to @post.eatery_name, @post.eatery_website %></li>
+                  <li class="eweb_text"><%= t('.registered_website') %><%= link_to @post.eatery_name, @post.eatery_website %></li>
                 <% end %>
               </ul>
             </div>
@@ -46,6 +46,7 @@
             <% if poster?(@post) %>
               <p class="edit_delete_button">
                 <%= link_to t('edit_button'), edit_post_path(@post), class: "btn btn-warning" %>
+                <!-- TODO: confirm_deletion -->
                 <%= link_to t('delete_button'),
                              post_path(@post),
                              method: :delete,

@@ -27,31 +27,46 @@ ja:
     my_favorite_ranking: 私のお気に入りランキング
     logout: ログアウト
   posts:
-    new_page: 投稿ページ
-    edit_page: 編集ページ
-    latest_article: 最新記事
-    overall_ranking_value: "%{rank}位 %{name}（%{category}）%{point}ポイント"
-    overall_ranking: 総合ランキング
-    like_ranking: いいね！ランキング
-    rank: "%{rank}位"
-    search: 検索
-    poster_name: "%{poster}さん"
-    posting_time: "%{time}前"
-    posting_data: "%{category}の%{rank}に投稿しました"
-    location: "所在地: %{address}"
-    store_name_and_menu: "%{store} Menu: %{menu}"
-    post_info: "%{user}さんが、%{category}の%{rank}に投稿しました"
-    number_of_likes: "いいね！登録 %{count}件"
-    unregistered_website: "Website: 未登録"
-    registered_website: "Website: "
-    restriction: ※各カテゴリー１位〜３位まで、ご登録いただけます
-    not_selected: 選択されていません
-    ex_name: "例：中華一番"
-    ex_food: "例：醤油ラーメン"
-    ex_address: "例：東京都渋谷区"
-    ex_url: "例：https://xxxxxxx.com"
-    required: "%{attribute}（必須）"
-    registered_list: 登録済みのリスト
+    form_parts:
+      form:
+        constraints: ※各カテゴリー１位〜３位まで、ご登録いただけます
+        label_text: "%{attribute}（必須）"
+        not_selected: 選択されていません
+        ex_name: "例：中華一番"
+        ex_food: "例：醤油ラーメン"
+        ex_address: "例：東京都渋谷区"
+        ex_url: "例：https://xxxxxxx.com"
+      unavailable_post:
+        registered_list: 登録済みのリスト
+    index_parts:
+      overall_ranking:
+        overall_ranking_value: "%{rank}位 %{eatery_name}（%{category}）%{point}ポイント"
+      search_form:
+        search: 検索
+      tabs:
+        overall_ranking: 総合ランキング
+        iine_ranking: いいね！ランキング
+        rank: "%{rank}位"
+      thumbnail:
+        poster_name: "%{name}さん"
+        posting_time: "%{time}前"
+        category_and_rank: "%{category}の%{rank}に投稿しました"
+        location: "所在地: %{address}"
+    edit:
+      post_edit_page: 投稿記事を編集する
+    index:
+      latest_article: 最新記事
+      new_post: 投稿する
+    new:
+      create_new: 新規作成
+    show:
+      eatery_name_and_menu: "%{name} Menu: %{menu}"
+      user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"
+      posting_time: "%{time}前"
+      number_of_likes: "いいね！登録 %{count}件"
+      location: "所在地: %{address}"
+      unregistered_website: "Website: 未登録"
+      registered_website: "Website: "
   sessions:
     new:
       login_page: ログイン

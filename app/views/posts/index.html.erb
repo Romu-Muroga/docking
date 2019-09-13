@@ -4,7 +4,7 @@
       <div class="col-md-2 left_section">
         <div>
           <%= render partial: 'posts/index_parts/search_form', locals: { categories: @categories } %>
-          <%= link_to 'New post', new_post_path, class: "cp_btn" %>
+          <%= link_to t('.new_post'), new_post_path, class: "cp_btn" %>
         </div>
         <div class="category_list">
           <%= render partial: 'posts/index_parts/category_list', locals: { categories: @categories } %>
@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col-md-6">
             <% if @posts.present? %>
-              <p class="new_post_heading"><%= t('posts.latest_article') %></p>
+              <p class="new_post_heading"><%= t('.latest_article') %></p>
               <%= render partial: 'posts/index_parts/thumbnail', locals: { post: @posts.first } %>
             <% else %>
               <h4 class="no_post_message"><%= t('no_post') %></h4>
