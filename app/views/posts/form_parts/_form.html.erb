@@ -1,7 +1,8 @@
 <%= form_with(model: post, local: true, class: "post_form_outer") do |f| %>
   <div class="post_form_inner">
-    <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post }%>
+    <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post } %>
     <p><%= t('.constraints') %></p>
+    <!-- TODO: error -->
     <div class="form-group chg_inblock">
       <%= f.label :category_id, t('.label_text', attribute: Post.human_attribute_name(:category_id)) %><br>
       <%= f.collection_select :category_id, Category.all, :id, :name, prompt: t('.not_selected'), class: "form-control" %>

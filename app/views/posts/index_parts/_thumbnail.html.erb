@@ -9,8 +9,8 @@
         <div class="mask">
           <div class="mask_message">
             <%= post.eatery_name.truncate(12, omission: '...') %><br>
-            Menu: &nbsp;<%= post.eatery_food.truncate(12, omission: '...') %><br>
-            ...Learn more!
+            <%= t('.food_menu', name: post.eatery_food.truncate(12, omission: '...')) %><br>
+            &hellip;<%= t('.learn_more') %>
           </div>
         </div>
       <% end %>
@@ -19,9 +19,9 @@
         <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
         <div class="mask">
           <div class="mask_message">
-            <%= post.eatery_name %><br>
-            Menu: &nbsp;<%= post.eatery_food %><br>
-            ...Learn more!
+            <%= post.eatery_name.truncate(12, omission: '...') %><br>
+            <%= t('.food_menu', name: post.eatery_food.truncate(12, omission: '...')) %><br>
+            &hellip;<%= t('.learn_more') %>
           </div>
         </div>
       <% end %>

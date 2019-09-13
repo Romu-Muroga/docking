@@ -1,31 +1,48 @@
 ja:
   admin:
-    return_to_toppage: 管理トップページへ戻る
     categories:
-      new_page: カテゴリー新規作成ページ
-      edit_page: カテゴリー編集ページ
-      return_to_category_list_page: カテゴリー一覧ページへ戻る
-      new_category: カテゴリー新規作成
-      category_delete_message: "%{category}を削除してもよろしいですか？"
+      table:
+        category_confirm_deletion: "%{category}を削除してもよろしいですか？"
+      edit:
+        category_edit_page: カテゴリーを編集する
+        cancel: キャンセル
+      index:
+        to_admin_top_page: 管理メニュートップへ
+        new_category: カテゴリーを追加する
+      new:
+        create_new: 新規作成
+        cancel: キャンセル
     tops:
-      to_admin_category: カテゴリ管理画面へ
-      to_admin_user: ユーザー管理画面へ
-      return_to_mypage: マイページへ戻る
+      index:
+        to_category_list: カテゴリ管理画面へ
+        to_user_list: ユーザー管理画面へ
+        return_to_mypage: マイページへ戻る
     users:
-      admin_edit_page: 管理権限編集ページ
-      administrator_rights: 管理者権限
-      account_name: アカウント名
-      "yes": あり
-      "no": なし
-      return_to_user_list_page: ユーザー一覧ページへ戻る
-      user_delete_message: "%{user}を削除してもよろしいですか？"
+      table:
+        account_name: アカウント名
+        administrator_rights: 管理者権限
+        "yes": あり
+        "no": なし
+        user_confirm_deletion: "%{user}を削除してもよろしいですか？"
+      edit:
+        admin_change_page: 管理権限を変更する
+        administrator_rights: 管理者権限
+        "yes": あり
+        "no": なし
+        cancel: キャンセル
+      index:
+        to_admin_top_page: 管理メニュートップへ
   comments:
-    add_comment: コメントをする
-    delete_comment: コメントを削除する
+    form:
+      add_comment: コメントをする
+      commenter: "%{name}としてコメントを公開する"
+    index:
+      delete_comment: コメントを削除する
   layouts:
-    list_of_posts: 投稿一覧
-    my_favorite_ranking: 私のお気に入りランキング
-    logout: ログアウト
+    header:
+      list_of_posts: 投稿一覧
+      my_favorite_ranking: 私のお気に入りランキング
+      logout: ログアウト
   posts:
     form_parts:
       form:
@@ -48,12 +65,16 @@ ja:
         iine_ranking: いいね！ランキング
         rank: "%{rank}位"
       thumbnail:
+        food_menu: "メニュー名: %{name}"
         poster_name: "%{name}さん"
         posting_time: "%{time}前"
         category_and_rank: "%{category}の%{rank}に投稿しました"
         location: "所在地: %{address}"
+        learn_more: もっと詳しく
     edit:
       post_edit_page: 投稿記事を編集する
+    hashtag:
+      learn_more: もっと詳しく
     index:
       latest_article: 最新記事
       new_post: 投稿する
@@ -86,11 +107,15 @@ ja:
         to_confirm_page: 確認画面へ
         update_account_info: アカウント情報を更新する
     show_parts:
+      thumbnail:
+        learn_more: もっと詳しく
+        food_menu: "メニュー名: %{name}"
       user_account_menu:
         admin_only_page: 管理者専用ページ
         change_account_info: アカウント情報を変更
         change_password: パスワードを変更する
         quit_docking: 退会する
+        new_post: 投稿する
         liked_posts: いいね！した投稿
     confirm:
       please_confirm: |
@@ -111,6 +136,7 @@ ja:
       cancel: キャンセル
     iine_post_list:
       user_liked_posts: "%{user}さんがいいね！した投稿"
+      learn_more: もっと詳しく
     new:
       create_account_page: アカウント作成
       to_login_page: ログインページへ

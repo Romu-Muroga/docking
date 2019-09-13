@@ -14,14 +14,14 @@
                   <%= link_to post_path(iine_post) do %>
                     <%= image_tag(iine_post.picture.image.url) %>
                     <div class="mask">
-                      <div class="mask_message">Learn more!</div>
+                      <div class="mask_message"><%= t('.learn_more') %></div>
                     </div>
                   <% end %>
                 <% else %>
                   <%= link_to post_path(iine_post) do %>
                     <%= image_tag("/images/default2.jpg") %>
                     <div class="mask">
-                      <div class="mask_message">Learn more!</div>
+                      <div class="mask_message"><%= t('.learn_more') %></div>
                     </div>
                   <% end %>
                 <% end %>

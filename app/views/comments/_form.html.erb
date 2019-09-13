@@ -1,9 +1,9 @@
 <%= form_with(model: comment) do |f| %>
   <div class="form-group">
-    <%= f.text_area :content, placeholder: "#{current_user.name.truncate(12, omission: '...')}としてコメントを公開する", class: "form-control" %>
+    <%= f.text_area :content, placeholder: t('.commenter', name: current_user.name.truncate(12, omission: '...')), class: "form-control" %>
     <%= f.hidden_field :post_id, value: post.id %>
   </div>
   <div class="actions">
-    <%= f.submit t('comments.add_comment'), class: "btn btn-default" %>
+    <%= f.submit t('.add_comment'), class: "btn btn-default" %>
   </div>
 <% end %>

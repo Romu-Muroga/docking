@@ -1,8 +1,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= t('admin.users.account_name') %></th>
-      <th><%= t('admin.users.administrator_rights') %></th>
+      <th><%= t('.account_name') %></th>
+      <th><%= t('.administrator_rights') %></th>
       <th></th><!-- 空マス -->
     </tr>
   </thead>
@@ -11,16 +11,16 @@
       <tr>
         <td><%= user.name %></td>
         <% if user.admin %>
-          <td><%= t('admin.users.yes') %></td>
+          <td><%= t('.yes') %></td>
         <% else %>
-          <td><%= t('admin.users.no') %></td>
+          <td><%= t('.no') %></td>
         <% end %>
         <td>
           <%= link_to t('edit_button'), edit_admin_user_path(user) %>&nbsp;
           <%= link_to t('delete_button'),
                        admin_user_path(user),
                        method: :delete,
-                       data: { confirm: t('admin.users.user_delete_message', user: user.name) },
+                       data: { confirm: t('.user_confirm_deletion', user: user.name) },
                        class: "user_destroy_link"
           %>
         </td>

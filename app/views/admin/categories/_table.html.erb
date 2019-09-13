@@ -14,7 +14,7 @@
           <%= link_to t('delete_button'),
                        admin_category_path(category),
                        method: :delete,
-                       data: { confirm: t('admin.categories.category_delete_message', category: category.name) },
+                       data: { confirm: t('.category_confirm_deletion', category: category.name) },
                        class: "category_destroy_link"
           %>
         </td>
