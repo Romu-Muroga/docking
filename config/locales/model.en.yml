@@ -1,37 +1,42 @@
 en:
   activerecord:
     models:
-      post: "Post"
-      category: "Category"
-      user: "User"
-      picture: "Picture"
-      comment: "Comment"
-      hashtag: "Hashtag"
-      like: "Like"
+      post: Post
+      category: Category
+      user: User
+      picture: Picture
+      comment: Comment
+      hashtag: Hashtag
+      like: Like!
     enum:
       post:
         ranking_point:
-          first_place: "No.1"
-          second_place: "No.2"
-          third_place: "No.3"
+          first_place: First place
+          second_place: Second place
+          third_place: Third place
     attributes:
       post:
-        category_id: "Category"
-        category: "Category"
-        ranking_point: "Rank"
-        eatery_name: "Eatery name"
-        eatery_food: "Menu"
-        eatery_address: "Eatery address"
-        eatery_website: "Website"
-        remarks: "Meno"
+        category_id: Category
+        category: Category
+        ranking_point: Rank
+        eatery_name: The name of the restaurant
+        eatery_food: Menu
+        eatery_address: Address
+        eatery_website: Website URL
+        remarks: Memo
+        image: Image
+        picture_delete_check: Delete image
       category:
-        name: "Category name"
+        name: Category name
       user:
-        name: "name"
-        email: "email"
-        password: "password"
-        password_confirmation: "password_confirmation"
-        admin: "admin"
-        current_password: "current password"
+        name: Name
+        email: E-mail address
+        password: password
+        password_confirmation: Please enter your password again.
+        admin: Administrator
+        current_password: Current password
+        image: Icon image
+        picture_delete_check: Delete icon image
+        destroy_check: If you like, please check and press the unsubscribe button.
       picture:
-        image: "image"
+        image: Image
