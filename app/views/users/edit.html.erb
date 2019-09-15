@@ -1,9 +1,9 @@
-<div class="wrapper" id="edit_account_info_block">
+<div class="wrapper" id="edit_account_setting_block">
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 input_form_area">
         <div class="input_form_area_body">
-          <h3><%= t('.change_account_info_page') %></h3>
+          <h3><%= t('.change_account_setting_page') %></h3>
           <%= render partial: 'users/form_parts/form', locals: { user: @user } %>
           <%= link_to t('.cancel'), user_path(current_user), class: "btn btn-default" %>
         </div>

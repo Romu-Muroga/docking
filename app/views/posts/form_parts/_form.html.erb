@@ -4,39 +4,43 @@
     <p><%= t('.constraints') %></p>
     <!-- TODO: error -->
     <div class="form-group chg_inblock">
-      <%= f.label :category_id, t('.label_text', attribute: Post.human_attribute_name(:category_id)) %><br>
-      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: t('.not_selected'), class: "form-control" %>
+      <%= f.label :category_id %><br>
+      <%= f.collection_select :category_id, Category.all, :id, :name, {}, required: "required", class: "form-control" %>
+      <span class="caution"><%= t('.required') %></span>
     </div>
     <div class="form-group chg_inblock">
-      <%= f.label :ranking_point, t('.label_text', attribute: Post.human_attribute_name(:ranking_point)) %><br>
+      <%= f.label :ranking_point %><br>
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
-                   prompt: t('.not_selected'),
+                   {},
+                   required: "required",
                    class: "form-control"
-      %>
+      %><span class="caution"><%= t('.required') %></span>
     </div>
     <%= render partial: 'posts/form_parts/unavailable_post', locals: { post: post } %>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= f.label :eatery_name, t('.label_text', attribute: Post.human_attribute_name(:eatery_name)) %>
+          <%= f.label :eatery_name %><br>
           <%= f.autocomplete_field :eatery_name,
                                    autocomplete_post_eatery_name_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
                                    placeholder: t('.ex_name'),
+                                   required: 'required',
                                    class: "form-control"
-          %>
+          %><span class="caution"><%= t('.required') %></span>
         </div>
         <div class="form-group">
-          <%= f.label :eatery_food, t('.label_text', attribute: Post.human_attribute_name(:eatery_food)) %>
+          <%= f.label :eatery_food %><br>
           <%= f.autocomplete_field :eatery_food,
                                    autocomplete_post_eatery_food_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
                                    placeholder: t('.ex_food'),
+                                   required: 'required',
                                    class: "form-control"
-          %>
+          %><span class="caution"><%= t('.required') %></span>
         </div>
         <div class="form-group">
           <%= f.label :eatery_address %>
@@ -77,5 +81,5 @@
       </div>
     </div>
   </div>
-  <%= f.submit class: "btn btn-default" %>
+  <%= f.submit choose_post, class: "btn btn-default" %>
 <% end %>

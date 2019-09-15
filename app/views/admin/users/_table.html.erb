@@ -9,7 +9,7 @@
   <tbody>
     <% users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td class="user_name_td"><%= user.name %></td>
         <% if user.admin %>
           <td><%= t('.yes') %></td>
         <% else %>

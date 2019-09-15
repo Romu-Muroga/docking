@@ -7,15 +7,15 @@ ja:
         category_edit_page: カテゴリーを編集する
         cancel: キャンセル
       index:
-        to_admin_top_page: 管理メニュートップへ
+        to_admin_top_page: 管理トップメニューへ
         new_category: カテゴリーを追加する
       new:
         create_new: 新規作成
         cancel: キャンセル
     tops:
       index:
-        to_category_list: カテゴリ管理画面へ
-        to_user_list: ユーザー管理画面へ
+        to_category_list: カテゴリー管理
+        to_user_list: ユーザー管理
         return_to_mypage: マイページへ戻る
     users:
       table:
@@ -25,13 +25,13 @@ ja:
         "no": なし
         user_confirm_deletion: "%{user}を削除してもよろしいですか？"
       edit:
-        admin_change_page: 管理権限を変更する
+        admin_change_page: 権限を変更する
         administrator_rights: 管理者権限
         "yes": あり
         "no": なし
         cancel: キャンセル
       index:
-        to_admin_top_page: 管理メニュートップへ
+        to_admin_top_page: 管理トップメニューへ
   comments:
     form:
       add_comment: コメントをする
@@ -46,15 +46,16 @@ ja:
   posts:
     form_parts:
       form:
-        constraints: ※各カテゴリー１位〜３位まで、ご登録いただけます
-        label_text: "%{attribute}（必須）"
+        constraints: ※各カテゴリー１位〜３位まで、投稿できます
+        required: 必須
         not_selected: 選択されていません
         ex_name: "例：中華一番"
         ex_food: "例：醤油ラーメン"
         ex_address: "例：東京都渋谷区"
         ex_url: "例：https://xxxxxxx.com"
+        to_post: 投稿する
       unavailable_post:
-        registered_list: 登録済みのリスト
+        posted_list: 投稿済みのリスト
     index_parts:
       overall_ranking:
         overall_ranking_value: "%{rank}位 %{eatery_name}（%{category}）%{point}ポイント"
@@ -72,7 +73,7 @@ ja:
         location: "所在地: %{address}"
         learn_more: もっと詳しく
     edit:
-      post_edit_page: 投稿記事を編集する
+      post_edit_page: 投稿を編集する
     hashtag:
       learn_more: もっと詳しく
     index:
@@ -81,13 +82,13 @@ ja:
     new:
       create_new: 新規作成
     show:
-      eatery_name_and_menu: "%{name} Menu: %{menu}"
+      eatery_name_and_menu: "%{name} メニュー名: %{menu}"
       user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"
       posting_time: "%{time}前"
       number_of_likes: "いいね！登録 %{count}件"
       location: "所在地: %{address}"
-      unregistered_website: "Website: 未登録"
-      registered_website: "Website: "
+      unregistered_website: "ウェブサイト URL: 未登録"
+      registered_website: "ウェブサイト URL: "
   sessions:
     new:
       login_page: ログイン
@@ -103,16 +104,17 @@ ja:
   users:
     form_parts:
       form:
-        word_count: ６文字以上必要です
+        word_count: ６文字以上を入力してください
         to_confirm_page: 確認画面へ
-        update_account_info: アカウント情報を更新する
+        update_account_setting: アカウント設定を更新する
+        required: 必須
     show_parts:
       thumbnail:
         learn_more: もっと詳しく
         food_menu: "メニュー名: %{name}"
       user_account_menu:
         admin_only_page: 管理者専用ページ
-        change_account_info: アカウント情報を変更
+        change_account_setting: アカウント設定を変更
         change_password: パスワードを変更する
         quit_docking: 退会する
         new_post: 投稿する
@@ -122,7 +124,7 @@ ja:
         ※以下の内容で登録します。
         ご確認をお願いいたします。
       return_to_input: 入力画面に戻る
-      create_account: アカウントを作成する
+      create_account: Dockingアカウントを作成
       # create_account: Create your Docking account
     destroy_confirm:
       quit_page: 退会処理
@@ -132,18 +134,18 @@ ja:
       quit_completed: 退会処理完了
       to_docking: Dockingへ
     edit:
-      change_account_info_page: アカウント情報を変更する
+      change_account_setting_page: アカウント設定を変更
       cancel: キャンセル
     iine_post_list:
       user_liked_posts: "%{user}さんがいいね！した投稿"
       learn_more: もっと詳しく
     new:
-      create_account_page: アカウント作成
+      create_account_page: アカウントを作成
       to_login_page: ログインページへ
     password_reset:
-      password_reset_page: パスワードを再設定する
+      password_reset_page: パスワードを再設定
       new_password: 新しいパスワード
-      word_count: ６文字以上必要です
+      word_count: ６文字以上を入力してください
       change_password: パスワードを変更する
       cancel: キャンセル
   flash:
@@ -157,11 +159,14 @@ ja:
     access_denied: "%{url}へのアクセスが拒否されました"
     search_word_is_empty: 検索ワードが空白です
     account_registration_and_login_completed: "%{user}さんのアカウント登録とログインが完了しました"
-    account_info_update: アカウント情報が更新されました
+    account_setting_update: アカウント設定が更新されました
     please_check: チェックボックスにチェックを入れてください
     password_updated: パスワードが更新されました
     admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
     invalid_value: 不正な値です
+  helpers:
+    select:
+      prompt: 選択されていません
   error_occurred: エラーが発生しました。以下の項目について確認してください。
   no_post: 投稿がありません
   confirm_deletion: 削除してよろしいですか？

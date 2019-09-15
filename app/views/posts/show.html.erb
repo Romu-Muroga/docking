@@ -36,7 +36,7 @@
                 <% if @post.eatery_website == "未登録" %>
                   <li class="eweb_text"><%= t('.unregistered_website') %><li>
                 <% else %>
-                  <li class="eweb_text"><%= t('.registered_website') %><%= link_to @post.eatery_name, @post.eatery_website %></li>
+                  <li class="eweb_text"><%= t('.registered_website') %><%= link_to @post.eatery_website, @post.eatery_website %></li>
                 <% end %>
               </ul>
             </div>

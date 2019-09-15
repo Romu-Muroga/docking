@@ -22,7 +22,7 @@ ja:
         eatery_name: 店名
         eatery_food: メニュー
         eatery_address: 所在地
-        eatery_website: Website
+        eatery_website: ウェブサイト URL
         remarks: メモ
         image: 画像
         picture_delete_check: 画像を削除
@@ -30,9 +30,9 @@ ja:
         name: カテゴリー名
       user:
         name: 名前
-        email: メールアドレス
+        email: Eメールアドレス
         password: パスワード
-        password_confirmation: 確認用パスワード
+        password_confirmation: もう一度パスワードを入力してください
         admin: 管理者
         current_password: 現在のパスワード
         image: アイコン画像

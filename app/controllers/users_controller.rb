@@ -81,7 +81,7 @@ class UsersController < ApplicationController
         @user.picture.save!
       end
     end
-    redirect_to (@user), success: t('flash.account_info_update')
+    redirect_to (@user), success: t('flash.account_setting_update')
     rescue => e
       puts e.message
       render :edit

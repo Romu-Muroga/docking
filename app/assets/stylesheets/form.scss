@@ -42,6 +42,7 @@
         background-color:	rgba(0,0,0,0.4);	/* マスクは半透明 */
         -webkit-transition:	all 0.3s ease;
         transition:	all 0.3s ease;
+        border-radius: 4px;
         &_message {
           width: 100%;
           height: 25%;
@@ -60,10 +61,31 @@
       }
     }
   }
+  .post_form_inner {
+    .caution {
+      color: black;
+      background-color: #CCC;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-left: 6px;
+      padding: 2px 6px;
+      font-size: x-small;
+    }
+    #post_eatery_name, #post_eatery_food {
+      display: inline-block;
+      width: 87%;
+    }
+  }
   div.chg_inblock {
     display: inline-block;
+    width: 36%;
     select {
+      display: inline-block;
+      width: 80%;
       border-color: #CCC;
+      &#post_ranking_point {
+        width: 25%;
+      }
     }
     .has-error {
       display: inline-grid;
@@ -183,6 +205,21 @@
       padding: 20px;
       border: solid 1px silver;
       border-radius: 4px;
+      .form_inner {
+        .form-group {
+          position: relative;
+        }
+        .caution {
+          color: white;
+          background-color: orangered;
+          font-weight: bold;
+          border-radius: 4px;
+          padding: 2px 6px;
+          font-size: x-small;
+          position: absolute;
+          right: 10px;
+        }
+      }
     }
     input.btn-default {
       background-color: #CCC;
@@ -198,7 +235,7 @@
   }
 }
 
-#edit_account_info_block, #password_reset_block {
+#edit_account_setting_block, #password_reset_block {
   padding-top: 100px;
   height: 120%;
   .input_form_area {
@@ -207,6 +244,21 @@
       padding: 20px;
       border: solid 1px silver;
       border-radius: 4px;
+      .form_inner {
+        .form-group {
+          position: relative;
+        }
+        .caution {
+          color: black;
+          background-color: #CCC;
+          font-weight: bold;
+          border-radius: 4px;
+          padding: 2px 6px;
+          font-size: x-small;
+          position: absolute;
+          right: 10px;
+        }
+      }
       .imgPrev {
         position: relative;
         height: 170px;
