@@ -1,14 +1,21 @@
 .admin_top_menu {
   text-align: center;
   margin-top: 30vh;
-  ul {
-    padding: 0;
+  padding: 0px 100px 0px 100px;
+  &_body {
+    padding: 20px 6px;
+    border: solid 1px silver;
+    border-radius: 4px;
+    h3 {
+      margin: 0;
+    }
     li {
       list-style: none;
-    }
-    li a {
-      margin-bottom: 20px;
-      width: 214px;
+      margin: 17px 0 17px 0;
+      a {
+        color: black;
+        font-size: 1.2em;
+      }
     }
   }
 }

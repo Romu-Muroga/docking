@@ -2,11 +2,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 admin_top_menu">
-        <ul>
-          <li><%= link_to t('.to_category_list'), admin_categories_path, class: "btn btn-warning btn-lg" %></li>
-          <li><%= link_to t('.to_user_list'), admin_users_path, class: "btn btn-warning btn-lg" %></li>
+        <ul class="admin_top_menu_body">
+          <h3>管理トップメニュー</h3>
+          <li><%= link_to t('.to_category_list'), admin_categories_path %></li>
+          <li><%= link_to t('.to_user_list'), admin_users_path %></li>
+          <p><%= link_to t('.return_to_mypage'), user_path(current_user), class: "btn btn-default" %></p>
         </ul>
-        <%= link_to t('.return_to_mypage'), user_path(current_user), class: "btn btn-default" %>
       </div>
     </div>
   </div>
