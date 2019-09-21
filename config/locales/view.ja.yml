@@ -16,7 +16,7 @@ ja:
       index:
         to_category_list: カテゴリー管理
         to_user_list: ユーザー管理
-        return_to_mypage: マイページへ戻る
+        return_to_mypage: 私のお気に入りランキングへ戻る
     users:
       table:
         account_name: アカウント名

@@ -5,12 +5,14 @@
         <div class="row admin_top_menu_body">
           <%= link_to admin_categories_path do %>
             <div class="col-md-6 left_sec">
-              <%= t('.to_category_list') %>
+              <p><%= t('.to_category_list') %></p>
+              <i class="fas fa-utensils fa-7x"></i>
             </div>
           <% end %>
           <%= link_to admin_users_path do %>
             <div class="col-md-6 right_sec">
-              <%= t('.to_user_list') %>
+              <p><%= t('.to_user_list') %></p>
+              <i class="fas fa-users fa-7x"></i>
             </div>
           <% end %>
           <p><%= link_to t('.return_to_mypage'), user_path(current_user), class: "mypage_btn" %></p>
