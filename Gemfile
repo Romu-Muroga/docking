@@ -32,6 +32,8 @@ gem 'mini_magick', '>= 4.9.4'
 gem 'ransack'
 # auto_link
 gem 'rails_autolink'
+# pagination
+gem 'kaminari'
 
 group :development, :test do
   # debug

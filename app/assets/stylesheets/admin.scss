@@ -61,6 +61,10 @@
   .table {
     margin-top: 20px;
   }
+  .prev_page, .next_page {
+    color: unset;
+    float: right;
+  }
 }
 
 .admin_users_index {

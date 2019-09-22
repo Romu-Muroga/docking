@@ -3,6 +3,8 @@ en:
     categories:
       table:
         category_confirm_deletion: "Can I delete %{category}？"
+        prev_page: Previous
+        next_page: Next
       edit:
         category_edit_page: Edit a category
         cancel: Cancel

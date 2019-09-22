@@ -1,9 +1,10 @@
 class Admin::UsersController < ApplicationController
   before_action :current_user_admin?
   before_action :set_user, only: %i[edit update destroy]
+  PER = 13
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(PER)
   end
 
   def edit; end

@@ -3,6 +3,8 @@ ja:
     categories:
       table:
         category_confirm_deletion: "%{category}を削除してもよろしいですか？"
+        prev_page: 前のページ
+        next_page: 次のページ
       edit:
         category_edit_page: カテゴリーを編集する
         cancel: キャンセル
@@ -125,7 +127,6 @@ ja:
         ご確認をお願いいたします。
       return_to_input: 入力画面に戻る
       create_account: Dockingアカウントを作成
-      # create_account: Create your Docking account
     destroy_confirm:
       quit_page: 退会処理
       quit: 退会

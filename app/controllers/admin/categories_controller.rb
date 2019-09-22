@@ -1,9 +1,10 @@
 class Admin::CategoriesController < ApplicationController
   before_action :current_user_admin?
   before_action :set_category, only: %i[edit update destroy]
+  PER = 13
 
   def index
-    @categories = Category.all
+    @categories = Category.page(params[:page]).per(PER)
   end
 
   def new
