@@ -2,10 +2,10 @@
   padding-top: 130px;
   &_body {
     padding: 20px;
-    .left_sec {
+    .left_button {
       height: 300px;
       width: 48%;
-      background-color: #48A99D;
+      background-color: powderblue;
       text-align: center;
       border-radius: 4px;
       p {
@@ -18,10 +18,10 @@
         font-size: 8em;
       }
     }
-    .right_sec {
+    .right_button {
       height: 300px;
       width: 48%;
-      background-color: #F6AF42;
+      background-color: wheat;
       float: right;
       text-align: center;
       border-radius: 4px;
@@ -41,8 +41,8 @@
       width: 100%;
       height: 50px;
       margin-top: 20px;
-      color: white;
-      background-color: darkblue;
+      color: black;
+      background-color: #CCC;
       border-radius: 4px;
       font-size: 1.2em;
       padding: 11px;
