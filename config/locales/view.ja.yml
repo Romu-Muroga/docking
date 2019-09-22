@@ -1,32 +1,174 @@
 ja:
+  admin:
+    categories:
+      table:
+        category_confirm_deletion: "%{category}を削除してもよろしいですか？"
+      edit:
+        category_edit_page: カテゴリーを編集する
+        cancel: キャンセル
+      index:
+        to_admin_top_page: 管理トップメニューへ
+        new_category: カテゴリーを追加する
+      new:
+        create_new: 新規作成
+        cancel: キャンセル
+    tops:
+      index:
+        to_category_list: カテゴリー管理
+        to_user_list: ユーザー管理
+        return_to_mypage: 私のお気に入りランキングへ戻る
+    users:
+      table:
+        account_name: アカウント名
+        administrator_rights: 管理者権限
+        "yes": あり
+        "no": なし
+        user_confirm_deletion: "%{user}を削除してもよろしいですか？"
+      edit:
+        admin_change_page: 権限を変更する
+        administrator_rights: 管理者権限
+        "yes": あり
+        "no": なし
+        cancel: キャンセル
+      index:
+        to_admin_top_page: 管理トップメニューへ
+  comments:
+    form:
+      add_comment: コメントをする
+      commenter: "%{name}としてコメントを公開する"
+    index:
+      delete_comment: コメントを削除する
+  layouts:
+    header:
+      list_of_posts: 投稿一覧
+      my_favorite_ranking: 私のお気に入りランキング
+      logout: ログアウト
+  posts:
+    form_parts:
+      form:
+        constraints: ※各カテゴリー１位〜３位まで、投稿できます
+        required: 必須
+        not_selected: 選択されていません
+        ex_name: "例：中華一番"
+        ex_food: "例：醤油ラーメン"
+        ex_address: "例：東京都渋谷区"
+        ex_url: "例：https://xxxxxxx.com"
+        to_post: 投稿する
+      unavailable_post:
+        posted_list: 投稿済みのリスト
+    index_parts:
+      overall_ranking:
+        overall_ranking_value: "%{rank}位 %{eatery_name}（%{category}）%{point}ポイント"
+      search_form:
+        search: 検索
+      tabs:
+        overall_ranking: 総合ランキング
+        iine_ranking: いいね！ランキング
+        rank: "%{rank}位"
+      thumbnail:
+        food_menu: "メニュー名: %{name}"
+        poster_name: "%{name}さん"
+        posting_time: "%{time}前"
+        category_and_rank: "%{category}の%{rank}に投稿しました"
+        location: "所在地: %{address}"
+        learn_more: もっと詳しく
+    edit:
+      post_edit_page: 投稿を編集する
+    hashtag:
+      learn_more: もっと詳しく
+    index:
+      latest_article: 最新記事
+      new_post: 投稿する
+    new:
+      create_new: 新規作成
+    show:
+      eatery_name_and_menu: "%{name} メニュー名: %{menu}"
+      user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"
+      posting_time: "%{time}前"
+      number_of_likes: "いいね！登録 %{count}件"
+      location: "所在地: %{address}"
+      unregistered_website: "ウェブサイト URL: 未登録"
+      registered_website: "ウェブサイト URL: "
+  sessions:
+    new:
+      login_page: ログイン
+      email: メールアドレス
+      password: パスワード
+      login: ログイン
+      no_account: アカウントをお持ちでない方は
+      here: こちら
+  tops:
+    start_up_area:
+      login: ログイン
+      create_account: アカウント作成
+  users:
+    form_parts:
+      form:
+        word_count: ６文字以上を入力してください
+        to_confirm_page: 確認画面へ
+        update_account_setting: アカウント設定を更新する
+        required: 必須
+    show_parts:
+      thumbnail:
+        learn_more: もっと詳しく
+        food_menu: "メニュー名: %{name}"
+      user_account_menu:
+        admin_only_page: 管理者専用ページ
+        change_account_setting: アカウント設定を変更
+        change_password: パスワードを変更する
+        quit_docking: 退会する
+        new_post: 投稿する
+        liked_posts: いいね！した投稿
+    confirm:
+      please_confirm: |
+        ※以下の内容で登録します。
+        ご確認をお願いいたします。
+      return_to_input: 入力画面に戻る
+      create_account: Dockingアカウントを作成
+      # create_account: Create your Docking account
+    destroy_confirm:
+      quit_page: 退会処理
+      quit: 退会
+      cancel: キャンセル
+    destroy:
+      quit_completed: 退会処理完了
+      to_docking: Dockingへ
+    edit:
+      change_account_setting_page: アカウント設定を変更
+      cancel: キャンセル
+    iine_post_list:
+      user_liked_posts: "%{user}さんがいいね！した投稿"
+      learn_more: もっと詳しく
+    new:
+      create_account_page: アカウントを作成
+      to_login_page: ログインページへ
+    password_reset:
+      password_reset_page: パスワードを再設定
+      new_password: 新しいパスワード
+      word_count: ６文字以上を入力してください
+      change_password: パスワードを変更する
+      cancel: キャンセル
   flash:
     create: "%{content}を登録しました"
     update: "%{content}を更新しました"
     destroy: "%{content}を削除しました"
-    login_succeeded: "ログインしました"
-    login_failed: "メールアドレスまたはパスワードが正しくありません"
-    logged_out: "ログアウトしました"
-    please_login: "ログインしてください"
+    login_succeeded: ログインしました
+    login_failed: メールアドレスまたはパスワードが正しくありません
+    logged_out: ログアウトしました
+    please_login: ログインしてください
     access_denied: "%{url}へのアクセスが拒否されました"
-    search_word_is_empty: "検索ワードが空白です"
+    search_word_is_empty: 検索ワードが空白です
     account_registration_and_login_completed: "%{user}さんのアカウント登録とログインが完了しました"
-    account_info_update: "アカウント情報が更新されました"
-    please_check: "チェックボックスにチェックを入れてください"
-    password_updated: "パスワードが更新されました"
+    account_setting_update: アカウント設定が更新されました
+    please_check: チェックボックスにチェックを入れてください
+    password_updated: パスワードが更新されました
     admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
-    invalid_value: "不正な値です"
-  views:
-    users:
-      new_page: "Create account"
-      edit_page: "Edit account info"
-      password_reset_page: "Change password"
-      destroy_page: "退会処理"
-      admin_edit_page: "Edit admin authority"
-    sessions:
-      login_page: "Login"
-    posts:
-      new_page: "New post"
-      edit_page: "Edit post"
-    categories:
-      new_page: "New category"
-      edit_page: "Edit category"
+    invalid_value: 不正な値です
+  helpers:
+    select:
+      prompt: 選択されていません
+  error_occurred: エラーが発生しました。以下の項目について確認してください。
+  no_post: 投稿がありません
+  confirm_deletion: 削除してよろしいですか？
+  edit_button: 編集
+  delete_button: 削除

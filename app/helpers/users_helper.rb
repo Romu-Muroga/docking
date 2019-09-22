@@ -3,7 +3,7 @@ module UsersHelper
     action_name == 'new' || action_name == 'confirm' || action_name == 'create'
   end
 
-  def Edit_account_info_page?
+  def Edit_account_setting_page?
     action_name == 'edit' || action_name == 'update'
   end
 
@@ -15,11 +15,11 @@ module UsersHelper
     end
   end
 
-  def choose_confirm_screen
+  def choose_confirm_screen_or_update_account_setting
     if action_name == 'new' || action_name == 'confirm' || action_name == 'create'
-      '確認画面へ'
+      t('.to_confirm_page')
     elsif action_name == 'edit' || action_name == 'update'
-      'アカウント情報を更新する'
+      t('.update_account_setting')
     end
   end
 

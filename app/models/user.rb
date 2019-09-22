@@ -18,9 +18,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   # method
-  def password_insert_errors(old_password, new_password)
-    errors.add(:old_password, 'が違います') if old_password.present? && !self&.authenticate(old_password)
-    errors.add(:old_password, 'を入力してください') if old_password.blank?
+  def password_insert_errors(current_password, new_password)
+    errors.add(:current_password, 'が違います') if current_password.present? && !self&.authenticate(current_password)
+    errors.add(:current_password, 'を入力してください') if current_password.blank?
     errors.add(:password, 'を入力してください') if new_password.blank?
   end
 

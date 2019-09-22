@@ -4,9 +4,9 @@
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 input_form_area">
         <%= image_tag("/images/logo3.png", class: "img-responsive") %>
         <div class="input_form_area_body">
-          <h3><%= t('views.users.new_page') %></h3>
-          <%= render partial: 'form', locals: { user: @user } %>
-          <%= link_to 'ログインページへ', login_path, class: "btn btn-default" %>
+          <h3><%= t('.create_account_page') %></h3>
+          <%= render partial: 'users/form_parts/form', locals: { user: @user } %>
+          <%= link_to t('.to_login_page'), login_path, class: "btn btn-default" %>
         </div>
       </div>
     </div>

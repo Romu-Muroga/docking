@@ -2,7 +2,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>カテゴリー名</th>
+        <th><%= Category.human_attribute_name(:name) %></th>
       </tr>
     </thead>
     <tbody>
@@ -10,8 +10,8 @@
         <tr class="active_category">
           <td>
             <%= link_to category.name,
-                        category_user_path(category, @user),
-                        class: cp(category_user_path(category, @user))
+                        user_category_posts_path(@user, category),
+                        class: cp(user_category_posts_path(@user, category))
             %>
           </td>
         </tr>

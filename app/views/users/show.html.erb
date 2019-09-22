@@ -17,7 +17,7 @@
             <% if @user_posts.present? %>
               <%= render partial: 'users/show_parts/thumbnail', collection: @user_posts, as: 'user_post' %>
             <% else %>
-              <h4 class="no_post_message">投稿がありません</h4>
+              <h4 class="no_post_message"><%= t('no_post')%></h4>
             <% end %>
           </div>
           <div class="col-md-3 right_section">

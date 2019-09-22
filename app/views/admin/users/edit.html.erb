@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
-        <h3><span class="underline"><%= t('views.users.admin_edit_page') %></span></h3>
+        <h3><span class="underline"><%= t('.admin_change_page') %></span></h3>
         <%= form_with(model: [:admin, @user], local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
             <% if @user.errors.any? %>
               <div id="error_explanation">
-                <h4>エラーが発生しました。以下の項目について確認してください。</h4>
+                <h4><%= t('error_occurred') %></h4>
                 <ul>
                   <% @user.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
@@ -17,18 +17,24 @@
             <% end %>
             <h3><%= @user.name %></h3>
             <div class="form-group">
-              <%= f.label :admin, '管理者権限' %>
+              <%= f.label :admin, t('.administrator_rights') %>
               <div>
-                <label><%= f.radio_button :admin, 0, checked: @user.admin %>&nbsp;&nbsp;あり</label>
+                <label>
+                  <%= f.radio_button :admin, 0, checked: @user.admin %>
+                  <%= t('.yes') %>
+                </label>
               </div>
               <div>
-                <label><%= f.radio_button :admin, 1, checked: !@user.admin %>&nbsp;&nbsp;なし</label>
+                <label>
+                  <%= f.radio_button :admin, 1, checked: !@user.admin %>
+                  <%= t('.no') %>
+                </label>
               </div>
             </div>
           </div>
           <%= f.submit class: "btn btn-default" %>
         <% end %>
-        <%= link_to 'back', admin_users_path, class: "btn btn-default" %>
+        <%= link_to t('.cancel'), admin_users_path, class: "btn btn-default" %>
       </div>
     </div>
   </div>

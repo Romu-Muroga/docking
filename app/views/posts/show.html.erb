@@ -7,23 +7,24 @@
           <div class="thumbnail_header">
             <ul>
               <li class="category_label"><%= @post.category.name %></li>
-              <li class="en_text"><%= @post.eatery_name %></li>
-              <li class="ef_text">Menu: <%= @post.eatery_food %></li>
+              <li><%= t('.eatery_name_and_menu', name: @post.eatery_name, menu: @post.eatery_food) %></li>
             </ul>
           </div>
           <div class="caption">
             <div class="caption_user_block">
               <%= no_link_picture(@post.user) %>
               <div class="caption_user_block_post_time">
-                <%= @post.user.name.truncate(12, omission: '...') %>さんが
-                <%= @post.category.name %>の
-                <%= t("activerecord.enum.post.ranking_point.#{@post.ranking_point}") %>に投稿しました。<br>
+                <%= t('.user_category_rank',
+                    user: @post.user.name.truncate(12, omission: '...'),
+                    category: @post.category.name,
+                    rank: t("activerecord.enum.post.ranking_point.#{@post.ranking_point}"))
+                %><br>
                 <time datetime="<%= @post.updated_at %>">
-                  <%= time_ago_in_words(@post.updated_at, include_seconds: true)+"前" %>
+                  <%= t('.posting_time', time: time_ago_in_words(@post.updated_at, include_seconds: true)) %>
                 </time>
               </div>
               <div class="caption_user_block_iine_count">
-                いいね！登録&nbsp;&nbsp;<%= @post.likes_count %>件
+                <%= t('.number_of_likes', count: @post.likes_count) %>
               </div>
             </div>
             <div class="caption_remarks">
@@ -31,11 +32,11 @@
             </div>
             <div class="caption_eatery_info">
               <ul>
-                <li class="eadd_text">Address: <%= @post.eatery_address %></li>
+                <li class="eadd_text"><%= t('.location', address: @post.eatery_address) %></li>
                 <% if @post.eatery_website == "未登録" %>
-                  <li class="eweb_text">Website: 未登録<li>
+                  <li class="eweb_text"><%= t('.unregistered_website') %><li>
                 <% else %>
-                  <li class="eweb_text">Website: <%= link_to @post.eatery_name, @post.eatery_website %></li>
+                  <li class="eweb_text"><%= t('.registered_website') %><%= link_to @post.eatery_website, @post.eatery_website %></li>
                 <% end %>
               </ul>
             </div>
@@ -44,11 +45,12 @@
             </div>
             <% if poster?(@post) %>
               <p class="edit_delete_button">
-                <%= link_to 'EDIT', edit_post_path(@post), class: "btn btn-warning" %>
-                <%= link_to 'DELETE',
+                <%= link_to t('edit_button'), edit_post_path(@post), class: "btn btn-warning" %>
+                <!-- TODO: confirm_deletion -->
+                <%= link_to t('delete_button'),
                              post_path(@post),
                              method: :delete,
-                             data: { confirm: "削除してよろしいですか？" },
+                             data: { confirm: t('confirm_deletion') },
                              class: "btn btn-danger"
                 %>
               </p>
@@ -57,7 +59,7 @@
         </div>
       </div>
       <div class="col-md-3 right_section">
-        <p class="title">コメント</p>
+        <p class="title"><%= Comment.model_name.human %></p>
         <div id="comments_area"><!-- このidをターゲットにして、このdiv内をAjaxで書き換える。 -->
           <%= render partial: 'comments/index', locals: { comments: @comments } %>
         </div>

@@ -6,7 +6,6 @@ class PostsController < ApplicationController
 
   def index
     category_list
-    # defined for search_form
     @q = Post.ransack(params[:q])
     @posts = if params[:category_id]
                @q.result.category_sort(params[:category_id]).includes(:category, :picture, :user, :iine_users)
@@ -98,7 +97,7 @@ class PostsController < ApplicationController
 
   def hashtag
     @hashtag = Hashtag.find_by(hashname: params[:name])
-    @hashtag_posts = @hashtag.posts
+    @hashtag_posts = @hashtag.posts.includes(:picture)
   end
 
   private

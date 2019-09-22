@@ -1,12 +1,22 @@
 <div class="wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 admin_top_menu">
-        <ul>
-          <li><%= link_to 'カテゴリー管理画面へ', admin_categories_path, class: "btn btn-warning btn-lg" %></li>
-          <li><%= link_to 'ユーザー管理画面へ', admin_users_path, class: "btn btn-warning btn-lg" %></li>
-        </ul>
-        <%= link_to 'back', user_path(current_user), class: "btn btn-default" %>
+      <div class="col-md-offset-3 col-md-6 admin_top_menu">
+        <div class="row admin_top_menu_body">
+          <%= link_to admin_categories_path do %>
+            <div class="col-md-6 left_button">
+              <p><%= t('.to_category_list') %></p>
+              <i class="fas fa-utensils fa-7x"></i>
+            </div>
+          <% end %>
+          <%= link_to admin_users_path do %>
+            <div class="col-md-6 right_button">
+              <p><%= t('.to_user_list') %></p>
+              <i class="fas fa-users fa-7x"></i>
+            </div>
+          <% end %>
+          <p><%= link_to t('.return_to_mypage'), user_path(current_user), class: "mypage_btn" %></p>
+        </div>
       </div>
     </div>
   </div>

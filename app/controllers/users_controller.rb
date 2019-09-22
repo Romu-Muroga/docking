@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     elsif @user.save
       session[:user_id] = @user.id
       session.delete(:user)
+      # TODO: viewに表示される文字数制限について
       redirect_to (@user),
                   success: t('flash.account_registration_and_login_completed', user: @user.name)
     else
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def iine_post_list
-    @iine_posts = @user.iine_posts
+    @iine_posts = @user.iine_posts.includes(:picture)
   end
 
   def edit; end
@@ -59,9 +60,9 @@ class UsersController < ApplicationController
 
   def password_update
     # TODO: リファクタリング
-    if @user.password_insert_errors(params[:user][:old_password], params[:user][:password])
+    if @user.password_insert_errors(params[:user][:current_password], params[:user][:password])
       render :password_reset
-    elsif @user&.authenticate(old_password_params[:old_password]) && @user.update(user_params)
+    elsif @user&.authenticate(current_password_params[:current_password]) && @user.update(user_params)
       redirect_to (@user), success: t('flash.password_updated')
     else
       render :password_reset
@@ -80,7 +81,7 @@ class UsersController < ApplicationController
         @user.picture.save!
       end
     end
-    redirect_to (@user), success: t('flash.account_info_update')
+    redirect_to (@user), success: t('flash.account_setting_update')
     rescue => e
       puts e.message
       render :edit
@@ -123,8 +124,8 @@ class UsersController < ApplicationController
     params.require(:cache).permit(:image)
   end
 
-  def old_password_params
-    params.require(:user).permit(:old_password)
+  def current_password_params
+    params.require(:user).permit(:current_password)
   end
 
   def set_user
