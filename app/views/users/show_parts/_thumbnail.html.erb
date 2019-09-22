@@ -3,9 +3,9 @@
     <li class="category_label"><%= user_post.category.name %></li>
     <li class="rp_text">
       <%= t("activerecord.enum.post.ranking_point.#{user_post.ranking_point}") %>&nbsp;&nbsp;
-      <%= user_post.eatery_name %>
+      <%= user_post.eatery_name.truncate(12, omission: '...') %>
     </li>
-    <li>Menu: &nbsp;<%= user_post.eatery_food %></li>
+    <li><%= t('.food_menu', name: user_post.eatery_food.truncate(12, omission: '...')) %></li>
   </ul>
   <%= no_link_picture(user_post) %>
   <div class="caption">
@@ -15,7 +15,7 @@
           h(user_post.remarks.truncate(150, omission: '...')), {}, sanitize: false, wrapper_tag: "div"
           ))) %>
     </div>
-    <p><%= link_to 'Learn more!', post_path(user_post), class: "btn btn-show" %></p>
+    <p><%= link_to t('.learn_more'), post_path(user_post), class: "btn btn-show" %></p>
     <!-- TODO: 公開範囲 -->
     <% if user_post.user_id != current_user.id %>
       <div id="post-<%= user_post.id %>" data-post-id="<%= user_post.id %>" class="iine_button">
@@ -24,12 +24,12 @@
     <% end %>
     <% if poster?(user_post) %>
       <p class="edit_delete_button">
-        <%= link_to 'EDIT', edit_post_path(user_post), class: "btn btn-warning" %>
-        <%= link_to 'DELETE',
-                     post_path(user_post, submitted_page: 'mypage'),
-                     method: :delete,
-                     data: { confirm: '削除してよろしいですか？' },
-                     class: "btn btn-danger"
+        <%= link_to t('edit_button'), edit_post_path(user_post), class: "btn btn-warning" %>
+        <%= link_to t('delete_button'),
+                    post_path(user_post, submitted_page: 'mypage'),
+                    method: :delete,
+                    data: { confirm: t('confirm_deletion') },
+                    class: "btn btn-danger"
         %>
       </p>
     <% end %>

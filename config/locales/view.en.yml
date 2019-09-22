@@ -1,0 +1,173 @@
+en:
+  admin:
+    categories:
+      table:
+        category_confirm_deletion: "Can I delete %{category}？"
+      edit:
+        category_edit_page: Edit a category
+        cancel: Cancel
+      index:
+        to_admin_top_page: To management top menu
+        new_category: Add a category
+      new:
+        create_new: Create New
+        cancel: Cancel
+    tops:
+      index:
+        to_category_list: Category management
+        to_user_list: User management
+        return_to_mypage: Return to My Page
+    users:
+      table:
+        account_name: Account name
+        administrator_rights: Administrator authority
+        "yes": Yes
+        "no": No
+        user_confirm_deletion: "Are you sure you want to delete %{user}？"
+      edit:
+        admin_change_page: Change permissions
+        administrator_rights: Administrator authority
+        "yes": Yes
+        "no": No
+        cancel: Cancel
+      index:
+        to_admin_top_page: To management top menu
+  comments:
+    form:
+      add_comment: Make a comment
+      commenter: "Publish comments as %{name}"
+    index:
+      delete_comment: Delete comment
+  layouts:
+    header:
+      list_of_posts: List of posts
+      my_favorite_ranking: My favorite ranking
+      logout: Logout
+  posts:
+    form_parts:
+      form:
+        constraints: ※You can post from 1st to 3rd place in each category.
+        required: Required
+        not_selected: Not selected
+        ex_name: "Example: McDonald's"
+        ex_food: "Example: Cheeseburger"
+        ex_address: "Example: Shibuya-ku, Tokyo-to"
+        ex_url: "Example: https://xxxxxxx.com"
+        to_post: To post
+      unavailable_post:
+        posted_list: Posted list
+    index_parts:
+      overall_ranking:
+        overall_ranking_value: "%{rank}位 %{eatery_name}（%{category}）%{point}ポイント"
+      search_form:
+        search: Search
+      tabs:
+        overall_ranking: Overall ranking
+        iine_ranking: Like! ranking
+        rank: "%{rank}位"
+      thumbnail:
+        food_menu: "Menu: %{name}"
+        poster_name: "%{name}"
+        posting_time: "%{time}前"
+        category_and_rank: "%{category}の%{rank}に投稿しました"
+        location: "Address: %{address}"
+        learn_more: Learn more!
+    edit:
+      post_edit_page: Edit a post
+    hashtag:
+      learn_more: Learn more!
+    index:
+      latest_article: Latest article
+      new_post: To post
+    new:
+      create_new: Create New
+    show:
+      eatery_name_and_menu: "%{name} Menu: %{menu}"
+      user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"
+      posting_time: "%{time}前"
+      number_of_likes: "いいね！登録 %{count}件"
+      location: "Address: %{address}"
+      unregistered_website: "Website URL: Unregistered"
+      registered_website: "Website URL: "
+  sessions:
+    new:
+      login_page: Login
+      email: E-mail address
+      password: password
+      login: Login
+      no_account: アカウントをお持ちでない方は
+      here: こちら
+  tops:
+    start_up_area:
+      login: Login
+      create_account: Create account
+  users:
+    form_parts:
+      form:
+        word_count: Please enter at least 6 characters.
+        to_confirm_page: To confirmation screen
+        update_account_setting: Update account settings
+        required: Required
+    show_parts:
+      thumbnail:
+        learn_more: Learn more!
+        food_menu: "Menu: %{name}"
+      user_account_menu:
+        admin_only_page: Admin-only page
+        change_account_setting: Change account settings
+        change_password: Change password
+        quit_docking: Unsubscribe
+        new_post: To post
+        liked_posts: Liked Posts
+    confirm:
+      please_confirm: |
+        ※Register with the following contents.
+        Please check.
+      return_to_input: Returns to the input screen.
+      create_account: Create your Docking account
+    destroy_confirm:
+      quit_page: To delete the account.
+      quit: quit
+      cancel: Cancel
+    destroy:
+      quit_completed: Completed withdrawal process
+      to_docking: To Docking
+    edit:
+      change_account_setting_page: Change account settings
+      cancel: Cancel
+    iine_post_list:
+      user_liked_posts: "Posts liked by %{user}"
+      learn_more: Learn more!
+    new:
+      create_account_page: Create account
+      to_login_page: To login page
+    password_reset:
+      password_reset_page: Reset password
+      new_password: New password
+      word_count: Please enter at least 6 characters.
+      change_password: change the password
+      cancel: Cancel
+  flash:
+    create: "%{content}を登録しました"
+    update: "%{content}を更新しました"
+    destroy: "%{content}を削除しました"
+    login_succeeded: ログインしました
+    login_failed: メールアドレスまたはパスワードが正しくありません
+    logged_out: ログアウトしました
+    please_login: ログインしてください
+    access_denied: "%{url}へのアクセスが拒否されました"
+    search_word_is_empty: 検索ワードが空白です
+    account_registration_and_login_completed: "%{user}さんのアカウント登録とログインが完了しました"
+    account_setting_update: アカウント設定が更新されました
+    please_check: チェックボックスにチェックを入れてください
+    password_updated: パスワードが更新されました
+    admin_last_user_cannot_be_deleted: "%{user}さんは、管理者権限を持つ最後のユーザーです。削除できません。"
+    invalid_value: 不正な値です
+  helpers:
+    select:
+      prompt: 選択されていません
+  error_occurred: エラーが発生しました。以下の項目について確認してください。
+  no_post: 投稿がありません
+  confirm_deletion: 削除してよろしいですか？
+  edit_button: 編集
+  delete_button: 削除

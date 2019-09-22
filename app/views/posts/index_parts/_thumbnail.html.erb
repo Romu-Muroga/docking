@@ -8,9 +8,9 @@
         <%= image_tag(post.picture.image.url, class: "img-responsive") %>
         <div class="mask">
           <div class="mask_message">
-            <%= post.eatery_name %><br>
-            Menu: &nbsp;<%= post.eatery_food %><br>
-            ...Learn more!
+            <%= post.eatery_name.truncate(12, omission: '...') %><br>
+            <%= t('.food_menu', name: post.eatery_food.truncate(12, omission: '...')) %><br>
+            &hellip;<%= t('.learn_more') %>
           </div>
         </div>
       <% end %>
@@ -19,35 +19,38 @@
         <%= image_tag("/images/default2.jpg", class: "img-responsive") %>
         <div class="mask">
           <div class="mask_message">
-            <%= post.eatery_name %><br>
-            Menu: &nbsp;<%= post.eatery_food %><br>
-            ...Learn more!
+            <%= post.eatery_name.truncate(12, omission: '...') %><br>
+            <%= t('.food_menu', name: post.eatery_food.truncate(12, omission: '...')) %><br>
+            &hellip;<%= t('.learn_more') %>
           </div>
         </div>
       <% end %>
     <% end %>
   </div>
   <div class="caption">
-    <p><%= post.user.name.truncate(12, omission: '...') %>さん</p>
+    <p><%= t('.poster_name', name: post.user.name.truncate(12, omission: '...')) %></p>
     <p>
       <span>
         <time datetime="<%= post.updated_at %>">
-          <%= time_ago_in_words(post.updated_at, include_seconds: true)+"前" %>・
+          <%= t('.posting_time', time: time_ago_in_words(post.updated_at, include_seconds: true)) %>&#12539;
         </time>
       </span>
       <span>
-        <%= post.category.name %>の
-        <%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>に投稿しました。
+        <%= t('.category_and_rank',
+            category: post.category.name,
+            rank: t("activerecord.enum.post.ranking_point.#{post.ranking_point}"))
+        %>
       </span>
     </p>
-    <p>Address: <%= post.eatery_address %></p>
+    <p><%= t('.location', address: post.eatery_address) %></p>
     <% if poster?(post) %>
-      <%= link_to 'EDIT', edit_post_path(post), class: "btn btn-warning" %>
-      <%= link_to 'DELETE',
-                   post_path(post),
-                   method: :delete,
-                   data: { confirm: "削除してよろしいですか？" },
-                   class: "btn btn-danger"
+      <%= link_to t('edit_button'), edit_post_path(post), class: "btn btn-warning" %>
+      <!-- TODO: confirm_deletion -->
+      <%= link_to t('delete_button'),
+                  post_path(post),
+                  method: :delete,
+                  data: { confirm: t('confirm_deletion') },
+                  class: "btn btn-danger"
       %>
     <% end %>
     <div id="post-<%= post.id %>" data-post-id="<%= post.id %>" class="iine_button">

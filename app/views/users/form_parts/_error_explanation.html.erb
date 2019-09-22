@@ -1,0 +1,10 @@
+<% if user.errors.any? %>
+  <div id="error_explanation">
+    <h5><%= t('error_occurred') %></h5>
+    <ul>
+      <% user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
