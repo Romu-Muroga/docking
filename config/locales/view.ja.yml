@@ -12,7 +12,7 @@ ja:
         to_admin_top_page: 管理トップメニューへ
         new_category: カテゴリーを追加する
       new:
-        create_new: 新規作成
+        create_new_category: カテゴリーを登録
         cancel: キャンセル
     tops:
       index:
@@ -82,7 +82,7 @@ ja:
       latest_article: 最新記事
       new_post: 投稿する
     new:
-      create_new: 新規作成
+      create_new_article: 投稿記事を作成
     show:
       eatery_name_and_menu: "%{name} メニュー名: %{menu}"
       user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"

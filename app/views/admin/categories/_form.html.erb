@@ -12,8 +12,8 @@
     <% end %>
     <div class="form-group">
       <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, required: "required", class: "form-control" %>
     </div>
   </div>
-  <%= f.submit class: "btn btn-default" %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>

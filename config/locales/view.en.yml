@@ -12,7 +12,7 @@ en:
         to_admin_top_page: To management top menu
         new_category: Add a category
       new:
-        create_new: Create New
+        create_new_category: Create New
         cancel: Cancel
     tops:
       index:
@@ -82,7 +82,7 @@ en:
       latest_article: Latest article
       new_post: To post
     new:
-      create_new: Create New
+      create_new_article: Create New
     show:
       eatery_name_and_menu: "%{name} Menu: %{menu}"
       user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"
