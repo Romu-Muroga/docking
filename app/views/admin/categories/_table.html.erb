@@ -12,7 +12,7 @@
   <tbody>
     <% categories.each do |category| %>
       <tr>
-        <td><%= category.name %></td>
+        <td class="category_name_td"><%= category.name %></td>
         <td>
           <%= link_to t('edit_button'), edit_admin_category_path(category) %>&nbsp;
           <%= link_to t('delete_button'),
