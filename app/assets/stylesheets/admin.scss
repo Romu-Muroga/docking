@@ -51,7 +51,10 @@
 }
 
 .admin_categories_index {
-  margin-top: 45px;
+  margin-top: 55px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: white;
   .btn-primary {
     margin-left: 2%;
   }
@@ -71,7 +74,10 @@
 }
 
 .admin_users_index {
-  margin-top: 45px;
+  margin-top: 55px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: white;
   .user_destroy_link {
     color: red;
   }
