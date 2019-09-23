@@ -55,6 +55,7 @@
   padding: 20px;
   border-radius: 4px;
   background-color: white;
+  border: solid 1px #CCC;
   .btn-primary {
     margin-left: 2%;
   }
@@ -66,9 +67,14 @@
   }
   .move_page_link {
     margin-top: 30px;
-    text-align: right;
     .prev_page, .next_page {
       color: unset;
+    }
+    .prev_page {
+      float: left;
+    }
+    .next_page {
+      float: right;
     }
   }
 }
@@ -78,6 +84,7 @@
   padding: 20px;
   border-radius: 4px;
   background-color: white;
+  border: solid 1px #CCC;
   .user_destroy_link {
     color: red;
   }
