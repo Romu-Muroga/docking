@@ -28,6 +28,7 @@ en:
         user_confirm_deletion: "Are you sure you want to delete %{user}？"
       edit:
         admin_change_page: Change permissions
+        account_name: Account name
         administrator_rights: Administrator authority
         "yes": Yes
         "no": No

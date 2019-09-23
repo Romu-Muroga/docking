@@ -28,6 +28,7 @@ ja:
         user_confirm_deletion: "%{user}を削除してもよろしいですか？"
       edit:
         admin_change_page: 権限を変更する
+        account_name: アカウント名
         administrator_rights: 管理者権限
         "yes": あり
         "no": なし

@@ -2,7 +2,7 @@
   <div class="form_inner">
     <% if @category.errors.any? %>
       <div id="error_explanation">
-        <h4><%= t('error_occurred') %></h4>
+        <h5><%= t('error_occurred') %></h5>
         <ul>
           <% @category.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
