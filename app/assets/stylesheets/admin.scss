@@ -61,9 +61,12 @@
   .table {
     margin-top: 20px;
   }
-  .prev_page, .next_page {
-    color: unset;
-    float: right;
+  .move_page_link {
+    margin-top: 30px;
+    text-align: right;
+    .prev_page, .next_page {
+      color: unset;
+    }
   }
 }
 
@@ -76,6 +79,13 @@
     margin-top: 20px;
     td.user_name_td {
       width: 55%;
+    }
+  }
+  .move_page_link {
+    margin-top: 30px;
+    text-align: right;
+    .prev_page, .next_page {
+      color: unset;
     }
   }
 }
