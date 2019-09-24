@@ -27,7 +27,7 @@ ja:
         "no": なし
         user_confirm_deletion: "%{user}を削除してもよろしいですか？"
       edit:
-        admin_change_page: 権限を変更する
+        admin_change_page: 管理者権限を変更する
         account_name: アカウント名
         administrator_rights: 管理者権限
         "yes": あり
@@ -139,7 +139,7 @@ ja:
       change_account_setting_page: アカウント設定を変更
       cancel: キャンセル
     iine_post_list:
-      user_liked_posts: "%{user}さんがいいね！した投稿"
+      clicked_like_post: "%{user}さんがいいね！した投稿"
       learn_more: もっと詳しく
     new:
       create_account_page: アカウントを作成

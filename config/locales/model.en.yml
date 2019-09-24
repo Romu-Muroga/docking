@@ -1,19 +1,19 @@
 en:
   activerecord:
     models:
-      post: Post
-      category: Category
-      user: User
-      picture: Picture
-      comment: Comment
-      hashtag: Hashtag
-      like: Like!
+      post: post
+      category: category
+      user: user
+      picture: picture
+      comment: comment
+      hashtag: hashtag
+      like: nice!
     enum:
       post:
         ranking_point:
-          first_place: First place
-          second_place: Second place
-          third_place: Third place
+          first_place: 1st
+          second_place: 2nd
+          third_place: 3rd
     attributes:
       post:
         category_id: Category
@@ -32,11 +32,11 @@ en:
         name: Name
         email: E-mail address
         password: password
-        password_confirmation: Please enter your password again.
+        password_confirmation: Confirmation password
         admin: Administrator
         current_password: Current password
         image: Icon image
         picture_delete_check: Delete icon image
-        destroy_check: If you like, please check and press the unsubscribe button.
+        destroy_check: If it is ok, please check and press the quit button.
       picture:
         image: Image

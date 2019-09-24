@@ -19,7 +19,7 @@
         <% else %>
           <td><%= t('.no') %></td>
         <% end %>
-        <td>
+        <td class="edit_and_delete_button_td">
           <%= link_to t('edit_button'), edit_admin_user_path(user) %>&nbsp;
           <%= link_to t('delete_button'),
                        admin_user_path(user),
