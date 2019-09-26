@@ -86,12 +86,14 @@ class Post < ApplicationRecord
   private
 
   def set_default
-    self.eatery_address = '未登録' if eatery_address.blank?
-    self.eatery_website = '未登録' if eatery_website.blank?
+    self.eatery_address = '未登録' if eatery_address.blank? && I18n.locale == :ja
+    self.eatery_website = '未登録' if eatery_website.blank? && I18n.locale == :ja
+    self.eatery_address = 'unregistered' if eatery_address.blank? && I18n.locale == :en
+    self.eatery_website = 'unregistered' if eatery_website.blank? && I18n.locale == :en
   end
 
   def eatery_website?
-    eatery_website == '' || eatery_website == '未登録'
+    eatery_website == '' || eatery_website == '未登録' || eatery_website == 'unregistered'
   end
 
   def create_hashtag
