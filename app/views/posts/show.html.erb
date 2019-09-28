@@ -6,7 +6,7 @@
           <%= no_link_picture(@post) %>
           <div class="thumbnail_header">
             <ul>
-              <li class="category_label"><%= @post.category.name %></li>
+              <li class="category_label"><%= @post.category.name_ja %></li>
               <li><%= t('.eatery_name_and_menu', name: @post.eatery_name, menu: @post.eatery_food) %></li>
             </ul>
           </div>
@@ -16,7 +16,7 @@
               <div class="caption_user_block_post_time">
                 <%= t('.user_category_rank',
                     user: @post.user.name.truncate(12, omission: '...'),
-                    category: @post.category.name,
+                    category: @post.category.name_ja,
                     rank: t("activerecord.enum.post.ranking_point.#{@post.ranking_point}"))
                 %><br>
                 <time datetime="<%= @post.updated_at %>">

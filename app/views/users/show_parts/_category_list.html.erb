@@ -9,7 +9,7 @@
       <% categories.each do |category| %>
         <tr class="active_category">
           <td>
-            <%= link_to category.name,
+            <%= link_to category.name_ja,
                         user_category_posts_path(@user, category),
                         class: cp(user_category_posts_path(@user, category))
             %>

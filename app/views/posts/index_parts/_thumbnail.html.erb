@@ -1,6 +1,6 @@
 <div class="thumbnail">
   <ul>
-    <li class="category_label"><%= post.category.name %></li>
+    <li class="category_label"><%= post.category.name_ja %></li>
   </ul>
   <div class="link_to_detail">
     <% if post.picture.present? %>
@@ -37,7 +37,7 @@
       </span>
       <span>
         <%= t('.category_and_rank',
-            category: post.category.name,
+            category: post.category.name_ja,
             rank: t("activerecord.enum.post.ranking_point.#{post.ranking_point}"))
         %>
       </span>

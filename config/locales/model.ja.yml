@@ -27,7 +27,7 @@ ja:
         image: 画像
         picture_delete_check: 画像を削除
       category:
-        name: カテゴリー名
+        name_ja: カテゴリー名
       user:
         name: 名前
         email: Eメールアドレス
