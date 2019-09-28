@@ -2,7 +2,7 @@
   <div class="post_form_inner">
     <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post } %>
     <p><%= t('.constraints') %></p>
-    <!-- TODO: error -->
+    <!-- TODO: error widthが崩れる -->
     <div class="form-group chg_inblock">
       <%= f.label :category_id %><br>
       <%= f.collection_select :category_id, Category.all, :id, :name, {}, required: "required", class: "form-control" %>
