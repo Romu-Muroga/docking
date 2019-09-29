@@ -41,7 +41,7 @@ class Admin::CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name_ja, :name_en)
   end
 
   def set_category
