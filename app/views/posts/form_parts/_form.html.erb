@@ -5,7 +5,8 @@
     <!-- TODO: error widthが崩れる -->
     <div class="form-group chg_inblock">
       <%= f.label :category_id %><br>
-      <%= f.collection_select :category_id, Category.all, :id, :name, {}, required: "required", class: "form-control" %>
+      <!-- TODO: en.ymlに対応させる -->
+      <%= f.collection_select :category_id, Category.all, :id, :name_ja, {}, required: "required", class: "form-control" %>
       <span class="caution"><%= t('.required') %></span>
     </div>
     <div class="form-group chg_inblock">

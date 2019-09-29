@@ -10,7 +10,8 @@
     </div>
     <div class="form-group">
       <%= f.label :category_id_eq, t('activerecord.attributes.post.category_id') %>
-      <%= f.collection_select :category_id_eq, categories, :id, :name, include_blank: true, class: "form-control" %>
+      <!-- TODO: en.ymlに対応させる -->
+      <%= f.collection_select :category_id_eq, categories, :id, :name_ja, include_blank: true, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :ranking_point_eq, t('activerecord.attributes.post.ranking_point') %>
