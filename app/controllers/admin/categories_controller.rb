@@ -4,7 +4,7 @@ class Admin::CategoriesController < ApplicationController
   PER = 10
 
   def index
-    @categories = Category.page(params[:page]).per(PER)
+    @categories = Category.order(:id).page(params[:page]).per(PER)
   end
 
   def new
