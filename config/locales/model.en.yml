@@ -27,7 +27,8 @@ en:
         image: Image
         picture_delete_check: Delete image
       category:
-        name_ja: Category name
+        name_ja: Category name（Japanese）
+        name_en: Category name （English）
       user:
         name: Name
         email: E-mail address
