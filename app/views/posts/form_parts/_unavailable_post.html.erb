@@ -6,7 +6,7 @@
         <span>
           <!-- TDDO: N+1 -->
           <!-- TODO: en.ymlに対応させる -->
-          <%= Category.find(post.category_id).name_ja %>
+          <%= choose_name_ja_or_name_en(Category.find(post.category_id)) %>
           &#183;&#183;&#183;<%= t("activerecord.enum.post.ranking_point.#{post.ranking_point}") %>&emsp;&emsp;
         </span>
       <% end %>

@@ -15,7 +15,7 @@
     <%= t('.overall_ranking_value',
            rank: i,
            eatery_name: key[0],
-           category: categories.select{ |item|item.id == key[1] }.first.name_ja,
+           category: choose_name_ja_or_name_en(categories.select{ |item| item.id == key[1] }.first),
            point: value[:point])
     %>
   </p>
