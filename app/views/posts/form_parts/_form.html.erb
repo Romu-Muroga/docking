@@ -6,7 +6,7 @@
     <div class="form-group chg_inblock">
       <%= f.label :category_id %><br>
       <!-- TODO: en.ymlに対応させる -->
-      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, {}, required: "required", class: "form-control" %>
+      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, {}, class: "form-control" %>
       <span class="caution"><%= t('.required') %></span>
     </div>
     <div class="form-group chg_inblock">
@@ -14,7 +14,6 @@
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
                    {},
-                   required: "required",
                    class: "form-control"
       %><span class="caution"><%= t('.required') %></span>
     </div>
@@ -28,7 +27,6 @@
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
                                    placeholder: t('.ex_name'),
-                                   required: 'required',
                                    class: "form-control"
           %><span class="caution"><%= t('.required') %></span>
         </div>
@@ -39,7 +37,6 @@
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
                                    placeholder: t('.ex_food'),
-                                   required: 'required',
                                    class: "form-control"
           %><span class="caution"><%= t('.required') %></span>
         </div>
