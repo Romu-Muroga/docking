@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   # TODO: 英語にも対応させる
   def set_locale
-    I18n.locale = :en
+    I18n.locale = :ja
   end
 
   def current_user

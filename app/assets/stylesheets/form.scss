@@ -67,28 +67,33 @@
       background-color: #CCC;
       font-weight: bold;
       border-radius: 4px;
-      margin-left: 6px;
       padding: 2px 6px;
       font-size: x-small;
     }
+    .caution_ci, .caution_rp {
+      margin: 0 7px;
+    }
+    .caution_en, .caution_ef {
+      float: right;
+      margin-right: 5px;
+    }
     #post_eatery_name, #post_eatery_food {
       display: inline-block;
-      width: 79%;
+      width: 100%;
     }
   }
   div.chg_inblock {
     display: inline-block;
-    width: 37%;
     select {
       display: inline-block;
-      width: 70%;
+      width: auto;
       border-color: #CCC;
-      &#post_ranking_point {
-        width: 25%;
-      }
     }
     .has-error {
       display: inline-grid;
+      select {
+        border-color: red;
+      }
     }
   }
 }
@@ -146,9 +151,6 @@
   }
   .help-block {
     color: red;
-  }
-  select {
-    border-color: red;
   }
 }
 

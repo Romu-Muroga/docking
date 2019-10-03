@@ -4,41 +4,41 @@
     <p><%= t('.constraints') %></p>
     <!-- TODO: error widthが崩れる -->
     <div class="form-group chg_inblock">
-      <%= f.label :category_id %><br>
-      <!-- TODO: en.ymlに対応させる -->
-      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, include_blank: true, class: "form-control" %>
-      <span class="caution"><%= t('.required') %></span>
+      <%= f.label :category_id %>
+      <!-- TODO: promptをymlに対応させる -->
+      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, prompt: "選択されていません", class: "form-control" %>
+      <span class="caution caution_ci"><%= t('.required') %></span>
     </div>
     <div class="form-group chg_inblock">
-      <%= f.label :ranking_point %><br>
+      <%= f.label :ranking_point %>
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
-                   include_blank: true,
+                   prompt: "選択されていません",
                    class: "form-control"
-      %><span class="caution"><%= t('.required') %></span>
+      %><span class="caution caution_rp"><%= t('.required') %></span>
     </div>
     <%= render partial: 'posts/form_parts/unavailable_post', locals: { post: post } %>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= f.label :eatery_name %><br>
+          <%= f.label :eatery_name %><span class="caution caution_en"><%= t('.required') %></span>
           <%= f.autocomplete_field :eatery_name,
                                    autocomplete_post_eatery_name_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
                                    placeholder: t('.ex_name'),
                                    class: "form-control"
-          %><span class="caution"><%= t('.required') %></span>
+          %>
         </div>
         <div class="form-group">
-          <%= f.label :eatery_food %><br>
+          <%= f.label :eatery_food %><span class="caution caution_ef"><%= t('.required') %></span>
           <%= f.autocomplete_field :eatery_food,
                                    autocomplete_post_eatery_food_posts_path,
                                    update_elements: {},
                                    'data-noMatchesLabel': 'Sorry, nothing found.',
                                    placeholder: t('.ex_food'),
                                    class: "form-control"
-          %><span class="caution"><%= t('.required') %></span>
+          %>
         </div>
         <div class="form-group">
           <%= f.label :eatery_address %>
