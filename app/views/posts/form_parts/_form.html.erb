@@ -6,14 +6,14 @@
     <div class="form-group chg_inblock">
       <%= f.label :category_id %>
       <!-- TODO: promptをymlに対応させる -->
-      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, prompt: "選択されていません", class: "form-control" %>
+      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, {}, class: "form-control" %>
       <span class="caution caution_ci"><%= t('.required') %></span>
     </div>
     <div class="form-group chg_inblock">
       <%= f.label :ranking_point %>
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
-                   prompt: "選択されていません",
+                   {},
                    class: "form-control"
       %><span class="caution caution_rp"><%= t('.required') %></span>
     </div>

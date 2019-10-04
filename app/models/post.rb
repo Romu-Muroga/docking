@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   # validation
-  validates :category_id, :ranking_point, presence: { message: 'を選択してください' }
+  # validates :category_id, :ranking_point, presence: { message: 'を選択してください' }
   validates :ranking_point,
             uniqueness: { scope: %i[category_id user_id] }
   validates :eatery_name, presence: true, length: { maximum: 200 }
