@@ -32,7 +32,7 @@ en:
       user:
         name: Name
         email: E-mail address
-        password: password
+        password: Password
         password_confirmation: Confirmation password
         admin: Administrator
         current_password: Current password
@@ -41,3 +41,6 @@ en:
         destroy_check: If it is ok, please check and press the quit button.
       picture:
         image: Image
+  errors:
+    messages:
+      not_selected: is not selected

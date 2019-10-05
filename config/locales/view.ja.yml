@@ -48,6 +48,8 @@ ja:
       logout: ログアウト
   posts:
     form_parts:
+      error_explanation:
+        category_is_blank: カテゴリーを入力してください
       form:
         constraints: ※各カテゴリー１位〜３位まで、投稿できます
         required: 必須

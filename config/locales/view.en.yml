@@ -48,6 +48,8 @@ en:
       logout: Logout
   posts:
     form_parts:
+      error_explanation:
+        category_is_blank: Category must exist
       form:
         constraints: ※You can post from 1st to 3rd place in each category.
         required: Required

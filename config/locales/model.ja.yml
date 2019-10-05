@@ -41,3 +41,6 @@ ja:
         destroy_check: よろしければ、チェックを入れて退会ボタンを押してください
       picture:
         image: 画像
+  errors:
+    messages:
+      not_selected: を選択してください

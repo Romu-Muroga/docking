@@ -1,22 +1,21 @@
 <%= form_with(model: post, local: true, class: "post_form_outer") do |f| %>
   <div class="post_form_inner">
     <%= render partial: 'posts/form_parts/error_explanation', locals: { post: post } %>
-    <p><%= t('.constraints') %></p>
     <!-- TODO: error widthが崩れる -->
     <div class="form-group chg_inblock">
       <%= f.label :category_id %>
-      <!-- TODO: promptをymlに対応させる -->
-      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, {}, class: "form-control" %>
+      <%= f.collection_select :category_id, Category.order(:id), :id, name_ja_or_name_en, prompt: t('.not_selected'), class: "form-control" %>
       <span class="caution caution_ci"><%= t('.required') %></span>
     </div>
     <div class="form-group chg_inblock">
       <%= f.label :ranking_point %>
       <%= f.select :ranking_point,
                    Post.ranking_points.to_a.map{ |rp| [t("activerecord.enum.post.ranking_point.#{rp[0]}"), rp[0]] },
-                   {},
+                   prompt: t('.not_selected'),
                    class: "form-control"
       %><span class="caution caution_rp"><%= t('.required') %></span>
     </div>
+    <p class="precautions"><%= t('.constraints') %></p>
     <%= render partial: 'posts/form_parts/unavailable_post', locals: { post: post } %>
     <div class="row">
       <div class="col-md-6">

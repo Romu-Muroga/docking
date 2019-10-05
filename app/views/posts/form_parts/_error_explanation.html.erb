@@ -2,7 +2,7 @@
   <div id="error_explanation">
     <h4><%= t('error_occurred') %></h4>
     <ul>
-      <% post.errors.full_messages.each do |msg| %>
+      <% post.errors.full_messages.reject{ |message| message == t('.category_is_blank') }.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
