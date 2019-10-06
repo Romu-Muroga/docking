@@ -44,3 +44,5 @@ ja:
   errors:
     messages:
       not_selected: を選択してください
+      is_wrong: が違います
+      minimum_required: は、少なくとも１名必要です。変更できません。

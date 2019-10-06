@@ -44,3 +44,5 @@ en:
   errors:
     messages:
       not_selected: is not selected
+      is_wrong: is wrong
+      minimum_required: is at least one required. Cannot be changed.
