@@ -75,7 +75,7 @@ ja:
         poster_name: "%{name}さん"
         posting_time: "%{time}前"
         category_and_rank: "%{category}の%{rank}に投稿しました"
-        location: "所在地: %{address}"
+        e_add: "所在地: "
         learn_more: もっと詳しく
     edit:
       post_edit_page: 投稿を編集する

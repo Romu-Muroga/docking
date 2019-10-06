@@ -42,7 +42,7 @@
         %>
       </span>
     </p>
-    <p><%= t('.location', address: post.eatery_address) %></p>
+    <p><%= t('.e_add') %><%= choose_add_ja_or_add_en(post.eatery_address) %></p>
     <% if poster?(post) %>
       <%= link_to t('edit_button'), edit_post_path(post), class: "btn btn-warning" %>
       <!-- TODO: confirm_deletion -->

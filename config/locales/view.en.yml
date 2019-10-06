@@ -75,7 +75,7 @@ en:
         poster_name: "%{name}"
         posting_time: "%{time} ago"
         category_and_rank: "Post to %{rank} in %{category}"
-        location: "Address: %{address}"
+        e_add: "Address: "
         learn_more: Learn more!
     edit:
       post_edit_page: Edit post
