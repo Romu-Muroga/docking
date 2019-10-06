@@ -91,9 +91,8 @@ en:
       user_category_rank: "%{user} posted %{rank} in %{category}"
       posting_time: "%{time} ago"
       number_of_likes: "Nice！ %{count}"
-      location: "Address: %{address}"
-      unregistered_website: "Website URL: Unregistered"
-      registered_website: "Website URL: "
+      e_add: "Address: "
+      e_web: "Website URL: "
   sessions:
     new:
       login_page: Login

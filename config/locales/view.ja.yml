@@ -91,9 +91,8 @@ ja:
       user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"
       posting_time: "%{time}前"
       number_of_likes: "いいね！登録 %{count}件"
-      location: "所在地: %{address}"
-      unregistered_website: "ウェブサイト URL: 未登録"
-      registered_website: "ウェブサイト URL: "
+      e_add: "所在地: "
+      e_web: "ウェブサイト URL: "
   sessions:
     new:
       login_page: ログイン

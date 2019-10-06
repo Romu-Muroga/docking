@@ -27,4 +27,28 @@ module PostsHelper
       category.name_ja
     end
   end
+
+  def choose_add_ja_or_add_en(eatery_address)
+    if eatery_address == 'unregistered' && I18n.locale == :ja
+      '未登録'
+    elsif eatery_address == '未登録' && I18n.locale == :en
+      'unregistered'
+    else
+      eatery_address
+    end
+  end
+
+  def choose_web_ja_or_web_en(eatery_website)
+    if eatery_website == 'unregistered' && I18n.locale == :ja
+      '未登録'
+    elsif eatery_website == '未登録' && I18n.locale == :ja
+      '未登録'
+    elsif eatery_website == '未登録' && I18n.locale == :en
+      'unregistered'
+    elsif eatery_website == 'unregistered' && I18n.locale == :en
+      'unregistered'
+    else
+      link_to eatery_website
+    end
+  end
 end

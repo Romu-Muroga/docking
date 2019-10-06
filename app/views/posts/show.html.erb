@@ -32,12 +32,8 @@
             </div>
             <div class="caption_eatery_info">
               <ul>
-                <li class="eadd_text"><%= t('.location', address: @post.eatery_address) %></li>
-                <% if @post.eatery_website == "未登録" %>
-                  <li class="eweb_text"><%= t('.unregistered_website') %><li>
-                <% else %>
-                  <li class="eweb_text"><%= t('.registered_website') %><%= link_to @post.eatery_website, @post.eatery_website %></li>
-                <% end %>
+                <li class="eadd_text"><%= t('.e_add') %><%= choose_add_ja_or_add_en(@post.eatery_address) %></li>
+                <li class="eweb_text"><%= t('.e_web') %><%= choose_web_ja_or_web_en(@post.eatery_website) %></li>
               </ul>
             </div>
             <div id="post-<%= @post.id %>" data-post-id="<%= @post.id %>" class="iine_button">
