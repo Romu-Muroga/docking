@@ -62,6 +62,8 @@ ja:
       unavailable_post:
         posted_list: 投稿済みのリスト
     index_parts:
+      category_list:
+        category_name: カテゴリー名
       overall_ranking:
         overall_ranking_value: "%{rank}位 %{eatery_name}（%{category}）%{point}ポイント"
       search_form:
@@ -113,6 +115,8 @@ ja:
         update_account_setting: アカウント設定を更新する
         required: 必須
     show_parts:
+      category_list:
+        category_name: カテゴリー名
       thumbnail:
         learn_more: もっと詳しく
         food_menu: "メニュー名: %{name}"
