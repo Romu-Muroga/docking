@@ -147,7 +147,7 @@ ja:
       to_login_page: ログインページへ
     password_reset:
       password_reset_page: パスワードを再設定
-      word_count: ６文字以上を入力してください
+      new_password: 新しいパスワードを入力してください
       change_password: パスワードを変更する
       cancel: キャンセル
   flash:

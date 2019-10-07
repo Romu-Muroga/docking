@@ -147,7 +147,7 @@ en:
       to_login_page: To login page
     password_reset:
       password_reset_page: Reset password
-      word_count: Please enter at least 6 characters.
+      new_password: Please enter new password
       change_password: change password
       cancel: Cancel
   flash:
