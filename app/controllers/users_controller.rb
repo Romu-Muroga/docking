@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @categories = Category.all
+    @categories = Category.order(:id)
     @picture = Picture.find(Picture.random_post_picture_id) if
                Picture.random_post_picture_id.present?
     @user_posts = if params[:category_id]

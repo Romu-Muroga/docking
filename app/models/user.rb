@@ -19,9 +19,9 @@ class User < ApplicationRecord
 
   # method
   def password_insert_errors(current_password, new_password)
-    errors.add(:current_password, 'が違います') if current_password.present? && !self&.authenticate(current_password)
-    errors.add(:current_password, 'を入力してください') if current_password.blank?
-    errors.add(:password, 'を入力してください') if new_password.blank?
+    errors.add(:current_password, I18n.t('errors.messages.is_wrong')) if current_password.present? && !self&.authenticate(current_password)
+    errors.add(:current_password, I18n.t('errors.messages.blank')) if current_password.blank?
+    errors.add(:password, I18n.t('errors.messages.blank')) if new_password.blank?
   end
 
   # callback
@@ -34,7 +34,7 @@ class User < ApplicationRecord
   def last_admin_user_update?
     admin_users = User.where(admin: true)
     if admin_users.count == 1 && admin_users.first == self && !admin
-      errors.add(:admin, 'は、最低一名必要です。')
+      errors.add(:admin, :minimum_required)
       throw :abort
     else
       true

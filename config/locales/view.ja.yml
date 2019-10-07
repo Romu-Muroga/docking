@@ -3,6 +3,8 @@ ja:
     categories:
       table:
         category_confirm_deletion: "%{category}を削除してもよろしいですか？"
+        prev_page: 前のページ
+        next_page: 次のページ
       edit:
         category_edit_page: カテゴリーを編集する
         cancel: キャンセル
@@ -10,7 +12,7 @@ ja:
         to_admin_top_page: 管理トップメニューへ
         new_category: カテゴリーを追加する
       new:
-        create_new: 新規作成
+        create_new_category: カテゴリーを登録
         cancel: キャンセル
     tops:
       index:
@@ -25,7 +27,8 @@ ja:
         "no": なし
         user_confirm_deletion: "%{user}を削除してもよろしいですか？"
       edit:
-        admin_change_page: 権限を変更する
+        admin_change_page: 管理者権限を変更する
+        account_name: アカウント名
         administrator_rights: 管理者権限
         "yes": あり
         "no": なし
@@ -45,6 +48,8 @@ ja:
       logout: ログアウト
   posts:
     form_parts:
+      error_explanation:
+        category_is_blank: カテゴリーを入力してください
       form:
         constraints: ※各カテゴリー１位〜３位まで、投稿できます
         required: 必須
@@ -57,6 +62,8 @@ ja:
       unavailable_post:
         posted_list: 投稿済みのリスト
     index_parts:
+      category_list:
+        category_name: カテゴリー名
       overall_ranking:
         overall_ranking_value: "%{rank}位 %{eatery_name}（%{category}）%{point}ポイント"
       search_form:
@@ -70,7 +77,7 @@ ja:
         poster_name: "%{name}さん"
         posting_time: "%{time}前"
         category_and_rank: "%{category}の%{rank}に投稿しました"
-        location: "所在地: %{address}"
+        e_add: "所在地: "
         learn_more: もっと詳しく
     edit:
       post_edit_page: 投稿を編集する
@@ -80,15 +87,14 @@ ja:
       latest_article: 最新記事
       new_post: 投稿する
     new:
-      create_new: 新規作成
+      create_new_article: 投稿記事を作成
     show:
       eatery_name_and_menu: "%{name} メニュー名: %{menu}"
       user_category_rank: "%{user}さんが、%{category}の%{rank}に投稿しました"
       posting_time: "%{time}前"
       number_of_likes: "いいね！登録 %{count}件"
-      location: "所在地: %{address}"
-      unregistered_website: "ウェブサイト URL: 未登録"
-      registered_website: "ウェブサイト URL: "
+      e_add: "所在地: "
+      e_web: "ウェブサイト URL: "
   sessions:
     new:
       login_page: ログイン
@@ -109,6 +115,8 @@ ja:
         update_account_setting: アカウント設定を更新する
         required: 必須
     show_parts:
+      category_list:
+        category_name: カテゴリー名
       thumbnail:
         learn_more: もっと詳しく
         food_menu: "メニュー名: %{name}"
@@ -125,7 +133,6 @@ ja:
         ご確認をお願いいたします。
       return_to_input: 入力画面に戻る
       create_account: Dockingアカウントを作成
-      # create_account: Create your Docking account
     destroy_confirm:
       quit_page: 退会処理
       quit: 退会
@@ -137,15 +144,14 @@ ja:
       change_account_setting_page: アカウント設定を変更
       cancel: キャンセル
     iine_post_list:
-      user_liked_posts: "%{user}さんがいいね！した投稿"
+      clicked_like_post: "%{user}さんがいいね！した投稿"
       learn_more: もっと詳しく
     new:
       create_account_page: アカウントを作成
       to_login_page: ログインページへ
     password_reset:
       password_reset_page: パスワードを再設定
-      new_password: 新しいパスワード
-      word_count: ６文字以上を入力してください
+      new_password: 新しいパスワードを入力してください
       change_password: パスワードを変更する
       cancel: キャンセル
   flash:

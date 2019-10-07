@@ -1,6 +1,6 @@
 <div class="thumbnail">
   <ul>
-    <li class="category_label"><%= user_post.category.name %></li>
+    <li class="category_label"><%= choose_name_ja_or_name_en(user_post.category) %></li>
     <li class="rp_text">
       <%= t("activerecord.enum.post.ranking_point.#{user_post.ranking_point}") %>&nbsp;&nbsp;
       <%= user_post.eatery_name.truncate(12, omission: '...') %>

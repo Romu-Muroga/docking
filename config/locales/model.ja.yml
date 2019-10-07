@@ -27,7 +27,8 @@ ja:
         image: 画像
         picture_delete_check: 画像を削除
       category:
-        name: カテゴリー名
+        name_ja: カテゴリー名（日本語）
+        name_en: カテゴリー名（英語）
       user:
         name: 名前
         email: Eメールアドレス
@@ -40,3 +41,8 @@ ja:
         destroy_check: よろしければ、チェックを入れて退会ボタンを押してください
       picture:
         image: 画像
+  errors:
+    messages:
+      not_selected: を選択してください
+      is_wrong: が違います
+      minimum_required: は、少なくとも１名必要です。変更できません。

@@ -1,6 +1,6 @@
 <div class="thumbnail">
   <ul>
-    <li class="category_label"><%= post.category.name %></li>
+    <li class="category_label"><%= choose_name_ja_or_name_en(post.category) %></li>
   </ul>
   <div class="link_to_detail">
     <% if post.picture.present? %>
@@ -37,12 +37,12 @@
       </span>
       <span>
         <%= t('.category_and_rank',
-            category: post.category.name,
+            category: choose_name_ja_or_name_en(post.category),
             rank: t("activerecord.enum.post.ranking_point.#{post.ranking_point}"))
         %>
       </span>
     </p>
-    <p><%= t('.location', address: post.eatery_address) %></p>
+    <p><%= t('.e_add') %><%= choose_add_ja_or_add_en(post.eatery_address) %></p>
     <% if poster?(post) %>
       <%= link_to t('edit_button'), edit_post_path(post), class: "btn btn-warning" %>
       <!-- TODO: confirm_deletion -->

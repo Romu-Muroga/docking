@@ -1,14 +1,14 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th><%= Category.human_attribute_name(:name) %></th>
+      <th><%= t('.category_name') %></th>
     </tr>
   </thead>
   <tbody>
     <% categories.each do |category| %>
       <tr class="active_category">
         <td>
-          <%= link_to category.name,
+          <%= link_to choose_name_ja_or_name_en(category),
                       category_posts_path(category),
                       class: cp(category_posts_path(category))
           %>

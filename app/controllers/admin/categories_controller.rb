@@ -1,9 +1,10 @@
 class Admin::CategoriesController < ApplicationController
   before_action :current_user_admin?
   before_action :set_category, only: %i[edit update destroy]
+  PER = 10
 
   def index
-    @categories = Category.all
+    @categories = Category.order(:id).page(params[:page]).per(PER)
   end
 
   def new
@@ -14,7 +15,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       redirect_to admin_categories_path,
-                  success: t('flash.create', content: @category.name)
+                  success: t('flash.create', content: @category.name_ja)
     else
       render :new
     end
@@ -34,13 +35,13 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category.destroy
     redirect_to admin_categories_path,
-                success: t('flash.destroy', content: @category.name)
+                success: t('flash.destroy', content: @category.name_ja)
   end
 
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name_ja, :name_en)
   end
 
   def set_category

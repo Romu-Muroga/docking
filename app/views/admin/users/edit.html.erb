@@ -1,40 +1,39 @@
 <div class="wrapper" id="admin_change_block">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
-        <h3><span class="underline"><%= t('.admin_change_page') %></span></h3>
-        <%= form_with(model: [:admin, @user], local: true, class: "form_outer") do |f| %>
-          <div class="form_inner">
-            <% if @user.errors.any? %>
-              <div id="error_explanation">
-                <h4><%= t('error_occurred') %></h4>
-                <ul>
-                  <% @user.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-            <h3><%= @user.name %></h3>
-            <div class="form-group">
-              <%= f.label :admin, t('.administrator_rights') %>
-              <div>
-                <label>
+      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4 input_form_area">
+        <div class="input_form_area_body">
+          <h3><span class="underline"><%= t('.admin_change_page') %></span></h3>
+          <%= form_with(model: [:admin, @user], local: true, class: "form_outer") do |f| %>
+            <div class="form_inner">
+              <% if @user.errors.any? %>
+                <div id="error_explanation">
+                  <h5><%= t('error_occurred') %></h5>
+                  <ul>
+                    <% @user.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <label for="u_name_in_admin"><%= t('.account_name') %></label>
+              <p id="u_name_in_admin"><%= @user.name %></p>
+              <div class="form-group">
+                <%= f.label :admin, t('.administrator_rights') %>
+                <div class="admin_check_box">
                   <%= f.radio_button :admin, 0, checked: @user.admin %>
-                  <%= t('.yes') %>
-                </label>
-              </div>
-              <div>
-                <label>
+                  <span><%= t('.yes') %></span>
+                </div>
+                <div class="admin_check_box">
                   <%= f.radio_button :admin, 1, checked: !@user.admin %>
-                  <%= t('.no') %>
-                </label>
+                  <span><%= t('.no') %></span>
+                </div>
               </div>
             </div>
-          </div>
-          <%= f.submit class: "btn btn-default" %>
-        <% end %>
-        <%= link_to t('.cancel'), admin_users_path, class: "btn btn-default" %>
+            <%= f.submit class: "btn btn-primary" %>
+          <% end %>
+          <%= link_to t('.cancel'), admin_users_path, class: "btn btn-default" %>
+        </div>
       </div>
     </div>
   </div>

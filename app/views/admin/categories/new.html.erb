@@ -1,10 +1,12 @@
 <div class="wrapper" id="new_category_block">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4">
-        <h3><span class="underline"><%= t('.create_new') %></span></h3>
-        <%= render partial: "form", locals: { category: @category } %>
-        <%= link_to t('.cancel'), admin_categories_path, class: "btn btn-default" %>
+      <div class="col-xs-offset-4 col-xs-4 col-md-offset-4 col-md-4 input_form_area">
+        <div class="input_form_area_body">
+          <h3><span class="underline"><%= t('.create_new_category') %></span></h3>
+          <%= render partial: "form", locals: { category: @category } %>
+          <%= link_to t('.cancel'), admin_categories_path, class: "btn btn-default" %>
+        </div>
       </div>
     </div>
   </div>

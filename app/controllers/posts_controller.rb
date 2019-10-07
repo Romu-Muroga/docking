@@ -141,7 +141,7 @@ class PostsController < ApplicationController
   end
 
   def category_list
-    @categories = Category.all
+    @categories = Category.order(:id)
   end
 
   def post_picture_update(post, form_submit_image, checkbox_value)
