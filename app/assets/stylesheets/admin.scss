@@ -5,7 +5,7 @@
     .left_button {
       height: 300px;
       width: 48%;
-      background-color: powderblue;
+      background-color: rgb(87, 169, 215);
       text-align: center;
       border-radius: 4px;
       p {
@@ -21,7 +21,7 @@
     .right_button {
       height: 300px;
       width: 48%;
-      background-color: wheat;
+      background-color: rgb(235, 221, 39);
       float: right;
       text-align: center;
       border-radius: 4px;
@@ -51,7 +51,11 @@
 }
 
 .admin_categories_index {
-  margin-top: 45px;
+  margin-top: 55px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: white;
+  border: solid 1px #CCC;
   .btn-primary {
     margin-left: 2%;
   }
@@ -60,18 +64,47 @@
   }
   .table {
     margin-top: 20px;
+    td.category_name_td {
+      width: 40%;
+    }
+  }
+  .move_page_link {
+    margin-top: 30px;
+    .prev_page, .next_page {
+      color: unset;
+    }
+    .prev_page {
+      float: left;
+    }
+    .next_page {
+      float: right;
+    }
   }
 }
 
 .admin_users_index {
-  margin-top: 45px;
+  margin-top: 55px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: white;
+  border: solid 1px #CCC;
   .user_destroy_link {
     color: red;
   }
   .table {
     margin-top: 20px;
     td.user_name_td {
-      width: 55%;
+      width: 50%;
+    }
+    td.edit_and_delete_button_td {
+      width: 30%;
+    }
+  }
+  .move_page_link {
+    margin-top: 30px;
+    text-align: right;
+    .prev_page, .next_page {
+      color: unset;
     }
   }
 }

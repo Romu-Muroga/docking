@@ -28,8 +28,7 @@ module Docking
 
     # Error message to form
     config.action_view.field_error_proc = proc do |html_tag, instance|
-      if instance.is_a?(ActionView::Helpers::Tags::Label)
-        # skip when label
+      if instance.is_a?(ActionView::Helpers::Tags::Label) || instance.is_a?(ActionView::Helpers::Tags::RadioButton)
         html_tag.html_safe
       else
         "<div class=\"has-error\">#{html_tag}<span class=\"help-block\">#{instance.error_message.first}</span></div>".html_safe

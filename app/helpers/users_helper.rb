@@ -30,4 +30,14 @@ module UsersHelper
       "btn btn-primary"
     end
   end
+
+  def choose_name_ja_or_name_en(category)
+    if I18n.locale == :ja
+      category.name_ja
+    elsif I18n.locale == :en
+      category.name_en
+    else
+      category.name_ja
+    end
+  end
 end

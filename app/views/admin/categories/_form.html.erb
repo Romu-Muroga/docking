@@ -2,7 +2,7 @@
   <div class="form_inner">
     <% if @category.errors.any? %>
       <div id="error_explanation">
-        <h4><%= t('error_occurred') %></h4>
+        <h5><%= t('error_occurred') %></h5>
         <ul>
           <% @category.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -11,9 +11,13 @@
       </div>
     <% end %>
     <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.label :name_ja %>
+      <%= f.text_field :name_ja, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :name_en %>
+      <%= f.text_field :name_en, class: "form-control" %>
     </div>
   </div>
-  <%= f.submit class: "btn btn-default" %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>

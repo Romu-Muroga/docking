@@ -32,6 +32,7 @@
 - [x] コメント機能
   - 投稿記事にコメントができる。
 - [x] オートコンプリート機能
+- [x] ページネーション機能
 - [x] ハッシュタグ機能
 - [x] 管理者ユーザー機能
   - カテゴリーの管理、権限の管理、ユーザーの管理ができる。
@@ -63,3 +64,4 @@ https://cacoo.com/diagrams/qzbpgYsOZwdL6hjK/02A72
 - rails-jquery-autocomplete
 - ransack
 - rails_autolink
+- kaminari

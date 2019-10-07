@@ -1,15 +1,16 @@
 class Admin::UsersController < ApplicationController
   before_action :current_user_admin?
   before_action :set_user, only: %i[edit update destroy]
+  PER = 10
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(PER)
   end
 
   def edit; end
 
   def update
-    params[:user][:admin] = params[:user][:admin] == '0'
+    set_admin_value(params[:user][:admin].to_i)
     if @user.update(user_params)
       redirect_to admin_users_path,
                   success: t('flash.update', content: @user.name)
@@ -44,5 +45,15 @@ class Admin::UsersController < ApplicationController
            status: :not_found,
            layout: false,
            content_type: 'text/html'
+  end
+
+  def set_admin_value(value_sent)
+    if value_sent == 0
+      params[:user][:admin] = true
+    elsif value_sent == 1
+      params[:user][:admin] = false
+    else
+      render :edit
+    end
   end
 end
