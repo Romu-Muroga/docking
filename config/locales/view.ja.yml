@@ -21,6 +21,8 @@ ja:
         return_to_mypage: 私のお気に入りランキングへ戻る
     users:
       table:
+        prev_page: 前のページ
+        next_page: 次のページ
         account_name: アカウント名
         administrator_rights: 管理者権限
         "yes": あり
