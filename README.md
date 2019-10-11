@@ -36,6 +36,8 @@
 - [x] ハッシュタグ機能
 - [x] 管理者ユーザー機能
   - カテゴリーの管理、権限の管理、ユーザーの管理ができる。
+- [x] 二か国語対応
+  - 日本語、英語 
 ## カタログ設計
 https://docs.google.com/spreadsheets/d/1THV-ktLRUP-a33r23Mw0FJEcb4lcg9UZXu_xKWCgZ8Y/edit?usp=sharing
 ## テーブル定義
