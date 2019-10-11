@@ -17,7 +17,7 @@
     <div class="tab_content_description">
       <% iine_ranking_posts.each.with_index(1) do |post, i| %>
         <div class="c-txtsp">
-          <%= t('.rank', rank: i) %>
+          <%= t('.rank', rank: i) %>&emsp;<%= post.eatery_name %>&emsp;<%= t('.nice_count', count: post.likes_count) %>
           <div class="mask">
             <%= linked_post_picture(post) %>
           </div>

@@ -74,6 +74,7 @@ en:
         overall_ranking: Overall ranking
         iine_ranking: Nice! ranking
         rank: "%{rank}"
+        nice_count: "Nice! %{count}"
       thumbnail:
         food_menu: "Menu: %{name}"
         poster_name: "%{name}"

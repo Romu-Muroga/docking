@@ -74,6 +74,7 @@ ja:
         overall_ranking: 総合ランキング
         iine_ranking: いいね！ランキング
         rank: "%{rank}位"
+        nice_count: "いいね！%{count}件"
       thumbnail:
         food_menu: "メニュー名: %{name}"
         poster_name: "%{name}さん"
