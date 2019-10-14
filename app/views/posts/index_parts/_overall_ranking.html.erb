@@ -1,14 +1,21 @@
-<h5 class="ranking_info">
-  総合ランキングは、お客さま１人１人がマイページで登録したお気に入りのランキングをポイント（主観的な評価）によって集計し、<br>
-  <br>
-  １位＝３pt<br>
-  ２位＝２pt<br>
-  ３位＝１pt<br>
-  <br>
-  その合計に、いいね！のカウント数（客観的な評価）を加算して算出されています。<br>
-  <br>
-  主観的 + 客観的 = 総合評価ランキングです。
-</h5>
+<div class="accordion">
+  <div class="text_wrapper">
+    <p class="text">
+      総合ランキングは、お客さま１人１人がマイページで登録したお気に入りのランキングをポイント（主観的な評価）によって集計し、<br>
+      <br>
+      １位＝３pt<br>
+      ２位＝２pt<br>
+      ３位＝１pt<br>
+      <br>
+      その合計に、いいね！のカウント数（客観的な評価）を加算して算出されています。<br>
+      <br>
+      主観的 + 客観的 = 総合評価ランキングです。
+    </p>
+    <div class="show_more">
+      +　続きを読む
+    </div>
+  </div>
+</div>
 <!-- TODO: en.ymlに対応させる -->
 <% overall_ranking_posts.each.with_index(1) do |(key, value), i| %>
   <p class="or_text">
