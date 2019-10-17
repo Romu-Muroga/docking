@@ -27,16 +27,22 @@
   }
   .destroy_confirm_section {
     margin-top: 24vh;
-    text-align: center;
-    h3 {
-      margin-bottom: 39px;
-    }
-    .btn-default {
+    .quit_page_header {
+      background-color: azure;
+      line-height: 30px;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 10px 20px;
       margin-bottom: 10px;
     }
-    h5 {
-      line-height: 25px;
-      font-size: 15px;
+    .form_outer {
+      text-align: center;
+    }
+    .form_inner {
+      line-height: 18px;
+      font-size: 0.9em;
+      text-align: left;
     }
   }
 }

@@ -137,7 +137,9 @@ ja:
       return_to_input: 入力画面に戻る
       create_account: Dockingアカウントを作成
     destroy_confirm:
-      quit_page: 退会処理
+      quit_page_header_text: |
+        退会の確認
+        %{user}さんの登録情報の削除を行います。
       quit: 退会
       cancel: キャンセル
     destroy:

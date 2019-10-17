@@ -136,7 +136,9 @@ en:
       return_to_input: Returns to the input screen
       create_account: Create your Docking account
     destroy_confirm:
-      quit_page: To delete the account.
+      quit_page_header_text: |
+        Confirmation of withdrawal
+        Delete the registration information of %{user}
       quit: Quit
       cancel: Cancel
     destroy:
