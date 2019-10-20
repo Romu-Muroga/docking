@@ -22,6 +22,17 @@
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
     <% end %>
+    <div class="form-group">
+      <%= f.label :locale %><span class="caution"><%= t('.required') %></span>
+      <div class="locale_check_box">
+        <%= f.radio_button :locale, 'ja', checked: @user.locale == 'ja' %>
+        <span><%= t('.japanese') %></span>
+      </div>
+      <div class="locale_check_box">
+        <%= f.radio_button :locale, 'en', checked: @user.locale == 'en' %>
+        <span><%= t('.english') %></span>
+      </div>
+    </div>
     <div class="form-group imgInput">
       <%= f.label :image %>
       <%= f.file_field :image, class: "form-control", id: "upfile" %>

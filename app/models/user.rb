@@ -7,7 +7,9 @@ class User < ApplicationRecord
             uniqueness: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, allow_blank: true
   validates :password, presence: true, length: { in: 6..100 }, allow_nil: true
+  # TODO: adminはdefalt:false
   validates :admin, inclusion: { in: [true, false] }
+  validates :locale, inclusion: { in: %w(ja en), message: :not_selected }
   has_secure_password
 
   # association

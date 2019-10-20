@@ -21,6 +21,8 @@ en:
         return_to_mypage: Return to My Page
     users:
       table:
+        prev_page: Previous page
+        next_page: Next page
         account_name: Account name
         administrator_rights: Administrator authority
         "yes": "Yes"
@@ -72,6 +74,7 @@ en:
         overall_ranking: Overall ranking
         iine_ranking: Nice! ranking
         rank: "%{rank}"
+        nice_count: "Nice! %{count}"
       thumbnail:
         food_menu: "Menu: %{name}"
         poster_name: "%{name}"
@@ -114,6 +117,8 @@ en:
         to_confirm_page: To confirmation screen
         update_account_setting: Update account setting
         required: Required
+        japanese: Japanese
+        english: English
     show_parts:
       category_list: Category name
       thumbnail:
@@ -130,10 +135,14 @@ en:
       please_confirm: |
         ※Please check the contents.
         If it is ok, create an account.
+      japanese: "Language: Japanese"
+      english: "Language: English"
       return_to_input: Returns to the input screen
       create_account: Create your Docking account
     destroy_confirm:
-      quit_page: To delete the account.
+      quit_page_header_text: |
+        Confirmation of withdrawal
+        Delete the registration information of %{user}
       quit: Quit
       cancel: Cancel
     destroy:

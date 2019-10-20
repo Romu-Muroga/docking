@@ -35,6 +35,7 @@ en:
         password: Password
         password_confirmation: Confirmation password
         admin: Administrator
+        locale: Language
         current_password: Current password
         image: Icon image
         picture_delete_check: Delete icon image

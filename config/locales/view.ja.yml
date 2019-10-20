@@ -21,6 +21,8 @@ ja:
         return_to_mypage: 私のお気に入りランキングへ戻る
     users:
       table:
+        prev_page: 前のページ
+        next_page: 次のページ
         account_name: アカウント名
         administrator_rights: 管理者権限
         "yes": あり
@@ -72,6 +74,7 @@ ja:
         overall_ranking: 総合ランキング
         iine_ranking: いいね！ランキング
         rank: "%{rank}位"
+        nice_count: "いいね！%{count}件"
       thumbnail:
         food_menu: "メニュー名: %{name}"
         poster_name: "%{name}さん"
@@ -114,6 +117,8 @@ ja:
         to_confirm_page: 確認画面へ
         update_account_setting: アカウント設定を更新する
         required: 必須
+        japanese: 日本語
+        english: 英語
     show_parts:
       category_list:
         category_name: カテゴリー名
@@ -131,10 +136,14 @@ ja:
       please_confirm: |
         ※以下の内容で登録します。
         ご確認をお願いいたします。
+      japanese: "言語：日本語"
+      english: "言語：英語"
       return_to_input: 入力画面に戻る
       create_account: Dockingアカウントを作成
     destroy_confirm:
-      quit_page: 退会処理
+      quit_page_header_text: |
+        退会の確認
+        %{user}さんの登録情報の削除を行います。
       quit: 退会
       cancel: キャンセル
     destroy:

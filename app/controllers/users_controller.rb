@@ -109,7 +109,8 @@ class UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation,
-      :destroy_check
+      :destroy_check,
+      :locale
     )
   end
 
