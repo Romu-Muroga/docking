@@ -33,8 +33,11 @@
       text-align: center;
       font-size: 1.2em;
       font-weight: bold;
-      padding: 10px 20px;
+      padding: 15px 20px;
       margin-bottom: 10px;
+      p {
+        margin: 0;
+      }
     }
     .form_outer {
       text-align: center;

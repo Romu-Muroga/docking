@@ -117,6 +117,8 @@ ja:
         to_confirm_page: 確認画面へ
         update_account_setting: アカウント設定を更新する
         required: 必須
+        japanese: 日本語
+        english: 英語
     show_parts:
       category_list:
         category_name: カテゴリー名
@@ -134,6 +136,8 @@ ja:
       please_confirm: |
         ※以下の内容で登録します。
         ご確認をお願いいたします。
+      japanese: "言語：日本語"
+      english: "言語：英語"
       return_to_input: 入力画面に戻る
       create_account: Dockingアカウントを作成
     destroy_confirm:

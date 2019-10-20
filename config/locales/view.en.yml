@@ -117,6 +117,8 @@ en:
         to_confirm_page: To confirmation screen
         update_account_setting: Update account setting
         required: Required
+        japanese: Japanese
+        english: English
     show_parts:
       category_list: Category name
       thumbnail:
@@ -133,6 +135,8 @@ en:
       please_confirm: |
         ※Please check the contents.
         If it is ok, create an account.
+      japanese: "Language: Japanese"
+      english: "Language: English"
       return_to_input: Returns to the input screen
       create_account: Create your Docking account
     destroy_confirm:
