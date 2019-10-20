@@ -35,6 +35,7 @@ ja:
         password: パスワード
         password_confirmation: もう一度パスワードを入力してください
         admin: 管理者
+        locale: 言語
         current_password: 現在のパスワード
         image: アイコン画像
         picture_delete_check: アイコン画像を削除

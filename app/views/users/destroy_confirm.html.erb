@@ -2,20 +2,23 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4 destroy_confirm_section">
-        <h3><%= t('.quit_page') %></h3>
+        <div class="quit_page_header">
+          <%= simple_format(t('.quit_page_header_text', user: @user.name)) %>
+        </div>
         <%= form_with(model: @user, url: user_path(@user.id), method: :delete, local: true, class: "form_outer") do |f| %>
           <div class="form_inner">
-            <h5>
+            <p>
+              <strong>＜ご注意ください！＞</strong><br>
               退会するとお客様に関連する情報が全て削除され、<br>
               ログインできなくなります。<br>
               また登録されていたデータは復元できません。よろしいですか？
-            </h5>
+            </p>
             <div class="form-group">
               <%= f.check_box "destroy_check", {}, 1, 2 %>
               <%= f.label "destroy_check" %>
             </div>
           </div>
-          <%= f.submit t('.quit'), class: "btn btn-default" %>
+          <%= f.submit t('.quit'), class: "btn btn-primary" %>
           <%= link_to t('.cancel'), user_path(current_user), class: "btn btn-default" %>
         <% end %>
       </div>

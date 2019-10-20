@@ -15,6 +15,11 @@
               <% end %>
               <li class="confirm_list_name"><%= @user.name %></li>
               <li class="confirm_list_email"><%= @user.email %></li>
+              <% if @user.locale == 'ja' %>
+                <li class="confirm_list_locale"><%= t('.japanese') %></li>
+              <% elsif @user.locale == 'en' %>
+                <li class="confirm_list_locale"><%= t('.english') %></li>
+              <% end %>
             </ul>
             <%= f.submit t('.return_to_input'), name: 'back', class: "btn btn-default" %><br>
             <%= f.submit t('.create_account'), class: "btn btn-warning" %>

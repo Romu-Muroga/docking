@@ -5,19 +5,19 @@
   <label class="tab_item" for="iine"><%= t('.iine_ranking') %></label>
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
-      <p class="c-txtsp">
+      <div class="c-txtsp">
         <%= render partial: 'posts/index_parts/overall_ranking',
                    locals: { overall_ranking_posts: overall_ranking_posts,
                              categories: categories }
         %>
-      </p>
+      </div>
     </div>
   </div>
   <div class="tab_content" id="iine_content">
     <div class="tab_content_description">
       <% iine_ranking_posts.each.with_index(1) do |post, i| %>
         <div class="c-txtsp">
-          <%= t('.rank', rank: i) %>
+          <%= t('.rank', rank: i) %>&emsp;<%= post.eatery_name %>&emsp;<%= t('.nice_count', count: post.likes_count) %>
           <div class="mask">
             <%= linked_post_picture(post) %>
           </div>

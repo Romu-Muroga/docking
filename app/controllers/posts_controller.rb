@@ -26,8 +26,8 @@ class PostsController < ApplicationController
       redirect_to posts_path, warning: t('flash.search_word_is_empty')
     else
       @q = Post.ransack(search_params)
-      @posts = @q.result.latest
-      @iine_ranking_posts = Post.iine_ranking
+      @posts = @q.result.latest.includes(:category, :picture, :user, :iine_users)
+      @iine_ranking_posts = Post.iine_ranking.includes(:picture)
       @overall_ranking_posts = Post.overall_ranking
       render :index
     end

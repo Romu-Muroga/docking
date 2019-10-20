@@ -11,9 +11,8 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, danger: t('flash.please_login')
   end
 
-  # TODO: 英語にも対応させる
   def set_locale
-    I18n.locale = :ja
+    I18n.locale = current_user&.locale || :ja
   end
 
   def current_user

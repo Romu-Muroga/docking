@@ -31,7 +31,7 @@ class Post < ApplicationRecord
   scope :category_sort, ->(category_id) { where(category_id: category_id).latest }
   scope :user_category_sort, ->(user, category) { where(user_id: user).where(category_id: category).order(ranking_point: :desc) }
   scope :default_sort, -> { where(category_id: Category.first.id).order(ranking_point: :desc) }
-  scope :iine_ranking, -> { order(likes_count: :desc).limit(10) }
+  scope :iine_ranking, -> { where.not(likes_count: 0).order(likes_count: :desc).limit(10) }
   scope :latest, -> { order(updated_at: :desc) }
   # scope for autocomplete
   scope :uniq_eatery_name, -> { select('MIN(id) as id, eatery_name').group(:eatery_name) }

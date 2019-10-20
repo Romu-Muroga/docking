@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
   def edit; end
 
   def update
-    set_admin_value(params[:user][:admin].to_i)
+    set_admin_value(params[:user][:admin])
     if @user.update(user_params)
       redirect_to admin_users_path,
                   success: t('flash.update', content: @user.name)
@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:password, :admin)
+    params.require(:user).permit(:admin)
   end
 
   def set_user
@@ -48,12 +48,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def set_admin_value(value_sent)
-    if value_sent == 0
+    if value_sent == '0'
       params[:user][:admin] = true
-    elsif value_sent == 1
+    elsif value_sent == '1'
       params[:user][:admin] = false
-    else
-      render :edit
     end
   end
 end
