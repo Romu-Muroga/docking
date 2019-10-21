@@ -42,6 +42,7 @@ en:
       add_comment: To comment
       commenter: "Publish comments as %{name}"
     index:
+      posting_time: "%{time} ago"
       delete_comment: Delete comment
   layouts:
     header:
