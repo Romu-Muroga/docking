@@ -121,7 +121,8 @@ en:
         japanese: Japanese
         english: English
     show_parts:
-      category_list: Category name
+      category_list:
+        category_name: Category name
       thumbnail:
         learn_more: Learn more!
         food_menu: "Menu: %{name}"
