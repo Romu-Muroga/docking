@@ -42,6 +42,7 @@ ja:
       add_comment: コメントをする
       commenter: "%{name}としてコメントを公開する"
     index:
+      posting_time: "%{time}前"
       delete_comment: コメントを削除する
   layouts:
     header:
