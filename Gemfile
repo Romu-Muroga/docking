@@ -13,6 +13,9 @@ gem 'rails', '6.0.3.2'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
+gem 'sqlite3', '~> 1.4'
+gem 'webpacker', '~> 4.0'
+gem 'image_processing', '~> 1.2'
 
 # has_secure_password
 gem 'bcrypt'
