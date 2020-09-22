@@ -10,8 +10,8 @@
 大衆が選ぶランキングより、あの人が選ぶランキングを知りたいという声にお答えします。  
 私の一番に出会える場所。それが、このアプリケーション。個人のランキング × 個人のランキング ＝ **Docking** となります。
 ## バージョン
-![ruby version](https://img.shields.io/badge/Ruby-v2.5.3-blue.svg)
-![rails version](https://img.shields.io/badge/Rails-v5.2.3-green)
+![ruby version](https://img.shields.io/badge/Ruby-v2.6.3-blue.svg)
+![rails version](https://img.shields.io/badge/Rails-v6.0.3.2-green)
 ![pstgresql version](https://img.shields.io/badge/PostgreSQL-v11.5-brightgreen)
 ## 機能一覧
 - [x] ログイン

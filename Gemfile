@@ -1,25 +1,28 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.3'
 
 # default
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'coffee-rails', '~> 4.2'
-gem 'jbuilder', '~> 2.5'
-gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.12'
-gem 'rails', '~> 5.2.2'
-gem 'sass-rails', '~> 5.0'
-gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
+gem 'bootsnap', require: false
+gem 'coffee-rails'
+gem 'jbuilder'
+gem 'pg'
+gem 'puma'
+gem 'rails', '6.0.3.2'
+gem 'sass-rails'
+gem 'turbolinks'
+gem 'uglifier'
+gem 'sqlite3', '~> 1.4'
+gem 'webpacker', '~> 4.0'
+gem 'image_processing', '~> 1.2'
 
 # has_secure_password
-gem 'bcrypt', '~> 3.1.11'
+gem 'bcrypt'
 # file upload
 gem 'carrierwave'
 # iine count
-gem 'counter_culture', '~> 1.8'
+gem 'counter_culture'
 # seed data
 gem 'faker'
 # autocomplete
@@ -27,13 +30,15 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 # image resize
-gem 'mini_magick', '>= 4.9.4'
+gem 'mini_magick'
 # search
 gem 'ransack'
 # auto_link
 gem 'rails_autolink'
 # pagination
 gem 'kaminari'
+# check gem version
+gem 'bundle_outdated_formatter'
 
 group :development, :test do
   # debug
@@ -46,11 +51,11 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'rubocop', require: false
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :test do
