@@ -53,6 +53,10 @@
             <% end %>
           </div>
         </div>
+
+        <!-- Google map -->
+        <div id="map"></div>
+
       </div>
       <div class="col-md-3 right_section">
         <p class="title"><%= Comment.model_name.human %></p>
@@ -66,3 +70,9 @@
     </div>
   </div>
 </div>
+<!-- scriptタグは表示したいページにだけ書けばいい -->
+<script
+  async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>&callback=initMap"
+ >
+</script>
