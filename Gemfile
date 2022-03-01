@@ -15,7 +15,7 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'sqlite3', '~> 1.4'
 gem 'webpacker', '~> 4.0'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 # has_secure_password
 gem 'bcrypt'
